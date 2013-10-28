@@ -3,13 +3,17 @@ import re
 from datetime import datetime
 from lxml import etree
 from nltk.tokenize import sent_tokenize
+from Sentence import Sentence
 
 
 def logit(text):
     print(text)
-    with open('logfile1.txt', "a") as outfile:
-        outfile.write(text.encode('utf8'))
-        outfile.write('\n')
+    try:
+        with open('logfile1.txt', "a") as outfile:
+            outfile.write(text.encode('utf8'))
+            outfile.write('\n')
+    except UnicodeDecodeError:
+        pass
 
 
 logit('\n' + str(datetime.now()))
@@ -26,6 +30,7 @@ class Document:
     def __init__(self, xmlfile):
         self.document = {}
         self.process_doc(xmlfile)
+        self.convert_to_obj()
 
     def process_doc(self, xmlfile):
         tree = etree.parse(xmlfile)
@@ -35,8 +40,6 @@ class Document:
         counter = 0
         sentences = []
         try:
-            #import pdb
-            #pdb.set_trace()
             while True:
                 blk = block.next()
                 if(blk.tag == 'sectionHeader'):
@@ -69,8 +72,13 @@ class Document:
         for sec, block in self.document.items():
             alltext += '\n' + sec + '\n'
             for key in sorted(block.keys()):
-                alltext += block[key]  # + '\n'
+                alltext += str(block[key]) + '\n'
         return alltext
+
+    def convert_to_obj(self):
+        for sec, block in self.document.items():
+            for key in block.keys():
+                block[key] = Sentence(block[key])
 
 
 def remove_crlf(text):
@@ -83,3 +91,5 @@ def remove_crlf(text):
 if __name__ == '__main__':
     doc = Document('../demo/E06-1050.xml')
     logit(doc.all_text())
+    #import pdb
+    #pdb.set_trace()
