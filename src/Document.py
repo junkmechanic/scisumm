@@ -10,10 +10,10 @@ def logit(text):
     print(text)
     try:
         with open('logfile1.txt', "a") as outfile:
-            outfile.write(text.encode('utf8'))
+            outfile.write(text)
             outfile.write('\n')
-    except UnicodeDecodeError:
-        pass
+    except Exception as e:
+        print(str(e))
 
 
 logit('\n' + str(datetime.now()))
@@ -89,7 +89,7 @@ def remove_crlf(text):
 
 
 if __name__ == '__main__':
-    doc = Document('../demo/E06-1050.xml')
+    doc = Document('../demo/C08-1122-parscit-section.xml')
     logit(doc.all_text())
     #import pdb
     #pdb.set_trace()
