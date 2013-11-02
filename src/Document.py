@@ -2,7 +2,8 @@ from __future__ import print_function
 import re
 from datetime import datetime
 from lxml import etree
-from nltk.tokenize import sent_tokenize
+#from nltk.tokenize import sent_tokenize
+from nltk.tokenize.punkt import PunktSentenceTokenizer, PunktParameters
 from Sentence import Sentence
 
 
@@ -33,6 +34,13 @@ class Document:
         self.convert_to_obj()
 
     def process_doc(self, xmlfile):
+
+        # Set up sentence tokenizer
+        punkt_param = PunktParameters()
+        # Domain specific abbreviations
+        punkt_param.abbrev_types = set(['e.g', 'al', 'i.e'])
+        sent_tokenize = PunktSentenceTokenizer(punkt_param).tokenize
+
         tree = etree.parse(xmlfile)
         algrthms = tree.getroot()
         block = algrthms.iterdescendants(['sectionHeader', 'bodyText'])
@@ -70,9 +78,11 @@ class Document:
     def all_text(self):
         alltext = ''
         for sec, block in self.document.items():
-            alltext += '\n' + sec + '\n'
+            alltext += '\n' + " Section type : " + sec + '\n'
             for key in sorted(block.keys()):
                 alltext += str(block[key]) + '\n'
+                # to compare with the word tokenizer
+                alltext += ' '.join(block[key].tokens).encode('utf-8') + '\n'
         return alltext
 
     def convert_to_obj(self):
@@ -89,7 +99,7 @@ def remove_crlf(text):
 
 
 if __name__ == '__main__':
-    doc = Document('../demo/C08-1122-parscit-section.xml')
+    doc = Document('../demo/P99-1026-parscit-section.xml')
     logit(doc.all_text())
     #import pdb
     #pdb.set_trace()
