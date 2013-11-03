@@ -379,15 +379,59 @@ however performance improvements rankfusion collabrank significant
 We can conclude that the cluster-level global information plays the key role for evaluating the true saliency of the words. 
 conclude cluster-level global information plays key role evaluating true saliency words
 
-2013-11-03 03:01:17.538432
+2013-11-03 06:24:57.662736
 
- Section type : conclusions
-This paper proposed ISSS (incremental significantutterance-sequence search), an integrated incremental parsing and discourse processing method that enables both the understanding of unsegmented user utterances and real-time responses.
-paper proposed isss incremental significantutterance-sequence search integrated incremental parsing discourse processing method enables understanding unsegmented user utterances real-time responses
-This paper also reported an experimental result which suggested that ISSS is effective.
-paper also reported experimental result suggested isss effective
-It is also worthwhile mentioning that using ISSS enables building spoken dialogue systems with less effort because it is possible to define significant utterances without considering where pauses might appear. 
-also worthwhile mentioning using isss enables building spoken dialogue systems less effort possible define significant utterances without considering pauses might appear
+ Section type : abstract
+This paper proposes a method for incrementally understanding user utterances whose semantic boundaries are not known and responding in real time even before boundaries are determined.
+paper proposes method incrementally understanding user utterances whose semantic boundaries known responding real time even boundaries determined
+It is an integrated parsing and discourse processing method that updates the partial result of understanding word by word, enabling responses based on the partial result.
+integrated parsing discourse processing method updates partial result understanding word word enabling responses based partial result
+This method incrementally finds plausible sequences of utterances that play crucial roles in the task execution of dialogues, and utilizes beam search to deal with the ambiguity of boundaries as well as syntactic and semantic ambiguities.
+method incrementally finds plausible sequences utterances play crucial roles task execution dialogues utilizes beam search deal ambiguity boundaries well syntactic semantic ambiguities
+The results of a preliminary experiment demonstrate that this method understands user utterances better than an understanding method that assumes pauses to be semantic boundaries. 
+results preliminary experiment demonstrate method understands user utterances better understanding method assumes pauses semantic boundaries
+
+ Section type : keywords
+Building a real-time, interactive spoken dialogue system has long been a dream of researchers, and the recent progress in hardware technology and speech and language processing technologies is making this dream a reality.
+building real-time interactive spoken dialogue system long dream researchers recent progress hardware technology speech language processing technologies making dream reality
+It is still hard, however, for computers to understand unrestricted human utterances and respond appropriately to them.
+still hard however computers understand unrestricted human utterances respond appropriately
+Considering the current level of speech recognition technology, system-initiative dialogue systems, which prohibit users from speaking unrestrictedly, are preferred (Walker et al., 1998).
+considering current level speech recognition technology system-initiative dialogue systems prohibit users speaking unrestrictedly preferred walker et al. 1998
+Nevertheless, we are still pursuing techniques for understanding unrestricted user utterances because, if the accuracy of understanding can be improved, systems that allow users to speak freely could be developed and these would be more useful than systems that do not.
+nevertheless still pursuing techniques understanding unrestricted user utterances accuracy understanding improved systems allow users speak freely could developed would useful systems
+Most previous spoken dialogue systems (e.g. systems by Allen et al. (1996), Zue et al. (1994) and Peckham (1993)) assume that the user makes one utterance unit in each speech interval, unless the push-to-talk method is used.
+previous spoken dialogue systems e.g. systems allen et al. 1996 zue et al. 1994 peckham 1993 assume user makes one utterance unit speech interval unless push-to-talk method used
+Here, by utterance unit we mean a phrase from which a speech act representation is derived, and it corresponds to a sentence in written language.
+utterance unit mean phrase speech act representation derived corresponds sentence written language
+We also use speech act in this paper to mean a command that updates the hearer's belief state about the speaker's intention and the context of the dialogue.
+also use speech act paper mean command updates hearer 's belief state speaker 's intention context dialogue
+In this paper, a system using this assumption is called an interval-based system.
+paper system using assumption called interval-based system
+The above assumption no longer holds when no restrictions are placed on the way the user speaks.
+assumption longer holds restrictions placed way user speaks
+This is because utterance boundaries (i.e., semantic boundaries) do not always correspond to pauses and techniques based on other acoustic information are not perfect.
+utterance boundaries i.e. semantic boundaries always correspond pauses techniques based acoustic information perfect
+Utterance boundaries thus cannot be identified prior to parsing, and so the timing of determining parsing results to update the belief state is unclear.
+utterance boundaries thus identified prior parsing timing determining parsing results update belief state unclear
+On the other hand, responding to a user utterance in real time requires understanding it and updating the belief state in real time; thus, it is impossible to wait for subsequent inputs to determine boundaries.
+hand responding user utterance real time requires understanding updating belief state real time thus impossible wait subsequent inputs determine boundaries
+Abandoning full parsing and adopting keywordbased or fragment-based understanding could prevent this problem.
+abandoning full parsing adopting keywordbased fragment-based understanding could prevent problem
+This would, however, sacrifice the accuracy of understanding because phrases across the pauses could not be syntactically analyzed.
+would however sacrifice accuracy understanding phrases across pauses could syntactically analyzed
+There is, therefore, a need for a method based on full parsing that enables real-time understanding of user utterances without boundary information.
+therefore need method based full parsing enables real-time understanding user utterances without boundary information
+This paper presents incremental significant
+paper presents incremental significant
+enables incremental understanding of user utterances word by word by finding plausible sequences of utterances that play crucial roles in the task execution of dialogues.
+enables incremental understanding user utterances word word finding plausible sequences utterances play crucial roles task execution dialogues
+The method utilizes beam search to deal with the ambiguity of boundaries as well as syntactic and semantic ambiguities.
+method utilizes beam search deal ambiguity boundaries well syntactic semantic ambiguities
+Since it outputs the partial result of understanding that is the most plausible whenever a word hypothesis is inputted, the response generation module can produce responses at any appropriate time.
+since outputs partial result understanding plausible whenever word hypothesis inputted response generation module produce responses appropriate time
+A comparison of an experimental spoken dialogue system using ISSS with an interval-based system shows that the method is effective. 
+comparison experimental spoken dialogue system using isss interval-based system shows method effective
 
  Section type : introduction
 A dilemma is addressed in this paper.
@@ -420,16 +464,6 @@ Waiting for a long pause enables an interpretation, but prevents response in rea
 waiting long pause enables interpretation prevents response real time
 We therefore need a way to reconcile real-time understanding and analysis without boundary clues. 
 therefore need way reconcile real-time understanding analysis without boundary clues
-
- Section type : abstract
-This paper proposes a method for incrementally understanding user utterances whose semantic boundaries are not known and responding in real time even before boundaries are determined.
-paper proposes method incrementally understanding user utterances whose semantic boundaries known responding real time even boundaries determined
-It is an integrated parsing and discourse processing method that updates the partial result of understanding word by word, enabling responses based on the partial result.
-integrated parsing discourse processing method updates partial result understanding word word enabling responses based partial result
-This method incrementally finds plausible sequences of utterances that play crucial roles in the task execution of dialogues, and utilizes beam search to deal with the ambiguity of boundaries as well as syntactic and semantic ambiguities.
-method incrementally finds plausible sequences utterances play crucial roles task execution dialogues utilizes beam search deal ambiguity boundaries well syntactic semantic ambiguities
-The results of a preliminary experiment demonstrate that this method understands user utterances better than an understanding method that assumes pauses to be semantic boundaries. 
-results preliminary experiment demonstrate method understands user utterances better understanding method assumes pauses semantic boundaries
 
  Section type : method
 Several techniques have been proposed to segment user utterances prior to parsing.
@@ -703,47 +737,13 @@ About 67% of all recognition results of user speech intervals were SUs or filler
 It has been suggested, however, that assuming each speech interval to be an utterance unit could reduce system performance and that ISSS is effective. 
 suggested however assuming speech interval utterance unit could reduce system performance isss effective
 
- Section type : keywords
-Building a real-time, interactive spoken dialogue system has long been a dream of researchers, and the recent progress in hardware technology and speech and language processing technologies is making this dream a reality.
-building real-time interactive spoken dialogue system long dream researchers recent progress hardware technology speech language processing technologies making dream reality
-It is still hard, however, for computers to understand unrestricted human utterances and respond appropriately to them.
-still hard however computers understand unrestricted human utterances respond appropriately
-Considering the current level of speech recognition technology, system-initiative dialogue systems, which prohibit users from speaking unrestrictedly, are preferred (Walker et al., 1998).
-considering current level speech recognition technology system-initiative dialogue systems prohibit users speaking unrestrictedly preferred walker et al. 1998
-Nevertheless, we are still pursuing techniques for understanding unrestricted user utterances because, if the accuracy of understanding can be improved, systems that allow users to speak freely could be developed and these would be more useful than systems that do not.
-nevertheless still pursuing techniques understanding unrestricted user utterances accuracy understanding improved systems allow users speak freely could developed would useful systems
-Most previous spoken dialogue systems (e.g. systems by Allen et al. (1996), Zue et al. (1994) and Peckham (1993)) assume that the user makes one utterance unit in each speech interval, unless the push-to-talk method is used.
-previous spoken dialogue systems e.g. systems allen et al. 1996 zue et al. 1994 peckham 1993 assume user makes one utterance unit speech interval unless push-to-talk method used
-Here, by utterance unit we mean a phrase from which a speech act representation is derived, and it corresponds to a sentence in written language.
-utterance unit mean phrase speech act representation derived corresponds sentence written language
-We also use speech act in this paper to mean a command that updates the hearer's belief state about the speaker's intention and the context of the dialogue.
-also use speech act paper mean command updates hearer 's belief state speaker 's intention context dialogue
-In this paper, a system using this assumption is called an interval-based system.
-paper system using assumption called interval-based system
-The above assumption no longer holds when no restrictions are placed on the way the user speaks.
-assumption longer holds restrictions placed way user speaks
-This is because utterance boundaries (i.e., semantic boundaries) do not always correspond to pauses and techniques based on other acoustic information are not perfect.
-utterance boundaries i.e. semantic boundaries always correspond pauses techniques based acoustic information perfect
-Utterance boundaries thus cannot be identified prior to parsing, and so the timing of determining parsing results to update the belief state is unclear.
-utterance boundaries thus identified prior parsing timing determining parsing results update belief state unclear
-On the other hand, responding to a user utterance in real time requires understanding it and updating the belief state in real time; thus, it is impossible to wait for subsequent inputs to determine boundaries.
-hand responding user utterance real time requires understanding updating belief state real time thus impossible wait subsequent inputs determine boundaries
-Abandoning full parsing and adopting keywordbased or fragment-based understanding could prevent this problem.
-abandoning full parsing adopting keywordbased fragment-based understanding could prevent problem
-This would, however, sacrifice the accuracy of understanding because phrases across the pauses could not be syntactically analyzed.
-would however sacrifice accuracy understanding phrases across pauses could syntactically analyzed
-There is, therefore, a need for a method based on full parsing that enables real-time understanding of user utterances without boundary information.
-therefore need method based full parsing enables real-time understanding user utterances without boundary information
-This paper presents incremental significant
-paper presents incremental significant
-enables incremental understanding of user utterances word by word by finding plausible sequences of utterances that play crucial roles in the task execution of dialogues.
-enables incremental understanding user utterances word word finding plausible sequences utterances play crucial roles task execution dialogues
-The method utilizes beam search to deal with the ambiguity of boundaries as well as syntactic and semantic ambiguities.
-method utilizes beam search deal ambiguity boundaries well syntactic semantic ambiguities
-Since it outputs the partial result of understanding that is the most plausible whenever a word hypothesis is inputted, the response generation module can produce responses at any appropriate time.
-since outputs partial result understanding plausible whenever word hypothesis inputted response generation module produce responses appropriate time
-A comparison of an experimental spoken dialogue system using ISSS with an interval-based system shows that the method is effective. 
-comparison experimental spoken dialogue system using isss interval-based system shows method effective
+ Section type : conclusions
+This paper proposed ISSS (incremental significantutterance-sequence search), an integrated incremental parsing and discourse processing method that enables both the understanding of unsegmented user utterances and real-time responses.
+paper proposed isss incremental significantutterance-sequence search integrated incremental parsing discourse processing method enables understanding unsegmented user utterances real-time responses
+This paper also reported an experimental result which suggested that ISSS is effective.
+paper also reported experimental result suggested isss effective
+It is also worthwhile mentioning that using ISSS enables building spoken dialogue systems with less effort because it is possible to define significant utterances without considering where pauses might appear. 
+also worthwhile mentioning using isss enables building spoken dialogue systems less effort possible define significant utterances without considering pauses might appear
 
  Section type : acknowledgments
 We would like to thank Dr.
@@ -760,4 +760,3 @@ Thanks also go to the subjects of the experiment.
 thanks also go subjects experiment
 Comments by the anonymous reviewers were of great help. 
 comments anonymous reviewers great help
-

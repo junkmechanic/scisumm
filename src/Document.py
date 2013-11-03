@@ -5,6 +5,7 @@ from lxml import etree
 #from nltk.tokenize import sent_tokenize
 from nltk.tokenize.punkt import PunktSentenceTokenizer, PunktParameters
 from Sentence import Sentence
+from collections import OrderedDict
 
 
 def logit(text):
@@ -22,6 +23,11 @@ logit('\n' + str(datetime.now()))
 
 class Document:
     """
+    The main object for Document processing.
+    The following instance methods are avilable for use:
+        1. all_text() : returns the entire block of text as a string
+        2. filtered_sentences() : returns a list of all the sentences filtered
+
     TODO: 1. Save the object as a pickle for later use
              and make provisions for importing such pickles
           2. Functions to print and return the document in different formats
@@ -29,7 +35,7 @@ class Document:
     """
 
     def __init__(self, xmlfile):
-        self.document = {}
+        self.document = OrderedDict()
         self.process_doc(xmlfile)
         self.convert_to_obj()
 
@@ -78,12 +84,19 @@ class Document:
     def all_text(self):
         alltext = ''
         for sec, block in self.document.items():
-            alltext += '\n' + " Section type : " + sec + '\n'
+            alltext += '\n' + sec + '\n'
             for key in sorted(block.keys()):
                 alltext += str(block[key]) + '\n'
                 # to compare with the word tokenizer
-                alltext += ' '.join(block[key].tokens).encode('utf-8') + '\n'
+                #alltext += ' '.join(block[key].tokens).encode('utf-8') + '\n'
         return alltext
+
+    def filtered_sentences(self):
+        sentences = []
+        for sec, block in self.document.items():
+            for key in sorted(block.keys()):
+                sentences.append(' '.join(block[key].tokens).encode('utf-8'))
+        return sentences
 
     def convert_to_obj(self):
         for sec, block in self.document.items():
@@ -100,6 +113,4 @@ def remove_crlf(text):
 
 if __name__ == '__main__':
     doc = Document('../demo/P99-1026-parscit-section.xml')
-    logit(doc.all_text())
-    #import pdb
-    #pdb.set_trace()
+    logit(doc.filtered_sentences())

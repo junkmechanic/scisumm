@@ -35,7 +35,7 @@ class Sentence:
             return word
 
         # Unwanted charaters/words to be removed from the wordlist
-        unwanted = [',', '.', '(', ')', ':', '"', "'", ';']
+        unwanted = [',', '.', '(', ')', ':', '"', "'", ';', "'s"]
         remove_words = stopwords.words('english')
         remove_words.extend(unwanted)
         tokens = [w.lower() for w in self.words
