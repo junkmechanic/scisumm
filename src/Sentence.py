@@ -35,7 +35,7 @@ class Sentence:
             return word
 
         # Unwanted charaters/words to be removed from the wordlist
-        unwanted = [',', '.', '(', ')', ':', '"', "'", ';', "'s"]
+        unwanted = [',', '.', '(', ')', ':', '"', "'", ';', "'s", '']
         remove_words = stopwords.words('english')
         remove_words.extend(unwanted)
         tokens = [w.lower() for w in self.words
@@ -43,7 +43,7 @@ class Sentence:
         return(map(strip_char, tokens))
 
     def __str__(self):
-        return unicode(self.sentence).encode('utf-8')
+        return unicode(self.sentence)
 
     def __getitem__(self, index):
         return self.tokens[index]

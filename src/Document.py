@@ -12,13 +12,11 @@ def logit(text):
     print(text)
     try:
         with open('logfile1.txt', "a") as outfile:
+            outfile.write('\n' + str(datetime.now()))
             outfile.write(text)
             outfile.write('\n')
     except Exception as e:
         print(str(e))
-
-
-logit('\n' + str(datetime.now()))
 
 
 class Document:
@@ -26,7 +24,10 @@ class Document:
     The main object for Document processing.
     The following instance methods are avilable for use:
         1. all_text() : returns the entire block of text as a string
-        2. filtered_sentences() : returns a list of all the sentences filtered
+        2. all_sentences() : returns a list of all the sentences
+        3. filtered_sentences() : returns a list of all the sentences filtered
+        4. indexing an object of this class will return a Sentence object
+           corresponding to that index
 
     TODO: 1. Save the object as a pickle for later use
              and make provisions for importing such pickles
@@ -38,6 +39,13 @@ class Document:
         self.document = OrderedDict()
         self.process_doc(xmlfile)
         self.convert_to_obj()
+
+    def __getitem__(self, index):
+        for sec, blk in self.document.items():
+            if index in blk.keys():
+                return blk[index]
+        print("The requested index is out of range of this doc !!")
+        return Sentence('')
 
     def process_doc(self, xmlfile):
 
@@ -87,9 +95,14 @@ class Document:
             alltext += '\n' + sec + '\n'
             for key in sorted(block.keys()):
                 alltext += str(block[key]) + '\n'
-                # to compare with the word tokenizer
-                #alltext += ' '.join(block[key].tokens).encode('utf-8') + '\n'
         return alltext
+
+    def all_sentences(self):
+        sentences = []
+        for sec, block in self.document.items():
+            for key in sorted(block.keys()):
+                sentences.append((str(block[key])).encode('utf-8'))
+        return sentences
 
     def filtered_sentences(self):
         sentences = []
@@ -113,4 +126,4 @@ def remove_crlf(text):
 
 if __name__ == '__main__':
     doc = Document('../demo/P99-1026-parscit-section.xml')
-    logit(doc.filtered_sentences())
+    logit(doc.all_sentences())

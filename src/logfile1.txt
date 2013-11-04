@@ -760,3 +760,58 @@ Thanks also go to the subjects of the experiment.
 thanks also go subjects experiment
 Comments by the anonymous reviewers were of great help. 
 comments anonymous reviewers great help
+
+2013-11-04 08:32:20.696136
+This paper proposed ISSS (incremental significantutterance-sequence search), an integrated incremental parsing and discourse processing method that enables both the understanding of unsegmented user utterances and real-time responses.
+In Japanese dialogue systems, producing a backchannel is effective when the user's intention is not clear at that point in time, but determining the content of responses in a real-time spoken dialogue system is also beyond the scope of this paper. 
+The above problem can be solved by incremental understanding, which means obtaining the most plausible interpretation of user utterances every time a word hypothesis is inputted from the speech recognizer.
+The contexts created by the utterance understanding module can also be accessed by the response generation module so that it can produce responses based on the belief state in the context with the highest priority at a point in time.
+The newest word hypothesis determines the word sequence that is acoustically most likely at a point in time.2 The utterance understanding module works based on ISSS and uses a domain-dependent unification grammar with a context-free backbone that is based on bunsetsu phrases.
+
+(174, 0.009000886418498751),
+ (105, 0.008865799756263434),
+ (51, 0.008706292056363571),
+ (103, 0.008672309959407806),
+ (134, 0.008447449827839897),
+ (59, 0.008387425815514351),
+ (8, 0.008366009883753698),
+ (18, 0.008321895554476893),
+ (23, 0.008252289823150615),
+ (138, 0.008151018489091886),
+ (156, 0.008012594916804327),
+ (74, 0.007898083037230209),
+ (30, 0.007803767756754099),
+ (110, 0.007782767289968044),
+ (69, 0.007708929043735042),
+ (73, 0.0075894141401687066),
+ (126, 0.007512608624041898),
+ (25, 0.007509201532633155),
+ (172, 0.007432036320944398)
+
+2013-11-04 08:35:43.726546
+In Japanese dialogue systems, producing a backchannel is effective when the user's intention is not clear at that point in time, but determining the content of responses in a real-time spoken dialogue system is also beyond the scope of this paper. 
+The contexts created by the utterance understanding module can also be accessed by the response generation module so that it can produce responses based on the belief state in the context with the highest priority at a point in time.
+The response generation module is invoked when the user pauses, and plans responses based on the belief state of the context with the highest priority.
+A significant utterance (SU) in the user's speech is a phrase that plays a crucial role in performing the task in the dialogue.
+A meaningful discussion on the success rate of utterance segmentation is not possible because of the recognition errors due to the small coverage of the recognition grammar.3 All subjects successfully completed the task with system A in an average of 42.5 seconds, and six subjects did so with system B in an average of 55.0 seconds.
+
+(105, 0.008956021171430293),
+ (103, 0.008699347869939497),
+ (138, 0.008678463590276419),
+ (59, 0.008538290752199834),
+ (164, 0.008372031923150886),
+ (10, 0.008179702734185121),
+ (83, 0.007984791442647882),
+ (93, 0.00788750531530575),
+ (64, 0.007850727288128878),
+ (33, 0.007788036131293744),
+ (118, 0.007755993199946711),
+ (70, 0.007685179971692148),
+ (15, 0.007655944225987364),
+ (31, 0.007637946022018594),
+ (134, 0.007634564116687182),
+ (32, 0.0075585533623367595),
+ (51, 0.007502992931531572),
+ (150, 0.007485544195640006),
+ (123, 0.007406917591033985),
+ (141, 0.007380453189278116)
