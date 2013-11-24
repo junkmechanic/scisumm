@@ -43,7 +43,7 @@ class Sentence:
         return(map(strip_char, tokens))
 
     def __str__(self):
-        return unicode(self.sentence)
+        return unicode(self.sentence).encode('utf-8')
 
     def __getitem__(self, index):
         return self.tokens[index]

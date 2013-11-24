@@ -1,817 +1,208 @@
 
-2013-11-03 02:41:34.202388
+2013-11-24 21:49:22.993008
+C08-1122
 
+2013-11-24 21:49:22.993102
+All Sentences
 
-ing (Zhang et al., 2004; Hammouda et al., 2005) and document summarization (Berger and Mittal, 2000; Buyukkokten et al., 2001).
-ing zhang et al. 2004 hammouda et al. 2005 document summarization berger mittal 2000 buyukkokten et al. 2001
-Keyphrases are usually manually assigned by authors, especially for journal or conference articles.
-keyphrases usually manually assigned authors especially journal conference articles
-However, the vast majority of documents (e.g. news articles, magazine articles) do not have keyphrases, therefore it is beneficial to automatically extract a few keyphrases from a given document to deliver the main content of the document.
-however vast majority documents e.g. news articles magazine articles keyphrases therefore beneficial automatically extract keyphrases given document deliver main content document
-Here, keyphrases are selected from within the body of the input document, without a predefined list (i.e. controlled vocabulary).
-keyphrases selected within body input document without predefined list i.e. controlled vocabulary
-Most previous work focuses on keyphrase extraction for journal or conference articles, while this paper focus on keyphrase extraction for news articles because news article is one of the most popular document genres on the web and most news articles have no author-assigned keyphrases.
-previous work focuses keyphrase extraction journal conference articles paper focus keyphrase extraction news articles news article one popular document genres web news articles author-assigned keyphrases
-Very often, keyphrases of all single documents in a document set are required to be extracted.
-often keyphrases single documents document set required extracted
-However, all previous methods extract keyphrases for a specified document based only on the information contained in that document, such as the phrase’s TFIDF, position and other syntactic information in the document.
-however previous methods extract keyphrases specified document based information contained document phrase’s tfidf position syntactic information document
-One common assumption of existing methods is that the documents are independent of each other.
-one common assumption existing methods documents independent
-Hence the keyphrase extraction task is conducted separately without interactions for each document.
-hence keyphrase extraction task conducted separately without interactions document
-However, the multiple documents within an appropriate cluster context usually have mutual influences and contain useful clues which can help to extract keyphrases from each other.
-however multiple documents within appropriate cluster context usually mutual influences contain useful clues help extract keyphrases
-For example, two documents about the same topic “earthquake” would share a few common phrases, e.g. “earthquake”, “victim”, and they can provide additional knowledge for each other to better evaluate and extract salient keyphrases from each other.
-example two documents topic “earthquake” would share common phrases e.g. “earthquake” “victim” provide additional knowledge better evaluate extract salient keyphrases
-The idea is borrowed from human’s perception that a user would better understand a topic expressed in a document if the user reads more documents about the same topic. 
-idea borrowed human’s perception user would better understand topic expressed document user reads documents topic
+2013-11-24 21:49:22.993203
+Given a document cluster, CollabRank makes use of the global word relationships in the cluster to evaluate and rank candidate phrases for each single document in the cluster based on the graph-based ranking algorithm. [0.00868840809792]
+Instead of making only use of the word relationships in a single document, the algorithm can incorporate the “voting” or “recommendations” between words in all the documents of the cluster, thus making use of the global information existing in the cluster context. [0.00859020597604]
+All the candidate phrases in the document are ranked in decreasing order of the phrase scores and the top n phrases are selected as the keyphrases of the document. [0.00848024778439]
+In this study, the cluster context is obtained by applying the clustering algorithm on the document set, and we have investigated how the cluster context influences the keyphrase extraction performance by employing different clustering algorithms. [0.00829185777805]
+It is noteworthy that in addition to the graphbased ranking algorithm, other keyphrase extraction methods can also be integrated in the proposed collaborative framework to exploit the collaborative knowledge in the cluster context.  [0.00815372045375]
 
-conclusions
-In this paper, we propose a novel approach named CollabRank for collaborative singledocument keyphrase extraction, which makes use of the mutual influences between documents in appropriate cluster context to better evaluate the saliency of words and phrases.
-paper propose novel approach named collabrank collaborative singledocument keyphrase extraction makes use mutual influences documents appropriate cluster context better evaluate saliency words phrases
-Experimental re
-experimental re
-sults demonstrate the good effectiveness of CollabRank.
-sults demonstrate good effectiveness collabrank
-We also find that the clustering algorithm is important for obtaining the appropriate cluster context and the low-quality clustering results will deteriorate the extraction performance.
-also find clustering algorithm important obtaining appropriate cluster context low-quality clustering results deteriorate extraction performance
-It is encouraging that most existing popular clustering algorithms can meet the demands of the proposed approach.
-encouraging existing popular clustering algorithms meet demands proposed approach
-The proposed collaborative framework has more implementations than the implementation based on the graph-based ranking algorithm in this study.
-proposed collaborative framework implementations implementation based graph-based ranking algorithm study
-In future work, we will explore other keyphrase extraction methods in the proposed collaborative framework to validate the robustness of the framework. 
-future work explore keyphrase extraction methods proposed collaborative framework validate robustness framework
+2013-11-24 21:50:36.035407
+C08-1122
 
-introduction
-A keyphrase is defined as a meaningful and significant expression consisting of one or more words in a document.
-keyphrase defined meaningful significant expression consisting one words document
-Appropriate keyphrases can be considered as a highly condensed summary for a document, and they can be used as a label for the document to supplement or replace the title or summary, thus facilitating users’ fast browsing and reading.
-appropriate keyphrases considered highly condensed summary document used label document supplement replace title summary thus facilitating users’ fast browsing reading
-Moreover, document keyphrases have been successfully used in the following IR and NLP tasks: document indexing (Gutwin et al., 1999), document classification (Krulwich and Burkey, 1996), document cluster
-moreover document keyphrases successfully used following ir nlp tasks document indexing gutwin et al. 1999 document classification krulwich burkey 1996 document cluster
-Based on the above assumption, we propose a novel framework for collaborative singledocument keyphrase extraction by making use of the additional information from multiple documents within an appropriate cluster context.
-based assumption propose novel framework collaborative singledocument keyphrase extraction making use additional information multiple documents within appropriate cluster context
-The collaborative framework for keyphrase extraction consists of the step of obtaining the cluster context and the step of collaborative keyphrase extraction in each cluster.
-collaborative framework keyphrase extraction consists step obtaining cluster context step collaborative keyphrase extraction cluster
-In this study, the cluster context is obtained by applying the clustering algorithm on the document set, and we have investigated how the cluster context influences the keyphrase extraction performance by employing different clustering algorithms.
-study cluster context obtained applying clustering algorithm document set investigated cluster context influences keyphrase extraction performance employing different clustering algorithms
-The graph-based ranking algorithm is employed for collaborative keyphrase extraction for each document in a specified cluster.
-graph-based ranking algorithm employed collaborative keyphrase extraction document specified cluster
-Instead of making only use of the word relationships in a single document, the algorithm can incorporate the “voting” or “recommendations” between words in all the documents of the cluster, thus making use of the global information existing in the cluster context.
-instead making use word relationships single document algorithm incorporate “voting” “recommendations” words documents cluster thus making use global information existing cluster context
-The above implementation of the collaborative framework is denoted as CollabRank in this paper.
-implementation collaborative framework denoted collabrank paper
-Experiments have been performed on a dataset consisting of 308 news articles with humanannotated keyphrases, and the results demonstrate the good effectiveness of the CollabRank approach.
-experiments performed dataset consisting 308 news articles humanannotated keyphrases results demonstrate good effectiveness collabrank approach
-We also find that the extraction performance is positively correlated with the quality of cluster context, and existing clustering algorithms can yield appropriate cluster context for collaborative keyphrase extraction.
-also find extraction performance positively correlated quality cluster context existing clustering algorithms yield appropriate cluster context collaborative keyphrase extraction
-The rest of this paper is organized as follows: Section 2 introduces the related work.
-rest paper organized follows section 2 introduces related work
-The proposed CollabRank is described in detail in Section 3.
-proposed collabrank described detail section 3
-Empirical evaluation is demonstrated in Section 4 and lastly we conclude this paper in Section 5. 
-empirical evaluation demonstrated section 4 lastly conclude paper section 5
+2013-11-24 21:50:36.035493
+Filtered Sentences
 
-abstract
-Previous methods usually conduct the keyphrase extraction task for single documents separately without interactions for each document, under the assumption that the documents are considered independent of each other.
-previous methods usually conduct keyphrase extraction task single documents separately without interactions document assumption documents considered independent
-This paper proposes a novel approach named CollabRank to collaborative single-document keyphrase extraction by making use of mutual influences of multiple documents within a cluster context.
-paper proposes novel approach named collabrank collaborative single-document keyphrase extraction making use mutual influences multiple documents within cluster context
-CollabRank is implemented by first employing the clustering algorithm to obtain appropriate document clusters, and then using the graph-based ranking algorithm for collaborative single-document keyphrase extraction within each cluster.
-collabrank implemented first employing clustering algorithm obtain appropriate document clusters using graph-based ranking algorithm collaborative single-document keyphrase extraction within cluster
-Experimental results demonstrate the encouraging performance of the proposed approach.
-experimental results demonstrate encouraging performance proposed approach
-Different clustering algorithms have been investigated and we find that the system performance relies positively on the quality of document clusters. 
-different clustering algorithms investigated find system performance relies positively quality document clusters
+2013-11-24 21:50:36.035594
+CollabRank is implemented by first employing the clustering algorithm to obtain appropriate document clusters, and then using the graph-based ranking algorithm for collaborative single-document keyphrase extraction within each cluster. [0.0109343286012]
+Given a document set for keyphrase extraction of each single document, CollabRank first employs the clustering algorithm to group the documents into a few clusters. [0.0108741932147]
+Given a document cluster, CollabRank makes use of the global word relationships in the cluster to evaluate and rank candidate phrases for each single document in the cluster based on the graph-based ranking algorithm. [0.0105224459204]
+In this study, the cluster context is obtained by applying the clustering algorithm on the document set, and we have investigated how the cluster context influences the keyphrase extraction performance by employing different clustering algorithms. [0.00994817101112]
+Different clustering results lead to different document relationships and a high-quality cluster produced by popular algorithms is deemed to build an appropriate cluster context for collaborative keyphrase extraction.  [0.00886212950108]
 
-acknowledgments
-This work was supported by the National Science Foundation of China (No.60703064), the Research Fund for the Doctoral Program of Higher Education of China (No.20070001059) and the National High Technology Research and Development Program of China (No.2008AA01Z421). 
-work supported national science foundation china no.60703064 research fund doctoral program higher education china no.20070001059 national high technology research development program china no.2008aa01z421
+2013-11-24 21:54:30.516493
+P07-3014
 
-related work
-The methods for keyphrase (or keyword) extraction can be roughly categorized into either unsupervised or supervised.
-methods keyphrase keyword extraction roughly categorized either unsupervised supervised
-Unsupervised methods usually involve assigning a saliency score to each candidate phrases by considering various features.
-unsupervised methods usually involve assigning saliency score candidate phrases considering various features
-Krulwich and Burkey (1996) use heuristics based on syntactic clues to extract keyphrases from a document.
-krulwich burkey 1996 use heuristics based syntactic clues extract keyphrases document
-Barker and Cornacchia (2000) propose a simple system for choosing noun phrases from a document as keyphrases.
-barker cornacchia 2000 propose simple system choosing noun phrases document keyphrases
-Muñoz (1996) uses an unsupervised learning algorithm to discover two-word keyphrases.
-muñoz 1996 uses unsupervised learning algorithm discover two-word keyphrases
-The algorithm is based on Adaptive Resonance Theory (ART) neural networks.
-algorithm based adaptive resonance theory art neural networks
-Steier and Belew (1993) use the mutual information statistics to discover two-word keyphrases.
-steier belew 1993 use mutual information statistics discover two-word keyphrases
-Tomokiyo and Hurst (2003) use pointwise KLdivergence between multiple language models for scoring both phraseness and informativeness of phrases.
-tomokiyo hurst 2003 use pointwise kldivergence multiple language models scoring phraseness informativeness phrases
-More recently, Mihalcea and Tarau (2004) propose the TextRank model to rank keywords based on the co-occurrence links between words.
-recently mihalcea tarau 2004 propose textrank model rank keywords based co-occurrence links words
-Such algorithms make use of “voting” or “recommendations” between words to extract keyphrases.
-algorithms make use “voting” “recommendations” words extract keyphrases
-Supervised machine learning algorithms have been proposed to classify a candidate phrase into either keyphrase or not.
-supervised machine learning algorithms proposed classify candidate phrase either keyphrase
-GenEx (Turney, 2000) and Kea (Frank et al., 1999; Witten et al., 1999) are two typical systems, and the most important features for classifying a candidate phrase are the frequency and location of the phrase in the document.
-genex turney 2000 kea frank et al. 1999 witten et al. 1999 two typical systems important features classifying candidate phrase frequency location phrase document
-More linguistic knowledge has been explored by Hulth (2003).
-linguistic knowledge explored hulth 2003
-Statistical associations between keyphrases have been used to enhance the coherence of the extracted keyphrases (Turney, 2003).
-statistical associations keyphrases used enhance coherence extracted keyphrases turney 2003
-Song et al. (2003) present an information gain-based keyphrase extraction system called KPSpotter.
-song et al. 2003 present information gain-based keyphrase extraction system called kpspotter
-Medelyan and Witten (2006) propose KEA++ that enhances automatic keyphrase extraction by using semantic information on terms and phrases gleaned from a domainspecific thesaurus.
-medelyan witten 2006 propose kea++ enhances automatic keyphrase extraction using semantic information terms phrases gleaned domainspecific thesaurus
-Nguyen and Kan (2007) focus on keyphrase extraction in scientific publications by using new features that capture salient morphological phenomena found in scientific keyphrases.
-nguyen kan 2007 focus keyphrase extraction scientific publications using new features capture salient morphological phenomena found scientific keyphrases
-The tasks of keyphrase extraction and document summarization are similar and thus they have been conducted in a uniform framework.
-tasks keyphrase extraction document summarization similar thus conducted uniform framework
-Zha (2002) proposes a method for simultaneous keyphrase extraction and text summarization by using the heterogeneous sentence-to-word relationships.
-zha 2002 proposes method simultaneous keyphrase extraction text summarization using heterogeneous sentence-to-word relationships
-Wan et al. (2007a) propose an iterative reinforcement approach to simultaneous keyphrase extraction and text summarization.
-wan et al. 2007a propose iterative reinforcement approach simultaneous keyphrase extraction text summarization
-Other related works include web page keyword extraction (Kelleher and Luz, 2005; Zhang et al., 2005; Chen et al., 2005), advertising keywords finding (Yih et al., 2006).
-related works include web page keyword extraction kelleher luz 2005 zhang et al. 2005 chen et al. 2005 advertising keywords finding yih et al. 2006
-To the best of our knowledge, all previous work conducts the task of keyphrase extraction for each single document independently, without making use of the collaborative knowledge in multiple documents.
-best knowledge previous work conducts task keyphrase extraction single document independently without making use collaborative knowledge multiple documents
-We focus on unsupervised methods in this study. 
-focus unsupervised methods study
+2013-11-24 21:54:30.516575
+All Sentences
 
-method
-Given a document set for keyphrase extraction of each single document, CollabRank first employs the clustering algorithm to group the documents into a few clusters.
-given document set keyphrase extraction single document collabrank first employs clustering algorithm group documents clusters
-The documents within each cluster are expected to be topic-related and each cluster can be considered as a context for any document in the cluster.
-documents within cluster expected topic-related cluster considered context document cluster
-Given a document cluster, CollabRank makes use of the global word relationships in the cluster to evaluate and rank candidate phrases for each single document in the cluster based on the graph-based ranking algorithm.
-given document cluster collabrank makes use global word relationships cluster evaluate rank candidate phrases single document cluster based graph-based ranking algorithm
-Figure 1 gives the framework of the proposed approach. 
-figure 1 gives framework proposed approach
-In the first step of the above framework, different clustering algorithms will yield different clusters.
-first step framework different clustering algorithms yield different clusters
-The documents in a high-quality cluster are usually deemed to be highly topic-related (i.e. appropriate cluster context), while the documents in a low-quality cluster are usually not topicrelated (i.e. inappropriate cluster context).
-documents high-quality cluster usually deemed highly topic-related i.e. appropriate cluster context documents low-quality cluster usually topicrelated i.e. inappropriate cluster context
-The quality of a cluster will influence the reliability of the contextual information for evaluating the words in the cluster.
-quality cluster influence reliability contextual information evaluating words cluster
-A number of clustering algorithms will be investigated in the experiments, including the agglomerative algorithm (both average-link and complete-link), the divisive algorithm, and the kmeans algorithm (Jain et al., 1999), whose details will be described in the evalution section.
-number clustering algorithms investigated experiments including agglomerative algorithm average-link complete-link divisive algorithm kmeans algorithm jain et al. 1999 whose details described evalution section
-In the second step of the above framework, substep 1) aims to evaluate all candidate words in the cluster based on the graph-based ranking algorithm.
-second step framework substep 1 aims evaluate candidate words cluster based graph-based ranking algorithm
-The global affinity graph aims to reflect the cluster-level co-occurrence relationships between all candidate words in the documents of the given cluster.
-global affinity graph aims reflect cluster-level co-occurrence relationships candidate words documents given cluster
-The saliency scores of the words are computed based on the global affinity graph to indicate how much information about the main topic the words reflect.
-saliency scores words computed based global affinity graph indicate much information main topic words reflect
-Substep 2) aims to evaluate candidate phrases of each single document based on the cluster-level word scores, and then choose a few salient phrases as keyphrases of the document.
-substep 2 aims evaluate candidate phrases single document based cluster-level word scores choose salient phrases keyphrases document
-Substep 1) is performed on all documents in the cluster in order to evaluate the words from a global perspective, while substep 2) is performed on each single document in order to extract keyphrases from a local perspective.
-substep 1 performed documents cluster order evaluate words global perspective substep 2 performed single document order extract keyphrases local perspective
-A keyphrase of a document is expected to include highly salient words.
-keyphrase document expected include highly salient words
-We can see that the keyphrase extraction tasks are conducted in a batch mode for each cluster.
-see keyphrase extraction tasks conducted batch mode cluster
-The substeps of 1) and 2) will be described in next sections respectively.
-substeps 1 2 described next sections respectively
-If substep 1) is performed on each single document without considering the cluster context, the approach is degenerated into the simple TextRank model (Mihalcea and Tarau, 2004), which is denoted as SingleRank in this paper.
-substep 1 performed single document without considering cluster context approach degenerated simple textrank model mihalcea tarau 2004 denoted singlerank paper
-It is noteworthy that in addition to the graphbased ranking algorithm, other keyphrase extraction methods can also be integrated in the proposed collaborative framework to exploit the collaborative knowledge in the cluster context. 
-noteworthy addition graphbased ranking algorithm keyphrase extraction methods also integrated proposed collaborative framework exploit collaborative knowledge cluster context
-Like the PageRank algorithm (Page et al., 1998), the graph-based ranking algorithm employed in this study is essentially a way of deciding the importance of a vertex within a graph based on global information recursively drawn from the entire graph.
-like pagerank algorithm page et al. 1998 graph-based ranking algorithm employed study essentially way deciding importance vertex within graph based global information recursively drawn entire graph
-The basic idea is that of “voting” or “recommendation” between the vertices.
-basic idea “voting” “recommendation” vertices
-A link between two vertices is considered as a vote cast from one vertex to the other vertex.
-link two vertices considered vote cast one vertex vertex
-The score associated with a vertex is determined by the votes that are cast for it, and the score of the vertices casting these votes.
-score associated vertex determined votes cast score vertices casting votes
-Formally, given a specified cluster C, let G=(V, E) be an undirected graph to reflect the relationships between words in the cluster.
-formally given specified cluster c let g= v e undirected graph reflect relationships words cluster
-V is the set of vertices and each vertex is a candidate word2 in the cluster.
-v set vertices vertex candidate word2 cluster
-Because not all words in the documents are good indicators of keyphrases, the words added to the graph are restricted with syntactic filters, i.e., only the words with a certain part of speech are added.
-words documents good indicators keyphrases words added graph restricted syntactic filters i.e. words certain part speech added
-As in Mihalcea and Tarau (2004), the documents are tagged by a 
-mihalcea tarau 2004 documents tagged
-POS tagger, and only the nouns and adjectives are added into the vertex set3.
-pos tagger nouns adjectives added vertex set3
-E is the set of edges, which is a subset of V×V.
-e set edges subset v×v
-Each edge eij in E is associated with an affinity weight aff(vi,vj) between words vi and vj.
-edge eij e associated affinity weight aff vi vj words vi vj
-The weight is computed based on the co-occurrence relation between the two words, controlled by the distance between word occurrences.
-weight computed based co-occurrence relation two words controlled distance word occurrences
-The co-occurrence relation can express cohesion relationships between words.
-co-occurrence relation express cohesion relationships words
-Two vertices are connected if the corresponding words co-occur at least once within a window of maximum k words, where k can be set anywhere from 2 to 20 words.
-two vertices connected corresponding words co-occur least within window maximum k words k set anywhere 2 20 words
-The affinity weight aff(vi,vj) is simply set to be the count of the controlled co-occurrences between the words vi and vj in the whole cluster as follows: aff v i , v j ∑ count d v , v ( ) = ( i j d C ∈ where countd(vi,vj) is the count of the controlled co-occurrences between words vi and vj in document d. The graph is built based on the whole cluster and it is called Global Affinity Graph.
-affinity weight aff vi vj simply set count controlled co-occurrences words vi vj whole cluster follows aff v v j ∑ count d v v = j d c ∈ countd vi vj count controlled co-occurrences words vi vj document d. graph built based whole cluster called global affinity graph
-The biggest difference between CollabRank and SingleRank is that SingleRank builds a local graph based on each single document.
-biggest difference collabrank singlerank singlerank builds local graph based single document
-We use an affinity matrix M to describe G with each entry corresponding to the weight of an edge in the graph.
-use affinity matrix m describe g entry corresponding weight edge graph
-M = (Mi,j)|V|×|V |is defined as follows: 
-m = mi j |v|×|v |is defined follows
-Then M is normalized to M as follows to make the sum of each row equal to 1: 
-m normalized m follows make sum row equal 1
-Based on the global affinity graph G, the cluster-level saliency score WordScoreclus(vi) for word vi can be deduced from those of all other words linked with it and it can be formulated in a recursive form as in the PageRank algorithm: And the matrix form is: 
-based global affinity graph g cluster-level saliency score wordscoreclus vi word vi deduced words linked formulated recursive form pagerank algorithm matrix form
-where λ= [WordScoreclus (vi )]|V|×1 is the vector of word saliency scores.
-λ= [ wordscoreclus vi ] |v|×1 vector word saliency scores
-er is a vector with all elements equaling to 1. µ is the damping factor usually set to 0.85, as in the PageRank algorithm.
-er vector elements equaling 1. µ damping factor usually set 0.85 pagerank algorithm
-The above process can be considered as a Markov chain by taking the words as the states and the corresponding transition matrix is given byµM T + (1− µ) e e T .
-process considered markov chain taking words states corresponding transition matrix given byµm + 1− µ e e
-The stationary probabil|V| ity distribution of each state is obtained by the principal eigenvector of the transition matrix.
-stationary probabil|v| ity distribution state obtained principal eigenvector transition matrix
-For implementation, the initial scores of the words are set to 1 and the iteration algorithm in Equation (4) is adopted to compute the new scores of the words.
-implementation initial scores words set 1 iteration algorithm equation 4 adopted compute new scores words
-Usually the convergence of the iteration algorithm is achieved when the difference between the scores computed at two successive iterations for any words falls below a given threshold (0.0001 in this study).
-usually convergence iteration algorithm achieved difference scores computed two successive iterations words falls given threshold 0.0001 study
-For SingleRank, the saliency score WordScoredoc(vi) for word vi is computed in the same iterative way based on the local graph for the single document. 
-singlerank saliency score wordscoredoc vi word vi computed iterative way based local graph single document
-After the scores of all candidate words in the cluster have been computed, candidate phrases are selected and evaluated for each single document in the cluster.
-scores candidate words cluster computed candidate phrases selected evaluated single document cluster
-The candidate words (i.e. nouns and adjectives) of a specified document d in the cluster, which is a subset of V, are marked in the document text, and sequences of adjacent candidate words are collapsed into a multi-word phrase.
-candidate words i.e. nouns adjectives specified document d cluster subset v marked document text sequences adjacent candidate words collapsed multi-word phrase
-The phrases ending with an adjective are not allowed, and only the phrases ending with a noun are collected as the candidate phrases for the document.
-phrases ending adjective allowed phrases ending noun collected candidate phrases document
-For instance, in the following sentence: “Mad/JJ cow/NN disease/NN has/VBZ killed/VBN 10,000/CD cattle/NNS”, the candidate phrases are “Mad cow disease” and “cattle”.
-instance following sentence “mad/jj cow/nn disease/nn has/vbz killed/vbn 10,000/cd cattle/nns” candidate phrases “mad cow disease” “cattle”
-The score of a candidate phrase pi is computed by summing the cluster-level saliency scores of the words contained in the phrase. 
-score candidate phrase pi computed summing cluster-level saliency scores words contained phrase
-All the candidate phrases in the document are ranked in decreasing order of the phrase scores and the top n phrases are selected as the keyphrases of the document.
-candidate phrases document ranked decreasing order phrase scores top n phrases selected keyphrases document
-n ranges from 1 to 20 in this study.
-n ranges 1 20 study
-Similarly for SingleRank, the phrase score is computed based on the document-level saliency scores of the words. 
-similarly singlerank phrase score computed based document-level saliency scores words
-To our knowledge, there is no gold standard news dataset with assigned keyphrases for evaluation.
-knowledge gold standard news dataset assigned keyphrases evaluation
-So we manually annotated the DUC2001 dataset (Over, 2001) and used the annotated dataset for evaluation in this study.
-manually annotated duc2001 dataset 2001 used annotated dataset evaluation study
-The dataset was originally used for document summarization.
-dataset originally used document summarization
-It consisted of 309 news articles collected from TREC-9, in which two articles were duplicate (i.e. d05a\FBIS-41815 and d05a\FBIS-41815~).
-consisted 309 news articles collected trec-9 two articles duplicate i.e. d05a\fbis-41815 d05a\fbis-41815~
-The average length of the documents was 740 words.
-average length documents 740 words
-Two graduate students were employed to manually label the keyphrases for each document.
-two graduate students employed manually label keyphrases document
-At most 10 keyphrases could be assigned to each document.
-10 keyphrases could assigned document
-The annotation process lasted two weeks.
-annotation process lasted two weeks
-The Kappa statistic for measuring inter-agreement among annotators was 0.70.
-kappa statistic measuring inter-agreement among annotators 0.70
-And the annotation conflicts between the two subjects were solved by discussion.
-annotation conflicts two subjects solved discussion
-Finally, 2488 keyphrases were labeled for the dataset.
-finally 2488 keyphrases labeled dataset
-The average keyphrase number per document was 8.08 and the average word number per keyphrase was 2.09.
-average keyphrase number per document 8.08 average word number per keyphrase 2.09
-The articles have been grouped into 30 clusters manually by NIST annotators for multidocument summarization, and the documents within each cluster were topic-related or relevant.
-articles grouped 30 clusters manually nist annotators multidocument summarization documents within cluster topic-related relevant
-The manually labeled clusters were considered as the ground truth clusters or gold clusters.
-manually labeled clusters considered ground truth clusters gold clusters
-In order to investigate existing clustering algorithms, the documents in the clusters were mixed together to form the whole document set for automatic clustering. 
-order investigate existing clustering algorithms documents clusters mixed together form whole document set automatic clustering
-In the experiments, several popular clustering algorithms and random clustering algorithms are explored to produce cluster contexts.
-experiments several popular clustering algorithms random clustering algorithms explored produce cluster contexts
-Note that we have already known the number (i.e. 30) of the clusters for the dataset beforehand and thus we simply use it as input for the following clustering algorithms4.
-note already known number i.e. 30 clusters dataset beforehand thus simply use input following clustering algorithms4
-Gold Standard Clustering: It is a pseudo clustering algorithm by manually grouping the documents.
-gold standard clustering pseudo clustering algorithm manually grouping documents
-We use the ground truth clusters as the upperbound of the following automatic clustering algorithms.
-use ground truth clusters upperbound following automatic clustering algorithms
-Kmeans Clustering: It is a partition based clustering algorithm.
-kmeans clustering partition based clustering algorithm
-The algorithm randomly 4 How to obtain the number of desired clusters is not the focus of this study.
-algorithm randomly 4 obtain number desired clusters focus study
-selects 30 documents as the initial centroids of the 30 clusters and then iteratively assigns all documents to the closest cluster, and recomputes the centroid of each cluster, until the centroids do not change.
-selects 30 documents initial centroids 30 clusters iteratively assigns documents closest cluster recomputes centroid cluster centroids change
-The similarity between a document and a cluster centroid is computed using the standard Cosine measure.
-similarity document cluster centroid computed using standard cosine measure
-Agglomerative (AverageLink) Clustering: It is a bottom-up hierarchical clustering algorithm and starts with the points as individual clusters and, at each step, merges the most similar or closest pair of clusters, until the number of the clusters reduces to the desired number 30.
-agglomerative averagelink clustering bottom-up hierarchical clustering algorithm starts points individual clusters step merges similar closest pair clusters number clusters reduces desired number 30
-The similarity between two clusters is computed using the AverageLink method, which computes the average of the Cosine similarity values between any pair of documents belonging to the two clusters respectively as follows: where di, dj are two documents in cluster c1 and cluster c2 respectively, and |c1 |and |c2 |are respectively the numbers of documents in clusters c1 and c2.
-similarity two clusters computed using averagelink method computes average cosine similarity values pair documents belonging two clusters respectively follows di dj two documents cluster c1 cluster c2 respectively |c1 |and |c2 |are respectively numbers documents clusters c1 c2
-Agglomerative (CompleteLink) Clustering: It differs from the above agglomerative (AverageLink) clustering algorithm only in that the similarity between two clusters is computed using the CompleteLink method, which computes the minimum of the Cosine similarity values between any pair of documents belonging to the two clusters respectively as follows: 
-agglomerative completelink clustering differs agglomerative averagelink clustering algorithm similarity two clusters computed using completelink method computes minimum cosine similarity values pair documents belonging two clusters respectively follows
-Divisive Clustering: It is a top-down hierarchical clustering algorithm and starts with one, all-inclusive cluster and, at each step, splits the largest cluster (i.e. the cluster with most documents) into two small clusters using the Kmeans algorithm until the number of clusters increases to the desired number 30.
-divisive clustering top-down hierarchical clustering algorithm starts one all-inclusive cluster step splits largest cluster i.e. cluster documents two small clusters using kmeans algorithm number clusters increases desired number 30
-Random Clustering: It produces 30 clusters by randomly assigning each document into one of the k clusters.
-random clustering produces 30 clusters randomly assigning document one k clusters
-Three different randomization processes are performed and we denote them as Random1, Random2 and Random3, respectively.
-three different randomization processes performed denote random1 random2 random3 respectively
-CollabRank relies on the clustering algorithm for document clustering, and the combination of CollabRank and any clustering algorithm will be investigated. 
-collabrank relies clustering algorithm document clustering combination collabrank clustering algorithm investigated
-For evaluation of document clustering results, we adopt the widely used F-Measure to measure the 
-evaluation document clustering results adopt widely used f-measure measure
-performance of the clustering algorithm (i.e. the quality of the clusters) by comparing the produced clusters with the gold clusters (classes) (Jain et al., 1999).
-performance clustering algorithm i.e. quality clusters comparing produced clusters gold clusters classes jain et al. 1999
-For evaluation of keyphrase extraction results, the automatic extracted keyphrases are compared with the manually labeled keyphrases.
-evaluation keyphrase extraction results automatic extracted keyphrases compared manually labeled keyphrases
-The words are converted to their corresponding basic forms using word stemming before comparison.
-words converted corresponding basic forms using word stemming comparison
-The precision p=countcorrect/countsystem, recall r=countcorrect/counthuman, F-measure (F=2pr/(p+r)) are used as evaluation metrics, where countcorrect is the total number of correct keyphrases extracted by the system, and countsystem is the total number of automatic extracted keyphrases, and counthuman is the total number of human-labeled keyphrases. 
-precision p=countcorrect/countsystem recall r=countcorrect/counthuman f-measure f=2pr/ p+r used evaluation metrics countcorrect total number correct keyphrases extracted system countsystem total number automatic extracted keyphrases counthuman total number human-labeled keyphrases
-First of all, we show the document clustering results in Table 1.
-first show document clustering results table 1
-The gold standard clustering result is the upperbound of all automatic clustering results.
-gold standard clustering result upperbound automatic clustering results
-Seen from the table, all the four popular clustering algorithms (i.e. CompleteLink, AverageLink, KMeans and Divisive) perform much better than the three random clustering algorithms (i.e. Random1, Random2 and Random3).
-seen table four popular clustering algorithms i.e. completelink averagelink kmeans divisive perform much better three random clustering algorithms i.e. random1 random2 random3
-Different clustering results lead to different document relationships and a high-quality cluster produced by popular algorithms is deemed to build an appropriate cluster context for collaborative keyphrase extraction. 
-different clustering results lead different document relationships high-quality cluster produced popular algorithms deemed build appropriate cluster context collaborative keyphrase extraction
-Now we show the results for keyphrase extraction.
-show results keyphrase extraction
-In the experiments, the keyphrase number is typically set to 10 and the co-occurrence window size is also simply set to 10.
-experiments keyphrase number typically set 10 co-occurrence window size also simply set 10
-Table 2 gives the comparison results of baseline methods and the proposed CollabRank methods with different clustering algorithms.
-table 2 gives comparison results baseline methods proposed collabrank methods different clustering algorithms
-The TFIDF baseline computes the word scores for each single document based on the word’s TFIDF value.
-tfidf baseline computes word scores single document based word’s tfidf value
-The SingleRank baseline computes the word scores for each single document based on the graph-based ranking algorithm.
-singlerank baseline computes word scores single document based graph-based ranking algorithm
-The two baselines do not make use of the cluster context.
-two baselines make use cluster context
-Seen from Table 2, the CollabRank methods with the gold standard clustering algorithm or popular clustering algorithms (i.e. Kmeans, CompleteLink, AverageLink and Divisive) perform much better than the baseline methods over all three metrics.
-seen table 2 collabrank methods gold standard clustering algorithm popular clustering algorithms i.e. kmeans completelink averagelink divisive perform much better baseline methods three metrics
-The results demonstrate the good effectiveness of the proposed collaborative framework.
-results demonstrate good effectiveness proposed collaborative framework
-We can also see that the performance is positively correlated with the clustering results.
-also see performance positively correlated clustering results
-The CollabRank method with the best performing gold standard clustering results achieves the best performance.
-collabrank method best performing gold standard clustering results achieves best performance
-While the methods with lowquality clustering results (i.e. the three random clustering results) do not perform well, even much worse than the baseline SingleRank method.
-methods lowquality clustering results i.e. three random clustering results perform well even much worse baseline singlerank method
-This is because that the documents in a low-quality cluster are not truly topic-related, and the mutual influences between the documents are not reliable for evaluating words from a global perspective. 
-documents low-quality cluster truly topic-related mutual influences documents reliable evaluating words global perspective
-In order to investigate how the co-occurrence window size k and the keyphrase number n influence the performance, we first vary k from 2 to 20 when n is fixed as 10 and the results are shown in Figures 2-4 over three metrics respectively.
-order investigate co-occurrence window size k keyphrase number n influence performance first vary k 2 20 n fixed 10 results shown figures 2-4 three metrics respectively
-The results demonstrate that all the methods are not significantly affected by the window size.
-results demonstrate methods significantly affected window size
-We then vary n from 1 to 20 when k is fixed as 10 and the results are shown in Figures 5-7.
-vary n 1 20 k fixed 10 results shown figures 5-7
-The results demonstrate that the precision values decrease with the increase of n, and the recall values increases with the increase of n, while the F-measure values first increase and then tend to decrease with the increase of n. We can also see from Figures 2-7 that the CollabRank methods with high-quality clustering results always perform better than the baseline 
-results demonstrate precision values decrease increase n recall values increases increase n f-measure values first increase tend decrease increase n. also see figures 2-7 collabrank methods high-quality clustering results always perform better baseline
-SingleRank method under different window sizes and different keyphrase numbers, and they always lead to poor performance with low-quality clustering results.
-singlerank method different window sizes different keyphrase numbers always lead poor performance low-quality clustering results
-This further proves that an appropriate cluster context is very important for the CollabRank method.
-proves appropriate cluster context important collabrank method
-Fortunately, existing clustering algorithms can obtain the desired cluster context. 
-fortunately existing clustering algorithms obtain desired cluster context
-ber n The proposed CollabRank method makes only use of the global information based on the global graph for the cluster.
-ber n proposed collabrank method makes use global information based global graph cluster
-In order to investigate the relative contributions from the whole cluster and the single document to the final performance, we experiment with the method named RankFusion which makes both of the cluster-level global information and the document-level local information.
-order investigate relative contributions whole cluster single document final performance experiment method named rankfusion makes cluster-level global information document-level local information
-The overall word score WordScorefusion(vi) for word vi in a document in RankFusion is a linear combination of the global word score and the local word score as follows: WordScorefus ion (vi) = A • WordScoreclus (vi) + (1− A) • WordScoredoc (vi) (9) where A∈[0,1] is the fusion weight.
-overall word score wordscorefusion vi word vi document rankfusion linear combination global word score local word score follows wordscorefus ion vi = • wordscoreclus vi + 1− • wordscoredoc vi 9 a∈ [ 0,1 ] fusion weight
-Then the phrase score is computed based on the fusion scores of the words.
-phrase score computed based fusion scores words
-The RankFusion method is the same with CollabRank if A=1 and it is the same with SingleRank if A=0.
-rankfusion method collabrank a=1 singlerank a=0
-Figure 8 shows the F-measure curves for the RankFusion methods with different high-quality clustering algorithms under different fusion weights.
-figure 8 shows f-measure curves rankfusion methods different high-quality clustering algorithms different fusion weights
-We can see that when A∈(0.5,1), the RankFusion methods with high-quality clusters can outperform both the corresponding SingleRank and the corresponding CollabRank.
-see a∈ 0.5,1 rankfusion methods high-quality clusters outperform corresponding singlerank corresponding collabrank
-However, the performance improvements of RankFusion over CollabRank are not significant.
-however performance improvements rankfusion collabrank significant
-We can conclude that the cluster-level global information plays the key role for evaluating the true saliency of the words. 
-conclude cluster-level global information plays key role evaluating true saliency words
+2013-11-24 21:54:30.516681
+The motivation for this paper is to discover which joining terms are good predictors of a semantic relation, and which learning algorithms perform best at the task of mapping from joining terms to semantic relations for modifier-noun compounds.  [0.0100782551263]
+Also, they use 64 joining terms and gather counts for both the forms &quot;noun joining term modifier&quot; and &quot;modifier joining term noun&quot; (128 frequencies in total); while we use only the former construction with 28 joining terms. [0.00995469929472]
+Turney and Littman (2005) use a set of 64 short prepositional and conjunctive phrases they call &quot;joining terms&quot; to generate exact queries for AltaVista of the form &quot;noun joining term modifier&quot;, and &quot;modifier joining term noun&quot;. [0.00978660832955]
+The attributes used as input to the learning algorithms are the web frequencies for phrases containing the modifier, noun, and a prepositional joining term. [0.00968669598296]
+We did not collect queries of the form &quot;modifier joining term head&quot;; in the majority of paraphrases of noun phrases the head noun occurs before the modifying word. [0.00952768641964]
 
-2013-11-03 06:24:57.662736
+2013-11-24 21:55:07.700525
+P07-3014
 
- Section type : abstract
-This paper proposes a method for incrementally understanding user utterances whose semantic boundaries are not known and responding in real time even before boundaries are determined.
-paper proposes method incrementally understanding user utterances whose semantic boundaries known responding real time even boundaries determined
-It is an integrated parsing and discourse processing method that updates the partial result of understanding word by word, enabling responses based on the partial result.
-integrated parsing discourse processing method updates partial result understanding word word enabling responses based partial result
-This method incrementally finds plausible sequences of utterances that play crucial roles in the task execution of dialogues, and utilizes beam search to deal with the ambiguity of boundaries as well as syntactic and semantic ambiguities.
-method incrementally finds plausible sequences utterances play crucial roles task execution dialogues utilizes beam search deal ambiguity boundaries well syntactic semantic ambiguities
-The results of a preliminary experiment demonstrate that this method understands user utterances better than an understanding method that assumes pauses to be semantic boundaries. 
-results preliminary experiment demonstrate method understands user utterances better understanding method assumes pauses semantic boundaries
+2013-11-24 21:55:07.700612
+Filtered Sentences
 
- Section type : keywords
-Building a real-time, interactive spoken dialogue system has long been a dream of researchers, and the recent progress in hardware technology and speech and language processing technologies is making this dream a reality.
-building real-time interactive spoken dialogue system long dream researchers recent progress hardware technology speech language processing technologies making dream reality
-It is still hard, however, for computers to understand unrestricted human utterances and respond appropriately to them.
-still hard however computers understand unrestricted human utterances respond appropriately
-Considering the current level of speech recognition technology, system-initiative dialogue systems, which prohibit users from speaking unrestrictedly, are preferred (Walker et al., 1998).
-considering current level speech recognition technology system-initiative dialogue systems prohibit users speaking unrestrictedly preferred walker et al. 1998
-Nevertheless, we are still pursuing techniques for understanding unrestricted user utterances because, if the accuracy of understanding can be improved, systems that allow users to speak freely could be developed and these would be more useful than systems that do not.
-nevertheless still pursuing techniques understanding unrestricted user utterances accuracy understanding improved systems allow users speak freely could developed would useful systems
-Most previous spoken dialogue systems (e.g. systems by Allen et al. (1996), Zue et al. (1994) and Peckham (1993)) assume that the user makes one utterance unit in each speech interval, unless the push-to-talk method is used.
-previous spoken dialogue systems e.g. systems allen et al. 1996 zue et al. 1994 peckham 1993 assume user makes one utterance unit speech interval unless push-to-talk method used
-Here, by utterance unit we mean a phrase from which a speech act representation is derived, and it corresponds to a sentence in written language.
-utterance unit mean phrase speech act representation derived corresponds sentence written language
-We also use speech act in this paper to mean a command that updates the hearer's belief state about the speaker's intention and the context of the dialogue.
-also use speech act paper mean command updates hearer 's belief state speaker 's intention context dialogue
-In this paper, a system using this assumption is called an interval-based system.
-paper system using assumption called interval-based system
-The above assumption no longer holds when no restrictions are placed on the way the user speaks.
-assumption longer holds restrictions placed way user speaks
-This is because utterance boundaries (i.e., semantic boundaries) do not always correspond to pauses and techniques based on other acoustic information are not perfect.
-utterance boundaries i.e. semantic boundaries always correspond pauses techniques based acoustic information perfect
-Utterance boundaries thus cannot be identified prior to parsing, and so the timing of determining parsing results to update the belief state is unclear.
-utterance boundaries thus identified prior parsing timing determining parsing results update belief state unclear
-On the other hand, responding to a user utterance in real time requires understanding it and updating the belief state in real time; thus, it is impossible to wait for subsequent inputs to determine boundaries.
-hand responding user utterance real time requires understanding updating belief state real time thus impossible wait subsequent inputs determine boundaries
-Abandoning full parsing and adopting keywordbased or fragment-based understanding could prevent this problem.
-abandoning full parsing adopting keywordbased fragment-based understanding could prevent problem
-This would, however, sacrifice the accuracy of understanding because phrases across the pauses could not be syntactically analyzed.
-would however sacrifice accuracy understanding phrases across pauses could syntactically analyzed
-There is, therefore, a need for a method based on full parsing that enables real-time understanding of user utterances without boundary information.
-therefore need method based full parsing enables real-time understanding user utterances without boundary information
-This paper presents incremental significant
-paper presents incremental significant
-enables incremental understanding of user utterances word by word by finding plausible sequences of utterances that play crucial roles in the task execution of dialogues.
-enables incremental understanding user utterances word word finding plausible sequences utterances play crucial roles task execution dialogues
-The method utilizes beam search to deal with the ambiguity of boundaries as well as syntactic and semantic ambiguities.
-method utilizes beam search deal ambiguity boundaries well syntactic semantic ambiguities
-Since it outputs the partial result of understanding that is the most plausible whenever a word hypothesis is inputted, the response generation module can produce responses at any appropriate time.
-since outputs partial result understanding plausible whenever word hypothesis inputted response generation module produce responses appropriate time
-A comparison of an experimental spoken dialogue system using ISSS with an interval-based system shows that the method is effective. 
-comparison experimental spoken dialogue system using isss interval-based system shows method effective
+2013-11-24 21:55:07.700713
+Also, they use 64 joining terms and gather counts for both the forms &quot;noun joining term modifier&quot; and &quot;modifier joining term noun&quot; (128 frequencies in total); while we use only the former construction with 28 joining terms. [0.0139733414543]
+Turney and Littman (2005) use a set of 64 short prepositional and conjunctive phrases they call &quot;joining terms&quot; to generate exact queries for AltaVista of the form &quot;noun joining term modifier&quot;, and &quot;modifier joining term noun&quot;. [0.0137457822279]
+The motivation for this paper is to discover which joining terms are good predictors of a semantic relation, and which learning algorithms perform best at the task of mapping from joining terms to semantic relations for modifier-noun compounds.  [0.0116706525042]
+One method for deducing semantic relations between words in compounds involves gathering n-gram frequencies of these paraphrases, containing a noun, a modifier and a &quot;joining term&quot; that links them. [0.0114824305952]
+Of the 600 modifier-noun phrases, three contained hyphenated or two-word modifier terms, for example &quot;test-tube baby&quot;. [0.0114673746654]
 
- Section type : introduction
-A dilemma is addressed in this paper.
-dilemma addressed paper
-First, it is difficult to identify utterance boundaries in spontaneous speech in real time using only pauses.
-first difficult identify utterance boundaries spontaneous speech real time using pauses
-Observation of human-human dialogues reveals that humans often put pauses in utterances and sometimes do not put pauses at utterance boundaries.
-observation human-human dialogues reveals humans often put pauses utterances sometimes put pauses utterance boundaries
-The following human utterance shows where pauses might appear in an utterance.
-following human utterance shows pauses might appear utterance
-I'd like to make a reservation for a conference room (pause) for, uh (pause) this afternoon (pause) at about (pause) say (pause) 2 or 3 o'clock (pause) for (pause) 15 people As far as Japanese is concerned, several studies have pointed out that speech intervals in dialogues are not always well-formed substrings (Seligman et al., 1997; Takezawa and Morimoto, 1997).
-'d like make reservation conference room pause uh pause afternoon pause pause say pause 2 3 o'clock pause pause 15 people far japanese concerned several studies pointed speech intervals dialogues always well-formed substrings seligman et al. 1997 takezawa morimoto 1997
-On the other hand, since parsing results cannot be obtained unless the end of the utterance is identified, making real-time responses is impossible without boundary information.
-hand since parsing results obtained unless end utterance identified making real-time responses impossible without boundary information
-For example, consider the utterance &quot;I'd like to book Meeting Room 1 on Wednesday&quot;.
-example consider utterance & quot 'd like book meeting room 1 wednesday & quot
-It is expected that the system should infer the user wants to reserve the room on 'Wednesday this week' if this utterance was made on Monday.
-expected system infer user wants reserve room 'wednesday week utterance made monday
-In real conversations, however, there is no guarantee that 'Wednesday' is the final word of the utterance.
-real conversations however guarantee 'wednesday final word utterance
-It might be followed by the phrase 'next week', in which case the system made a mistake in inferring the user's intention and must backtrack and re-understand.
-might followed phrase 'next week case system made mistake inferring user 's intention must backtrack re-understand
-Thus, it is not possible to determine the interpretation unless the utterance boundary is identified.
-thus possible determine interpretation unless utterance boundary identified
-This problem is more serious in head-final languages such as Japanese because function words that represent negation come after content words.
-problem serious head-final languages japanese function words represent negation come content words
-Since there is no explicit clue indicating an utterance boundary in unrestricted user utterances, the system cannot make an interpretation and thus cannot respond appropriately.
-since explicit clue indicating utterance boundary unrestricted user utterances system make interpretation thus respond appropriately
-Waiting for a long pause enables an interpretation, but prevents response in real time.
-waiting long pause enables interpretation prevents response real time
-We therefore need a way to reconcile real-time understanding and analysis without boundary clues. 
-therefore need way reconcile real-time understanding analysis without boundary clues
+2013-11-24 21:57:26.489042
+P10-1024
 
- Section type : method
-Several techniques have been proposed to segment user utterances prior to parsing.
-several techniques proposed segment user utterances prior parsing
-They use intonation (Wang and Hirschberg, 1992; Traum and Heeman, 1997; Heeman and Allen, 1997) and probabilistic language models (Stolcke et al., 1998; Ramaswamy and Kleindienst, 1998; Cettolo and Falavigna, 1998).
-use intonation wang hirschberg 1992 traum heeman 1997 heeman allen 1997 probabilistic language models stolcke et al. 1998 ramaswamy kleindienst 1998 cettolo falavigna 1998
-Since these methods are not perfect, the resulting segments do not always correspond to utterances and might not be parsable because of speech recognition errors.
-since methods perfect resulting segments always correspond utterances might parsable speech recognition errors
-In addition, since the algorithms of the probabilistic methods are not designed to work in an incremental way, they cannot be used in real-time analysis in a straightforward way.
-addition since algorithms probabilistic methods designed work incremental way used real-time analysis straightforward way
-Some methods use keyword detection (Rose, 1995; Hatazaki et al., 1994; Seto et al., 1994) and key-phrase detection (Aust et al., 1995; Kawahara et al., 1996) to understand speech mainly because the speech recognition score is not high enough.
-methods use keyword detection rose 1995 hatazaki et al. 1994 seto et al. 1994 key-phrase detection aust et al. 1995 kawahara et al. 1996 understand speech mainly speech recognition score high enough
-The lack of the full use of syntax in these approaches, however, means user utterances might be misunderstood even if the speech recognition gave the correct answer.
-lack full use syntax approaches however means user utterances might misunderstood even speech recognition gave correct answer
-Zechner and Waibel (1998) and Worm (1998) proposed understanding utterances by combining partial parses.
-zechner waibel 1998 worm 1998 proposed understanding utterances combining partial parses
-Their methods, however, cannot syntactically analyze phrases across pauses since they use speech intervals as input units.
-methods however syntactically analyze phrases across pauses since use speech intervals input units
-Although Lavie et al. (1997) proposed a segmentation method that combines segmentation prior to parsing and segmentation during parsing, but it suffers from the same problem.
-although lavie et al. 1997 proposed segmentation method combines segmentation prior parsing segmentation parsing suffers problem
-In the parser proposed by Core and Schubert (1997), utterances interrupted by the other dialogue participant are analyzed based on meta-rules.
-parser proposed core schubert 1997 utterances interrupted dialogue participant analyzed based meta-rules
-It is unclear, however, how this parser can be incorpo
-unclear however parser incorpo
-rated into a real-time dialogue system; it seems that it cannot output analysis results without boundary clues. 
-rated real-time dialogue system seems output analysis results without boundary clues
-The above problem can be solved by incremental understanding, which means obtaining the most plausible interpretation of user utterances every time a word hypothesis is inputted from the speech recognizer.
-problem solved incremental understanding means obtaining plausible interpretation user utterances every time word hypothesis inputted speech recognizer
-For incremental understanding, we propose incremental significant-utterance-sequence search (ISSS), which is an integrated parsing and discourse processing method.
-incremental understanding propose incremental significant-utterance-sequence search isss integrated parsing discourse processing method
-ISSS holds multiple possible belief states and updates those belief states when a word hypothesis is inputted.
-isss holds multiple possible belief states updates belief states word hypothesis inputted
-The response generation module produces responses based on the most likely belief state.
-response generation module produces responses based likely belief state
-The timing of responses is determined according to the content of the belief states and acoustic clues such as pauses.
-timing responses determined according content belief states acoustic clues pauses
-In this paper, to simplify the discussion, we assume the speech recognizer incrementally outputs elements of the recognized word sequence.
-paper simplify discussion assume speech recognizer incrementally outputs elements recognized word sequence
-Needless to say, this is impossible because the most likely word sequence cannot be found in the midst of the recognition; only networks of word hypotheses can be outputted.
-needless say impossible likely word sequence found midst recognition networks word hypotheses outputted
-Our method for incremental processing, however, can be easily generalized to deal with incremental network input, and our experimental system utilizes the generalized method. 
-method incremental processing however easily generalized deal incremental network input experimental system utilizes generalized method
-A significant utterance (SU) in the user's speech is a phrase that plays a crucial role in performing the task in the dialogue.
-significant utterance su user 's speech phrase plays crucial role performing task dialogue
-An SU may be a full sentence or a subsentential phrase such as a noun phrase or a verb phrase.
-su may full sentence subsentential phrase noun phrase verb phrase
-Each SU has a speech act that can be considered a command to update the belief state.
-su speech act considered command update belief state
-SU is defined as a syntactic category by the grammar for linguistic processing, which includes semantic inference rules.
-su defined syntactic category grammar linguistic processing includes semantic inference rules
-Any phrases that can change the belief state should be defined as SUs.
-phrases change belief state defined sus
-Two kinds of SUs can be considered; domain-related ones that express the user's intention about the task of the dialogue and dialogue-related ones that express the user's attitude with respect to the progress of the dialogue such as confirmation and denial.
-two kinds sus considered domain-related ones express user 's intention task dialogue dialogue-related ones express user 's attitude respect progress dialogue confirmation denial
-Considering a meeting room reservation system, examples of domain-related SUs are &quot;I need to book Room 2 on Wednesday&quot;, &quot;I need to book Room 2&quot;, and &quot;Room 2&quot; and dialogue-related ones are &quot;yes&quot;, &quot;no&quot;, and &quot;Okay&quot;.
-considering meeting room reservation system examples domain-related sus & quot need book room 2 wednesday & quot & quot need book room 2 & quot & quot room 2 & quot dialogue-related ones & quot yes & quot & quot & quot & quot okay & quot
-User utterances are understood by finding a sequence of SUs and updating the belief state based on the sequence.
-user utterances understood finding sequence sus updating belief state based sequence
-The utterances in the sequence do not overlap.
-utterances sequence overlap
-In addition, they do not have to be adjacent to each other, which leads to robustness against speech recognition errors as in fragmentbased understanding (Zechner and Waibel, 1998; Worm, 1998).
-addition adjacent leads robustness speech recognition errors fragmentbased understanding zechner waibel 1998 worm 1998
-The belief state can be computed at any point in time if a significant-utterance sequence for user utterances up to that point in time is given.
-belief state computed point time significant-utterance sequence user utterances point time given
-The belief state holds not only the user's intention but also the history of system utterances, so that all discourse information is stored in it.
-belief state holds user 's intention also history system utterances discourse information stored
-Consider, for example, the following user speech in a meeting room reservation dialogue.
-consider example following user speech meeting room reservation dialogue
-I need to, uh, book Room 2, and it's on Wednesday.
-need uh book room 2 's wednesday
-The most likely significant-utterance sequence consists of &quot;I need to, uh, book Room 2&quot; and &quot;it's on Wednesday&quot;.
-likely significant-utterance sequence consists & quot need uh book room 2 & quot & quot 's wednesday & quot
-From the speech act representation of these utterances, the system can infer the user wants to book Room 2 on Wednesday. 
-speech act representation utterances system infer user wants book room 2 wednesday
-SUs are identified in the process of understanding.
-sus identified process understanding
-Unlike ordinary parsers, the understanding module does not try to determine whether the whole input forms an SU or not, but instead determines where SUs are.
-unlike ordinary parsers understanding module try determine whether whole input forms su instead determines sus
-Although this can be considered a kind of partial parsing technique (McDonald, 1992; Lavie, 1996; Abney, 1996), the SUs obtained by ISSS are not always subsentential phrases; they are sometimes full sentences.
-although considered kind partial parsing technique mcdonald 1992 lavie 1996 abney 1996 sus obtained isss always subsentential phrases sometimes full sentences
-For one discourse, multiple significant-utterance sequences can be considered.
-one discourse multiple significant-utterance sequences considered
-&quot;Wednesday next week&quot; above illustrates this well.
-& quot wednesday next week & quot illustrates well
-Let us assume that the parser finds two SUs, &quot;Wednesday&quot; and &quot;Wednesday next week&quot;.
-let us assume parser finds two sus & quot wednesday & quot & quot wednesday next week & quot
-Then three significantutterance sequences are possible: one consisting of &quot;Wednesday&quot;, one consisting of &quot;Wednesday next 
-three significantutterance sequences possible one consisting & quot wednesday & quot one consisting & quot wednesday next
-week&quot;, and one consisting of no SUs.
-week & quot one consisting sus
-The second sequence is obviously the most likely at this point, but it is not possible to choose only one sequence and discard the others in the midst of a dialogue.
-second sequence obviously likely point possible choose one sequence discard others midst dialogue
-We therefore adopt beam search.
-therefore adopt beam search
-Priorities are assigned to the possible sequences, and those with low priorities are neglected during the search. 
-priorities assigned possible sequences low priorities neglected search
-The ISSS algorithm is based on shift-reduce parsing.
-isss algorithm based shift-reduce parsing
-The basic data structure is context, which represents search information and is a triplet of the following data. 
-basic data structure context represents search information triplet following data
-2.
-2
-For each context, apply rules as in a shift-reduce parser.
-context apply rules shift-reduce parser
-When a shift-reduce conflict or a reduce-reduce conflict occur, the context is duplicated and different operations are performed on them.
-shift-reduce conflict reduce-reduce conflict occur context duplicated different operations performed
-When a reduce operation is performed, increase the priority of the context by the priority assigned to the rule used for the reduce operation.
-reduce operation performed increase priority context priority assigned rule used reduce operation
-3.
-3
-For each context, if the top of the stack is an SU, empty the stack and update the belief state according to the content of the SU.
-context top stack su empty stack update belief state according content su
-Increase the priority by the square of the length (i.e., the number of words) of this SU. 
-increase priority square length i.e. number words su
-4.
-4
-Discard contexts with low priority so that the number of remaining contexts will be the beam width or less.
-discard contexts low priority number remaining contexts beam width less
-Since this algorithm is based on beam search, it works in real time if Step (II) is completed quickly enough, which is the case in our experimental system.
-since algorithm based beam search works real time step ii completed quickly enough case experimental system
-The priorities for contexts are determined using a general heuristics based on the length of SUs and the kind of rules used.
-priorities contexts determined using general heuristics based length sus kind rules used
-Contexts with longer SUs are preferred.
-contexts longer sus preferred
-The reason we do not use the length of an SU, but its square instead, is that the system should avoid regarding an SU as consisting of several short SUs.
-reason use length su square instead system avoid regarding su consisting several short sus
-Although this heuristics seems rather simple, we have found it works well in our experimental systems.
-although heuristics seems rather simple found works well experimental systems
-Although some additional techniques, such as discarding redundant contexts and multiplying a weight w (w > 1) to the priority of each context after the Step 4, are effective, details are not discussed here for lack of space. 
-although additional techniques discarding redundant contexts multiplying weight w w > 1 priority context step 4 effective details discussed lack space
-The contexts created by the utterance understanding module can also be accessed by the response generation module so that it can produce responses based on the belief state in the context with the highest priority at a point in time.
-contexts created utterance understanding module also accessed response generation module produce responses based belief state context highest priority point time
-We do not discuss the timing of the responses here, but, generally speaking, a reasonable strategy is to respond when the user pauses.
-discuss timing responses generally speaking reasonable strategy respond user pauses
-In Japanese dialogue systems, producing a backchannel is effective when the user's intention is not clear at that point in time, but determining the content of responses in a real-time spoken dialogue system is also beyond the scope of this paper. 
-japanese dialogue systems producing backchannel effective user 's intention clear point time determining content responses real-time spoken dialogue system also beyond scope paper
-Here we explain ISSS using a simple example.
-explain isss using simple example
-Consider again &quot;Wednesday next week&quot;.
-consider & quot wednesday next week & quot
-To simplify the explanation, we assume the noun phrase 
-simplify explanation assume noun phrase
-'next week' is one word.
-'next week one word
-The speech recognizer incrementally sends to the understanding module the word hypotheses 'Wednesday' and 'next week'.
-speech recognizer incrementally sends understanding module word hypotheses 'wednesday 'next week
-The rules used in this example are shown in Figure 1.
-rules used example shown figure 1
-They are unification-based rules.
-unification-based rules
-Not all features and semantic constraints are shown.
-features semantic constraints shown
-In this example, nouns and noun phrases are not distinguished.
-example nouns noun phrases distinguished
-The ISSS execution is shown in Figure 2.
-isss execution shown figure 2
-When 'Wednesday' is inputted, its lexical feature structure is created and pushed to the stack.
-'wednesday inputted lexical feature structure created pushed stack
-Since Rule (I) can be applied to this stack, (2b) in Figure 2 is created.
-since rule applied stack 2b figure 2 created
-The top of the stack in (2b) is an SU, thus (2c) is created, whose belief state contains the user's intention of meeting room reservation on Wednesday this week.
-top stack 2b su thus 2c created whose belief state contains user 's intention meeting room reservation wednesday week
-We assume that 'Wednesday' means Wednesday this week by default if this utterance was made on Monday, and this is described in the additional conditions in Rule (I).
-assume 'wednesday means wednesday week default utterance made monday described additional conditions rule
-After 'next week' is inputted, NP is pushed to the stacks of all contexts, resulting in (3a) and (3b).
-'next week inputted np pushed stacks contexts resulting 3a 3b
-Then Rule (II) is applied to (3a), making (4b).
-rule ii applied 3a making 4b
-Rule (I) can be applied to (4b), and then (4c) is created and is turned into (4d), which has the highest priority.
-rule applied 4b 4c created turned 4d highest priority
-Before 'next week' is inputted, the interpretation that the user wants to book a room on Wednesday this week has the highest priority, and then after that, the interpretation that the user wants to book a room on Wednesday next week has the highest 
-'next week inputted interpretation user wants book room wednesday week highest priority interpretation user wants book room wednesday next week highest
-priority.
-priority
-Thus, by this method, the most plausible interpretation can be obtained in an incremental way. 
-thus method plausible interpretation obtained incremental way
-Using ISSS, we have developed several experimental Japanese spoken dialogue systems, including a meeting room reservation system.
-using isss developed several experimental japanese spoken dialogue systems including meeting room reservation system
-The architecture of the systems is shown in Figure 3.
-architecture systems shown figure 3
-The speech recognizer uses HMM-based continuous speech recognition directed by a regular 
-speech recognizer uses hmm-based continuous speech recognition directed regular
-grammar (Noda et al., 1998).
-grammar noda et al. 1998
-This grammar is weak enough to capture spontaneously spoken utterances, which sometimes include fillers and self-repairs, and allows each speech interval to be an arbitrary number of arbitrary bunsetsu phrases.
-grammar weak enough capture spontaneously spoken utterances sometimes include fillers self-repairs allows speech interval arbitrary number arbitrary bunsetsu phrases
-' The grammar contains less than one hundred words for each task; we reduced the vocabulary size so that the speech recognizer could output results in real time.
-grammar contains less one hundred words task reduced vocabulary size speech recognizer could output results real time
-The speech recognizer incrementally outputs word hypotheses as soon as they are found in the best-scored path in the forward search (Hirasawa et al., 1998; Gorz et al., 1996).
-speech recognizer incrementally outputs word hypotheses soon found best-scored path forward search hirasawa et al. 1998 gorz et al. 1996
-Since each word hypothesis is accompanied by the pointer to its preceding word, the understanding module can reconstruct word sequences.
-since word hypothesis accompanied pointer preceding word understanding module reconstruct word sequences
-The newest word hypothesis determines the word sequence that is acoustically most likely at a point in time.2 The utterance understanding module works based on ISSS and uses a domain-dependent unification grammar with a context-free backbone that is based on bunsetsu phrases.
-newest word hypothesis determines word sequence acoustically likely point time.2 utterance understanding module works based isss uses domain-dependent unification grammar context-free backbone based bunsetsu phrases
-This grammar is more restrictive than the grammar for speech recognition, but covers phenomena peculiar to spoken language such as particle omission and self-repairs.
-grammar restrictive grammar speech recognition covers phenomena peculiar spoken language particle omission self-repairs
-A belief state is represented by a frame (Bobrow et al., 1977); thus, a speech act representation is a command for changing the slot value of a frame.
-belief state represented frame bobrow et al. 1977 thus speech act representation command changing slot value frame
-Although a more sophisticated model would be required for the system to engage in a complicated dialogue, frame representations are sufficient for our tasks.
-although sophisticated model would required system engage complicated dialogue frame representations sufficient tasks
-The response generation module is invoked when the user pauses, and plans responses based on the belief state of the context with the highest priority.
-response generation module invoked user pauses plans responses based belief state context highest priority
-The response strategy is similar to that of previous frame-based dialogue systems (Bobrow et al., 1977).
-response strategy similar previous frame-based dialogue systems bobrow et al. 1977
-The speech production module outputs speech according to orders from the response generation module.
-speech production module outputs speech according orders response generation module
-Figure 4 shows the transcription of an example dialogue of a reservation system that was recorded in the experiment explained below.
-figure 4 shows transcription example dialogue reservation system recorded experiment explained
-As an example of SUs across pauses, &quot;gozen-jaji kara gozen-jaichiji made (from 10 a.m.
-example sus across pauses & quot gozen-jaji kara gozen-jaichiji made 10 a.m
-to 11 a.m.
-11 a.m
-)&quot; in U5 and U7 
-& quot u5 u7
-Si: donoyona goyoken de shoka (May I 5.69-7.19 help you?
-si donoyona goyoken de shoka may 5.69-7.19 help ?
-) U2: kaigishitsu no yoyaku o onegaishimasu 7.79-9.66 (I'd like to book a meeting room.
-u2 kaigishitsu yoyaku o onegaishimasu 7.79-9.66 'd like book meeting room
-) 
+2013-11-24 21:57:26.489137
+All Sentences
 
-S means a system utterance and U a user utterance.
-means system utterance u user utterance
-Recognition results are enclosed in square brackets.
-recognition results enclosed square brackets
-The figures in the rightmost column are the start and end times (in seconds) of utterances.
-figures rightmost column start end times seconds utterances
-was recognized.
-recognized
-Although the SU &quot;jamji yoyaku shitekudasai (12 o'clock, please book it)&quot; in U13 and U15 was syntactically recognized, the system could not interpret it well enough to change the frame because of grammar limitations.
-although su & quot jamji yoyaku shitekudasai 12 o'clock please book & quot u13 u15 syntactically recognized system could interpret well enough change frame grammar limitations
-The reason why the user hesitated to utter U15 is that S14 was not what the user had expected.
-reason user hesitated utter u15 s14 user expected
-We conducted a preliminary experiment to investigate how ISSS improves the performance of spoken dialogue systems.
-conducted preliminary experiment investigate isss improves performance spoken dialogue systems
-Two systems were com
-two systems com
-pared: one that uses ISSS (system A), and one that requires each speech interval to be an SU (an interval-based system, system B).
-pared one uses isss system one requires speech interval su interval-based system system b
-In system B, when a speech interval was not an SU, the frame was not changed.
-system b speech interval su frame changed
-The dialogue task was a meeting room reservation.
-dialogue task meeting room reservation
-Both systems used the same speech recognizer and the same grammar.
-systems used speech recognizer grammar
-There were ten subjects and each carried out a task on the two systems, resulting in twenty dialogues.
-ten subjects carried task two systems resulting twenty dialogues
-The subjects were using the systems for the first time.
-subjects using systems first time
-They carried out one practice task with system B beforehand.
-carried one practice task system b beforehand
-This experiment was conducted in a computer terminal room where the machine noise was somewhat adverse to speech recognition.
-experiment conducted computer terminal room machine noise somewhat adverse speech recognition
-A meaningful discussion on the success rate of utterance segmentation is not possible because of the recognition errors due to the small coverage of the recognition grammar.3 All subjects successfully completed the task with system A in an average of 42.5 seconds, and six subjects did so with system B in an average of 55.0 seconds.
-meaningful discussion success rate utterance segmentation possible recognition errors due small coverage recognition grammar.3 subjects successfully completed task system average 42.5 seconds six subjects system b average 55.0 seconds
-Four subjects could not complete the task in 90 seconds with system B. Five subjects completed the task with system A 1.4 to 2.2 times quicker than with system B and one subject completed it with system B one second quicker than with system A. A statistical hypothesis test showed that times taken to carry out the task with system A are significantly shorter than those with system B (Z = 3.77, p < .0001).4 The order in which the subjects used the systems had no significant effect.
-four subjects could complete task 90 seconds system b. five subjects completed task system 1.4 2.2 times quicker system b one subject completed system b one second quicker system a. statistical hypothesis test showed times taken carry task system significantly shorter system b z = 3.77 p < .0001 .4 order subjects used systems significant effect
-In addition, user impressions of system A were generally better than those of system B. Although there were some utterances that the system misunderstood because of grammar limitations, excluding the data for the three subjects who had made those utterances did not change the statistical results.
-addition user impressions system generally better system b. although utterances system misunderstood grammar limitations excluding data three subjects made utterances change statistical results
-The reason it took longer to carry out the tasks 3About 50% of user speech intervals were not covered by the recognition grammar due to the small vocabulary size of the recognition grammar.
-reason took longer carry tasks 3about 50 % user speech intervals covered recognition grammar due small vocabulary size recognition grammar
-For the remaining 50% of the intervals, the word error rate of recognition was about 20%.
-remaining 50 % intervals word error rate recognition 20 %
-The word error rate is defined as 100 * ( substitutions + deletions + insertions ) I ( correct + substitutions + deletions ) (Zechner and Waibel, 1998). 
-word error rate defined 100 * substitutions + deletions + insertions correct + substitutions + deletions zechner waibel 1998
-with system B is that, compared to system A, the probability that it understood user utterances was much lower.
-system b compared system probability understood user utterances much lower
-This is because the recognition results of speech intervals do not always form one SU.
-recognition results speech intervals always form one su
-About 67% of all recognition results of user speech intervals were SUs or fillers.5 Needless to say, these results depend on the recognition grammar, the grammar for understanding, the response strategy and other factors.
-67 % recognition results user speech intervals sus fillers.5 needless say results depend recognition grammar grammar understanding response strategy factors
-It has been suggested, however, that assuming each speech interval to be an utterance unit could reduce system performance and that ISSS is effective. 
-suggested however assuming speech interval utterance unit could reduce system performance isss effective
+2013-11-24 21:57:26.489238
+This is an indication that the collocation between the argument and the preposition is more indicative of the core/adjunct label than the obligatoriness of the slot (as expressed by the predicate-slot collocation). [0.0061075306658]
+We define three measures, one quantifying the obligatoriness of the slot, another quantifying the selectional preference of the verb to the argument and a third that quantifies the association between the head word and the slot irrespective of the predicate (Section 3.3). [0.00608364194187]
+In order not to bias the counts towards predicates which tend to take more arguments, we define here N(p, s) to be the number of times the (p, s) pair occurred in the training corpus, irrespective of the number of head words the argument had (and not e.g., EhN(p, s, h)). [0.00557730144252]
+Core ∗ Omri Abend is grateful to the Azrieli Foundation for the award of an Azrieli Fellowship. [0.00538712104861]
+In order to avoid tuning a parameter for each of the measures, we set the threshold as the median value of this measure in the test set. [0.00517638980086]
 
- Section type : conclusions
-This paper proposed ISSS (incremental significantutterance-sequence search), an integrated incremental parsing and discourse processing method that enables both the understanding of unsegmented user utterances and real-time responses.
-paper proposed isss incremental significantutterance-sequence search integrated incremental parsing discourse processing method enables understanding unsegmented user utterances real-time responses
-This paper also reported an experimental result which suggested that ISSS is effective.
-paper also reported experimental result suggested isss effective
-It is also worthwhile mentioning that using ISSS enables building spoken dialogue systems with less effort because it is possible to define significant utterances without considering where pauses might appear. 
-also worthwhile mentioning using isss enables building spoken dialogue systems less effort possible define significant utterances without considering pauses might appear
+2013-11-24 21:57:52.321945
+P10-1024
 
- Section type : acknowledgments
-We would like to thank Dr.
-would like thank dr
-Ken' ichiro Ishii, Dr.
-ken ichiro ishii dr
-Norihiro Hagita, and Dr.
-norihiro hagita dr
-Kiyoalci Aikawa, and the members of the Dialogue Understanding Research Group for their helpful comments.
-kiyoalci aikawa members dialogue understanding research group helpful comments
-We used the speech recognition engine REX developed by NTT Cyber Space Laboratories and would like to thank those who helped us use it.
-used speech recognition engine rex developed ntt cyber space laboratories would like thank helped us use
-Thanks also go to the subjects of the experiment.
-thanks also go subjects experiment
-Comments by the anonymous reviewers were of great help. 
-comments anonymous reviewers great help
+2013-11-24 21:57:52.322024
+Filtered Sentences
 
-2013-11-04 08:32:20.696136
-This paper proposed ISSS (incremental significantutterance-sequence search), an integrated incremental parsing and discourse processing method that enables both the understanding of unsegmented user utterances and real-time responses.
-In Japanese dialogue systems, producing a backchannel is effective when the user's intention is not clear at that point in time, but determining the content of responses in a real-time spoken dialogue system is also beyond the scope of this paper. 
-The above problem can be solved by incremental understanding, which means obtaining the most plausible interpretation of user utterances every time a word hypothesis is inputted from the speech recognizer.
-The contexts created by the utterance understanding module can also be accessed by the response generation module so that it can produce responses based on the belief state in the context with the highest priority at a point in time.
-The newest word hypothesis determines the word sequence that is acoustically most likely at a point in time.2 The utterance understanding module works based on ISSS and uses a domain-dependent unification grammar with a context-free backbone that is based on bunsetsu phrases.
+2013-11-24 21:57:52.322115
+Given a (predicate, prepositional argument) pair from the test set, we first tag and parse the argument using the unsupervised tools above5. [0.00570584324259]
+We also report results for partial versions of the algorithm, starting with the three measures used (selectional preference, predicate-slot collocation and argument-slot collocation). [0.00568814614766]
+The success of supervised methods stems from the fact that the predicate-slot combination (slot is represented in this paper by its preposition) strongly determines whether a given argument is an adjunct or a core (see Section 3.4). [0.00555655964524]
+The measures used are based on selectional preference, predicate-slot collocation and argument-slot collocation. [0.00547947433569]
+Non-prepositional arguments are invariably tagged as cores and out of coverage prepositional arguments as adjuncts. [0.00545327094923]
 
-(174, 0.009000886418498751),
- (105, 0.008865799756263434),
- (51, 0.008706292056363571),
- (103, 0.008672309959407806),
- (134, 0.008447449827839897),
- (59, 0.008387425815514351),
- (8, 0.008366009883753698),
- (18, 0.008321895554476893),
- (23, 0.008252289823150615),
- (138, 0.008151018489091886),
- (156, 0.008012594916804327),
- (74, 0.007898083037230209),
- (30, 0.007803767756754099),
- (110, 0.007782767289968044),
- (69, 0.007708929043735042),
- (73, 0.0075894141401687066),
- (126, 0.007512608624041898),
- (25, 0.007509201532633155),
- (172, 0.007432036320944398)
+2013-11-24 21:58:58.230721
+P99-1026
 
-2013-11-04 08:35:43.726546
-In Japanese dialogue systems, producing a backchannel is effective when the user's intention is not clear at that point in time, but determining the content of responses in a real-time spoken dialogue system is also beyond the scope of this paper. 
-The contexts created by the utterance understanding module can also be accessed by the response generation module so that it can produce responses based on the belief state in the context with the highest priority at a point in time.
-The response generation module is invoked when the user pauses, and plans responses based on the belief state of the context with the highest priority.
-A significant utterance (SU) in the user's speech is a phrase that plays a crucial role in performing the task in the dialogue.
-A meaningful discussion on the success rate of utterance segmentation is not possible because of the recognition errors due to the small coverage of the recognition grammar.3 All subjects successfully completed the task with system A in an average of 42.5 seconds, and six subjects did so with system B in an average of 55.0 seconds.
+2013-11-24 21:58:58.230801
+All Sentences
 
-(105, 0.008956021171430293),
- (103, 0.008699347869939497),
- (138, 0.008678463590276419),
- (59, 0.008538290752199834),
- (164, 0.008372031923150886),
- (10, 0.008179702734185121),
- (83, 0.007984791442647882),
- (93, 0.00788750531530575),
- (64, 0.007850727288128878),
- (33, 0.007788036131293744),
- (118, 0.007755993199946711),
- (70, 0.007685179971692148),
- (15, 0.007655944225987364),
- (31, 0.007637946022018594),
- (134, 0.007634564116687182),
- (32, 0.0075585533623367595),
- (51, 0.007502992931531572),
- (150, 0.007485544195640006),
- (123, 0.007406917591033985),
- (141, 0.007380453189278116)
+2013-11-24 21:58:58.230894
+In Japanese dialogue systems, producing a backchannel is effective when the user's intention is not clear at that point in time, but determining the content of responses in a real-time spoken dialogue system is also beyond the scope of this paper.  [0.00895602117143]
+The contexts created by the utterance understanding module can also be accessed by the response generation module so that it can produce responses based on the belief state in the context with the highest priority at a point in time. [0.00869934786994]
+The response generation module is invoked when the user pauses, and plans responses based on the belief state of the context with the highest priority. [0.00867846359028]
+A significant utterance (SU) in the user's speech is a phrase that plays a crucial role in performing the task in the dialogue. [0.0085382907522]
+A meaningful discussion on the success rate of utterance segmentation is not possible because of the recognition errors due to the small coverage of the recognition grammar.3 All subjects successfully completed the task with system A in an average of 42.5 seconds, and six subjects did so with system B in an average of 55.0 seconds. [0.00837203192315]
+
+2013-11-24 21:59:15.495175
+P99-1026
+
+2013-11-24 21:59:15.495256
+Filtered Sentences
+
+2013-11-24 21:59:15.495357
+This paper proposed ISSS (incremental significantutterance-sequence search), an integrated incremental parsing and discourse processing method that enables both the understanding of unsegmented user utterances and real-time responses. [0.0090008864185]
+In Japanese dialogue systems, producing a backchannel is effective when the user's intention is not clear at that point in time, but determining the content of responses in a real-time spoken dialogue system is also beyond the scope of this paper.  [0.00886579975626]
+The above problem can be solved by incremental understanding, which means obtaining the most plausible interpretation of user utterances every time a word hypothesis is inputted from the speech recognizer. [0.00870629205636]
+The contexts created by the utterance understanding module can also be accessed by the response generation module so that it can produce responses based on the belief state in the context with the highest priority at a point in time. [0.00867230995941]
+The newest word hypothesis determines the word sequence that is acoustically most likely at a point in time.2 The utterance understanding module works based on ISSS and uses a domain-dependent unification grammar with a context-free backbone that is based on bunsetsu phrases. [0.00844744982784]
+
+2013-11-24 22:00:24.267625
+W10-1919
+
+2013-11-24 22:00:24.267731
+All Sentences
+
+2013-11-24 22:00:24.267891
+As part of the present study, we introduce annotation for gene/gene product (GGP) mentions (Section 3.2), and in the following discussion of applying an event extraction approach to the domain the availability of this class annotation as an additional category is assumed.  [0.00933524445126]
+As related types of statements are annotated as Localization events in the applied model, we propose to apply this event type and differentiate between the specific subtypes on the basis of the event arguments. [0.00932068859508]
+As a demonstration of feasibility the result is encouraging for both the applicability of event extraction to this specific new domain and for the adaptability of the approach to new domains in general.  [0.00906405113421]
+We applied a previously introduced corpus of subdomain full texts annotated for mentions of bacteria and terms from the three top-level Gene Ontology subontologies as a reference defining domain information needs to study how these can be met through the application of events defined in the BioNLP’09 Shared Task on event extraction. [0.00897200216539]
+These constraints assure that the corpus is relevant to the information needs of biologists working in the domain and that it can be used as a reference for the study of automatic GO annotation. [0.00888443703201]
+
+2013-11-24 22:00:38.132065
+W10-1919
+
+2013-11-24 22:00:38.132161
+Filtered Sentences
+
+2013-11-24 22:00:38.132275
+We applied a previously introduced corpus of subdomain full texts annotated for mentions of bacteria and terms from the three top-level Gene Ontology subontologies as a reference defining domain information needs to study how these can be met through the application of events defined in the BioNLP’09 Shared Task on event extraction. [0.0106147676946]
+For event extraction, we applied the BioNLP’09 shared task event extraction criteria (Kim et al., 2009) with one key change: to make it possible to evaluate the extraction of the high-level process participants, we removed the requirement that all events must define a Theme as their core argument.  [0.00969382227473]
+The BioNLP’09 shared task defined nine event types and five argument types (roles): Theme specifies the core participant(s) that an event affects, Cause the cause of the the event, Site a specific domain or region on a participant involved in the event, and ToLoc and AtLoc locations associated with localization events (Table 1). [0.00961255252395]
+As gene and gene product entities are central to domain information needs and the core entities of the applied event extraction approach, we first introduced annotation for this entity class. [0.00953743205502]
+During annotation, the number of annotated GGP associations with the targeted class of processes in the T4SS subcorpus was found to be too low to provide material for both training and testing a supervised learning-based event extraction approach. [0.00932628629813]
+
+2013-11-24 23:17:51.914557
+W93-0225
+
+2013-11-24 23:17:51.914667
+All Sentences
+
+2013-11-24 23:17:51.914778
+Moore and Pollack (1992) propose that, in fact, two contiguous spans of text may be in both an informational and an intentional relation simultaneously and that recognition of one kind of relation can facilitate recognition of the other. [0.0164622456991]
+As noted above, nuclearity, which was an element of the unique RST relation between spans N and 5, is now an element, of the intentional relation and is independent of the informational relation. [0.0160426141426]
+In its broadest outline, the goal is to understand the precise interaction between features of form, meaning and function in the creation of discourse coherence. [0.0155064242447]
+By investigating the range of combinations of informational and intentional relations which occur with a lexical marker, we can identify the minimal description of the marker in tennis of discourse relations. [0.0153615024561]
+In comparing the status of intentional and infbrinational discourse relations in both RST and GkS, at least two issues were specified whose resolution is currently presumed by both theories in isolation. [0.0152175856523]
+
+2013-11-24 23:18:19.122106
+W93-0225
+
+2013-11-24 23:18:19.122211
+Filtered Sentences
+
+2013-11-24 23:18:19.122318
+In comparing the status of intentional and infbrinational discourse relations in both RST and GkS, at least two issues were specified whose resolution is currently presumed by both theories in isolation. [0.0164547915288]
+Moore and Pollack (1992) propose that, in fact, two contiguous spans of text may be in both an informational and an intentional relation simultaneously and that recognition of one kind of relation can facilitate recognition of the other. [0.0164210089013]
+Informational and intentional discourse relations are essentially non-linguistic in the sense that they do not originate with language. [0.0159866211396]
+These will be termed textual, informational and intentional discourse relations respectively. [0.0158386930417]
+Is the informational relation between two spans of text necessarily a relation between the entire spans? [0.0156966289824]
+
+2013-11-24 23:23:57.392027
+O90-1002
+
+2013-11-24 23:23:57.392150
+All Sentences
+
+2013-11-24 23:23:57.392304
+In sentence (21), since the relation among E, R, S is E= R < S and the aspect marker is progressive, we have the &quot;past-progressive&quot; as the tense form of the translated English sentence. [0.00734672267875]
+) On the contrary, in sentences linked by &quot;de5 shi2-hou4&quot; (when), &quot;yi3-hou4&quot; (after), &quot;yi3-qian2&quot; (before), the possible tense form of the event E2' can be usually determined by the relations of E, R, S. This is because in sentences of such cases, the event time of El' can be used as the reference time for the event E2'. [0.00714605747214]
+(i )If the event time of El' is past (i.e. El = R2 < S), we have the relation E2 < R2 < S. Thus, the tense forms for E2' may be &quot;past-perfect&quot; or &quot;past-perfect-progressive&quot;, as the sentence (47) shows. [0.00706658689795]
+They claimed that in a complex sentence, if the main clause has the tense form of&quot; present&quot;, &quot;future&quot;, or &quot;present—perfect&quot;, the tense form for the subordinate clause can be any of the twelve tense forms mentioned above. [0.00691717159132]
+) (ii) If the event time of El' is future (i.e., S <E1 = R2), we have the relation S <E2 <R2 .Thus, the tense forms for E2' may be &quot;future-perfect&quot; or &quot;future-perfect-progressive&quot;. [0.00658852081147]
+
+2013-11-24 23:24:20.518443
+O90-1002
+
+2013-11-24 23:24:20.518553
+Filtered Sentences
+
+2013-11-24 23:24:20.518656
+For example, the tense form of the verb &quot;lai2&quot; (come) in sentence (45) is &quot;present&quot; while its original tense form is &quot;future&quot;. [0.00821108880404]
+(i )If the event time of El' is past (i.e. El = R2 < S), we have the relation E2 < R2 < S. Thus, the tense forms for E2' may be &quot;past-perfect&quot; or &quot;past-perfect-progressive&quot;, as the sentence (47) shows. [0.00797468328014]
+They claimed that in a complex sentence, if the main clause has the tense form of&quot; present&quot;, &quot;future&quot;, or &quot;present—perfect&quot;, the tense form for the subordinate clause can be any of the twelve tense forms mentioned above. [0.00789585606515]
+The other two tense forms &quot;past-future&quot; and &quot;pastfuture-perfect&quot; are seldom used in a simple sentence. [0.0078539482555]
+If the tense form is &quot;present-perfect&quot; and the time phrase is given specially, use &quot;past&quot; tense form instead. [0.00768625164559]
+
+2013-11-24 23:27:44.377800
+C96-1001
+
+2013-11-24 23:27:44.377890
+All Sentences
+
+2013-11-24 23:27:44.377991
+An understanding of intonational variation and the ways in which it carries information about discourse characteristics of spoken language is important for computer-based interpretation and generation of speech. [0.054038781583]
+Finally, variations in intonational prominence may be used to convey information about the discourse status of entities referred to by definite noun phrases and pronouns. [0.050922766623]
+It is widely accepted that discourses are composed of segments and that the recognition of segment boundaries is essential to a determination of discourse meaning (Grosz and Sidner, 1986). [0.0506423216033]
+Three major challenges have faced researchers attempting to discover the relationship between intonational features and the structure of spoken discourse. [0.0502747408925]
+Then I will describe results of our analyses of the correlation between discourse structure and intonational features. [0.0496992232885]
+
+2013-11-24 23:28:29.834131
+C96-1001
+
+2013-11-24 23:28:29.834222
+Filtered Sentences
+
+2013-11-24 23:28:29.834344
+Then I will describe results of our analyses of the correlation between discourse structure and intonational features. [0.0526519273522]
+Three major challenges have faced researchers attempting to discover the relationship between intonational features and the structure of spoken discourse. [0.0523965929125]
+In ,spoken language, intonational variation provides essential information about discourse structure. [0.050531563521]
+An understanding of intonational variation and the ways in which it carries information about discourse characteristics of spoken language is important for computer-based interpretation and generation of speech. [0.0495702597087]
+Because discourse structure is rooted in semantics rather than syntax, this has proved more difficult than tagging corpora for sentence structure. [0.0481776811496]

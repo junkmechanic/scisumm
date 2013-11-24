@@ -101,7 +101,7 @@ class Document:
         sentences = []
         for sec, block in self.document.items():
             for key in sorted(block.keys()):
-                sentences.append((str(block[key])).encode('utf-8'))
+                sentences.append((str(block[key])))
         return sentences
 
     def filtered_sentences(self):
@@ -125,5 +125,6 @@ def remove_crlf(text):
 
 
 if __name__ == '__main__':
-    doc = Document('../demo/P99-1026-parscit-section.xml')
-    logit(doc.all_sentences())
+    doc = Document('../demo/H94-1104-all.xml')
+    #print(len(doc.all_sentences()))
+    #logit(doc.all_sentences())
