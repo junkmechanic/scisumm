@@ -1,0 +1,4 @@
+Based on the above assumption, we propose a novel framework for collaborative single document keyphrase extraction by making use of the additional information from multiple documents within an appropriate cluster context.
+Instead of making only use of the word relationships in a single document, the algorithm can incorporate the “voting” or “recommendations” between words in all the documents of the cluster, thus making use of the global information existing in the cluster context.
+In the second step of the above framework, substep 1) aims to evaluate all candidate words in the cluster based on the graph-based ranking algorithm.
+Substep 2) aims to evaluate candidate phrases of each single document based on the cluster-level word scores, and then choose a few salient phrases as keyphrases of the document.
