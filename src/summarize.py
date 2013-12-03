@@ -7,14 +7,15 @@ import PythonROUGE
 logit('\n' + str(datetime.now()))
 
 # number of sentences in the summary
-num = 9
+num = 5
 # maximum allowed length of the summary
-MAXLEN = 600
+MAXLEN = 200
 
 
-def summarize(document):
+def summarize(document, all=True):
     doc = Document(document)
-    sentences, offset = doc.all_sentences()
+    sentences, offset = (doc.all_sentences() if all
+                         else doc.filtered_sentences())
 
     # Ranker
     ranker = TextRank(sentences)
@@ -32,8 +33,7 @@ def summarize(document):
         sum_len += len(sent.split(' '))
     text = ''
     logit("\nP07-3014")
-    logit("\nAll Sentences")
-    #logit("\nFiltered Sentences")
+    logit("\nAll Sentences" if all else "\nFiltered Sentences")
     logit("Length of summary : " + str(sum_len))
     for sent, score, section in summary:
         text += '\n' + "[" + section.encode('utf-8') + "] " + \
@@ -49,12 +49,13 @@ def summarize(document):
 
     # Evaluator
     guess_summary_list = [file]
-    ref_summary_list = [[PythonROUGE.BASE_DIR + "data/P07-3014-Ref.txt"]]
+    ref_summary_list = [[PythonROUGE.BASE_DIR + "data/C08-1122-Ref.txt"]]
     recall, precision, F_measure = PythonROUGE.PythonROUGE(guess_summary_list,
                                                            ref_summary_list,
                                                            ngram_order=1)
-    print recall, precision, F_measure
+    logit("Recall:{0} ; Precision:{1} ; F:{2}".format(recall, precision,
+                                                      F_measure))
 
 if __name__ == '__main__':
-    doc = '../demo/P07-3014-parscit-section.xml'
-    summarize(doc)
+    doc = '../demo/C08-1122-parscit-section.xml'
+    summarize(doc, all=False)
