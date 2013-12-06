@@ -2,7 +2,8 @@ from Document import Document
 from Document import logit
 from datetime import datetime
 from Ranker import TextRank
-import PythonROUGE
+from Config import DIR
+from PythonROUGE import PythonROUGE
 
 logit('\n' + str(datetime.now()))
 
@@ -42,17 +43,17 @@ def summarize(document, all=True):
 
     # Printer
     # this has to be automated
-    file = PythonROUGE.BASE_DIR + "data/Summary.txt"
+    file = DIR['BASE'] + "data/Summary.txt"
     with open(file, 'w') as sfile:
         sfile.write('\n'.join([sent for sent, sc, sec in summary]).
                     encode('utf-8'))
 
     # Evaluator
     guess_summary_list = [file]
-    ref_summary_list = [[PythonROUGE.BASE_DIR + "data/C08-1122-Ref.txt"]]
-    recall, precision, F_measure = PythonROUGE.PythonROUGE(guess_summary_list,
-                                                           ref_summary_list,
-                                                           ngram_order=1)
+    ref_summary_list = [[DIR['BASE'] + "data/C08-1122-Ref.txt"]]
+    recall, precision, F_measure = PythonROUGE(guess_summary_list,
+                                               ref_summary_list,
+                                               ngram_order=1)
     logit("Recall:{0} ; Precision:{1} ; F:{2}".format(recall, precision,
                                                       F_measure))
 

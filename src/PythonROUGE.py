@@ -7,6 +7,7 @@ mail: mba@priberam.pt
 
 import os
 import re
+from Config import DIR
 
 # Wrapper function to use ROUGE from Python easily
 # Inputs:
@@ -19,7 +20,6 @@ import re
 #
 # Example usage: PythonROUGE('/home/foo/my_guess_summary.txt',[/home/bar/my_ref_summary_1.txt,/home/bar/my_ref_summary_2.txt])
 
-BASE_DIR = "/home/ankur/LatitudeFunk/DevBench/workspace2/pyskl/scisumm/"
 
 def PythonROUGE(guess_summ_list,ref_summ_list,ngram_order=2):
     """ Wrapper function to use ROUGE from Python easily. """
@@ -41,8 +41,8 @@ def PythonROUGE(guess_summ_list,ref_summ_list,ngram_order=2):
 #        del temp
 
     # this is the path to your ROUGE distribution
-    ROUGE_path = BASE_DIR + 'lib/ROUGE/RELEASE-1.5.5/ROUGE-1.5.5.pl'
-    data_path = BASE_DIR + 'lib/ROUGE/RELEASE-1.5.5/data'
+    ROUGE_path = DIR['BASE'] + 'lib/ROUGE/RELEASE-1.5.5/ROUGE-1.5.5.pl'
+    data_path = DIR['BASE'] + 'lib/ROUGE/RELEASE-1.5.5/data'
 
     # these are the options used to call ROUGE
     # feel free to edit this is you want to call ROUGE with different options
