@@ -1,5 +1,8 @@
+# coding=utf-8
 from sklearn.feature_extraction.text import TfidfVectorizer
 #from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+from scipy.sparse import vstack
 import networkx as nx
 from operator import itemgetter
 
@@ -38,9 +41,8 @@ class Ranker:
         vectorizer = TfidfVectorizer(min_df=2)
         self.dtm = vectorizer.fit_transform(sentences)
         self.sim_matrix = self.dtm * self.dtm.T
-        self.rank()
 
-    def rank(self):
+    def rank(self, **kwargs):
         not_defined = "The rank() method needs to be defined in the class " + \
                       "that inherits from Ranker class"
         raise NotImplementedError(not_defined)
@@ -58,7 +60,30 @@ class TextRank(Ranker):
     being the value based on which the sentences need to be ranked.
     """
 
-    def rank(self):
+    def rank(self, **kwargs):
         graph = nx.from_scipy_sparse_matrix(self.sim_matrix)
         scores = nx.pagerank(graph)
         self.scores = sorted(scores.items(), key=itemgetter(1), reverse=True)
+
+
+class SectionMMR(Ranker):
+    """
+    This class is used to rank sentences in a particular seciton based on
+    their importance within the section as well as their uniqueness
+    compared to the sentences in the rest of the document. This is done using
+    the following form of Maximal Marginal Relevance:
+        MMR = λ Sim1 (s) - (1 - λ) Sim2 (s)
+    """
+
+    def rank(self, sec_offset=None, limit=None, coef=0.7):
+        totlen = len(self.sentences)
+        sim1 = cosine_similarity(self.dtm[sec_offset:(sec_offset + limit)],
+                                 self.dtm[sec_offset:(sec_offset + limit)])
+        sim1_sum = (sim1.sum(1) - 1) / (limit - 1)
+        rest = vstack([self.dtm[0:sec_offset],
+                       self.dtm[(sec_offset + limit):]])
+        sim2 = cosine_similarity(self.dtm[sec_offset:(sec_offset + limit)],
+                                 rest)
+        sim2_sum = (sim2.sum(1) - 1) / (totlen - limit)
+        mmr = (coef * sim1_sum) - ((1 - coef) * sim2_sum)
+        self.scores = sorted(enumerate(mmr), key=itemgetter(1), reverse=True)

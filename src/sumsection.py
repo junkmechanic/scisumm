@@ -1,10 +1,7 @@
 from Document import Document
 from Document import logit
 from datetime import datetime
-from sklearn.metrics.pairwise import cosine_similarity
-from sklearn.feature_extraction.text import TfidfVectorizer
-from scipy.sparse import vstack
-from operator import itemgetter
+from Ranker import SectionMMR
 
 logit('\n' + str(datetime.now()))
 
@@ -19,25 +16,13 @@ def summarize_secitons(document, sections, coef=0.8):
     for section_name in sections:
         doc = Document(document)
         all_sentences, all_offset = doc.all_sentences()
-        totlen = len(all_sentences)
         sec_sentences, sec_offset = doc.section_sentences(section_name)
         limit = len(sec_sentences)
 
         # Ranker
-        vectorizer = TfidfVectorizer()
-        dtm = vectorizer.fit_transform(all_sentences)
-        sim1 = cosine_similarity(dtm[sec_offset:(sec_offset + limit)],
-                                 dtm[sec_offset:(sec_offset + limit)])
-        sim1_sum = (sim1.sum(1) - 1) / (limit - 1)
-
-        rest = vstack([dtm[0:sec_offset], dtm[(sec_offset + limit):]])
-        sim2 = cosine_similarity(dtm[sec_offset:(sec_offset + limit)], rest)
-        sim2_sum = (sim2.sum(1) - 1) / (totlen - limit)
-
-        mmr = (coef * sim1_sum) - ((1 - coef) * sim2_sum)
-
-        senten = list(enumerate(mmr))
-        sentencs = sorted(senten, key=itemgetter(1), reverse=True)
+        ranker = SectionMMR(all_sentences)
+        ranker.rank(sec_offset=sec_offset, limit=limit, coef=coef)
+        sentencs = ranker.scores
 
         summary = []
         for x in range(num):

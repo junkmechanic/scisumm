@@ -20,6 +20,7 @@ def summarize(document, all=True):
 
     # Ranker
     ranker = TextRank(sentences)
+    ranker.rank()
     scores = ranker.scores
 
     # Selector
