@@ -72,7 +72,7 @@ class SectionMMR(Ranker):
     their importance within the section as well as their uniqueness
     compared to the sentences in the rest of the document. This is done using
     the following form of Maximal Marginal Relevance:
-        MMR = λ Sim1 (s) - (1 - λ) Sim2 (s)
+        MMR = λ * Sim1 (s) - (1 - λ) * Sim2 (s)
     """
 
     def rank(self, sec_offset=None, limit=None, coef=0.7):

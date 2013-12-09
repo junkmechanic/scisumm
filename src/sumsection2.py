@@ -1,7 +1,7 @@
 from Document import Document
 from Document import logit
 from datetime import datetime
-from Ranker import SectionMMR
+from Ranker import TextRank
 
 logit('\n' + str(datetime.now()))
 
@@ -11,17 +11,16 @@ num = 2
 MAXLEN = 200
 
 
-def summarize_secitons(document, sections, coef=0.8):
+def summarize_secitons(document, sections):
     logit(document)
     doc = Document(document)
     all_sentences, all_offset = doc.all_sentences()
     for section_name in sections:
         sec_sentences, sec_offset = doc.section_sentences(section_name)
-        limit = len(sec_sentences)
 
         # Ranker
-        ranker = SectionMMR(all_sentences)
-        ranker.rank(sec_offset=sec_offset, limit=limit, coef=coef)
+        ranker = TextRank(sec_sentences)
+        ranker.rank()
         sentencs = ranker.scores
 
         summary = []
@@ -39,4 +38,4 @@ def summarize_secitons(document, sections, coef=0.8):
 if __name__ == '__main__':
     doc = '../demo/P07-3014-parscit-section.xml'
     sections = ['introduction', 'related work', 'method', 'evaluation']
-    summarize_secitons(doc, sections, coef=0.7)
+    summarize_secitons(doc, sections)
