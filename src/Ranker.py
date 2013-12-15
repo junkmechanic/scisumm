@@ -73,15 +73,31 @@ class SectionMMR(Ranker):
     compared to the sentences in the rest of the document. This is done using
     the following form of Maximal Marginal Relevance:
         MMR = λ * Sim1 (s) - (1 - λ) * Sim2 (s)
+    where Sim1 is the similarity of the sentence w.r.t. the seciton and
+    Sim2 is the similarity of the sentence w.r.t. the entire document and
+    hence the MMR represents a convex combination of the two similarities.
     """
 
     def rank(self, sec_offset=None, limit=None, coef=0.7):
+        """
+        This instance method needs the starting index of the seciton in the
+        document as well as the length (no. of sentences) in that section.
+        """
+        if limit is None:
+            print("\nWARNING :You should provide the length of the section")
+            limit = len(self.sentences)
         totlen = len(self.sentences)
+        # Similarity of each sentence in the section with every other sentence
+        # in that seciton
         sim1 = cosine_similarity(self.dtm[sec_offset:(sec_offset + limit)],
                                  self.dtm[sec_offset:(sec_offset + limit)])
+        # For each sentence, get the mean of all its similarities
         sim1_sum = (sim1.sum(1) - 1) / (limit - 1)
+        # rest will contain all the sentences except those in the current
+        # section
         rest = vstack([self.dtm[0:sec_offset],
                        self.dtm[(sec_offset + limit):]])
+        # Calculate the similarity of each section with each sentences in rest
         sim2 = cosine_similarity(self.dtm[sec_offset:(sec_offset + limit)],
                                  rest)
         sim2_sum = (sim2.sum(1) - 1) / (totlen - limit)

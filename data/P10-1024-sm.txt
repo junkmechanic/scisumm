@@ -1,0 +1,3 @@
+The marked argument is a core in 1 and an adjunct in 2 and 3.
+In order not to bias the counts towards predicates which tend to take more arguments, we define here N(p, s) to be the number of times the (p, s) pair occurred in the training corpus, irrespective of the number of head words the argument had (and not e.g., EhN(p, s, h)).
+The accuracy of our model on the entire set (prepositional argument subset) of correctly identified arguments was 83.6% (71.7%).

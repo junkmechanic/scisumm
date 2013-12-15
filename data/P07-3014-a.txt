@@ -1,0 +1,3 @@
+The motivation for this paper is to discover which joining terms are good predictors of a semantic relation, and which learning algorithms perform best at the task of mapping from joining terms to semantic relations for modifier-noun compounds. 
+Also, they use 64 joining terms and gather counts for both the forms &quot;noun joining term modifier&quot; and &quot;modifier joining term noun&quot; (128 frequencies in total); while we use only the former construction with 28 joining terms.
+Turney and Littman (2005) use a set of 64 short prepositional and conjunctive phrases they call &quot;joining terms&quot; to generate exact queries for AltaVista of the form &quot;noun joining term modifier&quot;, and &quot;modifier joining term noun&quot;.

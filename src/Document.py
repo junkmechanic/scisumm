@@ -146,6 +146,6 @@ def remove_crlf(text):
 
 
 if __name__ == '__main__':
-    doc = Document('../demo/P10-1024-parscit-section.xml')
+    doc = Document('../demo/C08-1122-parscit-section.xml')
     #logit('\n'.join(doc.all_sentences()[0]))
     #logit(doc.all_sentences())

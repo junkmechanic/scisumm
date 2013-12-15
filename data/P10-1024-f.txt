@@ -1,0 +1,5 @@
+Given a (predicate, prepositional argument) pair from the test set, we first tag and parse the argument using the unsupervised tools above5.
+We also report results for partial versions of the algorithm, starting with the three measures used (selectional preference, predicate-slot collocation and argument-slot collocation).
+The success of supervised methods stems from the fact that the predicate-slot combination (slot is represented in this paper by its preposition) strongly determines whether a given argument is an adjunct or a core (see Section 3.4).
+The measures used are based on selectional preference, predicate-slot collocation and argument-slot collocation.
+Non-prepositional arguments are invariably tagged as cores and out of coverage prepositional arguments as adjuncts.
