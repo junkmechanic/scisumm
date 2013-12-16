@@ -1,0 +1,4 @@
+In Japanese dialogue systems, producing a backchannel is effective when the user's intention is not clear at that point in time, but determining the content of responses in a real-time spoken dialogue system is also beyond the scope of this paper. 
+The contexts created by the utterance understanding module can also be accessed by the response generation module so that it can produce responses based on the belief state in the context with the highest priority at a point in time.
+The response generation module is invoked when the user pauses, and plans responses based on the belief state of the context with the highest priority.
+A significant utterance (SU) in the user's speech is a phrase that plays a crucial role in performing the task in the dialogue.

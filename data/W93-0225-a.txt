@@ -1,0 +1,4 @@
+Moore and Pollack (1992) propose that, in fact, two contiguous spans of text may be in both an informational and an intentional relation simultaneously and that recognition of one kind of relation can facilitate recognition of the other.
+As noted above, nuclearity, which was an element of the unique RST relation between spans N and 5, is now an element, of the intentional relation and is independent of the informational relation.
+In its broadest outline, the goal is to understand the precise interaction between features of form, meaning and function in the creation of discourse coherence.
+By investigating the range of combinations of informational and intentional relations which occur with a lexical marker, we can identify the minimal description of the marker in tennis of discourse relations.

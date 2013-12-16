@@ -1,0 +1,3 @@
+On the other hand, since parsing results cannot be obtained unless the end of the utterance is identified, making real-time responses is impossible without boundary information.
+A significant utterance (SU) in the user's speech is a phrase that plays a crucial role in performing the task in the dialogue.
+This paper also reported an experimental result which suggested that ISSS is effective.

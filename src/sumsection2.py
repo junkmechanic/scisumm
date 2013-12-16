@@ -42,6 +42,6 @@ def summarize_secitons(document, sections):
 
 
 if __name__ == '__main__':
-    doc = '../demo/C08-1122-parscit-section.xml'
+    doc = '../demo/P99-1026-parscit-section.xml'
     sections = ['introduction', 'method', 'conclusions']
     summarize_secitons(doc, sections)

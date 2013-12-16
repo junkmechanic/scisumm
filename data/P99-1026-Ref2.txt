@@ -1,0 +1,5 @@
+This paper proposes a method for incrementally understanding user utterances whose semantic boundaries are not known and responding in real time even before boundaries are determined
+The method utilizes beam search to deal with the ambiguity of boundaries as well as syntactic and semantic ambiguities.
+This paper proposed ISSS (incremental significant-utterance-sequence search), an integrated incremental parsing and discourse processing method that enables both the understanding of unsegmented user utterances and real-time responses.
+A significant utterance (SU) in the user's speech is a phrase that plays a crucial role in performing the task in the dialogue.
+User utterances are understood by finding a sequence of SUs and updating the belief state based on the sequence.
