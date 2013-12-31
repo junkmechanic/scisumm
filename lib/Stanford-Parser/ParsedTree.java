@@ -66,7 +66,8 @@ class ParsedTree {
       Collection<TypedDependency> tdl = gs.typedDependenciesCCprocessed();
       //writeToFile(outname, tdl);
       SemanticGraph graph = new SemanticGraph(tdl);
-      System.out.print(toString(graph));
+      writeToFile(outname, toString(graph));
+      //System.out.print(toString(graph));
       //System.out.println(graph);
       /*for (TypedDependency o : tdl){
           System.out.print(o);
@@ -96,7 +97,7 @@ class ParsedTree {
     StringBuilder sb = new StringBuilder();
     Set<IndexedWord> used = Generics.newHashSet();
     for (IndexedWord root : rootNodes) {
-      sb.append("(").append(root).append(" (root) \n");
+      sb.append("(").append(root).append(" (root)\n");
       recToString(graph, root, sb, 1, used);
     }
     Set<IndexedWord> nodes = Generics.newHashSet(graph.vertexSet());
@@ -107,7 +108,7 @@ class ParsedTree {
       recToString(graph, node, sb, 1, used);
       nodes.removeAll(used);
     }
-    sb.append(") \n");
+    sb.append(")\n");
     return sb.toString();
   }
 
@@ -118,11 +119,11 @@ class ParsedTree {
     Collections.sort(edges);
     for (SemanticGraphEdge edge : edges) {
       IndexedWord target = edge.getTarget();
-      sb.append(space(2*offset)).append("( ").append(target).append(" (").append(edge.getRelation()).append(") \n");
+      sb.append(space(2*offset)).append("(").append(target).append(" (").append(edge.getRelation()).append(")\n");
       if (!used.contains(target)) { // recurse
         recToString(graph, target, sb, offset + 1, used);
       }
-      sb.append(space(2*offset)).append(") \n");
+      sb.append(space(2*offset)).append(")\n");
     }
   }
 
@@ -132,6 +133,25 @@ class ParsedTree {
       b.append(' ');
     }
     return b.toString();
+  }
+
+
+  public static void writeToFile(String filename, String tree) {
+    Path basepath = Paths.get("/home/ankur/devbench/scientific/support/dependency-parser/stanford-parser-full-2013-11-12");
+    Path filepath = basepath.resolve(filename).normalize();
+    Charset charset = Charset.forName("UTF-8");
+    Set<OpenOption> options = new HashSet<OpenOption>();
+    options.add(StandardOpenOption.CREATE);
+    options.add(StandardOpenOption.WRITE);
+    options.add(StandardOpenOption.TRUNCATE_EXISTING);
+    try {
+      BufferedWriter writer = Files.newBufferedWriter(filepath, charset, options.toArray(new OpenOption[0]));
+      writer.write(tree, 0, tree.length());
+      writer.close();
+    } catch (IOException e) {
+        System.out.println("Problem openning the file");
+        System.out.println(e);
+    }
   }
 
 
