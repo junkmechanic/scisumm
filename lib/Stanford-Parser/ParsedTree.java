@@ -11,6 +11,7 @@ import java.util.HashSet;
 import java.nio.file.StandardOpenOption;
 import java.lang.StringBuilder;
 import java.util.Collections;
+import java.util.ArrayList;
 
 import edu.stanford.nlp.process.TokenizerFactory;
 import edu.stanford.nlp.process.CoreLabelTokenFactory;
@@ -45,6 +46,10 @@ class ParsedTree {
     }
   }
 
+  public static enum PrintOptions {
+    WORD, TAG, DEP
+  }
+
   /**
    * demoDP demonstrates turning a file into tokens and then parse
    * trees.  Note that the trees are printed by calling pennPrint on
@@ -58,6 +63,7 @@ class ParsedTree {
     GrammaticalStructureFactory gsf = tlp.grammaticalStructureFactory();
     // You could also create a tokenizer here (as below) and pass it
     // to DocumentPreprocessor
+    ArrayList<SemanticGraph> parsed = new ArrayList<SemanticGraph>();
     for (List<HasWord> sentence : new DocumentPreprocessor(filename)) {
       // parse the sentece into a tree
       Tree parse = lp.apply(sentence);
@@ -65,8 +71,10 @@ class ParsedTree {
       GrammaticalStructure gs = gsf.newGrammaticalStructure(parse);
       Collection<TypedDependency> tdl = gs.typedDependenciesCCprocessed();
       //writeToFile(outname, tdl);
-      SemanticGraph graph = new SemanticGraph(tdl);
-      writeToFile(outname, toString(graph));
+      //SemanticGraph graph = new SemanticGraph(tdl);
+      parsed.add(new SemanticGraph(tdl));
+      //writeToFile(outname, toString(graph));
+      //writeToFile(outname, "\n");
       //System.out.print(toString(graph));
       //System.out.println(graph);
       /*for (TypedDependency o : tdl){
@@ -84,6 +92,82 @@ class ParsedTree {
           }
       }
       System.out.println();*/
+    }
+    HashSet<PrintOptions> options = new HashSet<PrintOptions>();
+    options.add(PrintOptions.WORD);
+    for (SemanticGraph graph : parsed)
+      writeToFile(outname, toString(graph, options) + "\n");
+    options.clear();
+    options.add(PrintOptions.TAG);
+    for (SemanticGraph graph : parsed)
+      writeToFile(outname, toString(graph, options) + "\n");
+    options.clear();
+    options.add(PrintOptions.DEP);
+    for (SemanticGraph graph : parsed)
+      writeToFile(outname, toString(graph, options) + "\n");
+  }
+
+  public static String spitToken(IndexedWord node, SemanticGraphEdge edge, HashSet<PrintOptions> options) {
+    // This will not check if there are more than one option included in the
+    // options set. So clear options before adding to it.
+    if (options.contains(PrintOptions.WORD))
+      return (node.word());
+    else if (options.contains(PrintOptions.TAG))
+      return (node.tag());
+    else if (options.contains(PrintOptions.DEP)) {
+      if (edge != null)
+        return (edge.getRelation().toString());
+      else
+        return ("Root");
+    }
+    else {
+      System.err.println("No Options set. What are you doing?");
+      return (node.toString());
+    }
+  }
+
+  public static String toString(SemanticGraph graph, HashSet<PrintOptions> options) {
+    Collection<IndexedWord> rootNodes = graph.getRoots();
+    if (rootNodes.isEmpty()) {
+      // Shouldn't happen, but return something!
+      return("No Tree Found");
+    }
+    //TODO: Include check for empty options set
+    StringBuilder sb = new StringBuilder();
+    Set<IndexedWord> used = Generics.newHashSet();
+    for (IndexedWord root : rootNodes) {
+      //sb.append("(").append(root).append(" (root)");
+      sb.append("(").append(spitToken(root, null, options));
+      recToString(graph, root, sb, 1, used, options);
+    }
+    Set<IndexedWord> nodes = Generics.newHashSet(graph.vertexSet());
+    nodes.removeAll(used);
+    while (!nodes.isEmpty()) {
+      IndexedWord node = nodes.iterator().next();
+      System.out.println(spitToken(node, null, options));
+      sb.append(spitToken(node, null, options));
+      recToString(graph, node, sb, 1, used);
+      nodes.removeAll(used);
+    }
+    sb.append(")");
+    return sb.toString();
+  }
+
+  // helper for toString()
+  private static void recToString(SemanticGraph graph, IndexedWord curr, StringBuilder sb, int offset, Set<IndexedWord> used,
+                                  HashSet<PrintOptions> options) {
+    //TODO: Include check for empty options set
+    used.add(curr);
+    List<SemanticGraphEdge> edges = graph.outgoingEdgeList(curr);
+    Collections.sort(edges);
+    for (SemanticGraphEdge edge : edges) {
+      IndexedWord target = edge.getTarget();
+      //sb.append("(").append(target.tag()).append(" (").append(edge.getRelation()).append(")");
+      sb.append(" (").append(spitToken(target, edge, options));
+      if (!used.contains(target)) { // recurse
+        recToString(graph, target, sb, offset + 1, used, options);
+      }
+      sb.append(")");
     }
   }
 
@@ -143,7 +227,8 @@ class ParsedTree {
     Set<OpenOption> options = new HashSet<OpenOption>();
     options.add(StandardOpenOption.CREATE);
     options.add(StandardOpenOption.WRITE);
-    options.add(StandardOpenOption.TRUNCATE_EXISTING);
+    options.add(StandardOpenOption.APPEND);
+    //options.add(StandardOpenOption.TRUNCATE_EXISTING);
     try {
       BufferedWriter writer = Files.newBufferedWriter(filepath, charset, options.toArray(new OpenOption[0]));
       writer.write(tree, 0, tree.length());
@@ -162,7 +247,8 @@ class ParsedTree {
     Set<OpenOption> options = new HashSet<OpenOption>();
     options.add(StandardOpenOption.CREATE);
     options.add(StandardOpenOption.WRITE);
-    options.add(StandardOpenOption.TRUNCATE_EXISTING);
+    options.add(StandardOpenOption.APPEND);
+    //options.add(StandardOpenOption.TRUNCATE_EXISTING);
     try {
       BufferedWriter writer = Files.newBufferedWriter(filepath, charset, options.toArray(new OpenOption[0]));
       for (Object o : tdl) {
