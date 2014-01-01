@@ -97,7 +97,7 @@ class ParsedTree {
     StringBuilder sb = new StringBuilder();
     Set<IndexedWord> used = Generics.newHashSet();
     for (IndexedWord root : rootNodes) {
-      sb.append("(").append(root).append(" (root)\n");
+      sb.append("(").append(root).append(" (root)");
       recToString(graph, root, sb, 1, used);
     }
     Set<IndexedWord> nodes = Generics.newHashSet(graph.vertexSet());
@@ -108,7 +108,7 @@ class ParsedTree {
       recToString(graph, node, sb, 1, used);
       nodes.removeAll(used);
     }
-    sb.append(")\n");
+    sb.append(") ");
     return sb.toString();
   }
 
@@ -119,11 +119,11 @@ class ParsedTree {
     Collections.sort(edges);
     for (SemanticGraphEdge edge : edges) {
       IndexedWord target = edge.getTarget();
-      sb.append(space(2*offset)).append("(").append(target).append(" (").append(edge.getRelation()).append(")\n");
+      sb.append("(").append(target).append(" (").append(edge.getRelation()).append(")");
       if (!used.contains(target)) { // recurse
         recToString(graph, target, sb, offset + 1, used);
       }
-      sb.append(space(2*offset)).append(")\n");
+      sb.append(")");
     }
   }
 
