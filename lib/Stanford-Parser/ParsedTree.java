@@ -30,19 +30,11 @@ import edu.stanford.nlp.util.Generics;
 
 class ParsedTree {
 
-  /**
-   * The main method demonstrates the easiest way to load a parser.
-   * Simply call loadModel and specify the path, which can either be a
-   * file or any resource in the classpath.  For example, this
-   * demonstrates loading from the models jar file, which you need to
-   * include in the classpath for ParserDemo to work.
-   */
   public static void main(String[] args) {
-    LexicalizedParser lp = LexicalizedParser.loadModel("edu/stanford/nlp/models/lexparser/englishPCFG.ser.gz");
-    if (args.length > 0) {
-      demoDP(lp, args[0], args[1]);
+    if (args.length > 2) {
+      printTrees(args[0], args[1], args[2]);
     } else {
-      System.out.println("You should have mentioned a file name containing sentences.");
+      System.out.println("You need to give 3 arguments:\n\t1. The input filename\n\t2. The output filename\n\t3. The class of the training samples\n");
     }
   }
 
@@ -50,13 +42,8 @@ class ParsedTree {
     WORD, TAG, DEP
   }
 
-  /**
-   * demoDP demonstrates turning a file into tokens and then parse
-   * trees.  Note that the trees are printed by calling pennPrint on
-   * the Tree object.  It is also possible to pass a PrintWriter to
-   * pennPrint if you want to capture the output.
-   */
-  public static void demoDP(LexicalizedParser lp, String filename, String outname) {
+  public static void printTrees(String filename, String outname, String cls) {
+    LexicalizedParser lp = LexicalizedParser.loadModel("edu/stanford/nlp/models/lexparser/englishPCFG.ser.gz");
     // This option shows loading and sentence-segmenting and tokenizing
     // a file using DocumentPreprocessor.
     TreebankLanguagePack tlp = new PennTreebankLanguagePack();
@@ -94,17 +81,20 @@ class ParsedTree {
       System.out.println();*/
     }
     HashSet<PrintOptions> options = new HashSet<PrintOptions>();
-    options.add(PrintOptions.WORD);
-    for (SemanticGraph graph : parsed)
-      writeToFile(outname, toString(graph, options) + "\n");
     options.clear();
-    options.add(PrintOptions.TAG);
-    for (SemanticGraph graph : parsed)
-      writeToFile(outname, toString(graph, options) + "\n");
-    options.clear();
-    options.add(PrintOptions.DEP);
-    for (SemanticGraph graph : parsed)
-      writeToFile(outname, toString(graph, options) + "\n");
+    StringBuilder output;
+    for (SemanticGraph graph : parsed) {
+      output = new StringBuilder();
+      options.add(PrintOptions.WORD);
+      output.append(cls + " |BT| ").append(toString(graph, options)).append(" |BT| ");
+      options.clear();
+      options.add(PrintOptions.TAG);
+      output.append(toString(graph, options)).append(" |BT| ");
+      options.clear();
+      options.add(PrintOptions.DEP);
+      output.append(toString(graph, options)).append(" |ET|\n");
+      writeToFile(outname,  output.toString());
+    }
   }
 
   public static String spitToken(IndexedWord node, SemanticGraphEdge edge, HashSet<PrintOptions> options) {
@@ -160,10 +150,17 @@ class ParsedTree {
     used.add(curr);
     List<SemanticGraphEdge> edges = graph.outgoingEdgeList(curr);
     Collections.sort(edges);
+    boolean first = true;
     for (SemanticGraphEdge edge : edges) {
       IndexedWord target = edge.getTarget();
       //sb.append("(").append(target.tag()).append(" (").append(edge.getRelation()).append(")");
-      sb.append(" (").append(spitToken(target, edge, options));
+      if (first == true) {
+        sb.append(" (");
+        first = false;
+      }
+      else
+        sb.append("(");
+      sb.append(spitToken(target, edge, options));
       if (!used.contains(target)) { // recurse
         recToString(graph, target, sb, offset + 1, used, options);
       }
