@@ -1,4 +1,4 @@
 DIR = {
-    'BASE': "/home/ankur/LatitudeFunk/DevBench/workspace2/pyskl/scisumm/",
-    'DATA': "/home/ankur/LatitudeFunk/DevBench/workspace2/pyskl/scisumm/data/"
+    'BASE': "/home/ankur/devbench/scientific/scisumm/",
+    'DATA': "/home/ankur/devbench/scientific/scisumm/data/"
 }

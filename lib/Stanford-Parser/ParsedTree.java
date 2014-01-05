@@ -31,6 +31,7 @@ import edu.stanford.nlp.util.Generics;
 class ParsedTree {
 
   public static void main(String[] args) {
+    // Handling the command line arguments
     if (args.length > 2) {
       printTrees(args[0], args[1], args[2]);
     } else {
