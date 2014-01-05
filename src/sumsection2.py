@@ -3,6 +3,7 @@ from Document import logit
 from datetime import datetime
 from Ranker import TextRank
 from Config import DIR
+from PythonROUGE import PythonROUGE
 
 logit('\n' + str(datetime.now()))
 
@@ -40,8 +41,17 @@ def summarize_secitons(document, sections):
     with open(file, 'w') as sfile:
         sfile.write('\n'.join(summ).encode('utf-8'))
 
+    # Evaluator
+    guess_summary_list = [file]
+    ref_summary_list = [[DIR['BASE'] + "data/P10-1024-Ref1.txt"]]
+    recall, precision, F_measure = PythonROUGE(guess_summary_list,
+                                               ref_summary_list,
+                                               ngram_order=1)
+    logit("Recall:{0} ; Precision:{1} ; F:{2}".format(recall, precision,
+                                                      F_measure))
+
 
 if __name__ == '__main__':
-    doc = '../demo/P99-1026-parscit-section.xml'
+    doc = '../demo/P10-1024-parscit-section.xml'
     sections = ['introduction', 'method', 'conclusions']
     summarize_secitons(doc, sections)
