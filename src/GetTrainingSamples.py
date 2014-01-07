@@ -14,19 +14,19 @@ def getAbstracts(outfile):
     dir = DIR['BASE'] + "demo/"
     os.chdir(dir)
     samples = ''
-    num = 0
+    total = 0
     for file in glob("*.xml"):
         try:
             doc = Document(file)
             sent, offset = doc.section_sentences('abstract')
             samples += '\n'.join(sent)
             print(file + " : Done")
-            num += 1
+            total += 1
         except Exception as e:
             print(file + str(e))
     # for now this is the location of the file
     writeToFile(outfile, samples, 'w')
-    print ("Total number of files processed successfully : " + str(num))
+    print ("Total number of files processed successfully : " + str(total))
 
 
 def writeToFile(outfile, txt, mode='a'):
@@ -53,7 +53,7 @@ def getUnwanted(outfile):
     os.chdir(dir)
     samples = ''
     total = 0
-    num = 6
+    num = 12
     samples = ''
     for file in glob("*.xml"):
         try:
@@ -62,17 +62,17 @@ def getUnwanted(outfile):
             # Ranker
             ranker = TextRank(sentences)
             ranker.rank()
-            scores = sorted(ranker.scores.items(), key=itemgetter(1))
+            scores = sorted(ranker.scores, key=itemgetter(1))
             for x in range(num):
                 idx = scores[x][0] + offset
-                samples += doc[idx].sentence + '\n'
+                samples += doc[idx].sentence.encode('utf-8') + '\n'
             total += 1
             print(file + " : Done")
         except Exception as e:
             print(file + str(e))
     # for now this is the location of the file
     writeToFile(outfile, samples, 'w')
-    print ("Total number of files processed successfully : " + str(num))
+    print ("Total number of files processed successfully : " + str(total))
 
 
 if __name__ == '__main__':
@@ -84,5 +84,5 @@ if __name__ == '__main__':
     # for negative samples
     infile = DIR['BASE'] + 'data/unwanted_sentences.txt'
     outfile = DIR['BASE'] + 'data/neg-training-sent.txt'
-    getAbstracts(infile)
+    getUnwanted(infile)
     preProcess(infile, outfile)

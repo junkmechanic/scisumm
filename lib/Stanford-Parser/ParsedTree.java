@@ -117,6 +117,7 @@ class ParsedTree {
     }
   }
 
+  // This is for printing the tree in SVM-light-TK format
   public static String toString(SemanticGraph graph, HashSet<PrintOptions> options) {
     Collection<IndexedWord> rootNodes = graph.getRoots();
     if (rootNodes.isEmpty()) {
@@ -134,6 +135,7 @@ class ParsedTree {
     Set<IndexedWord> nodes = Generics.newHashSet(graph.vertexSet());
     nodes.removeAll(used);
     while (!nodes.isEmpty()) {
+      System.out.println("Dangerous Zone");
       IndexedWord node = nodes.iterator().next();
       System.out.println(spitToken(node, null, options));
       sb.append(spitToken(node, null, options));
@@ -144,13 +146,17 @@ class ParsedTree {
     return sb.toString();
   }
 
-  // helper for toString()
+  // helper for toString() to print tree in SVM-light-TK format
   private static void recToString(SemanticGraph graph, IndexedWord curr, StringBuilder sb, int offset, Set<IndexedWord> used,
                                   HashSet<PrintOptions> options) {
     //TODO: Include check for empty options set
     used.add(curr);
     List<SemanticGraphEdge> edges = graph.outgoingEdgeList(curr);
     Collections.sort(edges);
+    if(edges.size() == 0) {
+      sb.append(" L");
+      return;
+    }
     boolean first = true;
     for (SemanticGraphEdge edge : edges) {
       IndexedWord target = edge.getTarget();
@@ -169,6 +175,7 @@ class ParsedTree {
     }
   }
 
+  // This takes in a Semantic graph and is only for display purposes.
   public static String toString(SemanticGraph graph) {
     Collection<IndexedWord> rootNodes = graph.getRoots();
     if (rootNodes.isEmpty()) {
@@ -201,11 +208,11 @@ class ParsedTree {
     Collections.sort(edges);
     for (SemanticGraphEdge edge : edges) {
       IndexedWord target = edge.getTarget();
-      sb.append("(").append(target).append(" (").append(edge.getRelation()).append(")");
+      sb.append(space(2*offset)).append("(").append(target).append(" (").append(edge.getRelation()).append(")\n");
       if (!used.contains(target)) { // recurse
         recToString(graph, target, sb, offset + 1, used);
       }
-      sb.append(")");
+      sb.append(")\n");
     }
   }
 
