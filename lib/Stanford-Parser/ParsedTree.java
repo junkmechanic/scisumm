@@ -32,9 +32,13 @@ class ParsedTree {
 
   public static void main(String[] args) {
     // Handling the command line arguments
-    if (args.length > 2) {
+    if (args[0].equals("--display")) {
+      displayTrees(args[1], "../temp-display.txt");
+    }
+    else if (args.length > 2) {
       printTrees(args[0], args[1], args[2]);
-    } else {
+    }
+    else {
       System.out.println("You need to give 3 arguments:\n\t1. The input filename\n\t2. The output filename\n\t3. The class of the training samples\n");
     }
   }
@@ -96,6 +100,23 @@ class ParsedTree {
       output.append(toString(graph, options)).append(" |ET|\n");
       writeToFile(outname,  output.toString());
     }
+  }
+
+  public static void displayTrees(String filename, String outname) {
+    LexicalizedParser lp = LexicalizedParser.loadModel("edu/stanford/nlp/models/lexparser/englishPCFG.ser.gz");
+    TreebankLanguagePack tlp = new PennTreebankLanguagePack();
+    GrammaticalStructureFactory gsf = tlp.grammaticalStructureFactory();
+    StringBuilder output = new StringBuilder();
+    for (List<HasWord> sentence : new DocumentPreprocessor(filename)) {
+      Tree parse = lp.apply(sentence);
+      GrammaticalStructure gs = gsf.newGrammaticalStructure(parse);
+      Collection<TypedDependency> tdl = gs.typedDependenciesCCprocessed();
+      SemanticGraph graph = new SemanticGraph(tdl);
+      output.append(graph.toString());
+      output.append("\n");
+      System.out.println(graph);
+    }
+    writeToFile(outname, output.toString(), false);
   }
 
   public static String spitToken(IndexedWord node, SemanticGraphEdge edge, HashSet<PrintOptions> options) {
@@ -197,7 +218,7 @@ class ParsedTree {
       recToString(graph, node, sb, 1, used);
       nodes.removeAll(used);
     }
-    sb.append(") ");
+    sb.append(")");
     return sb.toString();
   }
 
@@ -212,7 +233,7 @@ class ParsedTree {
       if (!used.contains(target)) { // recurse
         recToString(graph, target, sb, offset + 1, used);
       }
-      sb.append(")\n");
+      sb.append(space(2*offset)).append(")\n");
     }
   }
 
@@ -224,15 +245,22 @@ class ParsedTree {
     return b.toString();
   }
 
-
+  // Overloading for default case
   public static void writeToFile(String filename, String tree) {
+    writeToFile(filename, tree, true);
+  }
+
+  public static void writeToFile(String filename, String tree, boolean append) {
     Path basepath = Paths.get("/home/ankur/devbench/scientific/support/dependency-parser/stanford-parser-full-2013-11-12");
     Path filepath = basepath.resolve(filename).normalize();
     Charset charset = Charset.forName("UTF-8");
     Set<OpenOption> options = new HashSet<OpenOption>();
     options.add(StandardOpenOption.CREATE);
     options.add(StandardOpenOption.WRITE);
-    options.add(StandardOpenOption.APPEND);
+    if (append == false)
+        options.add(StandardOpenOption.TRUNCATE_EXISTING);
+    else
+        options.add(StandardOpenOption.APPEND);
     //options.add(StandardOpenOption.TRUNCATE_EXISTING);
     try {
       BufferedWriter writer = Files.newBufferedWriter(filepath, charset, options.toArray(new OpenOption[0]));
