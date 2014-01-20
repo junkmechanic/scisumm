@@ -1,19 +1,28 @@
 import subprocess
 #import os
 import sys
+import argparse
 
 # TODO: Change to the directory where the class file is
 
 
 def main(args):
-    outfile = "../temp-todisplay.txt"
-    with open(outfile) as ofile:
-        sentences = []
-        for blk in args:
-            sentences.extend(blk.split('\n'))
-        ofile.write('\n'.join(sentences))
+    infile = "../temp-todisplay.txt"
+    flag = 'w'
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-f', '--file', help="input file with sentences")
+    parser.add_argument('-s', '--sent', help="sentences in command line",
+                        action="append")
+    args = parser.parse_args()
+    if args.file:
+        infile = args.file
+        flag = 'a'
+    if args.sent:
+        with open(infile, flag) as ofile:
+            ofile.write('\n'.join(args.sent))
+            ofile.write('\n')
     subprocess.call(['java', '-cp', '.:./*', 'ParsedTree', '--display',
-                     '../temp-todisplay.txt'])
+                     infile])
 
 
 if __name__ == '__main__':
