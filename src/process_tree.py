@@ -1,4 +1,9 @@
 import re
+import subprocess
+from Document import Document
+from Config import DIR
+#from Ranker import Ranker
+from GetTrainingSamples import writeToFile
 
 
 class Node:
@@ -20,6 +25,24 @@ class Node:
     def __str__(self):
         return (' ' * self.level * 2 + str(self.level) + '->' +
                 self.word + '-' + self.pos + '-' + self.dep)
+
+
+def get_sentences(infile, outfile):
+    doc = Document(infile)
+    sent, offset = doc.section_sentences('abstract')
+    samples = '\n'.join(sent)
+    writeToFile(outfile, samples, 'w')
+    print "Sentences written"
+
+
+def create_dep_parse(infile, outfile):
+    parserdir = DIR['BASE'] + "lib/Stanford-Parser/"
+    classpath = parserdir + '.:' + parserdir + '*'
+    java = parserdir + 'java'
+    parser = parserdir + 'ParsedTree'
+    options = '--display'
+    subprocess.call([java, '-cp', classpath, parser, options, infile,
+                     outfile])
 
 
 def parseTrees(infile):
@@ -58,4 +81,11 @@ def printChildTree(node):
 
 
 if __name__ == '__main__':
-    parseTrees('temp-display.txt')
+    xmldir = DIR['BASE'] + "demo/"
+    datadir = DIR['BASE'] + "data/"
+    infile = xmldir + 'P99-1026-parscit-section.xml'
+    sentfile = datadir + 'sentences.txt'
+    depfile = datadir + 'dependency-trees.txt'
+    get_sentences(infile, sentfile)
+    #create_dep_parse(sentfile, depfile)
+    #parseTrees('temp-display.txt')

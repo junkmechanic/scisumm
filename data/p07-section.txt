@@ -1,0 +1,11 @@
+Choosing a set of joining terms in a principled manner in the hope of capturing the semantic relation between constituents in the noun phrase is difficult, but there is certainly some correlation between a prepositional term or short linking verb and a semantic relation.
+The motivation for this paper is to discover which joining terms are good predictors of a semantic relation, and which learning algorithms perform best at the task of mapping from joining terms to semantic relations for modifier-noun compounds. 
+We are also interested in comparing the performance of machine learning algorithms on the task of mapping from n-gram frequencies of joining terms to semantic relations.
+
+For the first condition, the attributes used by the learning algorithms consisted of vectors of web hits obtained using the 14 most frequent joining terms found in the BNC.
+The joining terms used for the experiments in this paper were chosen by examining which phrases most commonly occurred between two nouns in the BNC.
+Possibly the most difficult problem with this method is deciding on a set of joining terms which is likely to provide enough information about the noun-modifier pairs to allow a learning algorithm to predict the semantic relation.
+
+The largest class in our dataset is &quot;participant&quot;, which is the label for 43% of the examples; the smallest is &quot;temporal&quot;, which labels 9% of the examples.
+The difficulty is that the task of deducing a semantic relation from a paraphrase such as &quot;storm in the desert&quot; requires many different types of information.
+that it never predicted the class &quot;causal&quot; for any of the examples.

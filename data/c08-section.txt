@@ -1,0 +1,11 @@
+The collaborative framework for keyphrase extraction consists of the step of obtaining the cluster context and the step of collaborative keyphrase extraction in each cluster.
+Instead of making only use of the word relationships in a single document, the algorithm can incorporate the “voting” or “recommendations” between words in all the documents of the cluster, thus making use of the global information existing in the cluster context.
+In this study, the cluster context is obtained by applying the clustering algorithm on the document set, and we have investigated how the cluster context influences the keyphrase extraction performance by employing different clustering algorithms.
+
+For implementation, the initial scores of the words are set to 1 and the iteration algorithm in Equation (4) is adopted to compute the new scores of the words.
+Given a document cluster, CollabRank makes use of the global word relationships in the cluster to evaluate and rank candidate phrases for each single document in the cluster based on the graph-based ranking algorithm.
+All the candidate phrases in the document are ranked in decreasing order of the phrase scores and the top n phrases are selected as the keyphrases of the document.
+
+In this paper, we propose a novel approach named CollabRank for collaborative singledocument keyphrase extraction, which makes use of the mutual influences between documents in appropriate cluster context to better evaluate the saliency of words and phrases.
+In future work, we will explore other keyphrase extraction methods in the proposed collaborative framework to validate the robustness of the framework. 
+The proposed collaborative framework has more implementations than the implementation based on the graph-based ranking algorithm in this study.

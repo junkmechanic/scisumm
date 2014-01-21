@@ -34,18 +34,30 @@ class Ranker:
             co-occurance of unigrams in the corresponding pair of sentences.
         - self.scores :
             a list of tuples with sentence index and ranking metric
+        - self.vectorizer
+        - self.feature_names
+    The instance methods provided by this base class:
+        - tfidf_value()
     """
 
     def __init__(self, sentences):
         self.sentences = sentences
-        vectorizer = TfidfVectorizer(min_df=2)
-        self.dtm = vectorizer.fit_transform(sentences)
+        self.vectorizer = TfidfVectorizer(min_df=1)
+        self.dtm = self.vectorizer.fit_transform(sentences)
         self.sim_matrix = self.dtm * self.dtm.T
+        self.feature_names = self.vectorizer.get_feature_names()
 
     def rank(self, **kwargs):
         not_defined = "The rank() method needs to be defined in the class " + \
                       "that inherits from Ranker class"
         raise NotImplementedError(not_defined)
+
+    def tfidf_value(self, sent_idx, word):
+        if word in self.feature_names:
+            word_idx = self.feature_names.index(word)
+            return self.dtm.toarray()[sent_idx, word_idx]
+        else:
+            print "No such word in the vocabulary"
 
 
 class TextRank(Ranker):
