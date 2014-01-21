@@ -112,7 +112,8 @@ class ParsedTree {
       GrammaticalStructure gs = gsf.newGrammaticalStructure(parse);
       Collection<TypedDependency> tdl = gs.typedDependenciesCCprocessed();
       SemanticGraph graph = new SemanticGraph(tdl);
-      output.append(graph.toString());
+      //output.append(graph.toString());
+      output.append(toString(graph));
       output.append("\n");
       System.out.println(graph);
     }
@@ -207,7 +208,7 @@ class ParsedTree {
     StringBuilder sb = new StringBuilder();
     Set<IndexedWord> used = Generics.newHashSet();
     for (IndexedWord root : rootNodes) {
-      sb.append("(").append(root).append(" (root)");
+      sb.append("0->").append(root).append(" (root)\n");
       recToString(graph, root, sb, 1, used);
     }
     Set<IndexedWord> nodes = Generics.newHashSet(graph.vertexSet());
@@ -218,7 +219,7 @@ class ParsedTree {
       recToString(graph, node, sb, 1, used);
       nodes.removeAll(used);
     }
-    sb.append(")");
+    //sb.append(")");
     return sb.toString();
   }
 
@@ -229,11 +230,11 @@ class ParsedTree {
     Collections.sort(edges);
     for (SemanticGraphEdge edge : edges) {
       IndexedWord target = edge.getTarget();
-      sb.append(space(2*offset)).append("(").append(target).append(" (").append(edge.getRelation()).append(")\n");
+      sb.append(space(2*offset)).append(offset + "->").append(target).append(" (").append(edge.getRelation()).append(")\n");
       if (!used.contains(target)) { // recurse
         recToString(graph, target, sb, offset + 1, used);
       }
-      sb.append(space(2*offset)).append(")\n");
+      //sb.append(space(2*offset)).append(")\n");
     }
   }
 
