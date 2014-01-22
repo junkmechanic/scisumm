@@ -1,4 +1,5 @@
 import re
+import os
 import subprocess
 from Document import Document
 from Config import DIR
@@ -8,7 +9,8 @@ from GetTrainingSamples import writeToFile
 
 class Node:
     def __init__(self, str):
-        reg = re.match(r'(\d)-\>([A-Za-z]+)-([A-Z\$]+)\s\(([a-z_]+)\)', str)
+        reg = re.match(r'(\d+)-\>([A-Za-z0-9]+)-([A-Z\$]+)\s\(([a-z_]+)\)',
+                       str)
         if reg is None:
             print str
             print "Some fatal error. String not in expected format."
@@ -37,18 +39,17 @@ def get_sentences(infile, outfile):
 
 def create_dep_parse(infile, outfile):
     parserdir = DIR['BASE'] + "lib/Stanford-Parser/"
-    classpath = parserdir + '.:' + parserdir + '*'
-    java = parserdir + 'java'
-    parser = parserdir + 'ParsedTree'
+    os.chdir(parserdir)
+    classpath = '.:./*'
+    parser = 'ParsedTree'
     options = '--display'
-    subprocess.call([java, '-cp', classpath, parser, options, infile,
+    subprocess.call(['java', '-cp', classpath, parser, options, infile,
                      outfile])
 
 
 def parseTrees(infile):
     current = dict()
     with open(infile, 'r') as file:
-        #import pdb; pdb.set_trace()
         for line in file.readlines():
             if len(line.strip()) == 0:
                 processTree(current[0])
@@ -87,5 +88,5 @@ if __name__ == '__main__':
     sentfile = datadir + 'sentences.txt'
     depfile = datadir + 'dependency-trees.txt'
     get_sentences(infile, sentfile)
-    #create_dep_parse(sentfile, depfile)
-    #parseTrees('temp-display.txt')
+    create_dep_parse(sentfile, depfile)
+    parseTrees(depfile)

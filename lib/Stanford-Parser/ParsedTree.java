@@ -33,7 +33,7 @@ class ParsedTree {
   public static void main(String[] args) {
     // Handling the command line arguments
     if (args[0].equals("--display")) {
-      displayTrees(args[1], "../temp-display.txt");
+      displayTrees(args[1], args[2]);
     }
     else if (args.length > 2) {
       printTrees(args[0], args[1], args[2]);
