@@ -3,7 +3,7 @@ import os
 import subprocess
 from Document import Document
 from Config import DIR
-#from Ranker import Ranker
+from Ranker import Ranker
 from GetTrainingSamples import writeToFile
 
 
@@ -31,10 +31,14 @@ class Node:
 
 def get_sentences(infile, outfile):
     doc = Document(infile)
+    sentences, o = doc.all_sentences()
+    ranker = Ranker(sentences)
     sent, offset = doc.section_sentences('abstract')
+    sent_idx = range(offset, offset + len(sent))
     samples = '\n'.join(sent)
     writeToFile(outfile, samples, 'w')
     print "Sentences written"
+    return ranker, sent_idx
 
 
 def create_dep_parse(infile, outfile):
@@ -47,12 +51,14 @@ def create_dep_parse(infile, outfile):
                      outfile])
 
 
-def parseTrees(infile):
+def parseTrees(infile, ranker, sent_idx):
     current = dict()
+    i = 0
     with open(infile, 'r') as file:
         for line in file.readlines():
             if len(line.strip()) == 0:
-                processTree(current[0])
+                processTree(current[0], ranker, sent_idx[i])
+                i += 1
                 current = dict()
             else:
                 node = Node(line.strip())
@@ -66,7 +72,11 @@ def parseTrees(infile):
                 current[node.level] = node
 
 
-def processTree(root):
+def processTree(root, ranker, idx):
+    verb_val = ranker.tfidf_value(idx, root.word)
+    # Look for subject
+    subj =
+    print verb_val
     printTree(root)
 
 
@@ -87,6 +97,6 @@ if __name__ == '__main__':
     infile = xmldir + 'P99-1026-parscit-section.xml'
     sentfile = datadir + 'sentences.txt'
     depfile = datadir + 'dependency-trees.txt'
-    get_sentences(infile, sentfile)
+    ranker, sent_idx = get_sentences(infile, sentfile)
     create_dep_parse(sentfile, depfile)
-    parseTrees(depfile)
+    parseTrees(depfile, ranker, sent_idx)
