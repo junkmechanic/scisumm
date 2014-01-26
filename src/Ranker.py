@@ -53,11 +53,11 @@ class Ranker:
         raise NotImplementedError(not_defined)
 
     def tfidf_value(self, sent_idx, word):
-        if word in self.feature_names:
-            word_idx = self.feature_names.index(word)
+        if word.lower() in self.feature_names:
+            word_idx = self.feature_names.index(word.lower())
             return self.dtm.toarray()[sent_idx, word_idx]
         else:
-            print "No such word in the vocabulary"
+            print "No such word in the vocabulary: " + word
 
 
 class TextRank(Ranker):

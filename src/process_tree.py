@@ -6,6 +6,7 @@ from Document import Document
 from Config import DIR
 from Ranker import Ranker
 from GetTrainingSamples import writeToFile
+from nltk.corpus import stopwords
 
 
 # this is a temporary list for debugging.
@@ -85,7 +86,7 @@ def processTree(root, ranker, idx):
     subj_val = getValue(subj, ranker, idx)
     print verb_val
     print subj_val
-    printTree(root)
+    printTree(root, ranker, idx)
 
 
 def getValue(node, ranker, idx):
@@ -97,9 +98,13 @@ def getValue(node, ranker, idx):
 
 
 def computeValue(node, ranker, idx):
-    num = 1
-    val = ranker.tfidf_value(idx, node.word)
-    for child in node.children():
+    if node.word in stopwords.words('english'):
+        num = 0
+        val = 0.0
+    else:
+        num = 1
+        val = ranker.tfidf_value(idx, node.word)
+    for child in node.children:
         value, n = computeValue(child, ranker, idx)
         val += value
         num += n
@@ -113,7 +118,7 @@ def findNode(node, pattern):
     pat = re.compile(pattern)
     if pat.search(node.dep) is not None:
         return node
-    que = deque(node.children())
+    que = deque(node.children)
     while que:
         child = que.popleft()
         if pat.search(child.dep) is not None:
@@ -142,15 +147,15 @@ def findNode_DFS(node, pattern):
     return None
 
 
-def printTree(root):
+def printTree(root, ranker=None, idx=None):
     print root
-    printChildTree(root)
+    printChildTree(root, ranker, idx)
 
 
-def printChildTree(node):
+def printChildTree(node, ranker=None, idx=None):
     for child in node.children:
-        print child
-        printChildTree(child)
+        print str(child) + ' ' + str(ranker.tfidf_value(idx, child.word))
+        printChildTree(child, ranker, idx)
 
 
 if __name__ == '__main__':
