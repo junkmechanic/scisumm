@@ -1,10 +1,15 @@
 import re
 import os
 import subprocess
+from collections import deque
 from Document import Document
 from Config import DIR
 from Ranker import Ranker
 from GetTrainingSamples import writeToFile
+
+
+# this is a temporary list for debugging.
+trees = []
 
 
 class Node:
@@ -73,11 +78,68 @@ def parseTrees(infile, ranker, sent_idx):
 
 
 def processTree(root, ranker, idx):
+    trees.append(root)
     verb_val = ranker.tfidf_value(idx, root.word)
     # Look for subject
-    subj =
+    subj = findNode(root, 'subj')
+    subj_val = getValue(subj, ranker, idx)
     print verb_val
+    print subj_val
     printTree(root)
+
+
+def getValue(node, ranker, idx):
+    if node is None:
+        return 0.0
+    else:
+        value, num = computeValue(node, ranker, idx)
+        return value / num
+
+
+def computeValue(node, ranker, idx):
+    num = 1
+    val = ranker.tfidf_value(idx, node.word)
+    for child in node.children():
+        value, n = computeValue(child, ranker, idx)
+        val += value
+        num += n
+    return val, num
+
+
+# Can experiment a few things such as:
+#    leaving out stopwords
+#    considering multiple subjects
+def findNode(node, pattern):
+    pat = re.compile(pattern)
+    if pat.search(node.dep) is not None:
+        return node
+    que = deque(node.children())
+    while que:
+        child = que.popleft()
+        if pat.search(child.dep) is not None:
+            return child
+            #print 'Found ' + str(child)
+            # To remove stopwords
+            #if child.word == 'It':
+            #    continue
+            #else:
+            #    break
+        else:
+            #print 'Not Found Yet' + str(child)
+            que.extend(child.children)
+    return None
+
+
+# This is Depth First
+def findNode_DFS(node, pattern):
+    pat = re.compile(pattern)
+    if pat.search(node.dep) is not None:
+        return node
+    for child in node.children:
+        found = findNode(child, pattern)
+        if found is not None:
+            return found
+    return None
 
 
 def printTree(root):
