@@ -47,7 +47,7 @@ def preProcess(infile, outfile):
 # This is similar to getAbstracts in that it will look for ParsCit processed
 # xml files in demo directory. It will then pick the sentences that rank the
 # lowest in their TextRank values and put them all in a file together.
-# Currently it will just take the 6 lowest ranked sentences from each file.
+# Currently it will just take the 'num' lowest ranked sentences from each file.
 def getUnwanted(outfile):
     dir = DIR['BASE'] + "demo/"
     os.chdir(dir)

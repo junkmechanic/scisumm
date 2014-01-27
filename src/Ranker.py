@@ -56,8 +56,14 @@ class Ranker:
         if word.lower() in self.feature_names:
             word_idx = self.feature_names.index(word.lower())
             return self.dtm.toarray()[sent_idx, word_idx]
+        elif len(word.lower().split('-')) > 1:
+            val = 0.0
+            for part in word.lower().split('-'):
+                val += self.tfidf_value(sent_idx, part)
+            return val / len(word.lower().split('-'))
         else:
             print "No such word in the vocabulary: " + word
+            return 0.0
 
 
 class TextRank(Ranker):

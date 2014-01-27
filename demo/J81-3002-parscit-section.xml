@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <algorithms version="110505">
-<algorithm name="SectLabel" version="110505">
-<variant no="0" confidence="0.000000">
-<title confidence="0.98771">
+  <algorithm name="SectLabel" version="110505">
+    <variant no="0" confidence="0.000000">
+      <title confidence="0.98771">
 Translating Spanish into Logic through Logic
 </title>
-<author confidence="0.964117">
+      <author confidence="0.964117">
 Veronica Dahl
 </author>
-<affiliation confidence="0.737172666666667">
+      <affiliation confidence="0.737172666666667">
 Department of Mathematics
 University of Buenos Aires
 Buenos Aires, ARGENTINA
 </affiliation>
-<bodyText confidence="0.981290625">
+      <sectionHeader confidence="0.713139" genericHeader="abstract">
+Abstract
+</sectionHeader>
+      <bodyText confidence="0.981290625">
 We discuss the use of logic for natural language (NL) processing, both as an internal
 query language and as a programming tool. Some extensions of standard predicate calculus
 are motivated by the first of these roles. A logical system including these extensions is
@@ -23,10 +26,10 @@ We also present a logic-programmed analyser that translates Spanish into this sy
 equates semantic agreement with syntactic well-formedness, and can detect certain
 presuppositions, resolve certain ambiguities and reflect relations among sets.
 </bodyText>
-<sectionHeader confidence="0.713139" genericHeader="abstract">
+      <sectionHeader confidence="0.713139" genericHeader="introduction">
 1. Introduction
 </sectionHeader>
-<bodyText confidence="0.97361980952381">
+      <bodyText confidence="0.97361980952381">
 The idea of using logic as a conceptual framework
 in question-answering systems is not new. The fact
 that it can formally deal with the notion of logical
@@ -91,14 +94,14 @@ Copyright 1981 by the Association for Computational Linguistics. Permission to c
 provided that the copies are not made for direct commercial advantage and the Journal reference and this copyright notice are included on
 the first page. To copy otherwise, or to republish, requires a fee and/or specific permission.
 </bodyText>
-<page confidence="0.3939655">
+      <page confidence="0.3939655">
 0362-613x/81/030149-16$01.00
 American Journal of Computational Linguistics, Volume 7, Number 3, July-September 1981 149
 </page>
-<note confidence="0.647487">
+      <note confidence="0.647487">
 Veronica Dahl Translating Spanish into Logic through Logic
 </note>
-<bodyText confidence="0.999941129032258">
+      <bodyText confidence="0.999941129032258">
 We first discuss what features are convenient in a
 computationally useful logical representation of NL
 sentences. Then we present an informal definition of
@@ -131,13 +134,13 @@ A comprehensive description of the data base com-
 ponent of our system can be found in [13]. The SO-
 LAR 16 system has only been reported in [6].
 </bodyText>
-<sectionHeader confidence="0.606143" genericHeader="method">
+      <sectionHeader confidence="0.606143" genericHeader="method">
 2. Mapping Natural Language into Logic
 </sectionHeader>
-<bodyText confidence="0.999913333333333">
+      <bodyText confidence="0.999913333333333">
 This section discusses several NL processing prob-
 lems and suggests ways of solving them, through care-
-ful choices for the internal language&apos;s features. We
+ful choices for the internal language's features. We
 arrive at a typed, three-valued, set-oriented logical
 system, which we shall call L3. Its role is a double
 one. On the one hand, its syntax serves as a more
@@ -151,10 +154,10 @@ to a yes-no question) or the representation of a set
 the concrete point of reference. Related work for
 French is [4].
 </bodyText>
-<subsectionHeader confidence="0.9982">
+      <subsectionHeader confidence="0.9982">
 2.1 Meaningfulness, Ambiguity and Semantic Types
 </subsectionHeader>
-<bodyText confidence="0.997007803571429">
+      <bodyText confidence="0.997007803571429">
 A NL processing system must have a means for
 checking semantic as well as syntactic well-
 formedness, in order to reject semantically anomalous
@@ -187,7 +190,7 @@ associating the universe of predicate calculus to the
 relations in a particular data base.
 They are also useful for improving efficiency: a)
 by narrowing the search space, as only those values in
-a variable&apos;s associated domain (or type) need be con-
+a variable's associated domain (or type) need be con-
 sidered, and b) by avoiding futile access to the data
 base, as absurd queries can be rejected by the analyser
 on the grounds of domain incompatibility.
@@ -212,11 +215,11 @@ than relative clauses. Our system, however, does not
 exploit them in this way, although it does check that
 the modifiers it encounters are of the expected type.
 </bodyText>
-<note confidence="0.8003655">
+      <note confidence="0.8003655">
 150 American Journal of Computational Linguistics, Volume 7, Number 3, July-September 1981
 Veronica Dahl Translating Spanish into Logic through Logic
 </note>
-<bodyText confidence="0.999915875">
+      <bodyText confidence="0.999915875">
 Finally, let us mention that types in a finite world
 can contribute to solving an important problem arising
 in PROLOG programs in which negation is defined by
@@ -226,10 +229,10 @@ case for most practical data bases. As a discussion of
 this problem falls outside the scope of this paper, the
 interested reader is referred to [12].
 </bodyText>
-<subsectionHeader confidence="0.700172">
+      <subsectionHeader confidence="0.700172">
 2.1.1 Contextual Typing
 </subsectionHeader>
-<bodyText confidence="0.991918023809524">
+      <bodyText confidence="0.991918023809524">
 The use of variable typing to constrain the parse
 and aid in disambiguation is not new. Many language
 processors—such as LUNAR [34], CO-OP [17], LAD-
@@ -246,12 +249,12 @@ tives) parse into predicates whose arguments are
 typed. For instance, the verb &amp;quot;to paint&amp;quot; might induce
 predicates of the form:
 paint(person-x,object-y)
-The expected types of a predicate&apos;s arguments are
+The expected types of a predicate's arguments are
 given in lexical entries. Ambiguous referential words
 have a lexical entry for each possible combination of
 meaning and syntactic role they can accept. For in-
-stance, the word &amp;quot;blue&amp;quot; can designate an object&apos;s col-
-our or a person&apos;s mood, giving rise to the following
+stance, the word &amp;quot;blue&amp;quot; can designate an object's col-
+our or a person's mood, giving rise to the following
 entries:
 Adjective(sad(person-x))=blue
 Adjective(blue (object-x)) = blue
@@ -273,11 +276,11 @@ low for domain intersections to be found automatically
 simply by leaving the PROLOG interpreter to match
 these expressions.
 </bodyText>
-<subsectionHeader confidence="0.999548">
+      <subsectionHeader confidence="0.999548">
 2.2 Presuppositions, Quantifiers and a
 Three-Valued Logic
 </subsectionHeader>
-<bodyText confidence="0.976636982142857">
+      <bodyText confidence="0.976636982142857">
 Typed calculus in itself is not enough to make all
 sentences meaningful. A third logical truth value
 would be useful, because in NL there are two ways in
@@ -301,7 +304,7 @@ noun phrase makes the whole sentence pointless. The
 existence of more than one referent would also make
 it pointless. This is because the Spanish singular defi-
 nite article induces a presupposition of existence and
-uniqueness on the noun phrase&apos;s referent.
+uniqueness on the noun phrase's referent.
 Our treatment of quantification has been devised to
 account for those presuppositions induced by NL
 quantifiers. We prefer to call them &amp;quot;determiners&amp;quot;, as
@@ -310,9 +313,9 @@ such as &amp;quot;some&amp;quot;, &amp;quot;many&amp;quot;, etc.
 If a sentence contains a determiner, a quantifica-
 tion of the form &amp;quot;those(x,p)&amp;quot; is introduced, where x is
 a typed variable and p is a logical formula in our sys-
-tem. Its evaluation yields the set of all x&apos;s in x&apos;s asso-
+tem. Its evaluation yields the set of all x's in x's asso-
 ciated domain which satisfy p. According to the
-determiner&apos;s meaning, presuppositions about the cardi-
+determiner's meaning, presuppositions about the cardi-
 nality of such a set are represented within the output
 formula. For instance, &amp;quot;Three blind mice run&amp;quot; is rep-
 resented as
@@ -335,7 +338,7 @@ proach is taken for instance in [23], where it serves in
 particular to check presuppositions induced by pro-
 nouns.
 </bodyText>
-<figure confidence="0.993156">
+      <figure confidence="0.993156">
 if
 1
 equal hate
@@ -351,10 +354,10 @@ and
 hatter mad
 1 1
 </figure>
-<figureCaption confidence="0.999985">
+      <figureCaption confidence="0.999985">
 Figure 1. Representation of The mad hatter hates Alice&amp;quot;.
 </figureCaption>
-<bodyText confidence="0.894732058823529">
+      <bodyText confidence="0.894732058823529">
 Notice that the &amp;quot;if&amp;quot; formula could be used for rep-
 resenting other types of presuppositions as well (e.g.,
 those of f active predicates), although our system only
@@ -373,10 +376,10 @@ pragmatically detected failed assumptions,
 and assign non-traditional truth values to
 the sentences containing them.
 </bodyText>
-<listItem confidence="0.824329555555556">
+      <listItem confidence="0.824329555555556">
 b) Subtler truth-value assignments facilitate
 low-cost overall responses of the system.
-For instance, a given presupposition&apos;s fail-
+For instance, a given presupposition's fail-
 ure can both be pointed out during its
 local evaluation, and carried on (via truth-
 values) to upper levels, for the system it-
@@ -384,17 +387,17 @@ self to see and to possibly take further
 action of its own (such as trying alterna-
 tive ways of complying with the request).
 </listItem>
-<bodyText confidence="0.9975506">
+      <bodyText confidence="0.9975506">
 Although not exploited in this sense in our system,
 this feature would allow a more flexible treatment of
 presuppositions, as it would enable the system to de-
 cide, for instance, in which cases they can be safely
 and usefully ignored.
 </bodyText>
-<subsectionHeader confidence="0.979514">
+      <subsectionHeader confidence="0.979514">
 2.2.1 Spanish Determiners and Their Translations
 </subsectionHeader>
-<bodyText confidence="0.999952428571429">
+      <bodyText confidence="0.999952428571429">
 We can now examine the general process by which
 a determiner introduces a &amp;quot;those&amp;quot; formula. Let us
 consider a sentence consisting of a noun phrase fol-
@@ -403,28 +406,28 @@ contains a noun introduced by a determiner. We can
 first represent the sentence through a three-branched
 quantification of the form:
 </bodyText>
-<equation confidence="0.500267">
+      <equation confidence="0.500267">
 q(x,f1,f2)
 </equation>
-<bodyText confidence="0.971833571428571">
+      <bodyText confidence="0.971833571428571">
 where q is a quantifier into which the determiner
-translates, fl is the noun phrase&apos;s translation, and f2 is
-the verb phrase&apos;s translation. Intuitively, f 1 specifies
+translates, fl is the noun phrase's translation, and f2 is
+the verb phrase's translation. Intuitively, f 1 specifies
 the domain of quantification, and q states what por-
 tion of the domain f2 holds for. Our previous exam-
 ple, for instance, can first be represented as in Figure
 2.
 </bodyText>
-<figure confidence="0.646535666666667">
+      <figure confidence="0.646535666666667">
 the
 hate
 hatter mad Alice
 </figure>
-<figureCaption confidence="0.999681">
-Figure 2. A first representation of &apos;&apos;The mad hatter hates Alice&amp;quot;.
+      <figureCaption confidence="0.999681">
+Figure 2. A first representation of ''The mad hatter hates Alice&amp;quot;.
 </figureCaption>
-<bodyText confidence="0.999447235294118">
-In our implementation, a variable&apos;s associated do-
+      <bodyText confidence="0.999447235294118">
+In our implementation, a variable's associated do-
 main depends both on fl and f2 in the following man-
 ner: each predicate known to the data base system
 has a domain associated with each of its arguments.
@@ -436,13 +439,13 @@ When a three-branched quantification is generated,
 the variable it creates is typed by the intersection of
 all those domains it has been associated with by the
 predicates appearing in either fl or f2. In our exam-
-ple, x&apos;s type would be human (the intersection of the
+ple, x's type would be human (the intersection of the
 human and the animal domains).
 Instead of generating a different quantifier for each
 determiner, it is useful to represent all quantifications
 through a single one of the form:
 </bodyText>
-<figure confidence="0.988060333333333">
+      <figure confidence="0.988060333333333">
 1
 those Alice
 1
@@ -453,23 +456,23 @@ hatter mad
 1
 and
 </figure>
-<note confidence="0.462909">
+      <note confidence="0.462909">
 152 American Journal of Computational Linguistics, Volume 7, Number 3, July-September 1981
 Veronica Dahl Translating Spanish into Logic through Logic
 </note>
-<bodyText confidence="0.9574056">
+      <bodyText confidence="0.9574056">
 for(x,p,c)
 the intuitive meaning of which is: &amp;quot;c holds for the set
-E of all x&apos;s in x&apos;s domain which satisfy p&amp;quot;. In the
+E of all x's in x's domain which satisfy p&amp;quot;. In the
 formula c, the set E will be represented simply by the
 variable x, so that x plays a double role.
 Each quantification is thus assigned an equivalent
-&amp;quot;for&amp;quot; expression, in which the determiner&apos;s meaning is
+&amp;quot;for&amp;quot; expression, in which the determiner's meaning is
 represented. Here are the representations of some of
 our Spanish quantifiers. The rest are considered in
 Section 2.2.1.2.
 </bodyText>
-<equation confidence="0.979787">
+      <equation confidence="0.979787">
 un(x,f1,f2) = for(x,and(fl,f2),greater-than(card(x),0))
 a
 todo(x,f 1,f2) = for(x,and(f 1 ,not(f2)),equal(card(x),0))
@@ -485,7 +488,7 @@ any cardinal number
 unos(x,f1,f2) = algunos(x,f1,f2) =
 some for (x,and(f 1 ,f2) ,greater-than(card(x),1 ))
 </equation>
-<bodyText confidence="0.990606111111111">
+      <bodyText confidence="0.990606111111111">
 Notice that we have chosen to translate &amp;quot;un&amp;quot; (a) as
 &amp;quot;at least one&amp;quot; (a frequent sense for &amp;quot;un&amp;quot;). In order
 to avoid ambiguity, &amp;quot;1&amp;quot; should be used to mean
@@ -499,23 +502,23 @@ Finally, any formula of the form &amp;quot;for(x,p,c)&amp;quot; can
 be replaced by just the formula c, in which all occur-
 rences of x have been replaced by the formula:
 those(x,p)
-representing the subset of x&apos;s domain whose elements
+representing the subset of x's domain whose elements
 satisfy p. This replacement takes place in the data
 base component of our system.
 The reader can now verify that the representations
 shown in Figures 1 and 2 are equivalent.
 </bodyText>
-<subsectionHeader confidence="0.857763">
+      <subsectionHeader confidence="0.857763">
 2.2.1.1 Quantifier Hierarchy
 </subsectionHeader>
-<bodyText confidence="0.972667176470588">
+      <bodyText confidence="0.972667176470588">
 In our NL subset, quantifier hierarchy obeys the
 following three rules, which perhaps are too simplistic,
 but have proved useful. A more thorough description
 can be found in [4].
-- Rule 1: A determiner in a verb&apos;s subject intro-
+- Rule 1: A determiner in a verb's subject intro-
 duces a quantification which dominates all quantifica-
-tions introduced by the verb&apos;s complement(s). For
+tions introduced by the verb's complement(s). For
 instance, &amp;quot;Toda rosa tiene (algunas) espinas&amp;quot; (Every
 rose has (some) thorns) is represented:
 toda(x,rosa(x),algunas(y,espinas(y),tiene(x,y)))
@@ -525,8 +528,8 @@ some(y,thorn(y),every(x,rose(x),has(x,y)))
 would be incorrect, as it means instead: &amp;quot;there exists
 a particular set of thorns which every rose has&amp;quot;.
 - Rule 2: Whenever a noun has a complement, the
-quantification introduced by the complement&apos;s deter-
-miner dominates the one introduced by the noun&apos;s
+quantification introduced by the complement's deter-
+miner dominates the one introduced by the noun's
 determiner. For instance, &amp;quot;Sabato autografia el libro
 de cada visitante&amp;quot; (Sabato autographs the book of each
 visitor) is represented:
@@ -544,16 +547,16 @@ resented:
 cada(x,nino(x),un(y,espejo(y),regala(Raul,y,x)))
 each child a mirror gives
 </bodyText>
-<subsectionHeader confidence="0.91774">
+      <subsectionHeader confidence="0.91774">
 2.2.1.2 Determiners with a Negative Implication
 </subsectionHeader>
-<bodyText confidence="0.888892095238095">
+      <bodyText confidence="0.888892095238095">
 As a general rule, the negation introduced by &amp;quot;no&amp;quot;
 in a sentence is translated by placing the operator
 &amp;quot;no&amp;quot; (not) right after the quantification introduced by
 the subject. For instance, &amp;quot;La indemnizacion no com-
 pensa el despido de Martin&amp;quot; (The indemnity does not
-compensate for Martin&apos;s dismissal) is represented:
+compensate for Martin's dismissal) is represented:
 la(x,indemnizacion(x),no(el(y,despido-de(Martin,y),
 compensa(x,y))))
 the indemnity not the dismissal-of compensate
@@ -580,7 +583,7 @@ quantifier. For instance, &amp;quot;No vino ningim alumno&amp;quot;
 todo(x,alumno(x),no(vino(x)))
 every student not came
 - In a position other than the subject: the uningun&amp;quot;
-determiner is assimilated to the indefinite article&apos;s
+determiner is assimilated to the indefinite article's
 quantifier. For instance, &amp;quot;Carlos no tiene ningün
 hijo&amp;quot; (Carlos has not any child) is represented:
 no(un(x,hijo(x),tiene(Carlos,x)))
@@ -591,14 +594,14 @@ ta&amp;quot; (Not every bird sings). The analyser considers &amp;quot;no
 todo&amp;quot; as a single determiner generating its own associ-
 ated quantifier:
 </bodyText>
-<equation confidence="0.8991955">
+      <equation confidence="0.8991955">
 no-todo(x,f1,f2) =
 for(x,and(f1,not(f2)),greater-than(card(x),0))
 </equation>
-<subsectionHeader confidence="0.99862">
+      <subsectionHeader confidence="0.99862">
 2.3 Distributive, Collective, and Respective Plural
 </subsectionHeader>
-<bodyText confidence="0.976422958333333">
+      <bodyText confidence="0.976422958333333">
 Semantically, different kinds of plurals can be dis-
 tinguished. For instance, the sentence &amp;quot;Ana y Juan
 hablan espariol y frances&amp;quot; (Ann and John speak Span-
@@ -624,11 +627,11 @@ earn({ Ann,Johnl, {$1000,$8001),
 introduces a respective plural and must evaluate to true
 (false) if the following formulas are both true (false):
 </bodyText>
-<equation confidence="0.705959">
+      <equation confidence="0.705959">
 earn(Ann,$1000)
 earn(John,$800)
 </equation>
-<bodyText confidence="0.99996055">
+      <bodyText confidence="0.99996055">
 Notice that both distributive and respective plurals
 presuppose that the set of formulas to be tested all
 have the same truth value. Whenever such a presup-
@@ -650,10 +653,10 @@ two logical values) in the Portuguese version of our
 system, where the analyser recognizes them through
 the words &amp;quot;respective&amp;quot; and &amp;quot;respectively&amp;quot;.
 </bodyText>
-<subsectionHeader confidence="0.996564">
+      <subsectionHeader confidence="0.996564">
 2.4 Sets
 </subsectionHeader>
-<bodyText confidence="0.9999408125">
+      <bodyText confidence="0.9999408125">
 Relations must be allowed to apply on sets if we
 are to deal with collective relations. Sets are moreover
 natural enough in data base applications, as retrieval
@@ -671,30 +674,30 @@ individuals when defining a new relation, and rely on
 the system to make appropriate inferences from his
 definitions.
 </bodyText>
-<subsectionHeader confidence="0.998105">
+      <subsectionHeader confidence="0.998105">
 2.5 Linguistic Coverage
 </subsectionHeader>
-<bodyText confidence="0.999570333333333">
+      <bodyText confidence="0.999570333333333">
 Our NL subset is extendible in the sense that the
 user can define those referential words (nouns, verbs
 and adjectives) associated with his particular data
 base. This includes the definition of synonyms, always
-useful regarding different users&apos; views of a data base.
+useful regarding different users' views of a data base.
 The analyser uses a syntactic variant of PROLOG,
 called (normalized) metamorphosis grammars (MGs)
 [5]. As such, MGs share a most useful feature of logic
-programs: a problem&apos;s description and the program
+programs: a problem's description and the program
 which solves it are one and the same. This is due to
 the existence of an operational as well as a declarative
 interpretation for logic programs [19].
 </bodyText>
-<page confidence="0.574135">
+      <page confidence="0.574135">
 154 American Journal of Computational Linguistics, Volume 7, Number 3, July-September 1981
 </page>
-<note confidence="0.717385">
+      <note confidence="0.717385">
 Veronica Dahl Translating Spanish into Logic through Logic
 </note>
-<bodyText confidence="0.994306833333333">
+      <bodyText confidence="0.994306833333333">
 Thus, the grammar shown in the Appendix (in the
 Microfiche Supplement) both provides a formal defini-
 tion of our linguistic coverage (in its declarative read-
@@ -702,7 +705,7 @@ ing) and is the analyser itself (in its procedural read-
 ing, which the PROLOG interpreter gives it).
 An informal description of its coverage follows.
 </bodyText>
-<figure confidence="0.788284142857143">
+      <figure confidence="0.788284142857143">
 - Fixed vocabulary
 Determiners:
 el la los las un una unos unas
@@ -718,7 +721,7 @@ que cuanto(s) donde quien cual
 which how much/many where who which
 Negative particle: no
 </figure>
-<listItem confidence="0.609860888888889">
+      <listItem confidence="0.609860888888889">
 - Variable vocabulary. Each particular data base
 includes a definition of its associated proper names,
 nouns, adjectives and verbs. Only simple verbal forms
@@ -729,12 +732,12 @@ consists of a subject, an optional negation particle, a
 verb and its modifiers (in the restricted sense de-
 scribed below).
 </listItem>
-<bodyText confidence="0.999885695652174">
+      <bodyText confidence="0.999885695652174">
 A subject consists of a noun phrase. A noun
 phrase is either a series of proper names or a kernel
 followed by noun modifiers and relative clauses (both
 optional).
-A noun phrase&apos;s kernel consists of an optional det-
+A noun phrase's kernel consists of an optional det-
 erminer, an optional series of adjectives, a noun, and
 possibly a series of adjectival groups. Mass nouns are
 not dealt with. An adjectival group is an adjective
@@ -754,7 +757,7 @@ The first two sets are grouped to form the employee
 domain, which together with the manager domain
 forms the human domain. The data base contains the
 </bodyText>
-<listItem confidence="0.956345717948718">
+      <listItem confidence="0.956345717948718">
 1. Hola. (Hello.)
 Diga. (I am listening.)
 2. Con quien esta casada Eva?
@@ -795,13 +798,13 @@ No es cierto! (It is not true!)
 12. El vendedor que vive en Temperley gana 4 mil-
 lones.
 </listItem>
-<bodyText confidence="0.8622775">
+      <bodyText confidence="0.8622775">
 (The salesman who lives in Temperley earns 4
 million.)
 Hay alguna presuposicion falsa en su afirmacion.
 (There is a false presupposition in your statement.)
 </bodyText>
-<listItem confidence="0.878521666666667">
+      <listItem confidence="0.878521666666667">
 13. Cual es el lugar donde no vive ningim empleado?
 (Which is the place where no employee lives?)
 Temperley.
@@ -812,63 +815,63 @@ Ninguna. (None.)
 (Who is Daniel married to?)
 Con nadie. (To nobody.)
 </listItem>
-<figureCaption confidence="0.997144">
+      <figureCaption confidence="0.997144">
 Figure 3. A sample consultation session.
 </figureCaption>
-<bodyText confidence="0.7123644">
+      <bodyText confidence="0.7123644">
 American Journal of Computational Linguistics, Volume 7, Number 3, July-September 1981 155
 Veronica Dahl Translating Spanish into Logic through Logic
 relations live-in, earn, married, married-to, work-at,
 work-with and manager-of. Unary relations named
 after each domain are implicit in any data base.
 </bodyText>
-<sectionHeader confidence="0.479003" genericHeader="method">
+      <sectionHeader confidence="0.479003" genericHeader="method">
 3. The Internal Query Language: L3
 </sectionHeader>
-<bodyText confidence="0.980456">
+      <bodyText confidence="0.980456">
 Informally, three kinds of L3 formulas can be dis-
 tinguished: typed formulas t, statement formulas s, and
 integer formulas n.
 </bodyText>
-<listItem confidence="0.7029476">
+      <listItem confidence="0.7029476">
 - a typed formula t denotes a subset of a given do-
 main. It can be either a list of constants, a variable or
 an expression of the form &amp;quot;those(x,$)&amp;quot;.
 - a statement formula s evaluates to either true, false,
 or pointless. It can take any of the forms:
 </listItem>
-<bodyText confidence="0.736622333333333">
+      <bodyText confidence="0.736622333333333">
 r(t 1, tn) where r is an n-ary predicate symbol
 corresponding to a distributive, col-
 lective or respective relation.
 </bodyText>
-<equation confidence="0.958798">
+      <equation confidence="0.958798">
 and(sl,s2)
 if(sl,s2)
 not(s)
 equal(nl,n2)
 greater-than(n 1 ,n2)
 </equation>
-<bodyText confidence="0.9457878">
+      <bodyText confidence="0.9457878">
 - an integer formula n1 denotes an integer number,
 and can take one of the forms:
 j where j is an integer such that j&gt;0
 card(t)
 Further details can be found in [11].
 </bodyText>
-<sectionHeader confidence="0.960341" genericHeader="method">
+      <sectionHeader confidence="0.960341" genericHeader="method">
 4. Tools for Writing the Analyser
 </sectionHeader>
-<bodyText confidence="0.99987975">
+      <bodyText confidence="0.99987975">
 A brief and informal introduction to logic programs
 and metamorphosis grammars is given here, for the
 sake of completeness. Fuller accounts can be found in
 [5,19,20,29].
 </bodyText>
-<subsectionHeader confidence="0.99972">
+      <subsectionHeader confidence="0.99972">
 4.1 On Logic Programming
 </subsectionHeader>
-<bodyText confidence="0.926113444444444">
+      <bodyText confidence="0.926113444444444">
 Logic programs are essentially sets of clauses of the
 form:
 B &lt;-- A1,A2,...,An
@@ -879,13 +882,13 @@ and the commas stand for conjunction. An empty
 right-hand side denotes a non-conditional assertion of
 fact. For example,
 </bodyText>
-<equation confidence="0.6470445">
+      <equation confidence="0.6470445">
 1) likes(mother(x),x) &lt;—
 every x is liked by his-her-its mother
 2) likes(Rover,y) &lt;-- likes(y,Rover)
 Rover likes every y who likes him
 </equation>
-<bodyText confidence="0.930989129032258">
+      <bodyText confidence="0.930989129032258">
 In the rest of the paper (except for the figures),
 variables appear in italics in order to distinguish them
 from constants.
@@ -918,14 +921,14 @@ Practical logic program interpreters, such as PRO-
 LOG, also include some extra-logical features for
 input/output and control functions.
 </bodyText>
-<subsectionHeader confidence="0.998358">
+      <subsectionHeader confidence="0.998358">
 4.2 On Metamorphosis Grammars
 </subsectionHeader>
-<bodyText confidence="0.9205085">
+      <bodyText confidence="0.9205085">
 MGs are a powerful formalism for describing and
 processing languages, in which:
 </bodyText>
-<listItem confidence="0.978493428571429">
+      <listItem confidence="0.978493428571429">
 - context-sensitive rewriting rules can be described.
 - any substring of any length can be rewritten into
 any other string.
@@ -934,57 +937,57 @@ conditions on rule application may be specified.
 - sentence generation and parsing are provided
 by the processor.
 </listItem>
-<bodyText confidence="0.99182875">
+      <bodyText confidence="0.99182875">
 MGs can be regarded as a convenient alternative
 notation for logic programs. Rather than defining
 them precisely, we shall exhibit some sample grammar
 rules and show informally one way of translating them
 into Horn classes, that basically follows A.
-Colmerauer&apos;s PROLOG axiomatization of MGs. A
+Colmerauer's PROLOG axiomatization of MGs. A
 formal and comprehensive description can be found in
 [51.
 </bodyText>
-<note confidence="0.515527">
+      <note confidence="0.515527">
 156 American Journal of Computational Linguistics, Volume 7, Number 3, July-September 1981
 Veronica Dahl Translating Spanish into Logic through Logic
 </note>
-<subsubsectionHeader confidence="0.593695">
+      <subsubsectionHeader confidence="0.593695">
 4.2.1 Context-Free Rules
 </subsubsectionHeader>
-<bodyText confidence="0.99976275">
+      <bodyText confidence="0.99976275">
 Grammar rules can be graphically represented by
 considering non-terminals as labeled arcs connecting
 phrase boundaries. A rule such as S --&gt; A B is repre-
 sented as
 </bodyText>
-<subsectionHeader confidence="0.979603">
+      <subsectionHeader confidence="0.979603">
 4.2.3 A Full Example
 </subsectionHeader>
-<bodyText confidence="0.999643">
+      <bodyText confidence="0.999643">
 Completing the last two rules, we obtain an MG
 grammar for the language { anbncn}:
 </bodyText>
-<listItem confidence="0.8091095">
+      <listItem confidence="0.8091095">
 1) S --&gt; a
 2) S --&gt; a
 3) B a --&gt;
 4) B b --&gt;
 </listItem>
-<figure confidence="0.9086674">
+      <figure confidence="0.9086674">
 a
 I A B v where rules 2) and 4) translate respectively into:
-0 &gt;0 &gt;0 2&apos;) arrow(S,a.b.c.x,x) &lt;--
-x0 xl x2 4&apos;) arrow(B,b.b.x,b.x) &lt;--
+0 &gt;0 &gt;0 2') arrow(S,a.b.c.x,x) &lt;--
+x0 xl x2 4') arrow(B,b.b.x,b.x) &lt;--
 or, in Horn-clause terms:
 </figure>
-<bodyText confidence="0.901757">
+      <bodyText confidence="0.901757">
 arrow(S,x0,x2) &lt;-- arrow(A,x0,x/), arrow(B,x/,x2)
 which can be read, for every x0, xl and x2, there is an
 arrow labeled S between points x0 and x2 if there is an
 arrow labeled A between x0 and xl and another one
 labeled B between xl and x2.
 Terminals in a rule are included as part of an
-edge&apos;s name and do not give rise to extra atoms. If a
+edge's name and do not give rise to extra atoms. If a
 terminal symbol &amp;quot;a&amp;quot; labels an arc leading to point &amp;quot;x&amp;quot;,
 the starting point is named &amp;quot;a.x&amp;quot; (where &amp;quot;.&amp;quot; is a bina-
 ry operator in infix notation). Thus, the rule S --&gt; a
@@ -993,24 +996,24 @@ arrow(S,a.x0,x2) &lt;-- arrow(B,x,x/), arrow(S,x/,c.x2)
 Strings of consecutive terminals are treated as a
 single one named after their concatenation.
 </bodyText>
-<subsectionHeader confidence="0.627329">
+      <subsectionHeader confidence="0.627329">
 4.2.2 General Rewriting Rules
 </subsectionHeader>
-<bodyText confidence="0.9937954">
+      <bodyText confidence="0.9937954">
 When the left-hand side of a rule contains more
 than one symbol, a single arrow is not enough to de-
 pict it: we need another path between the extreme
 points. For instance, the rule B a --&gt; a B can be
 graphed as:
 </bodyText>
-<figure confidence="0.9077612">
+      <figure confidence="0.9077612">
 a . x a
 &gt;0
 a
 0 &gt;0 &gt;0
 a.x0 x0
 </figure>
-<bodyText confidence="0.9553235">
+      <bodyText confidence="0.9553235">
 where the lower path represents the right-hand side, as
 usual, and the upper path represents the left-hand side
 of the rule. In terms of Horn clauses, this gives:
@@ -1022,11 +1025,11 @@ recognition and parsing of a given string (e.g.
 &amp;quot;a.a.b.b.c.c.nil&amp;quot;) is automatically obtained through the
 respective PROLOG calls:
 </bodyText>
-<listItem confidence="0.610054">
-5&apos;) &lt;-- arrow(S,a.a.b.b.c.c.nil,x)
-6&apos;) &lt;-- arrow(y,a.a.b.b.c.c.nil,x)
+      <listItem confidence="0.610054">
+5') &lt;-- arrow(S,a.a.b.b.c.c.nil,x)
+6') &lt;-- arrow(y,a.a.b.b.c.c.nil,x)
 </listItem>
-<bodyText confidence="0.981746125">
+      <bodyText confidence="0.981746125">
 where the value of x is of no interest to the user. In
 order that he need not specify it, a PROLOG predi-
 cate called &amp;quot;syn&amp;quot; (for &amp;quot;synthesize&amp;quot;) is made available.
@@ -1036,14 +1039,14 @@ where x stands for the internal representation of the
 surface sentence y. The above commands are there-
 fore actually written:
 </bodyText>
-<listItem confidence="0.6906765">
+      <listItem confidence="0.6906765">
 5) &lt;-- syn(S,a.a.b.b.c.c.nil)
 6) &lt;-- syn(y,a.a.b.b.c.c.nil)
 </listItem>
-<subsectionHeader confidence="0.640297">
+      <subsectionHeader confidence="0.640297">
 4.2.4 Parsing and Generating
 </subsectionHeader>
-<bodyText confidence="0.994654888888889">
+      <bodyText confidence="0.994654888888889">
 MGs can also be written for the purpose of
 generating sentences. The same syn command is used
 for this purpose, except that this time the second argu-
@@ -1054,21 +1057,21 @@ grammar to work in both ways, although this requires
 a very careful design. In the rest of this paper, we
 shall only be concerned with parsing.
 </bodyText>
-<subsectionHeader confidence="0.77795">
+      <subsectionHeader confidence="0.77795">
 4.2.5 Arguments Within Grammar Symbols
 </subsectionHeader>
-<bodyText confidence="0.9987666">
+      <bodyText confidence="0.9987666">
 We might normally want the parser to retrieve
 more information than mere recognition. The gram-
 mar shown above, for instance, can be also used to
-retrieve the substring of a&apos;s, if it is modified as fol-
+retrieve the substring of a's, if it is modified as fol-
 lows:
 </bodyText>
-<listItem confidence="0.955358">
+      <listItem confidence="0.955358">
 1) S(a.x) --&gt; a B S(x) c
 2) S(a) --&gt; a b c
 </listItem>
-<figure confidence="0.835208142857143">
+      <figure confidence="0.835208142857143">
 Call 6 would now bind y to S(a.a).
 &gt;0 &gt;0 &gt;0
 a.x0 x0 xl c.x2
@@ -1077,14 +1080,14 @@ I a
 American Journal of Computational Linguistics, Volume 7, Number 3, July-September 1981 157
 Veronica Dahl Translating Spanish into Logic through Logic
 </figure>
-<subsectionHeader confidence="0.667066">
+      <subsectionHeader confidence="0.667066">
 4.2.6 Conditions and Calculations
 </subsectionHeader>
-<bodyText confidence="0.969835090909091">
+      <bodyText confidence="0.969835090909091">
 Right-hand sides of rules may contain PROLOG
 calls (which we shall note between square brackets).
 They must be successfully evaluated for the rule to
-apply. For instance, retrieval of the number of a&apos;s can
+apply. For instance, retrieval of the number of a's can
 be obtained in the above grammar by changing the
 first two rules into:
 S(n) --&gt; a B S(m) c [plus(m,l,n)]
@@ -1093,10 +1096,10 @@ where &amp;quot;plus&amp;quot; is a PROLOG predicate defining addi-
 tion of integers. PROLOG calls can also be used to
 enforce conditions on rule applications.
 </bodyText>
-<subsubsectionHeader confidence="0.764034">
+      <subsubsectionHeader confidence="0.764034">
 4.2.7 Normalized MGs
 </subsubsectionHeader>
-<bodyText confidence="0.991294047619048">
+      <bodyText confidence="0.991294047619048">
 PROLOG only accepts normalized G rules, i.e., of
 the form
 A x --&gt; y
@@ -1119,23 +1122,23 @@ are equivalent.
 We can therefore safely ignore this restriction in all
 that follows, for the sake of clarity.
 </bodyText>
-<subsectionHeader confidence="0.753671">
+      <subsectionHeader confidence="0.753671">
 4.2.8 Derivation Graphs
 </subsectionHeader>
-<bodyText confidence="0.999976">
+      <bodyText confidence="0.999976">
 Although MGs can be understood declaratively, it
-is sometimes useful to follow a sentence&apos;s complete
+is sometimes useful to follow a sentence's complete
 derivation, by constructing a graph which depicts the
 top-down, left-to-right history of rule applications.
 We illustrate this through the grammar:
 </bodyText>
-<equation confidence="0.9454065">
+      <equation confidence="0.9454065">
 Sentence(s) --&gt; Proper-noun(k) Verb(k,$) .
 Proper-noun(tom) --&gt; tom
 Proper-noun(john) --&gt; john
 Verb(k,laugh(k)) --&gt; laughs
 </equation>
-<bodyText confidence="0.9617628">
+      <bodyText confidence="0.9617628">
 1 In a restricted sense, DCGs only allow a single non-terminal
 on the left hand side, and are therefore an even more restricted
 form of MGs. A more accurate synonym for &amp;quot;normalized MG&amp;quot;
@@ -1147,17 +1150,17 @@ substitutions needed for applying the rule appear as
 right-hand side labels. Through them we can recon-
 struct the deep structure &amp;quot;laugh(john)&amp;quot;.
 </bodyText>
-<figure confidence="0.5838702">
+      <figure confidence="0.5838702">
 Sentence(x)
 1 I x &lt;- s
 Proper-noun(k) Verb(k,$)
 3 I k &lt;- john 4 I s &lt;- laugh(john)
 john laughs
 </figure>
-<figureCaption confidence="0.998725">
+      <figureCaption confidence="0.998725">
 Figure 4. Derivation graph for &amp;quot;John laughs&amp;quot;.
 </figureCaption>
-<bodyText confidence="0.999839714285714">
+      <bodyText confidence="0.999839714285714">
 Notice that, once a variable takes a value, this val-
 ue is propagated to each of its occurrences in the
 graph. Thus, when applying rule 4, we use the known
@@ -1166,10 +1169,10 @@ place whenever necessary in order to ensure that the
 rule applied and the string it applies to share no varia-
 bles.
 </bodyText>
-<sectionHeader confidence="0.732622" genericHeader="method">
+      <sectionHeader confidence="0.732622" genericHeader="method">
 5. Step-by-Step Development of a Spanish Analyser
 </sectionHeader>
-<bodyText confidence="0.999723285714286">
+      <bodyText confidence="0.999723285714286">
 We now develop a small Spanish parsing grammar,
 step by step. Although oversimplified, it illustrates
 practically all of the techniques used to develop the
@@ -1178,15 +1181,15 @@ Supplement). Deep structures and non-terminal sym-
 bols are in English, for the convenience of most read-
 ers.
 </bodyText>
-<subsectionHeader confidence="0.998491">
+      <subsectionHeader confidence="0.998491">
 5.1 Elementary Statements
 </subsectionHeader>
-<bodyText confidence="0.999900666666667">
+      <bodyText confidence="0.999900666666667">
 The following grammar describes some simple
 statements constructed around proper nouns, verbs
 and adjectives.
 </bodyText>
-<equation confidence="0.844650888888889">
+      <equation confidence="0.844650888888889">
 S) Statement(s) --&gt; Proper-noun(k) Verb(k,/,$)
 Complements(/,$)
 V1) Verb(k,/,$) --&gt; Verb 1(be) Adjective(k,/,$)
@@ -1197,17 +1200,17 @@ Adj1(intelligent)
 A2) Adjective(k/,list(arg(with,k2),nil),
 angry-with(k/ ,k2)) --&gt; Adjl (angry)
 </equation>
-<page confidence="0.800776">
+      <page confidence="0.800776">
 158 American Journal of Computational Linguistics, Volume 7, Number 3, July-September 1981
 </page>
-<figure confidence="0.8118522">
+      <figure confidence="0.8118522">
 Veronica Dahl Translating Spanish into Logic through Logic
 Cl) Complements(nil,$) --&gt;
 C2) Complements(list(arg(p,k),/),$) --&gt;
 Complements (/,$) Preposition(p) Proper-noun(k)
 Lexicon:
 </figure>
-<listItem confidence="0.966536545454545">
+      <listItem confidence="0.966536545454545">
 L1) Adj1(intelligent) --&gt; inteligente
 L2) Adj1(angry) --&gt; enojado
 L3) Verbl(be) --&gt; es
@@ -1220,7 +1223,7 @@ L9) Proper-noun(tom) --&gt; tomas
 L10) Proper-noun(london) --&gt; londres
 etc.
 </listItem>
-<bodyText confidence="0.920530571428572">
+      <bodyText confidence="0.920530571428572">
 Figure 5 shows the derivation graph for &amp;quot;Tomas
 esta enojado con Juana&amp;quot; (Tom is angry with Joan).
 Most of the substitutions shown concern the deep
@@ -1229,7 +1232,7 @@ Some non-terminal symbols are abbreviated. From the
 substitutions shown, we can see that x takes the value
 &amp;quot;angry-with(tom,joan)&amp;quot;.
 </bodyText>
-<figure confidence="0.706674206896552">
+      <figure confidence="0.706674206896552">
 Statement(x)
 S I x &lt;- s
 Pr-noun(k) Verb( k ,1 ,$) Compls(1,$)
@@ -1246,7 +1249,7 @@ ing features such as gender and number within every
 rule concerned with syntactic checks. For instance,
 the modified rules:
 L2) Adjl (fem-angry) --&gt; enojada
-L2&apos;) Adj1(mas-angry) --&gt; enojado
+L2') Adj1(mas-angry) --&gt; enojado
 L8) Proper-noun(fem-joan) --&gt; juana
 L9) Proper-noun(mas-tom) --&gt; tomas
 A2) Adj(gl-k/,list(arg(with,g2-k2),nil),
@@ -1256,11 +1259,11 @@ Tomas esta enojada con Juana.
 Tom is angry (+fern.) with Joan.
 Semantic constraints can be enforced similarly.
 For a referential word to induce a distributive relation,
-for instance, we add a prefix such as &apos;dr&apos; in the corre-
+for instance, we add a prefix such as 'dr' in the corre-
 sponding rule, e.g.:
 Al) Adj(g-k,nil,dr(intelligent(k))) --&gt; Adj(intelligent)
 </figure>
-<bodyText confidence="0.960368">
+      <bodyText confidence="0.960368">
 and establish the convention that unmarked predicates
 are assumed to be collective. The data base compo-
 nent of our system can thus distinguish each kind of
@@ -1278,10 +1281,10 @@ where the ti are types such that E(t)cE(t1)c...cE(tn),
 and &amp; is a binary operator in infix notation.
 Such representations may be partially specified, as
 </bodyText>
-<figureCaption confidence="0.998151">
+      <figureCaption confidence="0.998151">
 Figure 5. Derivation graph for &amp;quot;Torns estui enojado con Juana&amp;quot;.
 </figureCaption>
-<bodyText confidence="0.97320125">
+      <bodyText confidence="0.97320125">
 v&amp;employee&amp;human
 which can be matched with all those type representa-
 tions for types contained in or equal to the
@@ -1295,7 +1298,7 @@ weight in determining types: since it is nouns that
 introduce data base domains, their associated types are
 usually completely specified. Although this convention
 </bodyText>
-<equation confidence="0.877658571428571">
+      <equation confidence="0.877658571428571">
 Verbl(be) Adj(tom,l,$)
 L4 I A2 I kl &lt;- tom
 I 1 &lt;- list(arg(with,k2),nil)
@@ -1304,33 +1307,33 @@ Adj1(angry)
 L2 I
 enojado
 </equation>
-<page confidence="0.779394">
+      <page confidence="0.779394">
 American Journal of Computational Linguistics, Volume 7, Number 3, July-September 1981 159
 </page>
-<note confidence="0.541125">
+      <note confidence="0.541125">
 Veronica Dahl Translating Spanish into Logic through Logic
 </note>
-<bodyText confidence="0.99435825">
+      <bodyText confidence="0.99435825">
 might result in rejecting as semantically anomalous
 sentences that might deserve closer inspection (e.g.
 &amp;quot;Do all the animals speak Latin?&amp;quot;), it would seem a
 reasonable compromise between speed and coverage.
 </bodyText>
-<subsectionHeader confidence="0.998262">
+      <subsectionHeader confidence="0.998262">
 5.3 Noun Phrases
 </subsectionHeader>
-<bodyText confidence="0.999863333333333">
+      <bodyText confidence="0.999863333333333">
 We now modify our grammar so as to handle quan-
 tified noun phrases. Agreement, both syntactic and
 semantic, is now left out for the sake of clarity.
 For explanatory purposes, let us imagine a NL
 quantifier as a device which creates a variable k and
-constructs a &apos;for&apos; formula s out of k and of two given
+constructs a 'for' formula s out of k and of two given
 formulas s/ and s2 (respectively standing for the noun
-phrase&apos;s and the verb phrase&apos;s translations). In terms
+phrase's and the verb phrase's translations). In terms
 of MG rules, this can be expressed as:
 </bodyText>
-<equation confidence="0.891163285714286">
+      <equation confidence="0.891163285714286">
 Determiner(k,s/,s2,$) --&gt; det
 where &amp;quot;det&amp;quot; is a given NL determiner. Two sample
 rules follow:
@@ -1339,7 +1342,7 @@ if(equal(card(k,1),s2)) --&gt; el (singular the)
 D2) Determiner(k,s/ ,s2 ,for(k,and(s/ ,not(s2)),
 equal(card(k),0)) --&gt; todo (every)
 </equation>
-<bodyText confidence="0.959347">
+      <bodyText confidence="0.959347">
 A noun, in turn, can be imagined as a device that
 takes the variable created by the quantification and
 constructs a relation, as in the following example:
@@ -1347,16 +1350,16 @@ NO1) Noun(k,friend(k)) --&gt; amigo
 We can now relate a noun phrase to a verb phrase,
 through the rules:
 </bodyText>
-<equation confidence="0.993738">
+      <equation confidence="0.993738">
 Ni) Noun-phrase(k,s2,$) --&gt;
 Determiner(k,s/,s2,$) Noun(k,s/)
 N2) Noun-phrase(k,s,$) --&gt; Proper-noun(k)
 S) Statement(s) --&gt;
 Noun-phrase(k,s2,$) Verb(k,/,s2) Compls(1,s2)
 </equation>
-<bodyText confidence="0.999575086956522">
+      <bodyText confidence="0.999575086956522">
 Thus, a noun phrase can be regarded as a device
-taking a formula s2 (the verb phrase&apos;s representation),
+taking a formula s2 (the verb phrase's representation),
 and producing a variable k and a formula s that repre-
 sents the whole statement. In the case of a proper
 noun, s merely takes the same value as s2.
@@ -1379,24 +1382,24 @@ We can now modify our rules for complements so
 that they will allow quantified noun phrases as well as
 proper nouns:
 </bodyText>
-<equation confidence="0.579851333333333">
+      <equation confidence="0.579851333333333">
 Cl) Compls(nil,s,$) --&gt;
 C2) Compls(list(arg(p,k),/),sl,$) --&gt;
 Compls(/,s/,s2) Prep(p) Noun-phrase (k ,s2 ,$)
 </equation>
-<bodyText confidence="0.998614">
+      <bodyText confidence="0.998614">
 Notice that these two simple rules are enough to han-
 dle verb, adjective, and noun complements. All we
 have to do is modify rules S and N2 as follows:
 </bodyText>
-<equation confidence="0.9950688">
+      <equation confidence="0.9950688">
 S) Statement(s) --&gt; Noun-phrase (k,s2 ,$)
 Verb(k,l,s1) Compls(/,s/,s2)
 N2) Noun-phrase(k,s2,$) --&gt;
 Determiner(k,s/,s2,$)
 Noun(k,/,s3) Compls(/,s3,$)
 </equation>
-<bodyText confidence="0.9950431">
+      <bodyText confidence="0.9950431">
 and add extra rules for nouns, adjectives, or verbs that
 accept complements, e.g.:
 NO2) Noun(k/,list(arg(of,k2),nil),friend-of(kl,k2))
@@ -1405,39 +1408,39 @@ For uniformity, we rewrite NO1 into:
 NO1) Noun(k,nil,friend(k)) --&gt; amigo
 The reader can now make a derivation graph for,
 for instance, &amp;quot;El amigo de Juana esta enojado con
-Tomas&amp;quot; (Joan&apos;s friend is angry with Tom). The deep
+Tomas&amp;quot; (Joan's friend is angry with Tom). The deep
 structure shown in Figure 6 should be obtained.
 </bodyText>
-<figure confidence="0.537186">
+      <figure confidence="0.537186">
 for
 friend-of if
 angry-with
 </figure>
-<figureCaption confidence="0.80647">
+      <figureCaption confidence="0.80647">
 card 1 k Tom
 Figure 6. Internal representation for &amp;quot;El amigo de Juana esti
 enojado con Toms&amp;quot;.
 </figureCaption>
-<figure confidence="0.43462575">
+      <figure confidence="0.43462575">
 Joan
 equal
 160 American Journal of Computational Linguistics, Volume 7, Number 3, July-September 1981
 Veronica Dahl Translating Spanish into Logic through Logic
 </figure>
-<subsectionHeader confidence="0.940053">
+      <subsectionHeader confidence="0.940053">
 5.4 Negative Sentences
 </subsectionHeader>
-<bodyText confidence="0.958856">
+      <bodyText confidence="0.958856">
 To handle negation, we can replace rule S by:
 </bodyText>
-<equation confidence="0.9883676">
+      <equation confidence="0.9883676">
 S) Statement(s) --&gt; Kernel(/,s/,s2,$) Compls(/,s/,s2)
 K) Kernel(/,s/,s2,$) --&gt; Noun-phrase(k,s3,$)
 Neg(s2,s3) Verb(k,/,s/)
 G 1) Neg(s,$) --&gt;
 G2) Neg(s,not(s)) --&gt; no
 </equation>
-<bodyText confidence="0.999696272727273">
+      <bodyText confidence="0.999696272727273">
 where the Neg &amp;quot;device&amp;quot; takes a formula s and prod-
 uces either s itself or not(s), according to whether the
 negation particle &amp;quot;no&amp;quot; is absent or present.
@@ -1450,31 +1453,31 @@ vantage of a non-terminal Case(c) which can explicitly
 record the role of a given noun phrase as subject. Our
 rules are augmented as follows:
 </bodyText>
-<equation confidence="0.996363">
+      <equation confidence="0.996363">
 K) Kernel(/,s/,s2,$) --&gt; Modifier(subject-k,s3,$)
 Neg(s2,s3) Verb(k,/,s/)
 M) Modifier(c-k,s/,s2) --&gt;
 Case(c) Noun-phrase(k,s/,s2)
 </equation>
-<bodyText confidence="0.974454">
+      <bodyText confidence="0.974454">
 The subject-verb inversion rule is as follows. Its
 application leaves a symbol &amp;quot;Inv&amp;quot; as a marker.
 </bodyText>
-<equation confidence="0.9742115">
+      <equation confidence="0.9742115">
 I) Modifier(k,s3,$) Neg(s2,s3) Verb(k,/,s/) --&gt;
 Neg(s2,s3) Verb(k,/,s/) Inv Modifier(k,s3,$)
 </equation>
-<bodyText confidence="0.990702333333333">
-This marker is used to transform a surface &apos;ningun&apos;
-quantifier into &apos;todo&apos; (every), provided it occurs in an
+      <bodyText confidence="0.990702333333333">
+This marker is used to transform a surface 'ningun'
+quantifier into 'todo' (every), provided it occurs in an
 inverted subject. Otherwise, the markers are erased:
 </bodyText>
-<equation confidence="0.347269333333333">
+      <equation confidence="0.347269333333333">
 T) Inv Case(subject) todo --&gt; ningun
 M1) Case(subject) --&gt;
 M2) Inv --&gt;
 </equation>
-<bodyText confidence="0.999916285714286">
+      <bodyText confidence="0.999916285714286">
 These rules implement our general treatment of nega-
 tion described earlier.
 The non-terminal Case(c) is important also in
@@ -1483,26 +1486,26 @@ es introduced by a preposition p will have associated
 case prep(p). Direct object noun phrases will have
 case &amp;quot;dir&amp;quot;, and so on. We generalize rule C2 to
 </bodyText>
-<footnote confidence="0.6782516">
+      <footnote confidence="0.6782516">
 C2) Compls(list(arg(c,k),/),s/,$) --&gt;
 Compls(/,s/,s2) Modifier(c-k,s2,$)
 and add
 M2) Case(prep(p)) --&gt; Prep(p)
 etc.
 </footnote>
-<subsectionHeader confidence="0.844826">
+      <subsectionHeader confidence="0.844826">
 5.5 Interrogative and Relative Clauses
 </subsectionHeader>
-<bodyText confidence="0.983710666666667">
+      <bodyText confidence="0.983710666666667">
 As subject-verb inversion has already been defined,
 we can handle Spanish yes-no questions simply by
 adding:
 </bodyText>
-<equation confidence="0.527243">
+      <equation confidence="0.527243">
 SE1) Sentence(fact(s)) --&gt; Statement(s).
 SE2) Sentence(yes-no(s)) --&gt; Statement(s) ?
 </equation>
-<bodyText confidence="0.987744137931035">
+      <bodyText confidence="0.987744137931035">
 (Notice, by the way, that the analyser actually prod-
 uces more information than the L3 formula s. The
 data base component uses this extra information to
@@ -1521,7 +1524,7 @@ tions. For instance, &amp;quot;El empleado cuya jefa es Juana&amp;quot;
 ered as a variant of &amp;quot;El empleado [la jefa del emplea-
 do] es Juana&amp;quot; (the employee [the manager of the em-
 ployee] is Joan), where &amp;quot;del empleado&amp;quot; has shifted to
-just before &amp;quot;jefa&amp;quot; to be subsumed, together with &amp;quot;la&apos;&apos;,
+just before &amp;quot;jefa&amp;quot; to be subsumed, together with &amp;quot;la'',
 by the relative pronoun &amp;quot;cuya&amp;quot;. To handle these
 clauses, we use markers in the form of grammar sym-
 bols; we move the concerned modifiers and then we
@@ -1533,11 +1536,11 @@ SE3) Sentence(wh(k,$)) --&gt; Wh-1(k) Statement(s) ?
 A modifier to be moved can be handled by the extra
 rule:
 </bodyText>
-<equation confidence="0.895779">
+      <equation confidence="0.895779">
 C3) Compls(list(arg(c,k),/),sl,$) --&gt;
 Moved-mod(k,s2,$) Compls(/,s/,s2)
 </equation>
-<bodyText confidence="0.762697571428571">
+      <bodyText confidence="0.762697571428571">
 which places it as the first complement. It must now
 skip the kernel so as to become the head of the sen-
 tence:
@@ -1546,14 +1549,14 @@ SK) Wh-1(k) Kernel(/,s/,s2,$) Moved-mod(k,s3,s4)
 Finally, it can be replaced by a pronoun:
 PR) Wh-2(k) Modifier(k,s/,s2) --&gt; donde
 </bodyText>
-<figureCaption confidence="0.8196268">
+      <figureCaption confidence="0.8196268">
 Figure 7 shows a simplified derivation graph for
 &amp;quot;Donde vive Tomas?&amp;quot;, from which the internal repre-
 sentation wh(k,live-in(Tom,k)) is obtained. Argu-
 ments and substitutions are left out in order to empha-
 size the structure of the derivation.
 </figureCaption>
-<figure confidence="0.9876875">
+      <figure confidence="0.9876875">
 American Journal of Computational Linguistics, Volume 7, Number 3, July-September 1981 161
 Veronica Dahl Translating Spanish into Logic through Logic
 Sentence
@@ -1607,21 +1610,21 @@ Proper-noun
 L9 I
 toms
 </figure>
-<figureCaption confidence="0.999865">
+      <figureCaption confidence="0.999865">
 Figure 8. XG skeleton derivation graph for ”DOnde vive Toms?&amp;quot;
 </figureCaption>
-<bodyText confidence="0.999561666666667">
+      <bodyText confidence="0.999561666666667">
 Here &amp;quot;...&amp;quot; stands for any intermediate string of
-symbols, which the rule&apos;s application leaves untouched
+symbols, which the rule's application leaves untouched
 to the right of &amp;quot;Donde&amp;quot;. Thus, the skeleton derivation
 graph would now be as shown in Figure 8. Two rules
 (C3 and SK) have been eliminated, and the resulting
 graph is clearer.
 </bodyText>
-<figureCaption confidence="0.990616">
+      <figureCaption confidence="0.990616">
 Figure 7. MG skeleton derivation graph for ”DOnde vive Tonis?”.
 </figureCaption>
-<bodyText confidence="0.9882500625">
+      <bodyText confidence="0.9882500625">
 An alternative way of moving modifiers within
 MGs is by adding extra arguments to each non-
 terminal possibly dominating a modifier to be sub-
@@ -1637,12 +1640,12 @@ and the mobile modifier can be skipped by the latter
 through a single rule. Such syntactic liberty is allowed
 in extraposition grammars (XGs) [25], where, for in-
 stance, rule PR en be replaced by:
-PR&apos;) Wh-1(k) Modifier(k,s/ ,s2) --&gt; Donde
+PR') Wh-1(k) Modifier(k,s/ ,s2) --&gt; Donde
 </bodyText>
-<sectionHeader confidence="0.973402" genericHeader="method">
+      <sectionHeader confidence="0.973402" genericHeader="method">
 6. Extensions
 </sectionHeader>
-<bodyText confidence="0.999485166666667">
+      <bodyText confidence="0.999485166666667">
 Some of the limitations of our system are quite
 obvious from our discussion; e.g., pronoun references
 are not dealt with, other than for relative and interro-
@@ -1662,11 +1665,11 @@ tween alternative meanings of a given determiner. An
 interesting treatment of modifiers in logic grammars
 has been recently proposed in [22]. It involves a
 </bodyText>
-<note confidence="0.7713415">
+      <note confidence="0.7713415">
 162 American Journal of Computational Linguistics, Volume 7, Number 3, July-September 1981
 Veronica Dahl Translating Spanish into Logic through Logic
 </note>
-<bodyText confidence="0.999036725806452">
+      <bodyText confidence="0.999036725806452">
 three-pass analyser, developed within a particularly
 modular framework, in which all syntactic structures
 are represented through a single format.
@@ -1674,14 +1677,14 @@ A subtler treatment of presupposition detection. Al-
 though the treatment discussed here allows for a quick
 detection of failed presuppositions, it fails to indicate
 their nature. More helpful answers should make ex-
-plicit the user&apos;s wrong assumptions, and possibly cor-
+plicit the user's wrong assumptions, and possibly cor-
 rect them. The latest version of our system includes
 the former capability. These problems have been ex-
 tensively addressed in [17], although not in the context
 of logic programs.
 Dialogue extensions, e.g. for data base creation and
 updating in natural language, for clarification of the
-user&apos;s intended meaning, etc. Some conversational
+user's intended meaning, etc. Some conversational
 facilities have been developed recently within a logic-
 programmed system for consulting library information
 in Portuguese [2].
@@ -1698,17 +1701,17 @@ deep structures in Section 5 gives the parser a translat-
 ing flavour. The fact that our system has been adapt-
 ed to consultation in various natural languages without
 substantial modifications to either the parser or the
-internal language&apos;s features suggests that it might be
+internal language's features suggests that it might be
 possible to use a similar framework for language trans-
 lation. Another possibility is to develop a single, mul-
-tilingual grammar capable of switching to the user&apos;s
+tilingual grammar capable of switching to the user's
 mother tongue as soon as the dialogue opens.
 Finally, let us point out that the evolution in
-PROLOG&apos;s features is likely to make it possible to
+PROLOG's features is likely to make it possible to
 improve on the implementation, at least, of the ideas
 presented here. For instance, our set evaluation primi-
 tives rely too much upon exhaustive domain enumera-
-tion. While solving PROLOG&apos;s negation problem
+tion. While solving PROLOG's negation problem
 satisfactorily for small domains, this is inefficient for
 very large data bases.
 Our previous solution—query reordering [6]—was
@@ -1730,10 +1733,10 @@ cy. Provisions for right as well as left extraposition,
 for instance, would facilitate a full treatment of coor-
 dination.
 </bodyText>
-<sectionHeader confidence="0.769826" genericHeader="method">
+      <sectionHeader confidence="0.769826" genericHeader="method">
 7. Concluding Remarks
 </sectionHeader>
-<bodyText confidence="0.987204721311476">
+      <bodyText confidence="0.987204721311476">
 Similar ideas to the ones discussed in this paper (in
 particular, those on quantification (cf. [35])) have
 influenced other NL data base systems, namely LU-
@@ -1761,7 +1764,7 @@ Furthermore, the fact that semantic agreement is
 equated with syntactic well-formedness evens the rela-
 tive costs of doing semantic versus syntactic tests.
 The use of logic as the single formalism underlying
-all aspects of our system&apos;s development is a distinctive
+all aspects of our system's development is a distinctive
 feature of the approach. Logic serves both as the
 theoretical framework and as the implementation
 means. In particular, this gives our system a definitely
@@ -1790,27 +1793,27 @@ Performance. These assets do not imply sacrificing
 efficiency. Parsing times have been shown to compare
 favourably against those of the LUNAR system [30],
 by using an adaptation of our Spanish analyser to Eng-
-lish [24, p.2&apos;76].
+lish [24, p.2'76].
 As we have also seen, many improvements remain
 to be made. With the present study we hope to moti-
 vate further research into the uses of logic for natural
 language processing.
 </bodyText>
-<sectionHeader confidence="0.994806" genericHeader="acknowledgments">
+      <sectionHeader confidence="0.994806" genericHeader="acknowledgments">
 Acknowledgements
 </sectionHeader>
-<bodyText confidence="0.9998842">
+      <bodyText confidence="0.9998842">
 The author wishes to thank Alain Colmerauer, un-
 der whose supervision the research partially reported
 here was developed; Michael McCord, for his encour-
 agement to get this paper finished; and the reviewers,
 for their useful suggestions.
 </bodyText>
-<sectionHeader confidence="0.903123" genericHeader="references">
+      <sectionHeader confidence="0.903123" genericHeader="references">
 References
 </sectionHeader>
-<reference confidence="0.995716696969698">
-1. Bronnenberg W.J.H.J. et al. &apos;&apos;The question-answering system
+      <reference confidence="0.995716696969698">
+1. Bronnenberg W.J.H.J. et al. ''The question-answering system
 PHLIQA1. &amp;quot; In: Natural Language Communication with
 Computers, vol. II. L. Bolc (ed.). Carl Hanser Verlag, Munchen
 Wien, Macmillan, London, 1979, pp. 217-305.
@@ -1826,7 +1829,7 @@ guage Communication with Computers, vol. I. Springer Verlag,
 6. Dahl V. and Sambuc R. &amp;quot;Un systeme de banque de donnees en
 logique du premier ordre, en vue de sa consultation en langue
 naturelle.&amp;quot; D.E.A. Report, Univ. Aix-Marseille, 1976.
-7. Dahl V. &amp;quot;Un systeme deductif d&apos;interrogation de banques de
+7. Dahl V. &amp;quot;Un systeme deductif d'interrogation de banques de
 donnees en espagnol.&amp;quot; These de Doctorat de Specialite, Univ.
 Aix-Marseille, 1977.
 8. Dahl V. &amp;quot;Some experiences on natural language question-
@@ -1877,7 +1880,7 @@ with augmented transition networks.&amp;quot; Artificial Intelligence 13,
 Workshop, Hungary, 1980, pp. 231-242.
 26. Petrick S.R. &amp;quot;On natural language based computer systems.&amp;quot;
 IBM Journal of Research and Development, July 1976.
-27. Roussel Ph. &amp;quot;PROLOG: manuel de reference et d&apos;utilisation.&amp;quot;
+27. Roussel Ph. &amp;quot;PROLOG: manuel de reference et d'utilisation.&amp;quot;
 Univ. Aix-Marseille, 1975.
 28. Tarnlund S-A. (Ed.) Logic Programming Workshop Proceedings.
 Debrecen, Hungary, July 1980.
@@ -1910,25 +1913,24 @@ Aires. She received the Doctorat de Specialite in Artifi-
 cial Intelligence at the University of Aix-Marseille in
 1977.
 </reference>
-<page confidence="0.760386">
+      <page confidence="0.760386">
 164 American Journal of Computational Linguistics, Volume 7, Number 3, July-September 1981
 </page>
-</variant>
-</algorithm>
-<algorithm name="AAMatching" version="110505">
-  <results time="1337107112" date="Wed May 16 02:38:32 SGT 2012">
-    <authors>
-      <author>
-        <fullname source="parscit">Veronica Dahl</fullname>
-        <institutions>
-          <institution>Department of Mathematics University of Buenos Aires Buenos Aires, ARGENTINA</institution>
-        </institutions>
-      </author>
-    </authors>
-    <institutions>
-      <institution>Department of Mathematics University of Buenos Aires Buenos Aires, ARGENTINA</institution>
-    </institutions>
-  </results>
-</algorithm>
-
+    </variant>
+  </algorithm>
+  <algorithm name="AAMatching" version="110505">
+    <results time="1337107112" date="Wed May 16 02:38:32 SGT 2012">
+      <authors>
+        <author>
+          <fullname source="parscit">Veronica Dahl</fullname>
+          <institutions>
+            <institution>Department of Mathematics University of Buenos Aires Buenos Aires, ARGENTINA</institution>
+          </institutions>
+        </author>
+      </authors>
+      <institutions>
+        <institution>Department of Mathematics University of Buenos Aires Buenos Aires, ARGENTINA</institution>
+      </institutions>
+    </results>
+  </algorithm>
 </algorithms>

@@ -5,17 +5,21 @@ from collections import deque
 from Document import Document
 from Config import DIR
 from Ranker import Ranker
+from Ranker import TextRank
 from GetTrainingSamples import writeToFile
 from nltk.corpus import stopwords
+from glob import glob
+#from operator import itemgetter
 
 
 # this is a temporary list for debugging.
 trees = []
+currentfile = None
 
 
 class Node:
     def __init__(self, str):
-        reg = re.match(r'(\d+)-\>([A-Za-z0-9]+)-([A-Z\$]+)\s\(([a-z_]+)\)',
+        reg = re.match(r'(\d+)-\>(.+)-([A-Z\$]+)\s\(([a-z_]+)\)',
                        str)
         if reg is None:
             print str
@@ -35,13 +39,39 @@ class Node:
                 self.word + '-' + self.pos + '-' + self.dep)
 
 
-def get_sentences(infile, outfile):
+def get_pos_sentences(infile, outfile):
     doc = Document(infile)
     sentences, o = doc.all_sentences()
     ranker = Ranker(sentences)
     sent, offset = doc.section_sentences('abstract')
     sent_idx = range(offset, offset + len(sent))
     samples = '\n'.join(sent)
+    writeToFile(outfile, samples, 'w')
+    print "Sentences written"
+    return ranker, sent_idx
+
+
+def get_neg_sentences(infile, outfile):
+    doc = Document(infile)
+    sentences, offset = doc.all_sentences()
+    ranker = TextRank(sentences)
+    print 'sentences extracted for ' + infile
+    ranker.rank()
+    print 'sentences ranked'
+    num = 7
+    x = -1
+    samples = ''
+    sent_idx = []
+    while num > 0:
+        idx = ranker.scores[x][0] + offset
+        x -= 1
+        if len(doc[idx].words) < 15:
+            continue
+        else:
+            sent_idx.append(idx)
+            samples += doc[idx].sentence.encode('utf-8') + '\n'
+            num -= 1
+            print idx
     writeToFile(outfile, samples, 'w')
     print "Sentences written"
     return ranker, sent_idx
@@ -57,13 +87,13 @@ def create_dep_parse(infile, outfile):
                      outfile])
 
 
-def parseTrees(infile, ranker, sent_idx):
+def parseTrees(infile, outfile, ranker, sent_idx):
     current = dict()
     i = 0
     with open(infile, 'r') as file:
         for line in file.readlines():
             if len(line.strip()) == 0:
-                processTree(current[0], ranker, sent_idx[i])
+                processTree(outfile, current[0], ranker, sent_idx[i])
                 i += 1
                 current = dict()
             else:
@@ -76,17 +106,20 @@ def parseTrees(infile, ranker, sent_idx):
                 else:
                     print "Fatal error: parent level does not exist."
                 current[node.level] = node
+    print "All dependency trees parsed successfully."
 
 
-def processTree(root, ranker, idx):
+def processTree(outfile, root, ranker, idx):
     trees.append(root)
     verb_val = ranker.tfidf_value(idx, root.word)
     # Look for subject
     subj = findNode(root, 'subj')
     subj_val = getValue(subj, ranker, idx)
-    print verb_val
-    print subj_val
-    printTree(root, ranker, idx)
+    obj = findNode(root, 'obj')
+    obj_val = getValue(obj, ranker, idx)
+    writeToFile(outfile, "+1 1:" + str(verb_val) + " 2:" + str(subj_val) +
+                " 3:" + str(obj_val) + '\t\t' + currentfile + '\n', 'a')
+    #printTree(root, ranker, idx)
 
 
 def getValue(node, ranker, idx):
@@ -94,14 +127,20 @@ def getValue(node, ranker, idx):
         return 0.0
     else:
         value, num = computeValue(node, ranker, idx)
-        return value / num
+        if value == 0.0:
+            return 0.0
+        else:
+            return value / num
 
 
 def computeValue(node, ranker, idx):
-    if node.word in stopwords.words('english'):
+    if node.word.lower() in stopwords.words('english'):
         num = 0
         val = 0.0
     else:
+        # One case has still not been covered where the word might not be a
+        # stopword but is still not included in the vectorized vocabulary.
+        # The same is true for numbers.
         num = 1
         val = ranker.tfidf_value(idx, node.word)
     for child in node.children:
@@ -112,8 +151,8 @@ def computeValue(node, ranker, idx):
 
 
 # Can experiment a few things such as:
-#    leaving out stopwords
-#    considering multiple subjects
+#    leaving out stopwords [This has been taken care of in computeValue]
+#    considering multiple occurances of subjects and objects
 def findNode(node, pattern):
     pat = re.compile(pattern)
     if pat.search(node.dep) is not None:
@@ -154,16 +193,32 @@ def printTree(root, ranker=None, idx=None):
 
 def printChildTree(node, ranker=None, idx=None):
     for child in node.children:
-        print str(child) + ' ' + str(ranker.tfidf_value(idx, child.word))
+        print str(child) + '    ' + str(ranker.tfidf_value(idx, child.word))
         printChildTree(child, ranker, idx)
 
 
 if __name__ == '__main__':
     xmldir = DIR['BASE'] + "demo/"
     datadir = DIR['BASE'] + "data/"
-    infile = xmldir + 'P99-1026-parscit-section.xml'
+    #infile = xmldir + 'P99-1026-parscit-section.xml'
     sentfile = datadir + 'sentences.txt'
     depfile = datadir + 'dependency-trees.txt'
-    ranker, sent_idx = get_sentences(infile, sentfile)
-    create_dep_parse(sentfile, depfile)
-    parseTrees(depfile, ranker, sent_idx)
+    featurefile = datadir + 'features.txt'
+    for infile in glob(xmldir + "*.xml"):
+        try:
+            print infile + " is being processed."
+            currentfile = infile
+            # The following is for collecting summary sentences
+            #ranker, sent_idx = get_pos_sentences(infile, sentfile)
+            #create_dep_parse(sentfile, depfile)
+            #parseTrees(depfile, featurefile, ranker, sent_idx)
+
+            # The following is for negative samples
+            ranker, sent_idx = get_neg_sentences(infile, sentfile)
+            # Another version might return just the ranker and take a sent_idx
+            # as input
+            #create_dep_parse(sentfile, depfile)
+            #parseTrees(depfile, featurefile, ranker, sent_idx)
+        except Exception as e:
+            print(infile + str(e))
+    print "All input files processed to create feature vectors."
