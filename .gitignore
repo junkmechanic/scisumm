@@ -1,3 +1,7 @@
 src/.ropeproject/
 src/__pycache__/
 src/*.pyc
+lib/ROUGE/
+lib/Stanford-Parser/*.class
+lib/Stanford-Parser/*.jar
+lib/svm-light/

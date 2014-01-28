@@ -14,7 +14,6 @@ from glob import glob
 
 # this is a temporary list for debugging.
 trees = []
-currentfile = None
 
 
 class Node:
@@ -42,12 +41,11 @@ class Node:
 def get_pos_sentences(infile, outfile):
     doc = Document(infile)
     sentences, o = doc.all_sentences()
-    ranker = Ranker(sentences)
+    ranker = Ranker(sentences, tfidf=False)
     sent, offset = doc.section_sentences('abstract')
     sent_idx = range(offset, offset + len(sent))
     samples = '\n'.join(sent)
     writeToFile(outfile, samples, 'w')
-    print "Sentences written"
     return ranker, sent_idx
 
 
@@ -55,9 +53,7 @@ def get_neg_sentences(infile, outfile):
     doc = Document(infile)
     sentences, offset = doc.all_sentences()
     ranker = TextRank(sentences)
-    print 'sentences extracted for ' + infile
     ranker.rank()
-    print 'sentences ranked'
     num = 7
     x = -1
     samples = ''
@@ -65,16 +61,25 @@ def get_neg_sentences(infile, outfile):
     while num > 0:
         idx = ranker.scores[x][0] + offset
         x -= 1
-        if len(doc[idx].words) < 15:
+        if not validSentence(doc[idx]):
             continue
         else:
             sent_idx.append(idx)
             samples += doc[idx].sentence.encode('utf-8') + '\n'
             num -= 1
-            print idx
     writeToFile(outfile, samples, 'w')
-    print "Sentences written"
+    ranker = Ranker(sentences, tfidf=False)
     return ranker, sent_idx
+
+
+def validSentence(sentence):
+    if len(sentence.words) < 15:
+        return False
+    if len(sentence.words) > 40:
+        return False
+    if re.search(r'[()\[\]]', str(sentence)) is not None:
+        return False
+    return True
 
 
 def create_dep_parse(infile, outfile):
@@ -87,13 +92,13 @@ def create_dep_parse(infile, outfile):
                      outfile])
 
 
-def parseTrees(infile, outfile, ranker, sent_idx):
+def parseTrees(infile, outfile, ranker, sent_idx, label):
     current = dict()
     i = 0
     with open(infile, 'r') as file:
         for line in file.readlines():
             if len(line.strip()) == 0:
-                processTree(outfile, current[0], ranker, sent_idx[i])
+                processTree(outfile, current[0], ranker, sent_idx[i], label)
                 i += 1
                 current = dict()
             else:
@@ -109,40 +114,48 @@ def parseTrees(infile, outfile, ranker, sent_idx):
     print "All dependency trees parsed successfully."
 
 
-def processTree(outfile, root, ranker, idx):
+def processTree(outfile, root, ranker, idx, label):
     trees.append(root)
-    verb_val = ranker.tfidf_value(idx, root.word)
+    #verb_val = ranker.tfidf_value(idx, root.word)
+    verb_val = ranker.total_count(root.word)
     # Look for subject
     subj = findNode(root, 'subj')
     subj_val = getValue(subj, ranker, idx)
     obj = findNode(root, 'obj')
     obj_val = getValue(obj, ranker, idx)
-    writeToFile(outfile, "+1 1:" + str(verb_val) + " 2:" + str(subj_val) +
-                " 3:" + str(obj_val) + '\t\t' + currentfile + '\n', 'a')
-    #printTree(root, ranker, idx)
+    writeToFile(outfile, label + " 1:" + str(verb_val) + " 2:" +
+                str(subj_val) + " 3:" + str(obj_val) + '\n', 'a')
 
 
 def getValue(node, ranker, idx):
     if node is None:
-        return 0.0
+        #return 0.0
+        return 0
     else:
+        #value, num = computeValue(node, ranker, idx)
+        #if value == 0.0:
+        #    return 0.0
+        #else:
+        #    return value / num
         value, num = computeValue(node, ranker, idx)
-        if value == 0.0:
-            return 0.0
+        if value == 0:
+            return 0
         else:
-            return value / num
+            return value
 
 
 def computeValue(node, ranker, idx):
     if node.word.lower() in stopwords.words('english'):
         num = 0
-        val = 0.0
+        #val = 0.0
+        val = 0
     else:
         # One case has still not been covered where the word might not be a
         # stopword but is still not included in the vectorized vocabulary.
         # The same is true for numbers.
         num = 1
-        val = ranker.tfidf_value(idx, node.word)
+        #val = ranker.tfidf_value(idx, node.word)
+        val = ranker.total_count(node.word)
     for child in node.children:
         value, n = computeValue(child, ranker, idx)
         val += value
@@ -197,7 +210,7 @@ def printChildTree(node, ranker=None, idx=None):
         printChildTree(child, ranker, idx)
 
 
-if __name__ == '__main__':
+def generateFeatures():
     xmldir = DIR['BASE'] + "demo/"
     datadir = DIR['BASE'] + "data/"
     #infile = xmldir + 'P99-1026-parscit-section.xml'
@@ -207,18 +220,21 @@ if __name__ == '__main__':
     for infile in glob(xmldir + "*.xml"):
         try:
             print infile + " is being processed."
-            currentfile = infile
             # The following is for collecting summary sentences
-            #ranker, sent_idx = get_pos_sentences(infile, sentfile)
-            #create_dep_parse(sentfile, depfile)
-            #parseTrees(depfile, featurefile, ranker, sent_idx)
+            ranker, sent_idx = get_pos_sentences(infile, sentfile)
+            create_dep_parse(sentfile, depfile)
+            parseTrees(depfile, featurefile, ranker, sent_idx, '+1')
 
             # The following is for negative samples
             ranker, sent_idx = get_neg_sentences(infile, sentfile)
-            # Another version might return just the ranker and take a sent_idx
-            # as input
-            #create_dep_parse(sentfile, depfile)
-            #parseTrees(depfile, featurefile, ranker, sent_idx)
+            create_dep_parse(sentfile, depfile)
+            parseTrees(depfile, featurefile, ranker, sent_idx, '-1')
+
+            # The following is for test samples
         except Exception as e:
             print(infile + str(e))
     print "All input files processed to create feature vectors."
+
+
+if __name__ == '__main__':
+    generateFeatures()

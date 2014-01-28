@@ -1,6 +1,6 @@
 # coding=utf-8
 from sklearn.feature_extraction.text import TfidfVectorizer
-#from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from scipy.sparse import vstack
 import networkx as nx
@@ -38,11 +38,17 @@ class Ranker:
         - self.feature_names
     The instance methods provided by this base class:
         - tfidf_value()
+        - total_count()
     """
 
-    def __init__(self, sentences):
+    def __init__(self, sentences, tfidf=True):
         self.sentences = sentences
-        self.vectorizer = TfidfVectorizer(min_df=1)
+        if tfidf:
+            self.vectorizer = TfidfVectorizer(min_df=1)
+            print 'Using tfisf values'
+        else:
+            self.vectorizer = CountVectorizer(min_df=1)
+            print 'Using count values'
         self.dtm = self.vectorizer.fit_transform(sentences)
         self.sim_matrix = self.dtm * self.dtm.T
         self.feature_names = self.vectorizer.get_feature_names()
@@ -64,6 +70,20 @@ class Ranker:
         else:
             print "No such word in the vocabulary: " + word
             return 0.0
+
+    def total_count(self, word):
+        totalcounts = self.dtm.sum(axis=0)
+        if word.lower() in self.feature_names:
+            word_idx = self.feature_names.index(word.lower())
+            return totalcounts[0, word_idx]
+        elif len(word.lower().split('-')) > 1:
+            val = 0
+            for part in word.lower().split('-'):
+                val += self.total_count(part)
+            return val
+        else:
+            print "No such word in the vocabulary: " + word
+            return 0
 
 
 class TextRank(Ranker):
