@@ -38,15 +38,42 @@ class Node:
                 self.word + '-' + self.pos + '-' + self.dep)
 
 
+def sent2Section(doc, sent_idx):
+    section_idx = []
+    for idx in sent_idx:
+        section = 0
+        for sec, blk in doc.document.items():
+            if idx in blk.keys():
+                break
+            section += 1
+        section_idx.append(section)
+    return section_idx
+
+
 def get_pos_sentences(infile, outfile):
     doc = Document(infile)
-    sentences, o = doc.all_sentences()
-    ranker = Ranker(sentences, tfidf=False)
+    #sentences, o = doc.all_sentences()
+    #ranker = Ranker(sentences, tfidf=False)
+    #-----------------------------------------
+    # Instead of the above, now sentences will be clubbed into sections and
+    # passed to the ranker, which is to be returned
+    sections = []
+    for sec, block in doc.document.items():
+        sentences = ''
+        for key in sorted(block.keys()):
+            sentences += (str(block[key]))
+        sections.append(sentences)
+    ranker = Ranker(sections)
+    #-----------------------------------------
     sent, offset = doc.section_sentences('abstract')
     sent_idx = range(offset, offset + len(sent))
     samples = '\n'.join(sent)
     writeToFile(outfile, samples, 'w')
-    return ranker, sent_idx
+    #return ranker, sent_idx
+    # The sent_idx needs to be converted to reflect the corresponding section
+    # index
+    section_idx = sent2Section(doc, sent_idx)
+    return ranker, section_idx
 
 
 def get_neg_sentences(infile, outfile):
@@ -54,7 +81,7 @@ def get_neg_sentences(infile, outfile):
     sentences, offset = doc.all_sentences()
     ranker = TextRank(sentences)
     ranker.rank()
-    num = 7
+    num = 5
     x = -1
     samples = ''
     sent_idx = []
@@ -68,8 +95,22 @@ def get_neg_sentences(infile, outfile):
             samples += doc[idx].sentence.encode('utf-8') + '\n'
             num -= 1
     writeToFile(outfile, samples, 'w')
-    ranker = Ranker(sentences, tfidf=False)
-    return ranker, sent_idx
+    #ranker = Ranker(sentences, tfidf=False)
+    #return ranker, sent_idx
+    #-----------------------------------------
+    # Same as in get_pos_sentences
+    sections = []
+    for sec, block in doc.document.items():
+        sentences = ''
+        for key in sorted(block.keys()):
+            sentences += (str(block[key]))
+        sections.append(sentences)
+    ranker = Ranker(sections)
+    #-----------------------------------------
+    # The sent_idx needs to be converted to reflect the corresponding section
+    # index
+    section_idx = sent2Section(doc, sent_idx)
+    return ranker, section_idx
 
 
 def validSentence(sentence):
@@ -116,46 +157,59 @@ def parseTrees(infile, outfile, ranker, sent_idx, label):
 
 def processTree(outfile, root, ranker, idx, label):
     trees.append(root)
-    #verb_val = ranker.tfidf_value(idx, root.word)
-    verb_val = ranker.total_count(root.word)
+    verb_val = ranker.tfidf_value(idx, root.word)
+    #verb_val = ranker.total_count(root.word)
     # Look for subject
     subj = findNode(root, 'subj')
     subj_val = getValue(subj, ranker, idx)
     obj = findNode(root, 'obj')
     obj_val = getValue(obj, ranker, idx)
-    writeToFile(outfile, label + " 1:" + str(verb_val) + " 2:" +
-                str(subj_val) + " 3:" + str(obj_val) + '\n', 'a')
+    #writeToFile(outfile, label + " 1:" + str(verb_val) + " 2:" +
+    #            str(subj_val) + " 3:" + str(obj_val) + '\n', 'a')
+    #-----------------------------------------------------------
+    # Extra files with different combinations of features
+    datadir = DIR['BASE'] + "data/"
+    os.chdir(datadir)
+    writeToFile('f-verb-noun.txt', label + " 1:" + str(verb_val) +
+                " 2:" + str((obj_val + subj_val) / 2) + '\n', 'a')
+    writeToFile('f-verb-subj.txt', label + " 1:" + str(verb_val) +
+                " 2:" + str(subj_val) + '\n', 'a')
+    writeToFile('f-verb-obj.txt', label + " 1:" + str(verb_val) +
+                " 3:" + str(obj_val) + '\n', 'a')
+    writeToFile('f-subj-obj.txt', label + " 1:" + str(subj_val) +
+                " 2:" + str(obj_val) + '\n', 'a')
+    #-----------------------------------------------------------
 
 
 def getValue(node, ranker, idx):
     if node is None:
-        #return 0.0
-        return 0
+        return 0.0
+        #return 0
     else:
-        #value, num = computeValue(node, ranker, idx)
-        #if value == 0.0:
-        #    return 0.0
-        #else:
-        #    return value / num
         value, num = computeValue(node, ranker, idx)
-        if value == 0:
-            return 0
+        if value == 0.0:
+            return 0.0
         else:
-            return value
+            return value / num
+        #value, num = computeValue(node, ranker, idx)
+        #if value == 0:
+        #    return 0
+        #else:
+        #    return value
 
 
 def computeValue(node, ranker, idx):
     if node.word.lower() in stopwords.words('english'):
         num = 0
-        #val = 0.0
-        val = 0
+        val = 0.0
+        #val = 0
     else:
         # One case has still not been covered where the word might not be a
         # stopword but is still not included in the vectorized vocabulary.
         # The same is true for numbers.
         num = 1
-        #val = ranker.tfidf_value(idx, node.word)
-        val = ranker.total_count(node.word)
+        val = ranker.tfidf_value(idx, node.word)
+        #val = ranker.total_count(node.word)
     for child in node.children:
         value, n = computeValue(child, ranker, idx)
         val += value

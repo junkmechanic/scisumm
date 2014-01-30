@@ -115,7 +115,7 @@ class ParsedTree {
       //output.append(graph.toString());
       output.append(toString(graph));
       output.append("\n");
-      System.out.println(graph);
+      //System.out.println(graph);
     }
     writeToFile(outname, output.toString(), false);
   }
