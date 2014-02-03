@@ -10,6 +10,7 @@ from collections import OrderedDict
 def logit(text):
     print(text)
     try:
+        # Add os.chdir(src-dir)
         with open('logfile.txt', "a") as outfile:
             outfile.write(text)
             outfile.write('\n')

@@ -50,7 +50,7 @@ def sent2Section(doc, sent_idx):
     return section_idx
 
 
-def get_pos_sentences(infile, outfile):
+def get_pos_sentences(infile, outfile, backup=False):
     doc = Document(infile)
     #sentences, o = doc.all_sentences()
     #ranker = Ranker(sentences, tfidf=False)
@@ -73,10 +73,14 @@ def get_pos_sentences(infile, outfile):
     # The sent_idx needs to be converted to reflect the corresponding section
     # index
     section_idx = sent2Section(doc, sent_idx)
+    if backup:
+        backupfile = DIR['BASE'] + "data/backup.txt"
+        writeToFile(backupfile, "\n---------Positive---------\n", 'a')
+        writeToFile(backupfile, samples, 'a')
     return ranker, section_idx
 
 
-def get_neg_sentences(infile, outfile):
+def get_neg_sentences(infile, outfile, backup=False):
     doc = Document(infile)
     sentences, offset = doc.all_sentences()
     ranker = TextRank(sentences)
@@ -110,6 +114,54 @@ def get_neg_sentences(infile, outfile):
     # The sent_idx needs to be converted to reflect the corresponding section
     # index
     section_idx = sent2Section(doc, sent_idx)
+    if backup:
+        backupfile = DIR['BASE'] + "data/backup.txt"
+        writeToFile(backupfile, "\n---------Negative---------\n", 'a')
+        writeToFile(backupfile, samples, 'a')
+    return ranker, section_idx
+
+
+def get_test_sentences(infile, outfile, backup=False):
+    doc = Document(infile)
+    sentences, offset = doc.all_sentences()
+    ranker = TextRank(sentences)
+    ranker.rank()
+    num = 7
+    x = 0
+    samples = ''
+    sent_idx = []
+    while num > 0:
+        idx = ranker.scores[x][0] + offset
+        x += 1
+        #if not validSentence(doc[idx]):
+        #    continue
+        #else:
+        #    sent_idx.append(idx)
+        #    samples += doc[idx].sentence.encode('utf-8') + '\n'
+        #    num -= 1
+        sent_idx.append(idx)
+        samples += doc[idx].sentence.encode('utf-8') + '\n'
+        num -= 1
+    writeToFile(outfile, samples, 'w')
+    #ranker = Ranker(sentences, tfidf=False)
+    #return ranker, sent_idx
+    #-----------------------------------------
+    # Same as in get_pos_sentences
+    sections = []
+    for sec, block in doc.document.items():
+        sentences = ''
+        for key in sorted(block.keys()):
+            sentences += (str(block[key]))
+        sections.append(sentences)
+    ranker = Ranker(sections)
+    #-----------------------------------------
+    # The sent_idx needs to be converted to reflect the corresponding section
+    # index
+    section_idx = sent2Section(doc, sent_idx)
+    if backup:
+        backupfile = DIR['BASE'] + "data/backup.txt"
+        writeToFile(backupfile, "\n---------Test Sentences---------\n", 'a')
+        writeToFile(backupfile, samples, 'a')
     return ranker, section_idx
 
 
@@ -164,20 +216,20 @@ def processTree(outfile, root, ranker, idx, label):
     subj_val = getValue(subj, ranker, idx)
     obj = findNode(root, 'obj')
     obj_val = getValue(obj, ranker, idx)
-    #writeToFile(outfile, label + " 1:" + str(verb_val) + " 2:" +
-    #            str(subj_val) + " 3:" + str(obj_val) + '\n', 'a')
+    writeToFile(outfile, label + " 1:" + str(verb_val) + " 2:" +
+                str(subj_val) + " 3:" + str(obj_val) + '\n', 'a')
     #-----------------------------------------------------------
     # Extra files with different combinations of features
-    datadir = DIR['BASE'] + "data/"
-    os.chdir(datadir)
-    writeToFile('f-verb-noun.txt', label + " 1:" + str(verb_val) +
-                " 2:" + str((obj_val + subj_val) / 2) + '\n', 'a')
-    writeToFile('f-verb-subj.txt', label + " 1:" + str(verb_val) +
-                " 2:" + str(subj_val) + '\n', 'a')
-    writeToFile('f-verb-obj.txt', label + " 1:" + str(verb_val) +
-                " 3:" + str(obj_val) + '\n', 'a')
-    writeToFile('f-subj-obj.txt', label + " 1:" + str(subj_val) +
-                " 2:" + str(obj_val) + '\n', 'a')
+    #datadir = DIR['BASE'] + "data/"
+    #os.chdir(datadir)
+    #writeToFile('f-verb-noun.txt', label + " 1:" + str(verb_val) +
+    #            " 2:" + str((obj_val + subj_val) / 2) + '\n', 'a')
+    #writeToFile('f-verb-subj.txt', label + " 1:" + str(verb_val) +
+    #            " 2:" + str(subj_val) + '\n', 'a')
+    #writeToFile('f-verb-obj.txt', label + " 1:" + str(verb_val) +
+    #            " 3:" + str(obj_val) + '\n', 'a')
+    #writeToFile('f-subj-obj.txt', label + " 1:" + str(subj_val) +
+    #            " 2:" + str(obj_val) + '\n', 'a')
     #-----------------------------------------------------------
 
 
@@ -275,16 +327,19 @@ def generateFeatures():
         try:
             print infile + " is being processed."
             # The following is for collecting summary sentences
-            ranker, sent_idx = get_pos_sentences(infile, sentfile)
-            create_dep_parse(sentfile, depfile)
-            parseTrees(depfile, featurefile, ranker, sent_idx, '+1')
+            #ranker, sent_idx = get_pos_sentences(infile, sentfile, backup=True)
+            #create_dep_parse(sentfile, depfile)
+            #parseTrees(depfile, featurefile, ranker, sent_idx, '+1')
 
             # The following is for negative samples
-            ranker, sent_idx = get_neg_sentences(infile, sentfile)
-            create_dep_parse(sentfile, depfile)
-            parseTrees(depfile, featurefile, ranker, sent_idx, '-1')
+            #ranker, sent_idx = get_neg_sentences(infile, sentfile, backup=True)
+            #create_dep_parse(sentfile, depfile)
+            #parseTrees(depfile, featurefile, ranker, sent_idx, '-1')
 
             # The following is for test samples
+            ranker, sent_idx = get_test_sentences(infile, sentfile)
+            create_dep_parse(sentfile, depfile)
+            parseTrees(depfile, featurefile, ranker, sent_idx, '+1')
         except Exception as e:
             print(infile + str(e))
     print "All input files processed to create feature vectors."
