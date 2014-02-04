@@ -1,0 +1,130 @@
+
+---------Positive---------
+We discuss the use of logic for natural language (NL) processing, both as an internal query language and as a programming tool.
+Some extensions of standard predicate calculus are motivated by the first of these roles.
+A logical system including these extensions is informally described.
+It incorporates semantic as well as syntactic NL features, and its semantics in a given interpretation (or data base) determines the answer-extraction process.
+We also present a logic-programmed analyser that translates Spanish into this system.
+It equates semantic agreement with syntactic well-formedness, and can detect certain presuppositions, resolve certain ambiguities and reflect relations among sets. 
+---------Negative---------
+For instance, our set evaluation primitives rely too much upon exhaustive domain enumeration.
+PHLIQA1 has several successive levels of semantic analysis, each requiring a special formal language.
+Take for instance the query: Cual es el salario del empleado que vive en Lomas?
+The data base being consulted concerns individuals grouped as either salesmen, administrative employees, managers, sites, departments or salaries.
+The user could ask it to build up a computer configuration satisfYing his particular needs.
+
+---------Positive---------
+Previous methods usually conduct the keyphrase extraction task for single documents separately without interactions for each document, under the assumption that the documents are considered independent of each other.
+This paper proposes a novel approach named CollabRank to collaborative single-document keyphrase extraction by making use of mutual influences of multiple documents within a cluster context.
+CollabRank is implemented by first employing the clustering algorithm to obtain appropriate document clusters, and then using the graph-based ranking algorithm for collaborative single-document keyphrase extraction within each cluster.
+Experimental results demonstrate the encouraging performance of the proposed approach.
+Different clustering algorithms have been investigated and we find that the system performance relies positively on the quality of document clusters. 
+---------Negative---------
+For instance, in the following sentence: “Mad/JJ cow/NN disease/NN has/VBZ killed/VBN 10,000/CD cattle/NNS”, the candidate phrases are “Mad cow disease” and “cattle”.
+Three different randomization processes are performed and we denote them as Random1, Random2 and Random3, respectively.
+Keyphrases are usually manually assigned by authors, especially for journal or conference articles.
+The words are converted to their corresponding basic forms using word stemming before comparison.
+Unsupervised methods usually involve assigning a saliency score to each candidate phrases by considering various features.
+
+---------Positive---------
+We propose that many ambiguous prepositional phrase attachments can be resolved on the basis of the relative strength of association of the preposition with verbal and nominal heads, estimated on the basis of distribution in an automatically parsed corpus.
+This suggests that a distributional approach can provide an approximate solution to parsing problems that, in the worst case, call for complex reasoning. 
+---------Negative---------
+Example 11 Sides said Francke kept a .38-caliber revolver in his car's glove compartment.
+11 when a death squad firing submachine guns killed 43 people in the northwest town of Segovia.
+It looks like it might require extremely complex computation to determine what attaches to what.
+Moscow sent more than 100,000 soldiers into Afghanistan ... In particular, we want to choose between two structures: 
+Similarly, Taraban and McClelland found that lexical content was key in explaining people's behavior.
+
+---------Positive---------
+This paper proposes a method for incrementally understanding user utterances whose semantic boundaries are not known and responding in real time even before boundaries are determined.
+It is an integrated parsing and discourse processing method that updates the partial result of understanding word by word, enabling responses based on the partial result.
+This method incrementally finds plausible sequences of utterances that play crucial roles in the task execution of dialogues, and utilizes beam search to deal with the ambiguity of boundaries as well as syntactic and semantic ambiguities.
+The results of a preliminary experiment demonstrate that this method understands user utterances better than an understanding method that assumes pauses to be semantic boundaries. 
+---------Negative---------
+An SU may be a full sentence or a subsentential phrase such as a noun phrase or a verb phrase.
+Their methods, however, cannot syntactically analyze phrases across pauses since they use speech intervals as input units.
+This problem is more serious in head-final languages such as Japanese because function words that represent negation come after content words.
+When a shift-reduce conflict or a reduce-reduce conflict occur, the context is duplicated and different operations are performed on them.
+ISSS holds multiple possible belief states and updates those belief states when a word hypothesis is inputted.
+
+---------Positive---------
+Designing the dialogue strategy of a spoken dialogue system involves many nontrivial choices.
+This paper presents a reinforcement learning approach for automatically optimizing a dialogue strategy that addresses the technical challenges in applying reinforcement learning to a working dialogue system with human users.
+We then show that our approach measurably improves performance in an experimental system. 
+---------Negative---------
+Main effects of strategy are task-independent, while interaction effects involving strategy are task-dependent. 
+21 test subjects then performed the same 6 tasks used during training, resulting in 124 complete test dialogues.
+During both training and testing, subjects carried out free-form conversations with NJFun to complete six application tasks.
+A more standard alternative would be comparison to the very best hand-designed fixed strategy.
+Are there any wineries close by your house in Lambertville?&quot; Subjects read task descriptions on a web page, then called NJFun from their office phone.
+
+---------Positive---------
+The SWAT TOOLS ontology verbaliser generates a hierarchically organised hypertext designed for easy comprehension and navigation.
+The document structure, inspired by encyclopedias and glossaries, is organised at a number of levels.
+At the top level, a heading is generated for every concept in the ontology; at the next level, each entry is subdivided into logically-based headings like ‘Definition’ and ‘Examples’; at the next, sentences are aggregated when they have parts in common; at the lowest level, phrases are hyperlinked to concept headings.
+One consequence of this organisation is that some statements are repeated because they are relevant to more than one entry; this means that the text is longer than one in which statements are simply listed.
+This trade-off between organisation and brevity is investigated in a user study. 
+---------Negative---------
+the main theme being that natural English should be priveleged over fidelity to OWL semantics.
+To our knowledge, SWAT TOOLS takes document structuring further than other domain-independent ontology verbalisers.
+Subjects given the unorganised text answered instead seven questions about techniques used for navigation, e.g., ‘Did you use scrolling?’. 
+An obvious refinement would be to add a facility to view the entire list, if desired. 
+Only one attempts further discourse structuring: Laing et al.’s system for verbalising medical ontologies organises text according to rhetorical structure. 
+
+---------Positive---------
+We identify problems with the Penn Treebank that render it imperfect for syntaxbased machine translation and propose methods of relabeling the syntax trees to improve translation quality.
+We develop a system incorporating a handful of relabeling strategies that yields a statistically significant improvement of 2.3 BLEU points over a baseline syntax-based system. 
+---------Negative---------
+However, auxiliaries and verbs function very differently and thus cannot be treated identically.
+We noticed many wrong verb tense choices, e.g., gerunds and participles used as main sentence verbs.
+This partitions a grammatical category into more specific subcategories, but not as fine-grained as lexicalization.
+We would like to thank Greg Langmead, Daniel Marcu, and Wei Wang for helpful comments.
+Variant 2 omitted #LR, variant 3 kept only #LR, and variant 4 only annotated nodes without sisters.
+
+---------Positive---------
+We present a small set of attachment heuristics for postnominal PPs occurring in full-text articles related to enzymes.
+A detailed analysis of the results suggests their utility for extraction of relations expressed by nominalizations (often with several attached PPs).
+The system achieves 82% accuracy on a manually annotated test corpus of over 3000 PPs from varied biomedical texts. 
+---------Negative---------
+As mentioned above, splitting nominalizations into general and specific classes may solve this problem.
+acid motifs used for purification of proteins, specifically proteins expressed in E. coli.
+... xylooligosaccharides were not detected in hydrolytic products from corn cell walls by TLC analysis.
+The heuristics cover all prepositions, even infrequent ones, that nonetheless convey important information.
+Further analysis and more semantic categories are needed to formulate more generally applicable rules.
+
+---------Positive---------
+Event extraction approaches based on expressive structured representations of extracted information have been a significant focus of research in recent biomedical natural language processing studies.
+However, event extraction efforts have so far been limited to publication abstracts, with most studies further considering only the specific transcription factor-related subdomain of molecular biology of the GENIA corpus.
+To establish the broader relevance of the event extraction approach and proposed methods, it is necessary to expand on these constraints.
+In this study, we propose an adaptation of the event extraction approach to a subdomain related to infectious diseases and present analysis and initial experiments on the feasibility of event extraction from domain full text publications. 
+---------Negative---------
+Trigger recognition was performed with a simple regular expressionbased tagger covering standard surface form variation.
+For full texts, performance is lower yet by a further 10% points.
+The non-GGP UMLS Metathesaurus terms provided negative indicators for reducing spurious taggings, and the custom dictionary positive indicators.
+Briefly, the guidelines specify tagging for minimal continuous spans of specific gene/gene product names, without differentiating between DNA/RNA/protein.
+Finally, systematic errors are made for entities belonging to other categories such as named cell components or species.
+
+---------Positive---------
+The core-adjunct argument distinction is a basic one in the theory of argument structure.
+The task of distinguishing between the two has strong relations to various basic NLP tasks such as syntactic parsing, semantic role labeling and subcategorization acquisition.
+This paper presents a novel unsupervised algorithm for the task that uses no supervised models, utilizing instead state-of-the-art syntactic induction algorithms.
+This is the first work to tackle this task in a fully unsupervised scenario. 
+---------Negative---------
+In his Model 2, Collins modifies his parser to provide a coreadjunct prediction, thereby improving its performance.
+First, all works use manual or supervised syntactic annotations, usually including a POS tagger.
+Cores were defined to be any argument bearing the labels ‘A0’ – ‘A5’, ‘C-A0’ – ‘C-A5’ or ‘R-A0’ – ‘R-A5’.
+Indeed, we can find examples where adjuncts, although optional, appear very often with a certain verb.
+the classifiers abstained, i.e., when sufficient information was available to make all three predictions.
+
+---------Positive---------
+This paper investigates the use of machine learning algorithms to label modifier-noun compounds with a semantic relation.
+The attributes used as input to the learning algorithms are the web frequencies for phrases containing the modifier, noun, and a prepositional joining term.
+We compare and evaluate different algorithms and different joining phrases on Nastase and Szpakowicz's (2003) dataset of 600 modifier-noun compounds.
+We find that by using a Support Vector Machine classifier we can obtain better performance on this dataset than a current state-of-the-art system; even with a relatively small set of prepositional joining terms. 
+---------Negative---------
+They experiment with a Bayesian algorithm, decision trees, and their own algorithm; semantic scattering.
+We omitted these three examples from our experiments, leaving a dataset of 597 examples.
+Using an ontology of medical terms they train a neural network to semantically classify nominal phrases, achieving 60% accuracy over 16 classes.
+The mechanisms of these different learning approaches will be discussed briefly in Section 4. 
+The SVM consistently outperformed the baseline; neither of the other algorithms did so. 

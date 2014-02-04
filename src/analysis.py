@@ -76,11 +76,11 @@ with_sentences()
 print "Positive sentences correctly classified :"
 for line, vals in possent.items():
     if vals[0] == 1:
-        print vals[3]
+        print "[" + str(vals[1]) + "] " + vals[3]
 print "Positive sentences wrongly classified :"
 for line, vals in possent.items():
     if vals[0] == 0:
-        print vals[3]
+        print "[" + str(vals[1]) + "] " + vals[3]
 print "Negative sentences correctly classified :"
 for line, vals in negsent.items():
     if vals[0] == 1:

@@ -160,7 +160,7 @@ def get_test_sentences(infile, outfile, backup=False):
     section_idx = sent2Section(doc, sent_idx)
     if backup:
         backupfile = DIR['BASE'] + "data/backup.txt"
-        writeToFile(backupfile, "\n---------Test Sentences---------\n", 'a')
+        writeToFile(backupfile, "\n---------" + str(doc) + "---------\n", 'a')
         writeToFile(backupfile, samples, 'a')
     return ranker, section_idx
 
@@ -327,14 +327,14 @@ def generateFeatures():
         try:
             print infile + " is being processed."
             # The following is for collecting summary sentences
-            #ranker, sent_idx = get_pos_sentences(infile, sentfile, backup=True)
-            #create_dep_parse(sentfile, depfile)
-            #parseTrees(depfile, featurefile, ranker, sent_idx, '+1')
+            ranker, sent_idx = get_pos_sentences(infile, sentfile, backup=True)
+            create_dep_parse(sentfile, depfile)
+            parseTrees(depfile, featurefile, ranker, sent_idx, '+1')
 
             # The following is for negative samples
-            #ranker, sent_idx = get_neg_sentences(infile, sentfile, backup=True)
-            #create_dep_parse(sentfile, depfile)
-            #parseTrees(depfile, featurefile, ranker, sent_idx, '-1')
+            ranker, sent_idx = get_neg_sentences(infile, sentfile, backup=True)
+            create_dep_parse(sentfile, depfile)
+            parseTrees(depfile, featurefile, ranker, sent_idx, '-1')
 
             # The following is for test samples
             ranker, sent_idx = get_test_sentences(infile, sentfile)
@@ -345,5 +345,5 @@ def generateFeatures():
     print "All input files processed to create feature vectors."
 
 
-if __name__ == '__main__':
-    generateFeatures()
+#if __name__ == '__main__':
+    #generateFeatures()
