@@ -60,5 +60,5 @@ def summarize(document, all=True):
                                                       F_measure))
 
 if __name__ == '__main__':
-    doc = '../demo/P10-1024-parscit-section.xml'
+    doc = '../demo/W11-2821-parscit-section.xml'
     summarize(doc, all=True)

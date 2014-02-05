@@ -1,0 +1,4 @@
+In this paper, we propose a novel approach named CollabRank for collaborative single-document keyphrase extraction, which makes use of the mutual influences between documents in appropriate cluster context to better evaluate the saliency of words and phrases.
+Given a document set for keyphrase extraction of each single document, CollabRank first employs the clustering algorithm to group the documents into a few clusters.
+Experiments have been performed on a dataset consisting of 308 news articles with human-annotated keyphrases, and the results demonstrate the good effectiveness of the CollabRank approach. 
+We also find that the extraction performance is positively correlated with the quality of cluster context, and existing clustering algorithms can yield appropriate cluster context for collaborative keyphrase extraction.

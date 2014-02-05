@@ -32,7 +32,8 @@ def classifyDoc(document):
     sents, offset = doc.all_sentences()
     ranker = TextRank(sents)
     ranker.rank()
-    num = 5
+    looper = 20
+    num = 10
     x = 0
     summary = []
     sent_idx = [0]
@@ -62,10 +63,14 @@ def classifyDoc(document):
         with open(outfile, 'r') as ofile:
             sent_val = float(ofile.read().strip())
         if sent_val > 0:
-            summary.append(str(doc[idx].sentence))
+            summary.append(doc[idx].sentence.encode('utf-8'))
             num -= 1
-        sum_len += len(str(doc[idx].sentence).split(' '))
+            sum_len += len(doc[idx].sentence.encode('utf-8').split(' '))
         if sum_len > 130:
+            break
+        looper -= 1
+        if looper == 0:
+            print "Looper Done"
             break
     writeToFile(datadir + "svm_summary.txt", '\n'.join(summary), 'w')
     print '\n'.join(summary)
@@ -73,7 +78,7 @@ def classifyDoc(document):
 
 def runClassifier():
     xmldir = DIR['BASE'] + "demo/"
-    classifyDoc(xmldir + "P07-3014-parscit-section.xml")
+    classifyDoc(xmldir + "W11-2821-parscit-section.xml")
 
 
 if __name__ == '__main__':

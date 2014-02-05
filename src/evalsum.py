@@ -1,13 +1,16 @@
 from PythonROUGE import PythonROUGE
 from Config import DIR
 
-summary_type = 'st.txt'
-#guess_list = ['C08-1122-', 'P07-3014-', 'P10-1024-', ' P99-1026-','W93-0225-']
-guess_list = ['C08-1122-', 'P07-3014-', 'P10-1024-', ' P99-1026-']
-ref_list = [['C08-1122-Ref1.txt', 'C08-1122-Ref2.txt'],
-            ['P07-3014-Ref1.txt'],
-            ['P10-1024-Ref1.txt', 'P10-1024-Ref2.txt'],
-            ['P99-1026-Ref2.txt']]
+#summary_type = '-svm_summary.txt'
+summary_type = '-a.txt'
+guess_list = ['C08-1122', 'P07-3014', 'W11-2821']
+#guess_list = ['C08', 'P07', ' W11']
+ref_list = [['C08-1122-Ref1.txt', 'C08-1122-Ref2.txt', 'C08-1122-Ref3.txt',
+             'C08-1122-Ref4.txt', 'C08-1122-Ref5.txt'],
+            ['P07-3014-Ref1.txt', 'P07-3014-Ref2.txt', 'P07-3014-Ref3.txt',
+             'P07-3014-Ref4.txt', 'P07-3014-Ref5.txt'],
+            ['W11-2821-Ref2.txt', 'W11-2821-Ref3.txt', 'W11-2821-Ref4.txt'],
+            ]
             #['W93-0225-Ref2.txt']]
 guess_summary_list = []
 for item in guess_list:

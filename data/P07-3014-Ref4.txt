@@ -1,0 +1,6 @@
+One  method for deducing semantic relations between words in compounds involves gathering n-gram frequencies of these paraphrases, containing a noun, a modifier and a “joining term” that links them.
+Some algorithm can then be used to map from joining term frequencies to semantic relations and so find the correct relation for the compound in question.
+We experiment with three different learning algorithms; Nearest  Neighbor,  Multi-Layer Perceptron  and Support Vector Machines (SVM).
+We collect web frequencies for queries of the form “head joining term modifier”.
+The SVM  algorithm  produced  the  best  accuracy of all, achieving 50.1%  accuracy using the combined set of joining terms.
+However, one issue with the SVM is that it never predicted the class “causal” for any of the  examples.

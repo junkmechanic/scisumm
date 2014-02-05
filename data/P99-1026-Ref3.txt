@@ -1,0 +1,5 @@
+This paper presents incremental significant utterance-sequence search (ISSS), a method that enables incremental understanding of user utterances word by word by finding plausible sequences of utterances that play crucial roles in the task execution of dialogues. 
+ISSS holds multiple possible belief states and updates those belief states when a word hypothesis is inputted.
+The response generation module produces responses based on the most likely belief state.
+The method utilizes beam search to deal with the ambiguity of boundaries as well as syntactic and semantic ambiguities.
+A comparison of an experimental spoken dialogue system using ISSS with an interval-based system shows that the method is effective.

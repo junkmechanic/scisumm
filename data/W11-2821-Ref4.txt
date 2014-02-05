@@ -1,0 +1,3 @@
+We describe here a generic verbaliser  (applicable to any OWL-DL ontology with English identifiers/labels) which delivers its output (e.g., figure 1) in the form of an organised hypertext, akin to an online encyclopedia or glossary, and investigate whether this extra organisation makes the text easier to understand and navigate.
+We describe here a study which checks this point by pitting organization against brevity for a task requiring accurate retrieval of information from a text.
+From our study comparing organised and unorganised texts, two main points emerge: first, we find no evidence that people viewing the organized text perform a navigation task more accurately; second, people viewing the organised texts found the task easier.
