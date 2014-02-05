@@ -1,0 +1,92 @@
+Positive Samples Classified Correctly : 18
+Positive Samples Classified Incorrectly : 59
+Negative Samples Classified Correctly : 0
+Negative Samples Classified Incorrectly : 0
+
+
+
+Positive sentences correctly classified :
+[1.2985705] As a general rule, the negation introduced by &quot;no&quot; in a sentence is translated by placing the operator &quot;no&quot; (not) right after the quantification introduced by the subject.
+[0.090741798] In this study, the cluster context is obtained by applying the clustering algorithm on the document set, and we have investigated how the cluster context influences the keyphrase extraction performance by employing different clustering algorithms.
+[2.1649458] CollabRank is implemented by first employing the clustering algorithm to obtain appropriate document clusters, and then using the graph-based ranking algorithm for collaborative single-document keyphrase extraction within each cluster.
+[0.44117389] The collaborative framework for keyphrase extraction consists of the step of obtaining the cluster context and the step of collaborative keyphrase extraction in each cluster.
+[4.0180067] This task is in essence the one that we will give the computer—to judge the attachment without any more information than the preposition and the heads of the two possible attachment sites.
+[0.080833566] For each of the 3 attributes, 4 variables track whether the system has obtained the attribute's value, the system's confidence in the value (if obtained), the number of times the system has asked the user about the attribute, and the type of ASR grammar most recently used to ask for the attribute.
+[0.2646819] The role of the dialogue manager in such systems is to interact in a natural way to help the user complete the tasks that the system is designed to support.
+[0.10337692] One explanation for these findings would be that people do whatever is necessary to achieve a desired level of performance, so that when provided with superior tools they achieve roughly the same result but with less effort.12 The drop in performance by the unorganised text group on question 1 might have been due to unfamiliarity with a sentence-list type of text (all participants answered question 1 first since questions were always presented in the same order).
+[4.5933827] A second possible objection is that the organised text is necessarily longer than a bare list of sentences; this point is tested in the study reported here, which suggests that organisation makes the texts easier to use, with no loss of performance.
+[4.4641909] One consequence of this organisation is that some statements are repeated because they are relevant to more than one entry; this means that the text is longer than one in which statements are simply listed.
+[0.24182549] In Figure 8, rule ® is relabeled as rule ® and expects an NP-CˆVP, i.e., an NP-C with a VP parent.
+[0.31200189] The third type was auxiliary lexicalization (LEX_AUX), in which all forms of the verb be are annotated with _be, and similarly with do and have.
+[1.3998561] In this study, we propose an adaptation of the event extraction approach to a subdomain related to infectious diseases and present analysis and initial experiments on the feasibility of event extraction from domain full text publications.
+[1.3908291] The marked argument is a core in 1 and an adjunct in 2 and 3.
+[1.2105805] The attributes used as input to the learning algorithms are the web frequencies for phrases containing the modifier, noun, and a prepositional joining term.
+[3.5210594] The motivation for this paper is to discover which joining terms are good predictors of a semantic relation, and which learning algorithms perform best at the task of mapping from joining terms to semantic relations for modifier-noun compounds.
+[1.4694122] Turney and Littman (2005) use a set of 64 short prepositional and conjunctive phrases they call &quot;joining terms&quot; to generate exact queries for AltaVista of the form &quot;noun joining term modifier&quot;, and &quot;modifier joining term noun&quot;.
+[0.84783018] We are also interested in comparing the performance of machine learning algorithms on the task of mapping from n-gram frequencies of joining terms to semantic relations.
+
+
+
+
+Positive sentences wrongly classified :
+[-1.3876143] Finally, any formula of the form &quot;for(x,p,c)&quot; can be replaced by just the formula c, in which all occurrences of x have been replaced by the formula: those(x,p) representing the subset of x's domain whose elements satisfy p. This replacement takes place in the data base component of our system.
+[-1.5342667] But in a type-checking system in which the first argument of the relation &quot;live&quot; is associated with the human domain, and in which employees—and not salaries—are known to belong to this same domain, the first reading is not even possible.
+[-1.7462054] ) can be considered as a variant for &quot;Tomas vive en k&quot; (Tom lives in k), in which &quot;en k&quot; has been moved to the beginning of the sentence and replaced by &quot;Donde&quot;.
+[-1.7296921] In the logic L3, the predication is assigned the &quot;pointless&quot; truth value; but in an improvement of this system, we are proposing the use of a fourth truth value, called &quot;mixed&quot;, for this situation.
+[-1.8819528] for(x,p,c) the intuitive meaning of which is: &quot;c holds for the set E of all x's in x's domain which satisfy p&quot;.
+[-1.8151562] If a sentence contains a determiner, a quantification of the form &quot;those(x,p)&quot; is introduced, where x is a typed variable and p is a logical formula in our system.
+[-1.2260162] Given a document cluster, CollabRank makes use of the global word relationships in the cluster to evaluate and rank candidate phrases for each single document in the cluster based on the graph-based ranking algorithm.
+[-0.27183298] Instead of making only use of the word relationships in a single document, the algorithm can incorporate the “voting” or “recommendations” between words in all the documents of the cluster, thus making use of the global information existing in the cluster context.
+[-1.7617138] All the candidate phrases in the document are ranked in decreasing order of the phrase scores and the top n phrases are selected as the keyphrases of the document.
+[-1.7408632] After the scores of all candidate words in the cluster have been computed, candidate phrases are selected and evaluated for each single document in the cluster.
+[-1.5882146] If we restrict the lexical association procedure to choose attachment only in cases where the absolute value of the LA score is greater than 2.0 (an arbitrary threshold indicating that the probability of one attachment is four times greater than the other), we get attachment judgments on 621 of the 880 test sentences, with overall precision of about 89%.
+[-1.5627929] For each noun phrase head, we recorded the following preposition if any occurred (ignoring whether or not the parser had attached the preposition to the noun phrase), and the preceding verb if the noun phrase was the object of that verb.
+[-1.5542129] In the remaining 16 cases, associations between the preposition and both the noun and the verb are recorded in the dictionary.
+[-1.914061] We assume that in each case of attachment ambiguity, there is a forced choice between two outcomes: the preposition attaches either to the verb or to the noun.
+[-1.8621686] We chose always to assign light verb constructions to noun attachment, based on the fact that the noun supplies the lexical information about what prepositions are possible, and small clauses to verb attachment, based on the fact that this is a predicative construction lexically licensed by the verb.
+[-1.1834179] We use the following notation: f(w,p) is the frequency count for the pair consisting of the verb or noun w and the preposition p. The unigram frequency count for the word w (either a verb, noun, or preposition) can be viewed as a sum of bigram frequencies, and is written f (w).
+[-1.6665846] The contexts created by the utterance understanding module can also be accessed by the response generation module so that it can produce responses based on the belief state in the context with the highest priority at a point in time.
+[-1.7043213] The response generation module is invoked when the user pauses, and plans responses based on the belief state of the context with the highest priority.
+[-1.720995] In Japanese dialogue systems, producing a backchannel is effective when the user's intention is not clear at that point in time, but determining the content of responses in a real-time spoken dialogue system is also beyond the scope of this paper.
+[-1.6552611] For each context, if the top of the stack is an SU, empty the stack and update the belief state according to the content of the SU.
+[-0.7356329] The top of the stack in (2b) is an SU, thus (2c) is created, whose belief state contains the user's intention of meeting room reservation on Wednesday this week.
+[-0.87275848] We also use speech act in this paper to mean a command that updates the hearer's belief state about the speaker's intention and the context of the dialogue.
+[-0.84383756] Before 'next week' is inputted, the interpretation that the user wants to book a room on Wednesday this week has the highest priority, and then after that, the interpretation that the user wants to book a room on Wednesday next week has the highest
+[-0.85470459] Our methodology involves 1) representing a dialogue strategy as a mapping from each state in the chosen state space S to a set of dialogue actions, 2) deploying an initial training system that generates exploratory training data with respect to S, 3) constructing an MDP model from the obtained training data, 4) using value iteration to learn the optimal dialogue strategy in the learned MDP, and 4) redeploying the system using the learned state/action mapping.
+[-0.76769415] The third state represents that NJFun is now working on the second attribute (location), that it already has this value with high confidence (location was obtained with activity after the user's first utterance), and that the dialogue history is good.4 This time NJFun chooses the ExpConf2 strategy, and confirms the attribute with the second NJFun utterance, and the state changes again.
+[-0.58932664] The processing of time is similar to that of location, which leads NJFun to the final state, where it performs the action &quot;Tell&quot; (corresponding to querying the database, presenting the results to the user, and asking the user to provide a reward).
+[-0.80455991] The problem of learning the best dialogue strategy from data is thus reduced to computing the optimal policy for choosing actions in an MDP that is, the system's goal is to take actions so as to maximize expected reward.
+[-1.491282] In NJFun, we restricted the action choices to 1) the type of initiative to use when asking or reasking for an attribute, and 2) whether to confirm an attribute value once obtained.
+[-1.3855571] To render the unorganised text’s appearance as similar as possible to the organised one, spaces were introduced every fourth line with blocks of text placed on a taupe-coloured background identical to that of the entries in the organised text.
+[-1.4650636] For properties, the descriptive statements specify the domain and range, and features such as functionality and transitivity, and examples are provided by statements about individuals or classes in which the property is used.
+[-1.2114625] The texts were generated from an ontology about spider anatomy.3 One group saw the encyclopediastyled version illustrated in figure 1, henceforth the ‘organised text’; the other saw the same information as a list of sentences10 as shown in figure 2 (‘unorganised text’).
+[-1.1586265] This is addressed through a navigation task in which people were asked to locate information in either an organised text or an unorganised one and then give a judgement on how difficult the information was to find.
+[-0.32190504] In fact, the most popular parent for the NP-C her is VP, while the most popular parent for she is S. Rule (1) is relabeled as the NP-CˆS rule ® and her is expressed as the NPCˆVP rule Q. Only rule (E) can partner with rule & which produces the correct output deeply love her.
+[-0.24817244] The object NP-C her, on the other hand, is frequently rightmost in a constituent, which is reflected in the NP-C#L rule (F).
+[-0.80309065] In this paper, we argue that the overly-general tagset of the PTB is problematic for MT because it fails to capture important grammatical distinctions that are critical in translation.
+[-0.0048353517] In the second problem, the VP-C tag fails to communicate that it is headed by the base verb (VB) demonstrate, which should prevent it from being used with the auxiliary VBZ has.
+[-0.24932701] Rule (g) is relabeled as the IN/PP-C rule 20� since PP-C is the most common complement for out (99% of the time).
+[-0.68691125] If no nominalizations are present in the NP, instead of defaulting to VP attachment, the PP is attached to the closest NP to its left that is not the object of an of PP.
+[-1.3800453] The application of right association for PPs headed by of, for, and from resulted in correct attachment in 96.2% of their occurrences in the development corpus.
+[-0.79897549] Overall system improvement over baseline attachment accuracy can be achieved through successful attachment of this class of PPs, particularly in and with PPs, which are the second and fourth most frequently used PPs in the development corpus, respectively.
+[-1.5879872] This resulted in a 3% increase in the accuracy for in PPs with no adverse effects on any of the other PPs with nominalization affinity.
+[-0.83979882] The accuracy and coverage of each rule for the test data, as contrasted with the development set, is given in Table 2.
+[-0.815808] Applying the strong nominalization affinity heuristic to these PPs resulted in an increase offor PP attachment accuracy in the test corpus to 75.8% and an overall increase in accuracy of 1.0%.
+[-0.83421898] In focusing on postnominal PPs, we exclude here PPs that trivially attach to the VP for lack of NP attachment points and focus on the subset of PPs with the highest degree of attachment ambiguity.
+[-1.2697395] As part of the present study, we introduce annotation for gene/gene product (GGP) mentions (Section 3.2), and in the following discussion of applying an event extraction approach to the domain the availability of this class annotation as an additional category is assumed.
+[-1.4111178] As related types of statements are annotated as Localization events in the applied model, we propose to apply this event type and differentiate between the specific subtypes on the basis of the event arguments.
+[-1.1065363] We applied a previously introduced corpus of subdomain full texts annotated for mentions of bacteria and terms from the three top-level Gene Ontology subontologies as a reference defining domain information needs to study how these can be met through the application of events defined in the BioNLP’09 Shared Task on event extraction.
+[-0.88057277] As gene and gene product entities are central to domain information needs and the core entities of the applied event extraction approach, we first introduced annotation for this entity class.
+[-0.41784185] We have presented a study of the adaptation of an event extraction approach to the T4SS subdomain as a step toward the introduction of event extraction to the broader infectious diseases domain.
+[-1.9644294] As a demonstration of feasibility the result is encouraging for both the applicability of event extraction to this specific new domain and for the adaptability of the approach to new domains in general.
+[-1.5931692] This is an indication that the collocation between the argument and the preposition is more indicative of the core/adjunct label than the obligatoriness of the slot (as expressed by the predicate-slot collocation).
+[-1.3610651] We define three measures, one quantifying the obligatoriness of the slot, another quantifying the selectional preference of the verb to the argument and a third that quantifies the association between the head word and the slot irrespective of the predicate (Section 3.3).
+[-1.5837695] In order not to bias the counts towards predicates which tend to take more arguments, we define here N(p, s) to be the number of times the (p, s) pair occurred in the training corpus, irrespective of the number of head words the argument had (and not e.g., EhN(p, s, h)).
+[-0.51661338] In order to avoid tuning a parameter for each of the measures, we set the threshold as the median value of this measure in the test set.
+[-1.8523699] We therefore apply the following procedure: (1) tag the training data with the ensemble classifier; (2) for each test sample x, if more than a ratio of α of the training samples sharing the same predicate and slot with x are labeled as cores, tag x as core.
+[-1.8398502] Since the semantics of cores is more predicate dependent than the semantics of adjuncts, we expect arguments for which the predicate has a strong preference (in a specific slot) to be cores.
+[-1.3203094] Over the set of 5 semantic relations defined by Nastase and Szpakowicz (2003), they achieve an accuracy of 45.7% for the task of assigning one of 5 semantic relations to each of the 600 modifier-noun phrases.
+[-1.163377] Also, they use 64 joining terms and gather counts for both the forms &quot;noun joining term modifier&quot; and &quot;modifier joining term noun&quot; (128 frequencies in total); while we use only the former construction with 28 joining terms.
+[-1.2793978] The largest class in our dataset is &quot;participant&quot;, which is the label for 43% of the examples; the smallest is &quot;temporal&quot;, which labels 9% of the examples.
+Negative sentences correctly classified :
+Negitive sentences wrongly classified :
