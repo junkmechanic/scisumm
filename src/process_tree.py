@@ -2,6 +2,7 @@ import re
 import os
 import subprocess
 from collections import deque
+from collections import OrderedDict
 from Document import Document
 from Config import DIR
 from Ranker import Ranker
@@ -14,6 +15,7 @@ from glob import glob
 
 # this is a temporary list for debugging.
 trees = []
+test_data = OrderedDict()
 
 
 class Node:
@@ -29,13 +31,15 @@ class Node:
             self.pos = reg.group(3)
             self.dep = reg.group(4)
             self.children = []
+            self.value = ''
 
     def append(self, node):
         self.children.append(node)
 
     def __str__(self):
         return (' ' * self.level * 2 + str(self.level) + '->' +
-                self.word + '-' + self.pos + '-' + self.dep)
+                self.word + '-' + self.pos + '-' + self.dep +
+                '    ' + self.value)
 
 
 def sent2Section(doc, sent_idx):
@@ -102,7 +106,7 @@ def get_neg_sentences(infile, outfile, backup=False):
     #ranker = Ranker(sentences, tfidf=False)
     #return ranker, sent_idx
     #-----------------------------------------
-    # Same as in get_pos_sentences
+    # Calculating the sectional TF-IDF
     sections = []
     for sec, block in doc.document.items():
         sentences = ''
@@ -142,11 +146,16 @@ def get_test_sentences(infile, outfile, backup=False):
         sent_idx.append(idx)
         samples += doc[idx].sentence.encode('utf-8') + '\n'
         num -= 1
+        #---------------------------------------------------
+        # Storing the sentence in the dictionary for pickling for display
+        key = infile + "-" + str(idx)
+        test_data[key] = {'sentence': doc[idx].sentence.encode('utf-8'),
+                          'textrank': ranker.scores[x - 1][1]}
     writeToFile(outfile, samples, 'w')
     #ranker = Ranker(sentences, tfidf=False)
     #return ranker, sent_idx
     #-----------------------------------------
-    # Same as in get_pos_sentences
+    # Calculating the sectional TF-IDF
     sections = []
     for sec, block in doc.document.items():
         sentences = ''
@@ -185,13 +194,14 @@ def create_dep_parse(infile, outfile):
                      outfile])
 
 
-def parseTrees(infile, outfile, ranker, sent_idx, label):
+def parseTrees(infile, outfile, ranker, sent_idx, label, sourcefile=None):
     current = dict()
     i = 0
     with open(infile, 'r') as file:
         for line in file.readlines():
             if len(line.strip()) == 0:
-                processTree(outfile, current[0], ranker, sent_idx[i], label)
+                processTree(outfile, current[0], ranker, sent_idx[i], label,
+                            sourcefile)
                 i += 1
                 current = dict()
             else:
@@ -207,15 +217,34 @@ def parseTrees(infile, outfile, ranker, sent_idx, label):
     print "All dependency trees parsed successfully."
 
 
-def processTree(outfile, root, ranker, idx, label):
+def processTree(outfile, root, ranker, idx, label, sourcefile=None):
     trees.append(root)
     verb_val = ranker.tfidf_value(idx, root.word)
+    #-------------------------------------
+    # For display
+    root.value += '         ' + str(verb_val)
+    #-------------------------------------
     #verb_val = ranker.total_count(root.word)
     # Look for subject
     subj = findNode(root, 'subj')
     subj_val = getValue(subj, ranker, idx)
+    #-------------------------------------
+    # For display
+    if subj is not None:
+        subj.value += '         ' + str(subj_val)
+    #-------------------------------------
     obj = findNode(root, 'obj')
     obj_val = getValue(obj, ranker, idx)
+    #-------------------------------------
+    # For display
+    if obj is not None:
+        obj.value += '         ' + str(obj_val)
+    #-------------------------------------
+    # Adding the tree for pickling
+    if sourcefile is not None:
+        key = sourcefile + "-" + idx
+        test_data[key]['dep-parse'] = root
+    #-------------------------------------
     writeToFile(outfile, label + " 1:" + str(verb_val) + " 2:" +
                 str(subj_val) + " 3:" + str(obj_val) + '\n', 'a')
     #-----------------------------------------------------------
@@ -261,6 +290,10 @@ def computeValue(node, ranker, idx):
         # The same is true for numbers.
         num = 1
         val = ranker.tfidf_value(idx, node.word)
+        #-------------------------------------
+        # For display
+        node.value += str(val)
+        #-------------------------------------
         #val = ranker.total_count(node.word)
     for child in node.children:
         value, n = computeValue(child, ranker, idx)
@@ -312,7 +345,11 @@ def printTree(root, ranker=None, idx=None):
 
 def printChildTree(node, ranker=None, idx=None):
     for child in node.children:
-        print str(child) + '    ' + str(ranker.tfidf_value(idx, child.word))
+        if ranker is not None:
+            print str(child) + '    ' +\
+                str(ranker.tfidf_value(idx, child.word))
+        else:
+            print str(child)
         printChildTree(child, ranker, idx)
 
 

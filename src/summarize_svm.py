@@ -1,6 +1,8 @@
 from process_tree import create_dep_parse
 from process_tree import parseTrees
 from process_tree import sent2Section
+from process_tree import printTree
+from process_tree import trees
 from Document import Document
 from Config import DIR
 from Ranker import Ranker
@@ -83,3 +85,5 @@ def runClassifier():
 
 if __name__ == '__main__':
     runClassifier()
+    for tree in trees:
+        printTree(tree)
