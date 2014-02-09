@@ -46,12 +46,14 @@ class Document:
         self.convert_to_obj()
 
     def __getitem__(self, index):
-        for sec, blk in self.document.items():
-            if index in blk.keys():
-                return blk[index]
-        # Raise Exception ideally
-        print("The requested index is out of range of this doc !!")
-        return Sentence('')
+        try:
+            for sec, blk in self.document.items():
+                if index in blk.keys():
+                    return blk[index]
+        except IndexError as e:
+            print(str(e))
+            print("The requested index is out of range of this doc !!")
+            return Sentence('')
 
     def process_doc(self, xmlfile):
 
@@ -147,6 +149,7 @@ def remove_crlf(text):
 
 
 if __name__ == '__main__':
-    doc = Document('../demo/J81-3002-parscit-section.xml')
+    doc = Document('../demo/J93-1005-parscit-section.xml')
+    #doc = Document('../demo/J81-3002-parscit-section.xml')
     #logit('\n'.join(doc.all_sentences()[0]))
     #logit(doc.all_sentences())

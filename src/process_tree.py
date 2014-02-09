@@ -1,5 +1,6 @@
 import re
 import os
+import pickle
 import subprocess
 from collections import deque
 from collections import OrderedDict
@@ -10,11 +11,17 @@ from Ranker import TextRank
 from GetTrainingSamples import writeToFile
 from nltk.corpus import stopwords
 from glob import glob
+import logging
 #from operator import itemgetter
 
 
 # this is a temporary list for debugging.
 trees = []
+# This will be used for pickling. The keys are:
+#     svm-val
+#     dep-parse
+#     textrank
+#     sentence
 test_data = OrderedDict()
 
 
@@ -148,9 +155,12 @@ def get_test_sentences(infile, outfile, backup=False):
         num -= 1
         #---------------------------------------------------
         # Storing the sentence in the dictionary for pickling for display
-        key = infile + "-" + str(idx)
+        infi = re.match(r'/home/ankur/devbench/scientific/scisumm/demo/(.+)-parscit-section\.xml', infile).group(1)
+        key = infi + "-" + str(idx)
         test_data[key] = {'sentence': doc[idx].sentence.encode('utf-8'),
-                          'textrank': ranker.scores[x - 1][1]}
+                          'textrank': ranker.scores[x - 1][1],
+                          'context-pre': getContext(doc, idx, -2),
+                          'context-pos': getContext(doc, idx, 2)}
     writeToFile(outfile, samples, 'w')
     #ranker = Ranker(sentences, tfidf=False)
     #return ranker, sent_idx
@@ -171,7 +181,23 @@ def get_test_sentences(infile, outfile, backup=False):
         backupfile = DIR['BASE'] + "data/backup.txt"
         writeToFile(backupfile, "\n---------" + str(doc) + "---------\n", 'a')
         writeToFile(backupfile, samples, 'a')
-    return ranker, section_idx
+    return ranker, section_idx, sent_idx
+
+
+def getContext(doc, idx, reach):
+    context = ''
+    if reach > 0:
+        lines = [idx + r for r in range(reach + 1)][1:]
+    else:
+        lines = [idx - r for r in reversed(range(-reach + 1))][:-1]
+    for lidx in lines:
+        #print "Sentence number " + str(lidx)
+        #print(doc[lidx].sentence.encode('utf-8'))
+        if doc[lidx] is not None:
+            context += doc[lidx].sentence.encode('utf-8') + " "
+        else:
+            print "Index out of range of Document : " + str(lidx)
+    return context
 
 
 def validSentence(sentence):
@@ -194,14 +220,14 @@ def create_dep_parse(infile, outfile):
                      outfile])
 
 
-def parseTrees(infile, outfile, ranker, sent_idx, label, sourcefile=None):
+def parseTrees(infile, outfile, ranker, sent_idx, label, sourcefile=None, real_sidx=None):
     current = dict()
     i = 0
     with open(infile, 'r') as file:
         for line in file.readlines():
             if len(line.strip()) == 0:
                 processTree(outfile, current[0], ranker, sent_idx[i], label,
-                            sourcefile)
+                            sourcefile, real_sidx[i])
                 i += 1
                 current = dict()
             else:
@@ -217,7 +243,7 @@ def parseTrees(infile, outfile, ranker, sent_idx, label, sourcefile=None):
     print "All dependency trees parsed successfully."
 
 
-def processTree(outfile, root, ranker, idx, label, sourcefile=None):
+def processTree(outfile, root, ranker, idx, label, sourcefile=None, real_sidx=None):
     trees.append(root)
     verb_val = ranker.tfidf_value(idx, root.word)
     #-------------------------------------
@@ -242,7 +268,8 @@ def processTree(outfile, root, ranker, idx, label, sourcefile=None):
     #-------------------------------------
     # Adding the tree for pickling
     if sourcefile is not None:
-        key = sourcefile + "-" + idx
+        sfile = re.match(r'/home/ankur/devbench/scientific/scisumm/demo/(.+)-parscit-section\.xml', sourcefile).group(1)
+        key = sfile + "-" + str(real_sidx)
         test_data[key]['dep-parse'] = root
     #-------------------------------------
     writeToFile(outfile, label + " 1:" + str(verb_val) + " 2:" +
@@ -360,27 +387,62 @@ def generateFeatures():
     sentfile = datadir + 'sentences.txt'
     depfile = datadir + 'dependency-trees.txt'
     featurefile = datadir + 'features.txt'
+    deleteFiles([sentfile, depfile, featurefile])
     for infile in glob(xmldir + "*.xml"):
         try:
             print infile + " is being processed."
             # The following is for collecting summary sentences
-            ranker, sent_idx = get_pos_sentences(infile, sentfile, backup=True)
-            create_dep_parse(sentfile, depfile)
-            parseTrees(depfile, featurefile, ranker, sent_idx, '+1')
+        #ranker, sent_idx = get_pos_sentences(infile, sentfile, backup=True)
+            #create_dep_parse(sentfile, depfile)
+            #parseTrees(depfile, featurefile, ranker, sent_idx, '+1')
 
             # The following is for negative samples
-            ranker, sent_idx = get_neg_sentences(infile, sentfile, backup=True)
-            create_dep_parse(sentfile, depfile)
-            parseTrees(depfile, featurefile, ranker, sent_idx, '-1')
+        #ranker, sent_idx = get_neg_sentences(infile, sentfile, backup=True)
+            #create_dep_parse(sentfile, depfile)
+            #parseTrees(depfile, featurefile, ranker, sent_idx, '-1')
 
             # The following is for test samples
-            ranker, sent_idx = get_test_sentences(infile, sentfile)
+            ranker, sent_idx, real_sidx = get_test_sentences(infile, sentfile)
             create_dep_parse(sentfile, depfile)
-            parseTrees(depfile, featurefile, ranker, sent_idx, '+1')
+            parseTrees(depfile, featurefile, ranker, sent_idx, '+1', infile, real_sidx)
         except Exception as e:
-            print(infile + str(e))
+            print "Some Exception in the main pipeline"
+            print (str(type(e)))
+            print str(e)
+            logging.exception("Something awfull !!")
+    attachSvmOut()
+    pickleIt()
     print "All input files processed to create feature vectors."
 
 
-#if __name__ == '__main__':
-    #generateFeatures()
+def attachSvmOut():
+    classify = DIR['BASE'] + "lib/svm-light/svm_classify"
+    model = DIR['DATA'] + "sec-tfidf-model.txt"
+    outfile = DIR['DATA'] + "svm-test-out.txt"
+    featurefile = DIR['DATA'] + 'features.txt'
+    outlist = []
+    subprocess.call([classify, featurefile, model, outfile])
+    with open(outfile, 'r') as ofile:
+        for line in ofile.readlines():
+            outlist.append(float(line.strip()))
+    for key, val in zip(test_data.keys(), outlist):
+        test_data[key]['svm-val'] = val
+
+
+def pickleIt():
+    picklefile = DIR['DATA'] + 'test-sentences-pickle'
+    deleteFiles([picklefile])
+    with open(picklefile, 'wb') as pfile:
+        pickle.dump(test_data, pfile)
+
+
+def deleteFiles(flist):
+    for file in flist:
+        if os.path.isfile(file):
+            d, f = os.path.split(file)
+            print f + " exists. Deleting.."
+            os.remove(file)
+
+
+if __name__ == '__main__':
+    generateFeatures()
