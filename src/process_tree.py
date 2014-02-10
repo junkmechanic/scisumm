@@ -19,9 +19,11 @@ import logging
 trees = []
 # This will be used for pickling. The keys are:
 #     svm-val
-#     dep-parse
+#     depparse
 #     textrank
 #     sentence
+#     contextpre
+#     contextpos
 test_data = OrderedDict()
 
 
@@ -159,8 +161,8 @@ def get_test_sentences(infile, outfile, backup=False):
         key = infi + "-" + str(idx)
         test_data[key] = {'sentence': doc[idx].sentence.encode('utf-8'),
                           'textrank': ranker.scores[x - 1][1],
-                          'context-pre': getContext(doc, idx, -2),
-                          'context-pos': getContext(doc, idx, 2)}
+                          'contextpre': getContext(doc, idx, -2),
+                          'contextpos': getContext(doc, idx, 2)}
     writeToFile(outfile, samples, 'w')
     #ranker = Ranker(sentences, tfidf=False)
     #return ranker, sent_idx
@@ -270,7 +272,7 @@ def processTree(outfile, root, ranker, idx, label, sourcefile=None, real_sidx=No
     if sourcefile is not None:
         sfile = re.match(r'/home/ankur/devbench/scientific/scisumm/demo/(.+)-parscit-section\.xml', sourcefile).group(1)
         key = sfile + "-" + str(real_sidx)
-        test_data[key]['dep-parse'] = root
+        test_data[key]['depparse'] = getTree(root)
     #-------------------------------------
     writeToFile(outfile, label + " 1:" + str(verb_val) + " 2:" +
                 str(subj_val) + " 3:" + str(obj_val) + '\n', 'a')
@@ -378,6 +380,20 @@ def printChildTree(node, ranker=None, idx=None):
         else:
             print str(child)
         printChildTree(child, ranker, idx)
+
+
+def getTree(root):
+    treestring = str(root) + '<BR>'
+    treestring += getChildTree(root)
+    return treestring
+
+
+def getChildTree(node):
+    tstring = ""
+    for child in node.children:
+        tstring += str(child) + '<BR>'
+        tstring += getChildTree(child)
+    return tstring
 
 
 def generateFeatures():
