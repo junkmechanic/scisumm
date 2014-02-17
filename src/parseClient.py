@@ -1,25 +1,38 @@
+ # -*- coding: utf-8 -*-
 import socket
-client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-client_socket.connect(("localhost", 5000))
-data1 = client_socket.recv(4096)
-if data1 == "Connection established\n":
-    client_socket.send("Load Parser" + '\n')
-    data2 = client_socket.recv(4096)
-    if data2 == "Parser Loaded...Ready to accept sentences...\n":
-        for sent in ['The sun goes over the moon every hour.',
-                     'It is not acceptable to be hiding from bats.',
-                     'Samantha killed the dog in the park. Everyone saw her.']:
-            client_socket.send(sent + '\n')
-            parse = client_socket.recv(4096)
-            print parse
+
+
+def getDepParse(client_socket, sentence):
+    client_socket.send(sentence + '\n')
+    parse = client_socket.recv(4096)
+    print parse
+
+
+def getConnection():
+    client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    client_socket.connect(("localhost", 5000))
+    data1 = client_socket.recv(4096)
+    if data1 == "Connection established\n":
+        client_socket.send("Load Parser" + '\n')
+        data2 = client_socket.recv(4096)
+        if data2 == "Parser Loaded...Ready to accept sentences...\n":
+            return client_socket
+        else:
+            print "Something Wrong!"
+            print data2
+            client_socket.send('q\n')
     else:
         print "Something Wrong!"
-        print data2
+        print data1
         client_socket.send('q\n')
-else:
-    print "Something Wrong!"
-    print data1
-    client_socket.send('q\n')
+
+if __name__ == '__main__':
+    client_socket = getConnection()
+    for sent in ['Samantha killed the dog in the park.',
+                 'Gabriele has a thick Italian accent',
+                 'Where will we go for dinner?']:
+        getDepParse(client_socket, sent)
+    print "All done."
 #while 1:
 #    data = client_socket.recv(4096)
 #    if (data == 'q\n' or data == 'Q\n'):

@@ -70,9 +70,10 @@ class ParseServer {
                         Collection<TypedDependency> tdl = gs.typedDependenciesCCprocessed();
                         SemanticGraph graph = new SemanticGraph(tdl);
                         output.append(toString(graph));
-                        output.append("\n");
+                        //output.append("\n");
                     }
                     toclient = output.toString();
+                    outToClient.println(toclient);
                     //System.out.println("SEND(Type Q or q to Quit):");
                     //toclient = inFromUser.readLine();
                     //if ( toclient.equals ("q") || toclient.equals("Q") )
@@ -83,7 +84,6 @@ class ParseServer {
                     //}
                     //else
                     //{
-                    outToClient.println(toclient);
                 }
             } catch (Exception e) {
                 outToClient.println("ERROR: Couldnt load parser. \n" + e);
@@ -91,6 +91,7 @@ class ParseServer {
                 System.exit(0);
             }
         }
+        connected.close();
     }
 
     // This takes in a Semantic graph and is only for display purposes.
