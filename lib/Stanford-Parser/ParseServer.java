@@ -70,7 +70,7 @@ class ParseServer {
                         Collection<TypedDependency> tdl = gs.typedDependenciesCCprocessed();
                         SemanticGraph graph = new SemanticGraph(tdl);
                         output.append(toString(graph));
-                        //output.append("\n");
+                        output.append("\n");
                     }
                     toclient = output.toString();
                     outToClient.println(toclient);

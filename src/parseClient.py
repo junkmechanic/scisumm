@@ -5,7 +5,7 @@ import socket
 def getDepParse(client_socket, sentence):
     client_socket.send(sentence + '\n')
     parse = client_socket.recv(4096)
-    print parse
+    return parse
 
 
 def getConnection():
@@ -29,9 +29,9 @@ def getConnection():
 if __name__ == '__main__':
     client_socket = getConnection()
     for sent in ['Samantha killed the dog in the park.',
-                 'Gabriele has a thick Italian accent',
+                 'Gabriele has a thick Italian accent. But noone notices.',
                  'Where will we go for dinner?']:
-        getDepParse(client_socket, sent)
+        print getDepParse(client_socket, sent)
     print "All done."
 #while 1:
 #    data = client_socket.recv(4096)

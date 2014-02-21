@@ -33,6 +33,7 @@ class Document:
            returns the corresponding section that the sentence belongs to.
         6. section_sentences(section) : returns a list of all the sentences in
            a particular section and the offset value for that section.
+        7. exclude_sentences
 
     TODO: 1. Save the object as a pickle for later use
              and make provisions for importing such pickles
@@ -88,7 +89,7 @@ class Document:
         except StopIteration:
             pass
         except Exception as e:
-            logit("Something went wrong!")
+            logit("Something went wrong while processing the document!")
             logit(section)
             logit(str(e))
 
@@ -139,6 +140,16 @@ class Document:
             return sentences, sorted(self.document[section].keys())[0]
         else:
             raise Exception("Section not found!")
+
+    def exclude_sentences(self, section):
+        sentences = []
+        indices = []
+        for sec, block in self.document.items():
+            if section != sec:
+                for key in sorted(block.keys()):
+                    sentences.append(str(block[key]))
+                    indices.append(key)
+        return sentences, indices
 
 
 def remove_crlf(text):

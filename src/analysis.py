@@ -1,7 +1,7 @@
 import re
 from Config import DIR
 
-featurefile = DIR['DATA'] + "features.txt"
+featurefile = DIR['DATA'] + "test-features.txt"
 outfile = DIR['BASE'] + "lib/svm-light/test-out.txt"
 
 pos = {}
@@ -72,20 +72,23 @@ def with_sentences():
                 print "Line numbers dont match"
             linenum += 1
 
-with_sentences()
-print "Positive sentences correctly classified :"
-for line, vals in possent.items():
-    if vals[0] == 1:
-        print "[" + str(vals[1]) + "] " + vals[3]
-print "Positive sentences wrongly classified :"
-for line, vals in possent.items():
-    if vals[0] == 0:
-        print "[" + str(vals[1]) + "] " + vals[3]
-print "Negative sentences correctly classified :"
-for line, vals in negsent.items():
-    if vals[0] == 1:
-        print vals[3]
-print "Negitive sentences wrongly classified :"
-for line, vals in negsent.items():
-    if vals[0] == 1:
-        print vals[3]
+
+def print_sentences():
+    print "Positive sentences correctly classified :"
+    for line, vals in possent.items():
+        if vals[0] == 1:
+            print "[" + str(vals[1]) + "] " + vals[3]
+    print "Positive sentences wrongly classified :"
+    for line, vals in possent.items():
+        if vals[0] == 0:
+            print "[" + str(vals[1]) + "] " + vals[3]
+    print "Negative sentences correctly classified :"
+    for line, vals in negsent.items():
+        if vals[0] == 1:
+            print vals[3]
+    print "Negitive sentences wrongly classified :"
+    for line, vals in negsent.items():
+        if vals[0] == 1:
+            print vals[3]
+#with_sentences()
+#print_sentences()

@@ -50,6 +50,11 @@ class Node:
                 self.word + '-' + self.pos + '-' + self.dep +
                 '    ' + self.value)
 
+    def html(self):
+        return ('---' * self.level * 2 + '->' +
+                self.word + '---' + self.pos + '---' + self.dep +
+                '-----' + self.value)
+
 
 def sent2Section(doc, sent_idx):
     section_idx = []
@@ -250,7 +255,7 @@ def processTree(outfile, root, ranker, idx, label, sourcefile=None, real_sidx=No
     verb_val = ranker.tfidf_value(idx, root.word)
     #-------------------------------------
     # For display
-    root.value += '         ' + str(verb_val)
+    root.value += '----' + str(round(verb_val, 4))
     #-------------------------------------
     #verb_val = ranker.total_count(root.word)
     # Look for subject
@@ -259,14 +264,14 @@ def processTree(outfile, root, ranker, idx, label, sourcefile=None, real_sidx=No
     #-------------------------------------
     # For display
     if subj is not None:
-        subj.value += '         ' + str(subj_val)
+        subj.value += '----' + str(round(subj_val, 4))
     #-------------------------------------
     obj = findNode(root, 'obj')
     obj_val = getValue(obj, ranker, idx)
     #-------------------------------------
     # For display
     if obj is not None:
-        obj.value += '         ' + str(obj_val)
+        obj.value += '----' + str(round(obj_val, 4))
     #-------------------------------------
     # Adding the tree for pickling
     if sourcefile is not None:
@@ -321,7 +326,7 @@ def computeValue(node, ranker, idx):
         val = ranker.tfidf_value(idx, node.word)
         #-------------------------------------
         # For display
-        node.value += str(val)
+        node.value += str(round(val, 4))
         #-------------------------------------
         #val = ranker.total_count(node.word)
     for child in node.children:
@@ -383,7 +388,7 @@ def printChildTree(node, ranker=None, idx=None):
 
 
 def getTree(root):
-    treestring = str(root) + '<BR>'
+    treestring = root.html() + '<br />'
     treestring += getChildTree(root)
     return treestring
 
@@ -391,7 +396,7 @@ def getTree(root):
 def getChildTree(node):
     tstring = ""
     for child in node.children:
-        tstring += str(child) + '<BR>'
+        tstring += child.html() + '<br />'
         tstring += getChildTree(child)
     return tstring
 
