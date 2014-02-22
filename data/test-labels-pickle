@@ -1,0 +1,1398 @@
+ccollections
+OrderedDict
+p0
+((lp1
+(lp2
+S'N06-1031-114'
+p3
+a(dp4
+S'textrank'
+p5
+F0.009912183252197527
+sS'contextpos'
+p6
+S'In the PTB, we observe that the NP-C she never has a VP parent, while her does. In fact, the most popular parent for the NP-C her is VP, while the most popular parent for she is S. Rule (1) is relabeled as the NP-C\xcb\x86S rule \xc2\xae and her is expressed as the NPC\xcb\x86VP rule Q. Only rule (E) can partner with rule & which produces the correct output deeply love her. '
+p7
+sS'reallbl'
+p8
+S'-1'
+p9
+sS'contextpre'
+p10
+S'It seemed likely that such contextual information could also benefit MT. Let us tackle the bad output from Figure 6 with parent annotation. '
+p11
+sS'sentence'
+p12
+S'In Figure 8, rule \xc2\xae is relabeled as rule \xc2\xae and expects an NP-C\xcb\x86VP, i.e., an NP-C with a VP parent.'
+p13
+saa(lp14
+S'N06-1031-16'
+p15
+a(dp16
+g5
+F0.009901275536697441
+sg6
+S'As a solution, we propose methods of relabeling the syntax trees that effectively improve translation quality. Consider the derivation in Figure 2. '
+p17
+sg8
+S'+1'
+p18
+sg10
+S'The Penn English Treebank (PTB) (Marcus et al., 1993) is our source of syntactic information, largely due to the availability of reliable parsers. It is not clear, however, whether this resource is suitable, as is, for the task of MT. '
+p19
+sg12
+S'In this paper, we argue that the overly-general tagset of the PTB is problematic for MT because it fails to capture important grammatical distinctions that are critical in translation.'
+p20
+saa(lp21
+S'N06-1031-11'
+p22
+a(dp23
+g5
+F0.009202111040342027
+sg6
+S'into an S, denoting a complete tree. The yield of this tree gives the target translation: the gunman was killed by police. '
+p24
+sg8
+S'-1'
+p25
+sg10
+S'Rule 01 replaces the Chinese word (shaded) with the English NP-C police. Rule (2) then builds a VP over the NP-C sequence. '
+p26
+sg12
+S'Next, is translated as the NP-C the gunman by rule T. Finally, rule combines the sequence of NP-C VP .'
+p27
+saa(lp28
+S'N06-1031-64'
+p29
+a(dp30
+g5
+F0.009151649372078638
+sg6
+S'We lexicalized these determiners: the, a, an, this, that, these, or those, and grouped together those with similar grammatical distributions (a/an, this/that, and these/those). Variant 1 included all the determiners mentioned above and variant 2 was restricted to the and a/an to focus only on articles. '
+p31
+sg8
+S'-1'
+p32
+sg10
+S'The second strategy was DT lexicalization  (LEX_DT), which we encountered previously in Figure 4. '
+p33
+sg12
+S'This addresses two features of Chinese that are problematic in translation to English: the infrequent use of articles and the lack of overt number indicators on nouns.'
+p34
+saa(lp35
+S'N06-1031-41'
+p36
+a(dp37
+g5
+F0.009009839030463533
+sg6
+S'On the other hand, this can lead to tags that are overly generic. Klein and Manning (2003) discuss this as a problem in parsing and demonstrate that annotating additional information onto the PTB tags leads to improved parsing performance. '
+p38
+sg8
+S'-1'
+p39
+sg10
+S'The third column gives the BLEU score along with an indication whether it is a statistically significant increase (\xe2\x96\xb2), a statistically significant decrease (\xe2\x96\xbc), or neither (? ) over the baseline BLEU score.  '
+p40
+sg12
+S'The small tagset of the PTB has the advantage of being simple to annotate and to parse.'
+p41
+saa(lp42
+S'N06-1031-53'
+p43
+a(dp44
+g5
+F0.008963967699707573
+sg6
+S'This also produces rules like 40\xef\xbf\xbd, where both the determiner and the noun are plural (notice the DT_these), and \xef\xbf\xbd, where both are singular. With such a ruleset, 20 400 \xef\xbf\xbd could only combine with 400\xef\xbf\xbd, not 40\xef\xbf\xbd, enforcing the grammatical output this Turkish position. '
+p45
+sg8
+S'-1'
+p46
+sg10
+S'We generalize lexicalization to allow a lexical item (terminal word) to be annotated onto any ancestor label, not only its parent. Let us revisit the determiner/noun number disagreement problem in Figure 2 (*this Turkish positions). '
+p47
+sg12
+S'If we lexicalize all DTs in the parse trees, the problematic DT is relabeled more specifically as DT_this, as seen in rule 20\xef\xbf\xbd in Figure 4.'
+p48
+saa(lp49
+S'N06-1031-100'
+p50
+a(dp51
+g5
+F0.008895539152420476
+sg6
+S'Rule D expects an NP-C on the right border of the constituent (NP-C#L). Since she never occurs in this position in the PTB, it should never be sisterhood-annotated as an NP-C#L. '
+p52
+sg8
+S'-1'
+p53
+sg10
+S'Figure 6 presents a derivation that leads to the ungrammatical output *deeply love she. The subject pronoun she is incorrectly preferred over the object form her because the most popular NP-C translation for is she. '
+p54
+sg12
+S'We can sidestep this mistake through sisterhood-annotation, which yields the relabeled rules \xc2\xae and D in Figure 7.'
+p55
+saa(lp56
+S'W10-1919-61'
+p57
+a(dp58
+g5
+F0.009647179644814086
+sg6
+S'A further 39% are of categories that can be viewed as high-level processes. These are distinct from the events considered in the BioNLP\xe2\x80\x9909 shared task in involving coarsergrained events and larger-scale participants than the GGP entities considered in the task: for example, conjugation occurs between bacteria, and virulence may involve a human host. '
+p59
+sg8
+S'+1'
+p60
+sg10
+S'To identify general categories, we performed a manual analysis of the 217 unique normalized terms annotated in the corpus as biological processes (Table 4). We find that the majority of the instances (58%) relate to location or movement. '
+p61
+sg12
+S'As related types of statements are annotated as Localization events in the applied model, we propose to apply this event type and differentiate between the specific subtypes on the basis of the event arguments.'
+p62
+saa(lp63
+S'W10-1919-3'
+p64
+a(dp65
+g5
+F0.009505345582855882
+sg6
+S'For most of the previous decade, biomedical Information Extraction (IE) efforts have focused primarily on tasks that allow extracted information to be represented as simple pairs of related entities. This representation is applicable to many IE targets of interest, such as gene-disease associations (Chun et al., 2006) and protein-protein interactions (N\xc2\xb4edellec, 2005; Krallinger et al., 2007). '
+p66
+sg8
+S'+1'
+p67
+sg10
+S'However, event extraction efforts have so far been limited to publication abstracts, with most studies further considering only the specific transcription factor-related subdomain of molecular biology of the GENIA corpus. To establish the broader relevance of the event extraction approach and proposed methods, it is necessary to expand on these constraints. '
+p68
+sg12
+S'In this study, we propose an adaptation of the event extraction approach to a subdomain related to infectious diseases and present analysis and initial experiments on the feasibility of event extraction from domain full text publications. '
+p69
+saa(lp70
+S'W10-1919-91'
+p71
+a(dp72
+g5
+F0.009180214854765114
+sg6
+S'We created manual GGP annotation following the annotation guidelines of the GENIA GGP Corpus (Ohta et al., 2009). As this corpus was the source of the gene/protein entity annotation provided as the basis of the BioNLP shared task on event extraction, adopting its annotation criteria assures compatibility with recently introduced event extraction methods. '
+p73
+sg8
+S'+1'
+p74
+sg10
+S'This selection produced a subcorpus of four full-text documents and 19 abstracts. The statistics for this corpus are shown in Table 8.  '
+p75
+sg12
+S'As gene and gene product entities are central to domain information needs and the core entities of the applied event extraction approach, we first introduced annotation for this entity class.'
+p76
+saa(lp77
+S'W10-1919-159'
+p78
+a(dp79
+g5
+F0.009167033532741802
+sg6
+S'We applied a previously introduced corpus of subdomain full texts annotated for mentions of bacteria and terms from the three top-level Gene Ontology subontologies as a reference defining domain information needs to study how these can be met through the application of events defined in the BioNLP\xe2\x80\x9909 Shared Task on event extraction. Analysis indicated that with minor revision of the arguments, the Binding and Localization event types could account for the majority of both biological processes and molecular functions of interest. '
+p80
+sg8
+S'+1'
+p81
+sg10
+S'While this experiment is limited in both scope and scale, it suggests that the event extraction approach can be beneficially applied to detect domain events represented by novel argument structures. As a demonstration of feasibility the result is encouraging for both the applicability of event extraction to this specific new domain and for the adaptability of the approach to new domains in general.  '
+p82
+sg12
+S'We have presented a study of the adaptation of an event extraction approach to the T4SS subdomain as a step toward the introduction of event extraction to the broader infectious diseases domain.'
+p83
+saa(lp84
+S'W10-1919-158'
+p85
+a(dp86
+g5
+F0.00910440748421182
+sg6
+S'We have presented a study of the adaptation of an event extraction approach to the T4SS subdomain as a step toward the introduction of event extraction to the broader infectious diseases domain. We applied a previously introduced corpus of subdomain full texts annotated for mentions of bacteria and terms from the three top-level Gene Ontology subontologies as a reference defining domain information needs to study how these can be met through the application of events defined in the BioNLP\xe2\x80\x9909 Shared Task on event extraction. '
+p87
+sg8
+S'+1'
+p88
+sg10
+S'With respect to the baseline result, the machine-learning approach achieves a 21% relative reduction in error. While this experiment is limited in both scope and scale, it suggests that the event extraction approach can be beneficially applied to detect domain events represented by novel argument structures. '
+p89
+sg12
+S'As a demonstration of feasibility the result is encouraging for both the applicability of event extraction to this specific new domain and for the adaptability of the approach to new domains in general. '
+p90
+saa(lp91
+S'W10-1919-40'
+p92
+a(dp93
+g5
+F0.008858490256851821
+sg6
+S'In the work introducing the corpus, the task of automatic GO annotation was studied as facilitating improved information access, such as advanced search functionality: GO annotation can allow for search by semantic classes or co-occurrences of terms of specified classes. The event approach considered in this study further extends on these opportunities in introducing a model allowing e.g. search by specific associations of the concepts of interest. '
+p94
+sg8
+S'-1'
+p95
+sg10
+S'The latter three correspond to the three Gene Ontology (GO) (Ashburner et al., 2000) toplevel sub-ontologies, and terms of these types were annotated with reference to both GO and relevance to the interests of domain experts, with guidelines  requiring that marked terms be both found in GO and associated with T4SS. '
+p96
+sg12
+S'These constraints assure that the corpus is relevant to the information needs of biologists working in the domain and that it can be used as a reference for the study of automatic GO annotation.'
+p97
+saa(lp98
+S'W10-1919-108'
+p99
+a(dp100
+g5
+F0.008583000719335836
+sg6
+S'To extend the source data, we searched PubMed for cases where a known T4SS-related protein co-occurred with an expression known to relate to the targeted process class (e.g. virulence, virulent, avirulent, non-virulent) and annotated a further set of sentences from the search results for both GGPs and their process associations. As the properties of these additional examples could not be assured to correspond to those of the targeted domain texts, we used these annotations only as development and training data, performing evaluation on cases drawn from the T4SS subcorpus. '
+p101
+sg8
+S'-1'
+p102
+sg10
+S'We adopted the GENIA Event corpus annotation guidelines (Kim et al., 2008), marking associations between specific GGPs and biological processes discussed in the text even when these are stated speculatively or their existence explicitly denied. As the analysis indicated this category of processes to typically involve a single stated participant in a fixed role, annotations were initially recorded as (GGP, process) pairs and later converted into an event representation. '
+p103
+sg12
+S'During annotation, the number of annotated GGP associations with the targeted class of processes in the T4SS subcorpus was found to be too low to provide material for both training and testing a supervised learning-based event extraction approach.'
+p104
+saa(lp105
+S'J93-1005-217'
+p106
+a(dp107
+g5
+F0.006196084538369026
+sg6
+S'For these, we select noun attachment, since it is the more probable outcome in general. For the remaining cases, we assume that the dictionary makes no decision. '
+p108
+sg8
+S'-1'
+p109
+sg10
+S'In 241 of those cases, there is information only on noun or only on verb association. In these cases, we can use the dictionary to choose the attachment according to the association indicated. '
+p110
+sg12
+S'In the remaining 16 cases, associations between the preposition and both the noun and the verb are recorded in the dictionary.'
+p111
+saa(lp112
+S'J93-1005-78'
+p113
+a(dp114
+g5
+F0.006049074637039208
+sg6
+S"' For example, in Example 6, we want to choose between two possibilities: either into is attached to the verb send or it is attached to the noun soldier.  Moscow sent more than 100,000 soldiers into Afghanistan ... In particular, we want to choose between two structures:  "
+p115
+sg8
+S'+1'
+p116
+sg10
+S'For instance, if p is a preposition, f (p) = Ew f (w, p).  Our object is to develop a procedure to guess whether a preposition is attached to the verb or its object when a verb and its object are followed by a preposition. '
+p117
+sg12
+S'We assume that in each case of attachment ambiguity, there is a forced choice between two outcomes: the preposition attaches either to the verb or to the noun.'
+p118
+saa(lp119
+S'J93-1005-127'
+p120
+a(dp121
+g5
+F0.006019084325399162
+sg6
+S'This initial step provides a rough indication of what we might expect to be achievable based on the information our procedure is using. We also wanted a standard of correctness for the test sentences. '
+p122
+sg8
+S'+1'
+p123
+sg10
+S'The two authors first guessed attachments on the verb\xe2\x80\x93noun\xe2\x80\x93preposition triples, making a judgment on the basis of the three headwords alone. The judges were required to make a choice in each instance. '
+p124
+sg12
+S'This task is in essence the one that we will give the computer\xe2\x80\x94to judge the attachment without any more information than the preposition and the heads of the two possible attachment sites.'
+p125
+saa(lp126
+S'J93-1005-162'
+p127
+a(dp128
+g5
+F0.005918757623517679
+sg6
+S"Some further misidentifications that showed up in the test sample are: identifying the subject of the complement clause of say as its object, as in Example 10, which was identified as (say ministers from), and misparsing two constituents as a single-object noun phrase, as in Example 11, which was identified as (make subject to).  After agreeing on the 'correct' attachment for the test sample, we were left with 880 disambiguated verb\xe2\x80\x94noun\xe2\x80\x94preposition triples, having discarded the examples that were not instances of the relevant construction. "
+p129
+sg8
+S'-1'
+p130
+sg10
+S'For our present purpose, we decided to make an attachment choice in all cases, in some cases relying on controversial theoretical considerations, or relatively unanalyzed intuitions. In addition to the problematic cases, 120 of the 1000 triples identified automatically as instances of the verb\xe2\x80\x94object\xe2\x80\x94preposition configuration turned out in fact to be other constructions, often as the result of parsing errors. '
+p131
+sg12
+S'Examples of this kind were given above, in the context of our description of the construction of the verb\xe2\x80\x94noun\xe2\x80\x94 preposition table.'
+p132
+saa(lp133
+S'J93-1005-41'
+p134
+a(dp135
+g5
+F0.005811295856370093
+sg6
+S'Usually this is simply the root of the head of the noun phrase: good is the root of the head of consumer goods. Noun phrases with no head, or where the head is not a common noun, are coded in a special way: DART-PNP represents a noun phrase beginning with a definite article and headed by a proper noun, and VING represents a gerundive noun phrase. '
+p136
+sg8
+S'-1'
+p137
+sg10
+S'For each noun phrase head, we recorded the following preposition if any occurred (ignoring whether or not the parser had attached the preposition to the noun phrase), and the preceding verb if the noun phrase was the object of that verb. The entries in Table 1 are those generated from the text above. '
+p138
+sg12
+S'Each noun phrase in Example 3 is associated with an entry in the Noun column of the table.'
+p139
+saa(lp140
+S'J93-1005-246'
+p141
+a(dp142
+g5
+F0.005725994766116922
+sg6
+S'The analysis of underlying relations indicated some particular areas in which the procedure did not do well, and where there is therefore room for improvement. In particular, performance on adjuncts was poor. '
+p143
+sg8
+S'+1'
+p144
+sg10
+S'corpora) it is advantageous to be able to achieve increased precision in exchange for discarding a proportion of the data. From another perspective, our results are less good than what might be demanded. '
+p145
+sg12
+S'The performance of the human judges with access just to the verb-noun-preposition triple is a standard of what is possible based on this information, and the lexical association procedure falls somewhat short of this standard.'
+p146
+saa(lp147
+S'J93-1005-97'
+p148
+a(dp149
+g5
+F0.005688456123453257
+sg6
+S"Depending on the task, we can require a certain threshold of LA score magnitude before making a decision. ' As usual, in dealing with counts from corpora we must confront the problem of how to estimate probabilities when counts are small. "
+p150
+sg8
+S'-1'
+p151
+sg10
+S'The sign indicates which possibility, verb attachment or noun attachment, is more likely; an LA score of zero means they are equally likely. The magnitude of the score indicates how much more probable one outcome is than the other. '
+p152
+sg12
+S'For example, if the LA score is 2.0, then the probability of verb attachment is four times greater than noun attachment.'
+p153
+saa(lp154
+S'P07-3014-1'
+p155
+a(dp156
+g5
+F0.010675771669434501
+sg6
+S"We compare and evaluate different algorithms and different joining phrases on Nastase and Szpakowicz's (2003) dataset of 600 modifier-noun compounds. We find that by using a Support Vector Machine classifier we can obtain better performance on this dataset than a current state-of-the-art system; even with a relatively small set of prepositional joining terms.  "
+p157
+sg8
+S'+1'
+p158
+sg10
+S'This paper investigates the use of machine learning algorithms to label modifier-noun compounds with a semantic relation. '
+p159
+sg12
+S'The attributes used as input to the learning algorithms are the web frequencies for phrases containing the modifier, noun, and a prepositional joining term.'
+p160
+saa(lp161
+S'P07-3014-17'
+p162
+a(dp163
+g5
+F0.01052687469661481
+sg6
+S'Choosing a set of joining terms in a principled manner in the hope of capturing the semantic relation between constituents in the noun phrase is difficult, but there is certainly some correlation between a prepositional term or short linking verb and a semantic relation. For example, the preposition &quot;during&quot; indicates a temporal relation, while the preposition &quot;in&quot; indicates a locative relation, either temporal or spatial. '
+p164
+sg8
+S'+1'
+p165
+sg10
+S'This is the approach we use in our experiments. We choose two sets of joining terms, based on the frequency with which they occur in between nouns in the British National Cor '
+p166
+sg12
+S'The motivation for this paper is to discover which joining terms are good predictors of a semantic relation, and which learning algorithms perform best at the task of mapping from joining terms to semantic relations for modifier-noun compounds. '
+p167
+saa(lp168
+S'P07-3014-24'
+p169
+a(dp170
+g5
+F0.009912699454019215
+sg6
+S'For the experiments we use Weka, (Witten and Frank, 1999) a machine learning toolkit which allows for fast experimentation with many standard learning algorithms. In Section 5 we present the results obtained using the nearestneighbor, neural network (i.e. multi-layer perceptron) and SVM. '
+p171
+sg8
+S'+1'
+p172
+sg10
+S'If this is true, we would expect that very frequent prepositions, such as &quot;of&quot;, would have many possible meanings and therefore not reliably predict a semantic relation. However, less frequent prepositions, such as &quot;while&quot; would have a more limited set of senses and therefore accurately predict a semantic relation.  '
+p173
+sg12
+S'We are also interested in comparing the performance of machine learning algorithms on the task of mapping from n-gram frequencies of joining terms to semantic relations.'
+p174
+saa(lp175
+S'P07-3014-92'
+p176
+a(dp177
+g5
+F0.009840145296211656
+sg6
+S'The next condition used a vector of web hits obtained using the joining terms that occurred  with which they occurred between two nouns in the BNC. '
+p178
+sg8
+S'-1'
+p179
+sg10
+S'We excluded determiners on the basis that the presence of a determiner does not affect the semantic properties of the interaction between the head and modifier.  There were three conditions experimented with using three different algorithms. '
+p180
+sg12
+S'For the first condition, the attributes used by the learning algorithms consisted of vectors of web hits obtained using the 14 most frequent joining terms found in the BNC.'
+p181
+saa(lp182
+S'P07-3014-61'
+p183
+a(dp184
+g5
+F0.00959055087929893
+sg6
+S'As well as trying to achieve reasonable accuracy, we were interested in discovering what kinds of joining phrases are most useful when trying to predict the semantic relation, and which machine learning algorithms perform best at the task of using vectors of web-based n-gram frequencies to predict the semantic relation. For our experiments we used the set of 600 labeled noun-modifier pairs of Nastase and Szpakowicz (2003). '
+p185
+sg8
+S'-1'
+p186
+sg10
+S'The method described in this paper is similar to the work presented in Turney and Littman (2005). We collect web frequencies for queries of the form &quot;head joining term modifier&quot;. '
+p187
+sg12
+S'We did not collect queries of the form &quot;modifier joining term head&quot;; in the majority of paraphrases of noun phrases the head noun occurs before the modifying word.'
+p188
+saa(lp189
+S'P07-3014-121'
+p190
+a(dp191
+g5
+F0.009565306807450475
+sg6
+S'Secondly, we wanted to discover whether the frequency of joining terms was related to their effectiveness at predicting a semantic relation.  The results suggest that the nearest neighbor approach is not the most effective algorithm for the classification task. '
+p192
+sg8
+S'+1'
+p193
+sg10
+S'The SVM consistently outperformed the baseline; neither of the other algorithms did so.  Our motivation in this paper was twofold. '
+p194
+sg12
+S'Firstly, we wanted to compare the performance of different machine learning algorithms on the task of mapping from a vector of web frequencies of paraphrases containing joining terms to semantic relations.'
+p195
+saa(lp196
+S'P07-3014-81'
+p197
+a(dp198
+g5
+F0.009557936737661825
+sg6
+S'Turney and Littman (2005) use a large and varied set of joining terms. They include the most common prepositions, conjunctions and simple verbs like &quot;has&quot;, &quot;goes &quot; and &quot;is&quot;. '
+p199
+sg8
+S'-1'
+p200
+sg10
+S'The idea is that these sensible paraphrases will return more hits than nonsense ones, such as: &quot;invention has student&quot; OR &quot;invention has a student&quot; OR &quot;invention has the student&quot; It would be possible to construct a set of handcoded rules to map from joining terms to semantic relations; for example &quot;during&quot; maps to temporal, &quot;by&quot; maps to causal and so on. However, we hope that the classifiers will be able to identify combinations of prepositions that indicate a relation.  '
+p201
+sg12
+S'Possibly the most difficult problem with this method is deciding on a set of joining terms which is likely to provide enough information about the noun-modifier pairs to allow a learning algorithm to predict the semantic relation.'
+p202
+saa(lp203
+S'W11-2821-30'
+p204
+a(dp205
+g5
+F0.01683578692923072
+sg6
+S'A third level of organisation occurs when statements with identical structures and one identical argument are aggregated; see Williams and Power (2010) for more details. For some ontologies, this process can lead to very long lists of subclasses or individuals, so under the \xe2\x80\x98Examples\xe2\x80\x99 subheading where these occur we truncate them to a predefined maximum length and add the phrase \xe2\x80\x98and so on (N items in total)\xe2\x80\x99. '
+p206
+sg8
+S'-1'
+p207
+sg10
+S'argument occur under the definition subheading, the taxonomy is the superclass (from an OWL SubClassOf statement), descriptive statements correspond to the OWL functor SubClassOf, distinctions to DisjointClasses, and examples to the individuals belonging to the class. For individuals the class is given first (from an OWL ClassAssertion statement), followed by descriptions typically corresponding to ObjectPropertyAssertion. '
+p208
+sg12
+S'For properties, the descriptive statements specify the domain and range, and features such as functionality and transitivity, and examples are provided by statements about individuals or classes in which the property is used. '
+p209
+saa(lp210
+S'W11-2821-3'
+p211
+a(dp212
+g5
+F0.01635233966640425
+sg6
+S'This trade-off between organisation and brevity is investigated in a user study.  Since OWL (Web Ontology Language) became the standard language for the semantic web in 2004,1 several research groups have developed systems, known as \xe2\x80\x98verbalisers\xe2\x80\x99, for generating Controlled English from OWL ontologies (Kaljurand and Fuchs, 2007; Dolbear et al., 2007; Schwitter and Tilbrook, 2004; Funk et al., 2007). '
+p213
+sg8
+S'+1'
+p214
+sg10
+S'The document structure, inspired by encyclopedias and glossaries, is organised at a number of levels. At the top level, a heading is generated for every concept in the ontology; at the next level, each entry is subdivided into logically-based headings like \xe2\x80\x98Definition\xe2\x80\x99 and \xe2\x80\x98Examples\xe2\x80\x99; at the next, sentences are aggregated when they have parts in common; at the lowest level, phrases are hyperlinked to concept headings. '
+p215
+sg12
+S'One consequence of this organisation is that some statements are repeated because they are relevant to more than one entry; this means that the text is longer than one in which statements are simply listed.'
+p216
+saa(lp217
+S'W11-2821-42'
+p218
+a(dp219
+g5
+F0.01622633401826323
+sg6
+S'The study design is between-subjects in two independent groups. Participants were 57 members of the ACL special interest groups SIGGEN8 and SIGdial9.  '
+p220
+sg8
+S'-1'
+p221
+sg10
+S'Only one attempts further discourse structuring: Laing et al.\xe2\x80\x99s system for verbalising medical ontologies organises text according to rhetorical structure.  The evaluation study reported here focusses on the following question: Does the organisation just described help people to understand and navigate a text in spite of its longer length? '
+p222
+sg12
+S'This is addressed through a navigation task in which people were asked to locate information in either an organised text or an unorganised one and then give a judgement on how difficult the information was to find.'
+p223
+saa(lp224
+S'W11-2821-35'
+p225
+a(dp226
+g5
+F0.015663707955868893
+sg6
+S'To our knowledge, SWAT TOOLS takes document structuring further than other domain-independent ontology verbalisers. We are aware of only one other domain-independent system that attempts document structuring, ACE (Kaljurand and Fuchs, 2007). '
+p227
+sg8
+S'+1'
+p228
+sg10
+S'Figure 1 shows an example of aggregation and truncation in the sentence \xe2\x80\x98The following are seta appendage cephalothorax: male palpal femoral thorns, female palp femoral thorns and spd 0000203s, and so on (5 items in total)\xe2\x80\x99. An obvious refinement would be to add a facility to view the entire list, if desired.  '
+p229
+sg12
+S'The final and lowest level of organisation occurs when hyperlinks are introduced for each phrase corresponding to a class, individual or property; these link to the headings of their entries. '
+p230
+saa(lp231
+S'W11-2821-18'
+p232
+a(dp233
+g5
+F0.014321144530819849
+sg6
+S'Subheadings are inspired mainly by Berzlanovich et al.\xe2\x80\x99s (2008) \xe2\x80\x98information oriented\xe2\x80\x99 discourse labels (name, definition, description, etc. ) from their analysis of the discourse structure of encyclopedia articles; and also by Aristotle\xe2\x80\x99s genus-differentia descriptions.6 Lower levels of organisation were also influenced by Berzlanovich et al. (2008), whose investigation of lower-level lexical cohesion in encylopedia entries highlighted the high incidence of hypernymic lexical cohesion.  '
+p234
+sg8
+S'-1'
+p235
+sg10
+S'Briefly, the OWL/XML input is transcoded to Prolog,5 using the format illustrated in the example just given; then a lexicon for realising atomic terms (individuals, classes or properties) is inferred from their identifier names or labels; finally, a sentence is generated from each statement using a Definite Clause Grammar (Clocksin and Mellish, 1987) covering almost all of OWL-DL, using wording influenced by earlier work on controlled languages (Schwitter et al., 2008; Kaljurand and Fuchs, 2007; Dolbear et al., 2007). Sentences are ordered according to the alphabetical order of their underlying OWL statements: i.e., sentences generated from ClassAssertion statements will come before those generated from SubClassOf statements.  '
+p236
+sg12
+S'The highest levels of organisation, illustrated in figure 1, are headings and subheadings.'
+p237
+saa(lp238
+S'W11-2821-41'
+p239
+a(dp240
+g5
+F0.013593226366161443
+sg6
+S'This is addressed through a navigation task in which people were asked to locate information in either an organised text or an unorganised one and then give a judgement on how difficult the information was to find. The study design is between-subjects in two independent groups. '
+p241
+sg8
+S'+1'
+p242
+sg10
+S'Regarding domain-dependent systems, most of them aggregate statements and generate referring expressions (Bontcheva and Wilks, 2004; Dongilli, 2008; Galanis and Androutsopoulos, 2007; Hielkema, 2009; Liang et al., 2011). Only one attempts further discourse structuring: Laing et al.\xe2\x80\x99s system for verbalising medical ontologies organises text according to rhetorical structure.  '
+p243
+sg12
+S'The evaluation study reported here focusses on the following question: Does the organisation just described help people to understand and navigate a text in spite of its longer length?'
+p244
+saa(lp245
+S'W11-2821-71'
+p246
+a(dp247
+g5
+F0.013356100998884643
+sg6
+S'A drop in performance by the unorganised text group on question 5, \xe2\x80\x98How many kinds of seta appendage cephalothorax 12In this case responses for organised texts should be faster, a point we intend to check in future work. are there in total?\xe2\x80\x99 was expected since it is a harder question that requires a search of the entire unorganised text whilst simultaneously counting instances. '
+p248
+sg8
+S'-1'
+p249
+sg10
+S'One explanation for these findings would be that people do whatever is necessary to achieve a desired level of performance, so that when provided with superior tools they achieve roughly the same result but with less effort.12 The drop in performance by the unorganised text group on question 1 might have been due to unfamiliarity with a sentence-list type of text (all participants answered question 1 first since questions were always presented in the same order). Improvements on later questions could have been the result of a learning effect with this group. '
+p250
+sg12
+S'The near-perfect performance of the organised text group on the first questions demonstrates the benefit of viewing a familiar genre.'
+p251
+saa(lp252
+S'C08-1122-56'
+p253
+a(dp254
+g5
+F0.009728103513583245
+sg6
+S'Figure 1 gives the framework of the proposed approach.  In the first step of the above framework, different clustering algorithms will yield different clusters. '
+p255
+sg8
+S'+1'
+p256
+sg10
+S'Given a document set for keyphrase extraction of each single document, CollabRank first employs the clustering algorithm to group the documents into a few clusters. The documents within each cluster are expected to be topic-related and each cluster can be considered as a context for any document in the cluster. '
+p257
+sg12
+S'Given a document cluster, CollabRank makes use of the global word relationships in the cluster to evaluate and rank candidate phrases for each single document in the cluster based on the graph-based ranking algorithm.'
+p258
+saa(lp259
+S'C08-1122-22'
+p260
+a(dp261
+g5
+F0.009028856408952398
+sg6
+S'The graph-based ranking algorithm is employed for collaborative keyphrase extraction for each document in a specified cluster. Instead of making only use of the word relationships in a single document, the algorithm can incorporate the \xe2\x80\x9cvoting\xe2\x80\x9d or \xe2\x80\x9crecommendations\xe2\x80\x9d between words in all the documents of the cluster, thus making use of the global information existing in the cluster context. '
+p262
+sg8
+S'+1'
+p263
+sg10
+S'Based on the above assumption, we propose a novel framework for collaborative singledocument keyphrase extraction by making use of the additional information from multiple documents within an appropriate cluster context. The collaborative framework for keyphrase extraction consists of the step of obtaining the cluster context and the step of collaborative keyphrase extraction in each cluster. '
+p264
+sg12
+S'In this study, the cluster context is obtained by applying the clustering algorithm on the document set, and we have investigated how the cluster context influences the keyphrase extraction performance by employing different clustering algorithms.'
+p265
+saa(lp266
+S'C08-1122-104'
+p267
+a(dp268
+g5
+F0.008704105907979511
+sg6
+S'n ranges from 1 to 20 in this study. Similarly for SingleRank, the phrase score is computed based on the document-level saliency scores of the words.  '
+p269
+sg8
+S'-1'
+p270
+sg10
+S'For instance, in the following sentence: \xe2\x80\x9cMad/JJ cow/NN disease/NN has/VBZ killed/VBN 10,000/CD cattle/NNS\xe2\x80\x9d, the candidate phrases are \xe2\x80\x9cMad cow disease\xe2\x80\x9d and \xe2\x80\x9ccattle\xe2\x80\x9d. The score of a candidate phrase pi is computed by summing the cluster-level saliency scores of the words contained in the phrase.  '
+p271
+sg12
+S'All the candidate phrases in the document are ranked in decreasing order of the phrase scores and the top n phrases are selected as the keyphrases of the document.'
+p272
+saa(lp273
+S'C08-1122-14'
+p274
+a(dp275
+g5
+F0.008359484796515207
+sg6
+S'Experimental results demonstrate the encouraging performance of the proposed approach. Different clustering algorithms have been investigated and we find that the system performance relies positively on the quality of document clusters.  '
+p276
+sg8
+S'+1'
+p277
+sg10
+S'Previous methods usually conduct the keyphrase extraction task for single documents separately without interactions for each document, under the assumption that the documents are considered independent of each other. This paper proposes a novel approach named CollabRank to collaborative single-document keyphrase extraction by making use of mutual influences of multiple documents within a cluster context. '
+p278
+sg12
+S'CollabRank is implemented by first employing the clustering algorithm to obtain appropriate document clusters, and then using the graph-based ranking algorithm for collaborative single-document keyphrase extraction within each cluster.'
+p279
+saa(lp280
+S'C08-1122-99'
+p281
+a(dp282
+g5
+F0.008199081027126435
+sg6
+S'The candidate words (i.e. nouns and adjectives) of a specified document d in the cluster, which is a subset of V, are marked in the document text, and sequences of adjacent candidate words are collapsed into a multi-word phrase. The phrases ending with an adjective are not allowed, and only the phrases ending with a noun are collected as the candidate phrases for the document. '
+p283
+sg8
+S'+1'
+p284
+sg10
+S'Usually the convergence of the iteration algorithm is achieved when the difference between the scores computed at two successive iterations for any words falls below a given threshold (0.0001 in this study). For SingleRank, the saliency score WordScoredoc(vi) for word vi is computed in the same iterative way based on the local graph for the single document.  '
+p285
+sg12
+S'After the scores of all candidate words in the cluster have been computed, candidate phrases are selected and evaluated for each single document in the cluster.'
+p286
+saa(lp287
+S'C08-1122-21'
+p288
+a(dp289
+g5
+F0.00813682637116251
+sg6
+S'In this study, the cluster context is obtained by applying the clustering algorithm on the document set, and we have investigated how the cluster context influences the keyphrase extraction performance by employing different clustering algorithms. The graph-based ranking algorithm is employed for collaborative keyphrase extraction for each document in a specified cluster. '
+p290
+sg8
+S'+1'
+p291
+sg10
+S'Moreover, document keyphrases have been successfully used in the following IR and NLP tasks: document indexing (Gutwin et al., 1999), document classification (Krulwich and Burkey, 1996), document cluster Based on the above assumption, we propose a novel framework for collaborative singledocument keyphrase extraction by making use of the additional information from multiple documents within an appropriate cluster context. '
+p292
+sg12
+S'The collaborative framework for keyphrase extraction consists of the step of obtaining the cluster context and the step of collaborative keyphrase extraction in each cluster.'
+p293
+saa(lp294
+S'C08-1122-174'
+p295
+a(dp296
+g5
+F0.008056960797265625
+sg6
+S'Experimental re sults demonstrate the good effectiveness of CollabRank. '
+p297
+sg8
+S'+1'
+p298
+sg10
+S'However, the performance improvements of RankFusion over CollabRank are not significant. We can conclude that the cluster-level global information plays the key role for evaluating the true saliency of the words.  '
+p299
+sg12
+S'In this paper, we propose a novel approach named CollabRank for collaborative singledocument keyphrase extraction, which makes use of the mutual influences between documents in appropriate cluster context to better evaluate the saliency of words and phrases.'
+p300
+saa(lp301
+S'P99-1026-138'
+p302
+a(dp303
+g5
+F0.008855701190884661
+sg6
+S'The response strategy is similar to that of previous frame-based dialogue systems (Bobrow et al., 1977). The speech production module outputs speech according to orders from the response generation module. '
+p304
+sg8
+S'-1'
+p305
+sg10
+S'A belief state is represented by a frame (Bobrow et al., 1977); thus, a speech act representation is a command for changing the slot value of a frame. Although a more sophisticated model would be required for the system to engage in a complicated dialogue, frame representations are sufficient for our tasks. '
+p306
+sg12
+S'The response generation module is invoked when the user pauses, and plans responses based on the belief state of the context with the highest priority.'
+p307
+saa(lp308
+S'P99-1026-93'
+p309
+a(dp310
+g5
+F0.008477560904730239
+sg6
+S'Increase the priority by the square of the length (i.e., the number of words) of this SU.  4. '
+p311
+sg8
+S'-1'
+p312
+sg10
+S'When a reduce operation is performed, increase the priority of the context by the priority assigned to the rule used for the reduce operation. 3. '
+p313
+sg12
+S'For each context, if the top of the stack is an SU, empty the stack and update the belief state according to the content of the SU.'
+p314
+saa(lp315
+S'P99-1026-10'
+p316
+a(dp317
+g5
+F0.008321510764255401
+sg6
+S'In this paper, a system using this assumption is called an interval-based system. The above assumption no longer holds when no restrictions are placed on the way the user speaks. '
+p318
+sg8
+S'-1'
+p319
+sg10
+S'Most previous spoken dialogue systems (e.g. systems by Allen et al. (1996), Zue et al. (1994) and Peckham (1993)) assume that the user makes one utterance unit in each speech interval, unless the push-to-talk method is used. Here, by utterance unit we mean a phrase from which a speech act representation is derived, and it corresponds to a sentence in written language. '
+p320
+sg12
+S"We also use speech act in this paper to mean a command that updates the hearer's belief state about the speaker's intention and the context of the dialogue."
+p321
+saa(lp322
+S'P99-1026-31'
+p323
+a(dp324
+g5
+F0.008183899934120364
+sg6
+S"In real conversations, however, there is no guarantee that 'Wednesday' is the final word of the utterance. It might be followed by the phrase 'next week', in which case the system made a mistake in inferring the user's intention and must backtrack and re-understand. "
+p325
+sg8
+S'-1'
+p326
+sg10
+S"On the other hand, since parsing results cannot be obtained unless the end of the utterance is identified, making real-time responses is impossible without boundary information. For example, consider the utterance &quot;I'd like to book Meeting Room 1 on Wednesday&quot;. "
+p327
+sg12
+S"It is expected that the system should infer the user wants to reserve the room on 'Wednesday this week' if this utterance was made on Monday."
+p328
+saa(lp329
+S'P99-1026-83'
+p330
+a(dp331
+g5
+F0.008019080992657733
+sg6
+S'We therefore adopt beam search. Priorities are assigned to the possible sequences, and those with low priorities are neglected during the search.  '
+p332
+sg8
+S'-1'
+p333
+sg10
+S'Then three significantutterance sequences are possible: one consisting of &quot;Wednesday&quot;, one consisting of &quot;Wednesday next  week&quot;, and one consisting of no SUs. '
+p334
+sg12
+S'The second sequence is obviously the most likely at this point, but it is not possible to choose only one sequence and discard the others in the midst of a dialogue.'
+p335
+saa(lp336
+S'P99-1026-74'
+p337
+a(dp338
+g5
+F0.008002779784030228
+sg6
+S'SUs are identified in the process of understanding. Unlike ordinary parsers, the understanding module does not try to determine whether the whole input forms an SU or not, but instead determines where SUs are. '
+p339
+sg8
+S'-1'
+p340
+sg10
+S"I need to, uh, book Room 2, and it's on Wednesday. The most likely significant-utterance sequence consists of &quot;I need to, uh, book Room 2&quot; and &quot;it's on Wednesday&quot;. "
+p341
+sg12
+S'From the speech act representation of these utterances, the system can infer the user wants to book Room 2 on Wednesday. '
+p342
+saa(lp343
+S'P99-1026-15'
+p344
+a(dp345
+g5
+F0.007824248434107449
+sg6
+S'Abandoning full parsing and adopting keywordbased or fragment-based understanding could prevent this problem. This would, however, sacrifice the accuracy of understanding because phrases across the pauses could not be syntactically analyzed. '
+p346
+sg8
+S'+1'
+p347
+sg10
+S'This is because utterance boundaries (i.e., semantic boundaries) do not always correspond to pauses and techniques based on other acoustic information are not perfect. Utterance boundaries thus cannot be identified prior to parsing, and so the timing of determining parsing results to update the belief state is unclear. '
+p348
+sg12
+S'On the other hand, responding to a user utterance in real time requires understanding it and updating the belief state in real time; thus, it is impossible to wait for subsequent inputs to determine boundaries.'
+p349
+saa(lp350
+S'J81-3002-63'
+p351
+a(dp352
+g5
+F0.004319462281951656
+sg6
+S'But in a type-checking system in which the first argument of the relation &quot;live&quot; is associated with the human domain, and in which employees\xe2\x80\x94and not salaries\xe2\x80\x94are known to belong to this same domain, the first reading is not even possible. Ambiguities concerning different meanings of a word can often be resolved through domain checking. '
+p353
+sg8
+S'-1'
+p354
+sg10
+S'Take for instance the query: Cual es el salario del empleado que vive en Lomas? What is the salary of the employee who lives in Lomas? '
+p355
+sg12
+S'From syntax alone, there is no way to decide whether the antecedent of the relative clause is &quot;the salary of the employee&quot; or &quot;the employee&quot;.'
+p356
+saa(lp357
+S'J81-3002-148'
+p358
+a(dp359
+g5
+F0.00396700950103163
+sg6
+S"For instance, &quot;No vino ningim alumno&quot; (No student came) is represented: todo(x,alumno(x),no(vino(x))) every student not came - In a position other than the subject: the uningun&quot; determiner is assimilated to the indefinite article's quantifier. For instance, &quot;Carlos no tiene ning\xc3\xbcn hijo&quot; (Carlos has not any child) is represented: no(un(x,hijo(x),tiene(Carlos,x))) not a child has Another special case is the negation preceding the &quot;todo&quot; (every) determiner, e.g. &quot;No todo pajaro canta&quot; (Not every bird sings). "
+p360
+sg8
+S'-1'
+p361
+sg10
+S'There are two other cases, however, in which the determiner uningiin&quot; coexists with an explicit negation. These cases require a different quantifier, as otherwise American Journal of Computational Linguistics, Volume 7, Number 3, July-September 1981 153 Veronica Dahl Translating Spanish into Logic through Logic the negation would be represented twice. '
+p362
+sg12
+S'These cases are: - In a subject position, with subject-verb inversion: the &quot;ningim&quot; determiner is assimilated to the &quot;every&quot; quantifier.'
+p363
+saa(lp364
+S'J81-3002-234'
+p365
+a(dp366
+g5
+F0.0038914948884665635
+sg6
+S'Right-hand sides of rules may contain PROLOG calls (which we shall note between square brackets). They must be successfully evaluated for the rule to apply. '
+p367
+sg8
+S'-1'
+p368
+sg10
+S'In the rest of this paper, we shall only be concerned with parsing.  We might normally want the parser to retrieve more information than mere recognition. '
+p369
+sg12
+S"The grammar shown above, for instance, can be also used to retrieve the substring of a's, if it is modified as follows: "
+p370
+saa(lp371
+S'J81-3002-322'
+p372
+a(dp373
+g5
+F0.0038299051770827445
+sg6
+S'Thus, the skeleton derivation graph would now be as shown in Figure 8. Two rules (C3 and SK) have been eliminated, and the resulting graph is clearer.  '
+p374
+sg8
+S'-1'
+p375
+sg10
+S'which places it as the first complement. It must now skip the kernel so as to become the head of the sentence: SK) Wh-1(k) Kernel(/,s/,s2,$) Moved-mod(k,s3,s4) --> Wh-2(k) Modifier(k,s3,s4) Kernel(/,s/,s2,$) Finally, it can be replaced by a pronoun: PR) Wh-2(k) Modifier(k,s/,s2) --> donde  '
+p376
+sg12
+S"Here &quot;...&quot; stands for any intermediate string of symbols, which the rule's application leaves untouched to the right of &quot;Donde&quot;."
+p377
+saa(lp378
+S'J81-3002-126'
+p379
+a(dp380
+g5
+F0.0038144938397709953
+sg6
+S'Here are the representations of some of our Spanish quantifiers. The rest are considered in Section 2.2.1.2.  '
+p381
+sg8
+S'+1'
+p382
+sg10
+S"for(x,p,c) the intuitive meaning of which is: &quot;c holds for the set E of all x's in x's domain which satisfy p&quot;. In the formula c, the set E will be represented simply by the variable x, so that x plays a double role. "
+p383
+sg12
+S"Each quantification is thus assigned an equivalent &quot;for&quot; expression, in which the determiner's meaning is represented."
+p384
+saa(lp385
+S'J81-3002-368'
+p386
+a(dp387
+g5
+F0.0037874650966209173
+sg6
+S'A common disadvantage of this integrated approach\xe2\x80\x94namely, that the syntactic/semantic grammar obtained is too domain-specific and therefore less transportable\xe2\x80\x94is avoided by relegating all domainspecific knowledge to the domain-dependent part of the lexicon (i.e., noun, verb, and adjective definitions). Furthermore, the fact that semantic agreement is equated with syntactic well-formedness evens the relative costs of doing semantic versus syntactic tests. '
+p388
+sg8
+S'-1'
+p389
+sg10
+S'LUNAR, on the contrary, first generates deep structures and then maps them into a semantic representation. PHLIQA1 has several successive levels of semantic analysis, each requiring a special formal language. '
+p390
+sg12
+S'Some of them are meant to deal with ambiguity, which in our approach, as we have seen, is dealt with through the contextual typing of variables during the quantification process.'
+p391
+saa(lp392
+S'J81-3002-33'
+p393
+a(dp394
+g5
+F0.003780738691728283
+sg6
+S'The discussion of our analyzer is not intended to be normative: alternative solutions for the problems we encountered are certainly conceivable. Moreover, many of our choices were constrained by the hardware and software tools available to us. '
+p395
+sg8
+S'-1'
+p396
+sg10
+S'Then we present an informal definition of the logical system possessing these features which serves as our internal query language. Finally, we show a step-by-step development of a PROLOG analyser for Spanish, after an informal description of our programming tools. '
+p397
+sg12
+S'A complete listing of our PROLOG Spanish grammar is given in the Appendix in the Microfiche Supplement to this issue of the Journal.'
+p398
+saa(lp399
+S'C00-1073-4'
+p400
+a(dp401
+g5
+F0.008094098496351506
+sg6
+S'Typically, an expert designs a dialogue manager by hand, and has to make many nontrivial design choices that can seriously impact system performance. This paper applies reinforcement learning (RL) to automatically learn design choices that optimize system performance for a chosen performance measure (Levin et al., 2000; Walker et al., 1998). '
+p402
+sg8
+S'+1'
+p403
+sg10
+S'We then show that our approach measurably improves performance in an experimental system.  Recent advances in spoken language understanding have made it possible to develop dialogue systems for many applications. '
+p404
+sg12
+S'The role of the dialogue manager in such systems is to interact in a natural way to help the user complete the tasks that the system is designed to support.'
+p405
+saa(lp406
+S'C00-1073-21'
+p407
+a(dp408
+g5
+F0.007768818934628619
+sg6
+S'Section 2 explains how we apply RL to dialogue systems, then Section 3 describes the NJFun system in detail. Section 4 describes how NJFun optimizes its dialogue strategy from experimentally obtained dialogue data. '
+p409
+sg8
+S'+1'
+p410
+sg10
+S'More specifically, the MDP formalism suggests a method for optimizing dialogue strategies from sample dialogue data. The main advantage of this approach is the potential for computing an optimal dialogue strategy within a much larger search space, using a relatively small number of training dialogues. '
+p411
+sg12
+S'This paper presents an application of RL to the problem of optimizing dialogue strategy selection in the NJFun system, and experimentally demonstrates the utility of the approach.'
+p412
+saa(lp413
+S'C00-1073-163'
+p414
+a(dp415
+g5
+F0.007216583667968399
+sg6
+S'In addition to the objective measures discussed above, we also computed two subjective usability measures. Feedback is obtained from the dialogue (e.g. S4 in Figure 5), by mapping good, so-so, bad to 1, 0, and -1, respectively. '
+p416
+sg8
+S'-1'
+p417
+sg10
+S'Otherwise, at least one attribute is wrong (e.g., the user says &quot;Lambertville&quot; but the system hears &quot;Morristown&quot;), and the value is -1. ASR is a dialogue quality measure that approximates speech recognition accuracy for the database query, and is computed by adding 1 for each correct attribute value and .5 for every wildcard. '
+p418
+sg12
+S'Thus, if the task is to go winetasting near Lambertville in the morning, and the system queries the database for an activity in New Jersey in the morning, StrongComp=0, WeakComp=1, and ASR=2.'
+p419
+saa(lp420
+S'C00-1073-140'
+p421
+a(dp422
+g5
+F0.007033556772114432
+sg6
+S'Figure 1 is an example dialogue using the optimal strategy.  For the testing phase, NJFun was reimplemented to use the learned strategy. '
+p423
+sg8
+S'-1'
+p424
+sg10
+S'This use of ASR confidence by the dialogue strategy is more sophisticated than previous approaches, e.g. (Niimi and Kobayashi, 1996; Litman and Pan, 2000). NJFun can learn such finegrained distinctions because the optimal strategy is based on a comparison of 242 possible exploratory strategies. '
+p425
+sg12
+S'Both the initiative and confirmation results suggest that the beginning of the dialogue was the most problematic for NJFun.'
+p426
+saa(lp427
+S'C00-1073-173'
+p428
+a(dp429
+g5
+F0.006999952204600815
+sg6
+S"A companion paper (Singh et al., 2000) shows that the learned strategy is not only better than EIC, but also better than other fixed choices proposed in the literature. Our results demonstrate that the application of RL allows one to empirically optimize a system's dialogue strategy by searching through a much larger search space than can be explored with more traditional methods (i.e. empirically testing several versions of a system). "
+p430
+sg8
+S'+1'
+p431
+sg10
+S'Interestingly, the distributions of the subjective measures move to the middle from training to testing, i.e., test users reply to the survey using less extreme answers than training users. Explaining the subjective results is an area for future work.  '
+p432
+sg12
+S'This paper presents a practical methodology for applying RL to optimizing dialogue strategies in spoken dialogue systems, and shows empirically that the method improves performance over the EIC strategy in NJFun.'
+p433
+saa(lp434
+S'C00-1073-134'
+p435
+a(dp436
+g5
+F0.006929186197151687
+sg6
+S'Note, however, that the specific backoff method differs with attribute (e.g., system initiative for attribute 1, but generally mixed initiative for attribute 2). With respect to confirmation, the optimal strategy is to mainly confirm at lower confidence values. '
+p437
+sg8
+S'+1'
+p438
+sg10
+S'Note that no choice was fixed for several states, meaning that the Q-values were identical after value iteration. Thus, even when using the learned strategy, NJFun still sometimes chooses randomly between certain action pairs. '
+p439
+sg12
+S'Intuitively, the learned strategy says that the optimal use of initiative is to begin with user initiative, then back off to either mixed or system initiative when reasking for an attribute.'
+p440
+saa(lp441
+S'C00-1073-46'
+p442
+a(dp443
+g5
+F0.006872509768870156
+sg6
+S'NJFun is a real-time spoken dialogue system that provides users with information about things to do in New Jersey. NJFun is built using a general purpose platform for spoken dialogue systems (Levin et al., 1999), with support for modules for automatic speech recognition (ASR), spoken language  '
+p444
+sg8
+S'-1'
+p445
+sg10
+S'The contribution of this paper is to empirically validate a practical methodology for using RL to build a dialogue system that optimizes its behavior from dialogue data. Our methodology involves 1) representing a dialogue strategy as a mapping from each state in the chosen state space S to a set of dialogue actions, 2) deploying an initial training system that generates exploratory training data with respect to S, 3) constructing an MDP model from the obtained training data, 4) using value iteration to learn the optimal dialogue strategy in the learned MDP, and 4) redeploying the system using the learned state/action mapping. '
+p446
+sg12
+S'The next section details the use of this methodology to design the NJFun system. '
+p447
+saa(lp448
+S'P10-1024-9'
+p449
+a(dp450
+g5
+F0.005569316727695694
+sg6
+S'Adjuncts form an independent semantic unit and their semantic role can often be inferred independently of the predicate (e.g., [after lunch] is usually a temporal modifier). Core \xe2\x88\x97 Omri Abend is grateful to the Azrieli Foundation for the award of an Azrieli Fellowship. '
+p451
+sg8
+S'-1'
+p452
+sg10
+S'Adjuncts are optional arguments which, like adverbs, modify the meaning of the described event in a predictable or predicate-independent manner. Consider the following examples:  '
+p453
+sg12
+S'The marked argument is a core in 1 and an adjunct in 2 and 3.'
+p454
+saa(lp455
+S'P10-1024-203'
+p456
+a(dp457
+g5
+F0.005420468336813949
+sg6
+S'That is, we find the threshold which tags half of the arguments as cores and half as adjuncts. This relies on the prior knowledge that prepositional arguments are roughly equally divided between cores and adjuncts7.  '
+p458
+sg8
+S'-1'
+p459
+sg10
+S'Thresholding. In order to turn these measures into classifiers, we set a threshold below which arguments are marked as adjuncts and above which as cores. '
+p460
+sg12
+S'In order to avoid tuning a parameter for each of the measures, we set the threshold as the median value of this measure in the test set.'
+p461
+saa(lp462
+S'P10-1024-200'
+p463
+a(dp464
+g5
+F0.0052074471965326274
+sg6
+S'Thresholding. In order to turn these measures into classifiers, we set a threshold below which arguments are marked as adjuncts and above which as cores. '
+p465
+sg8
+S'-1'
+p466
+sg10
+S'We then use6:  We select the head words of the argument as we did with the selectional preference measure. '
+p467
+sg12
+S'Again, the AS of the whole argument is defined to be the arithmetic mean of the measure over all of its head words.'
+p468
+saa(lp469
+S'P10-1024-180'
+p470
+a(dp471
+g5
+F0.005043709040512236
+sg6
+S'If the argument has no head words under this definition or if none of the head words appeared in the training corpus, the selectional preference is undefined. Predicate-Slot Collocation. '
+p472
+sg8
+S'+1'
+p473
+sg10
+S'Instead, only those appearing in the top level (depth = 1) of the argument under its unsupervised parse tree are taken. In case there are no such open class words, we take those appearing in depth 2. '
+p474
+sg12
+S'The selectional preference of the whole argument is then defined to be the arithmetic mean of this measure over all of its head words.'
+p475
+saa(lp476
+S'P10-1024-173'
+p477
+a(dp478
+g5
+F0.004865102707902403
+sg6
+S'That is, two arguments are considered similar if they tend to appear in the same slots. Each head word h is assigned a vector where each coordinate corresponds to a slot s. The value of the coordinate is the number of times h appeared in s, i.e. Ep\xe2\x80\xb2N(p\xe2\x80\xb2, s, h) (p\xe2\x80\xb2 is summed over all predicates). '
+p479
+sg8
+S'+1'
+p480
+sg10
+S'Their average length in the test set is 5.1 words. This is a natural extension of the naive (and sparse) maximum likelihood estimator Pr(h|p, s), which is obtained by taking sim(h, h\xe2\x80\xb2) to be 1 if h = h\xe2\x80\xb2 and 0 otherwise. '
+p481
+sg12
+S'The similarity measure we use is based on the slot distributions of the arguments.'
+p482
+saa(lp483
+S'P10-1024-152'
+p484
+a(dp485
+g5
+F0.004772048784179541
+sg6
+S'These measures are all based on the PSH joint distribution. Given a (predicate, prepositional argument) pair from the test set, we first tag and parse the argument using the unsupervised tools above5. '
+p486
+sg8
+S'-1'
+p487
+sg10
+S'In case an argument has several head words, each of them is considered as an independent sample. We denote the number of times that a triplet occurred in the training corpus by N(p, s, h).  '
+p488
+sg12
+S'In this section we present the three types of measures used by the algorithm and the rationale behind each of them.'
+p489
+saa(lp490
+S'P10-1024-194'
+p491
+a(dp492
+g5
+F0.004741435676223328
+sg6
+S'We therefore expect such arguments to be adjuncts. We formalize this notion using the following measure. '
+p493
+sg8
+S'-1'
+p494
+sg10
+S'Adjuncts tend to belong to one of a few specific semantic domains (see Section 2). Therefore, if an argument tends to appear in a certain slot in many of its instances, it is an indication that this argument tends to have a consistent semantic flavor in most of its instances. '
+p495
+sg12
+S'In this case, the argument and the preposition can be viewed as forming a unit on their own, independent of the predicate with which they appear.'
+p496
+saa(lp497
+S'W06-3312-82'
+p498
+a(dp499
+g5
+F0.00781129229652004
+sg6
+S'This behavior is intuitively consistent since in PPs are usually adjuncts to the main NP (which is usually an entity if not a nominalization) and are unlikely to modify any of the NP\xe2\x80\x99s modifiers.  The final heuristic encodes the frequent attachment of on PPs with NPs indicating effect, influence, impact, etc. '
+p500
+sg8
+S'-1'
+p501
+sg10
+S'The major form of beta-amylase in Arabidopsis.. . Here, the system first attempts nominalization attachment. '
+p502
+sg12
+S'If no nominalizations are present in the NP, instead of defaulting to VP attachment, the PP is attached to the closest NP to its left that is not the object of an of PP.'
+p503
+saa(lp504
+S'W06-3312-123'
+p505
+a(dp506
+g5
+F0.007193093444902659
+sg6
+S'Because this class of PPs is processed using the baseline heuristic without any refinements, it has no effect on overall system accuracy as compared to overall baseline accuracy. However, it does provide a clear delineation of the subset of PPs for which right association is a sufficient and optimal solution for attachment. '
+p507
+sg8
+S'+1'
+p508
+sg10
+S'Thus all reported accuracy numbers reflect performance of the heuristics alone, isolated from possible chunking errors. The PP attachment module is, however, designed for input from the chunker and does not handle constructs which the chunker does not provide (e.g. PP conjunctions and non-simple parenthetical NPs).  '
+p509
+sg12
+S'The application of right association for PPs headed by of, for, and from resulted in correct attachment in 96.2% of their occurrences in the development corpus.'
+p510
+saa(lp511
+S'W06-3312-173'
+p512
+a(dp513
+g5
+F0.006941906593682379
+sg6
+S'Despite further anticipated improvements from similar changes, attachment of in PPs stands to benefit the most from additional semantic information in the form of rules that encode containment semantics (i.e. which types of things can be contained in other types of things). Possible containment rules exist for the few semantic categories that are already implemented; enzymes, for instance, can be contained in organisms, but organisms are rarely contained in anything (though organisms can be said to be contained in their species, the relationship is rarely expressed as containment). '
+p514
+sg8
+S'-1'
+p515
+sg10
+S'As mentioned above, splitting nominalizations into general and specific classes may solve this problem. To explore this conjecture, the most common (particularly with in PPs) general nominalization, activity, was ignored when searching for nominalization attachment points. '
+p516
+sg12
+S'This resulted in a 3% increase in the accuracy for in PPs with no adverse effects on any of the other PPs with nominalization affinity.'
+p517
+saa(lp518
+S'W06-3312-202'
+p519
+a(dp520
+g5
+F0.00687159106120847
+sg6
+S'The baseline heuristic achieved an accuracy of 77.5%. A comparative performance breakdown by preposition is given in Table 1. '
+p521
+sg8
+S'-1'
+p522
+sg10
+S'The system\xe2\x80\x99s overall attachment accuracy on this 8PMC query terms: metabolism, biosynthesis, proteolysis, peptidyltransferase, hexokinase, epimerase, laccase, ligase, dehydrogenase. test data is 82%, comparable to that for the development enzymology data. '
+p523
+sg12
+S'The accuracy and coverage of each rule for the test data, as contrasted with the development set, is given in Table 2.'
+p524
+saa(lp525
+S'W06-3312-216'
+p526
+a(dp527
+g5
+F0.006817563755046842
+sg6
+S'A similar pattern was observed for at PPs, where the pattern <CHEMICAL> at <CONCENTRATION> accounts for 25.6% of all at PP attachment errors and the majority of the performance decrease for the strong nominalization affinity heuristic between the two data sets. The remainder of the performance decrease for this heuristic is attributed to gaps in the  '
+p528
+sg8
+S'+1'
+p529
+sg10
+S'In particular, for PPs with object NPs specifying a duration (or other measurement), as exemplified below, attach almost exclusively to VPs and nominalizations.  This behavior is also apparent in the development data, though in much smaller numbers. '
+p530
+sg12
+S'Applying the strong nominalization affinity heuristic to these PPs resulted in an increase offor PP attachment accuracy in the test corpus to 75.8% and an overall increase in accuracy of 1.0%.'
+p531
+saa(lp532
+S'W06-3312-41'
+p533
+a(dp534
+g5
+F0.0067478929557186615
+sg6
+S'For this exploratory study we compiled two manually annotated corporal, a smaller, targeted development corpus consisting of sentences referring to enzymes in five articles, and a larger test corpus consisting of the full text of nine articles drawn from a wider set of topics. This bias in the data was set deliberately to test whether NPs referring to enzymes follow a distinct pattern. '
+p535
+sg8
+S'+1'
+p536
+sg10
+S'Consequently, the possible attachment points for a given PP are more numerous. By \xe2\x80\x9cpostnominal\xe2\x80\x9d, we denote PPs following an NP, where the attachment point may be within the NP but may also precede it. '
+p537
+sg12
+S'In focusing on postnominal PPs, we exclude here PPs that trivially attach to the VP for lack of NP attachment points and focus on the subset of PPs with the highest degree of attachment ambiguity. '
+p538
+saa(lp539
+S'W06-3312-134'
+p540
+a(dp541
+g5
+F0.00662477147108423
+sg6
+S'Accordingly, the heuristic\xe2\x80\x99s impact on the overall accuracy of the system is rather small. However, it affords the largest increase in accuracy for the PPs of its class. '
+p542
+sg8
+S'-1'
+p543
+sg10
+S'The majority of the error here corresponds to PPs that should be attached to a VP. For example, attachment errors occurred both in the sentence \xe2\x80\x9c... this was followed by exoglucanases liberating cellobiose from these nicks... \xe2\x80\x9d and in the sentence \xe2\x80\x9c... the reactions were stopped by placing the microtubes in boiling water for 2 to 3 min.\xe2\x80\x9d  '
+p544
+sg12
+S'The heuristic for strong nominalization affinity deals with only two types of PPs, those headed by the prepositions by and at, both of which occur with relatively low frequency in the development corpus.'
+p545
+saatp546
+Rp547
+.

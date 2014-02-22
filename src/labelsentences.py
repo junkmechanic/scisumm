@@ -46,8 +46,11 @@ def generateTestFeatures(infile):
     #-----------------------------------------
     for sentence, sent_idx in zip(test_sents, sent_indices):
         key = fcode + '-' + str(sent_idx)
+        print key
         print test_data[key]['contextpre']
+        print "----Main sentence Start----"
         print test_data[key]['sentence']
+        print "----Main sentence End----"
         print test_data[key]['contextpos']
         feature_string = raw_input()
         feature_string += '1'

@@ -75,7 +75,7 @@ def validSentence(sentence):
         return False
     if len(sentence.words) > 40:
         return False
-    if re.search(r'[()/\\\[\]]', str(sentence)) is not None:
+    if re.search(r'[()^+*#@/\\\[\]]', str(sentence)) is not None:
         return False
     return True
 
