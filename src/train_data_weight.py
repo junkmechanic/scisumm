@@ -286,11 +286,11 @@ def generateTrainFeatures(client_socket, infile, featurefile):
                                            sec_indices):
         feature_string = '+1'
         tree = parseTrees(getDepParse(client_socket, sentence))
-        for val in [z * 0.1 for z in range(2, 9)]:
+        for val in [z * 0.1 for z in range(20, 50, 10)]:
             features = processTree(tree, sec_ranker, sec_idx, val,
                                    False)
-            writeToFile(featurefile + str(val), feature_string + features + '\n',
-                        'a')
+            writeToFile(featurefile + str(val), feature_string + features +
+                        '\n', 'a')
         #feature_string += processTree(tree, sec_ranker, sec_idx, False)
         #writeToFile(featurefile, feature_string + '\n', 'a')
     #------------------------------------------------
@@ -316,11 +316,11 @@ def generateTrainFeatures(client_socket, infile, featurefile):
                                            sec_indices):
         feature_string = '-1'
         tree = parseTrees(getDepParse(client_socket, sentence))
-        for val in [z * 0.1 for z in range(2, 9)]:
+        for val in [z * 0.1 for z in range(20, 50, 10)]:
             features = processTree(tree, sec_ranker, sec_idx, val,
                                    False)
-            writeToFile(featurefile + str(val), feature_string + features + '\n',
-                        'a')
+            writeToFile(featurefile + str(val), feature_string + features +
+                        '\n', 'a')
         #feature_string += processTree(tree, sec_ranker, sec_idx, False)
         #writeToFile(featurefile, feature_string + '\n', 'a')
     #------------------------------------------------
@@ -427,12 +427,12 @@ def generateTestFeatures(client_socket, infile, featurefile):
         feature_string = test_data[key]['reallbl']
         tree = parseTrees(getDepParse(client_socket, sentence))
         test_data[key]['depparse'] = getTree(tree)
-        for val in [z * 0.1 for z in range(2, 9)]:
+        for val in [z * 0.1 for z in range(20, 50, 10)]:
             features = processTree(tree, sec_ranker, sec_idx, val,
                                    False)
         #test_data[key]['features'] = feature_string
-            writeToFile(featurefile + str(val), feature_string + features + '\n',
-                        'a')
+            writeToFile(featurefile + str(val), feature_string + features +
+                        '\n', 'a')
     #------------------------------------------------
 
 
@@ -463,7 +463,7 @@ def mainline(train=False):
     if train is False:
         # Testing
         outfile = DIR['DATA'] + "sec-tfidf-test-out.txt"
-        for val in [z * 0.1 for z in range(2, 9)]:
+        for val in [z * 0.1 for z in range(20, 50, 10)]:
             predictSvm(featurefile + str(val), model + str(val), outfile)
             outstring = "Testing. Weight : " + str(val)
             analyze(featurefile + str(val), outfile, outstring)
@@ -472,7 +472,7 @@ def mainline(train=False):
         # Training
         #for gamma in [0.01, 0.1, 1.0, 10.0]:
         outfile = DIR['DATA'] + "sec-tfidf-train-out.txt"
-        for val in [z * 0.1 for z in range(2, 9)]:
+        for val in [z * 0.1 for z in range(20, 50, 10)]:
             trainSvm(featurefile + str(val), model + str(val))
             predictSvm(featurefile + str(val), model + str(val), outfile)
             outstring = "Training. Weight : " + str(val)
