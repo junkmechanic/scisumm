@@ -1,4 +1,0 @@
-This paper proposes a method for incrementally understanding user utterances whose semantic boundaries are not known and responding in real time even before boundaries are determined. 
-Since it outputs the partial result of understanding that is the most plausible whenever a word hypothesis is inputted, the response generation module can produce responses at any appropriate time.
-Two systems were compared: one that uses ISSS (system A), and one that requires each speech interval to be an SU (an interval-based system, system B).
-A statistical hypothesis test showed that times taken to carry out the task with system A are significantly shorter than those with system B."

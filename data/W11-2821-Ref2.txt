@@ -1,4 +1,0 @@
-The SWAT TOOLS ontology verbaliser generates a hierarchically organised hypertext designed for easy comprehension and navigation.
-The document structure, inspired by encyclopedias and glossaries, is organised at a number of levels.
-From our study comparing organised and unorganised texts, two main points emerge: first, we find no evidence that people viewing the organized text perform a navigation task more accurately; second, people viewing the organised texts found the task easier.
-Regarding the analysis of different organisational features, the overall response was that all these features were considered useful by a majority of users, although none of them stood out as particularly important.

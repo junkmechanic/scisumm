@@ -1,4 +1,0 @@
-Choosing a set of joining terms in a principled manner in the hope of capturing the semantic relation between constituents in the noun phrase is difficult, but there is certainly some correlation between a prepositional term or short linking verb and a semantic relation.
-For the first condition, the attributes used by the learning algorithms consisted of vectors of web hits obtained using the 14 most frequent joining terms found in the BNC.
-There was almost no difference in accuracy between the first two conditions, and again using all of the joining terms produced the best results.
-The largest class in our dataset is &quot;participant&quot;, which is the label for 43% of the examples; the smallest is &quot;temporal&quot;, which labels 9% of the examples.

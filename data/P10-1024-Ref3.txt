@@ -1,6 +1,0 @@
-We presented a fully unsupervised algorithm for the classification of arguments into cores and adjuncts. 
-This is the first work to tackle this task in a fully unsupervised scenario.
-The algorithm uses three measures based on different characterizations of the core-adjunct distinction, and combines them using an ensemble method followed by self-training.
-The measures used are based on selectional preference, predicate-slot collocation and argument-slot collocation.
-We evaluate against PropBank (Palmer et al., 2005), obtaining roughly 70% accuracy when evaluated on the prepositional arguments and more than 80% for the entire argument set. 
-We also show that (somewhat surprisingly) an argument-slot collocation measure gives more accurate predictions than a predicate-slot collocation measure on this task."

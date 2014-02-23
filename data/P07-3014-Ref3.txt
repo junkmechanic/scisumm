@@ -1,4 +1,0 @@
-Firstly, we wanted to compare the performance of different machine learning algorithms on the task of mapping from a vector of web frequencies of paraphrases containing joining terms to semantic relations.
-Secondly, we wanted to discover whether the frequency of joining terms was related to their effectiveness at predicting a semantic relation. 
-We compare and evaluate different algorithms and different joining phrases on Nastase and Szpakowicz’s (2003) dataset of 600 modifier-noun compounds.  
-We find that by using a Support Vector Machine classifier we can obtain better performance on this dataset than a current state-of-the-art system; even with a relatively small set of prepositional joining terms.

@@ -1,56 +1,66 @@
 import re
 from Config import DIR
 
-featurefile = DIR['DATA'] + "test-features.txt"
-outfile = DIR['BASE'] + "lib/svm-light/test-out.txt"
-
 pos = {}
 neg = {}
 
-linenum = 1
 
-with open(featurefile, 'r') as ffile:
-    for line in ffile.readlines():
-        regex = re.search(r'([\+-]1)\s(.*)', line.strip())
-        if regex.group(1) == '+1':
-            pos[linenum] = regex.group(2)
-        elif regex.group(1) == '-1':
-            neg[linenum] = regex.group(2)
-        else:
-            print "Error : The features dont match the intended format"
-            print "Error : " + line.strip()
-        linenum += 1
-
-linenum = 1
-pos['right'] = 0
-pos['wrong'] = 0
-neg['right'] = 0
-neg['wrong'] = 0
-with open(outfile, 'r') as ffile:
-    for line in ffile.readlines():
-        outval = float(line.strip())
-        if linenum in pos.keys():
-            if outval > 0:
-                pos[linenum] = (1, outval, pos[linenum])
-                pos['right'] += 1
+def analyze(featurefile, outfile, outstring=None):
+    if outstring is None:
+        outstring = ''
+    # To match the line number in files
+    linenum = 1
+    with open(featurefile, 'r') as ffile:
+        for line in ffile.readlines():
+            regex = re.search(r'([\+-]1)\s(.*)', line.strip())
+            if regex.group(1) == '+1':
+                pos[linenum] = regex.group(2)
+            elif regex.group(1) == '-1':
+                neg[linenum] = regex.group(2)
             else:
-                pos[linenum] = (0, outval, pos[linenum])
-                pos['wrong'] += 1
-        elif linenum in neg.keys():
-            if outval < 0:
-                neg[linenum] = (1, outval, neg[linenum])
-                neg['right'] += 1
+                print "Error : The features dont match the intended format"
+                print "Error : " + line.strip()
+            linenum += 1
+    pos['right'] = 0
+    pos['wrong'] = 0
+    neg['right'] = 0
+    neg['wrong'] = 0
+    linenum = 1
+    with open(outfile, 'r') as ffile:
+        for line in ffile.readlines():
+            outval = float(line.strip())
+            if linenum in pos.keys():
+                if outval > 0:
+                    pos[linenum] = (1, outval, pos[linenum])
+                    pos['right'] += 1
+                else:
+                    pos[linenum] = (0, outval, pos[linenum])
+                    pos['wrong'] += 1
+            elif linenum in neg.keys():
+                if outval < 0:
+                    neg[linenum] = (1, outval, neg[linenum])
+                    neg['right'] += 1
+                else:
+                    neg[linenum] = (0, outval, neg[linenum])
+                    neg['wrong'] += 1
             else:
-                neg[linenum] = (0, outval, neg[linenum])
-                neg['wrong'] += 1
-        else:
-            print "Line numbers dont match"
-        linenum += 1
-
-print "Positive Samples Classified Correctly : " + str(pos['right'])
-print "Positive Samples Classified Incorrectly : " + str(pos['wrong'])
-print "Negative Samples Classified Correctly : " + str(neg['right'])
-print "Negative Samples Classified Incorrectly : " + str(neg['wrong'])
+                print "Line numbers dont match"
+            linenum += 1
+    precision = float(pos['right']) / float(pos['right'] + neg['wrong'])
+    recall = float(pos['right']) / float(pos['right'] + pos['wrong'])
+    resfile = DIR['DATA'] + "sec-tfidf-result.txt"
+    with open(resfile, 'a') as resultfile:
+        resultfile.write(outstring + '\n')
+        resultfile.write("Positive Samples Classified Correctly : " +
+                         str(pos['right']) + '\n')
+        resultfile.write("Positive Samples Classified Incorrectly : " +
+                         str(pos['wrong']) + '\n')
+        resultfile.write("Negative Samples Classified Correctly : " +
+                         str(neg['right']) + '\n')
+        resultfile.write("Negative Samples Classified Incorrectly : " +
+                         str(neg['wrong']) + '\n')
+        resultfile.write("Precision :  {0}\tRecall : {1}\n".format(precision,
+                                                                   recall))
 
 
 possent = {}
@@ -92,3 +102,7 @@ def print_sentences():
             print vals[3]
 #with_sentences()
 #print_sentences()
+if __name__ == '__main__':
+    featurefile = DIR['DATA'] + "train-features.txt"
+    outfile = DIR['DATA'] + "sec-tfidf-train-out.txt"
+    analyze(featurefile, outfile)

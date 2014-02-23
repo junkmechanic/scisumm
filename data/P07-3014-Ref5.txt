@@ -1,5 +1,0 @@
-Modifier-noun phrases are often used interchangably with paraphrases which contain the modifier and the noun joined by a preposition or simple verb.
-The motivation for this paper is to discover which joining terms are good predictors of a semantic relation, and which learning algorithms perform best at the task of mapping from joining terms to semantic relations for modifier-noun compounds.
-For our experiments we used the set of 600 labeled noun-modifier pairs of Nastase and Szpakowicz (2003).
-The joining terms used for the experiments in this paper were chosen by examining which phrases most commonly occurred between two nouns in the BNC.
-The SVM algorithm produced the best accuracy of all, achieving 50.1% accuracy using the combined set of joining terms.

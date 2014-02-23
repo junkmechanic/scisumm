@@ -1,5 +1,0 @@
-One method for deducing semantic relations between words in compounds involves gathering n-gram frequencies of these paraphrases, containing a noun, a modifier and a 'joining term' that links them.
-Some algorithm can then be used to map from joining term frequencies to semantic relations and so find the correct relation for the compound in question.
-The motivation for this paper is to discover which joining terms are good predictors of a semantic relation, and which learning algorithms perform best at the task of mapping from joining terms to semantic relations for modifier-noun compounds.
-The second approach is to use statistical information about the occurrence of the noun and modifier in a corpus to generate attributes for a machine learning algorithm.
-The SVM consistently outperformed the baseline; neither of the other algorithms did so.

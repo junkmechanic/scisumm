@@ -1,5 +1,0 @@
-In its broadest outline, the goal is to understand the precise interaction between features of form, meaning and function in the creation of discourse coherence.
-In addition, this study will allow us to determine whether the distinction among types of dominance plays a role in accounting for the distribution of markers.
-As suggested above, some feature of form, meaning or function defines a discourse relation. These will be termed textual informational and intentional discourse relations respectively.
-Using a broad range of text types, we select as tokens the pairs of spans that are related by lexical markers of discourse relations such as “so,” “because” and “therefore.” For each token, we code the informational and intentional relations that co-occur with it.
-By investigating the range of combinations of informational and intentional relations which occur with a lexical marker, we can identify the minimal description of the marker in terms of discourse relations.

@@ -1,6 +1,0 @@
-We define three measures, one quantifying the obligatoriness of the slot, another quantifying the selectional preference of the verb to the argument and a third that quantifies the association between the head word and the slot irrespective of the predicate (Section 3.3).
-We continue by tagging the corpus using Clark’s unsupervised POS tagger (Clark, 2003) and the unsupervised Prototype Tagger (Abend et al., 2010).
-Using these annotation layers, we traverse the corpus and extract every (predicate, slot, argument head) triplet.
-The algorithm proceeds to integrate the predictions of the weak classifiers into a single classifier.
-The prediction is determined by the majority vote.
-It obtains an accuracy of roughly 70%.

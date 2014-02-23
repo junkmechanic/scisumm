@@ -36,7 +36,7 @@ class ParseServer {
         ServerSocket Server = new ServerSocket (5000);
         System.out.println ("TCPServer Waiting for client on port 5000");
         Socket connected = Server.accept();
-        System.out.println( " THE CLIENT "+
+        System.out.println( "THE CLIENT "+
             connected.getInetAddress() +":"+connected.getPort()+" IS CONNECTED ");
         BufferedReader inFromUser = new BufferedReader(new InputStreamReader(System.in));
         BufferedReader inFromClient = new BufferedReader(new InputStreamReader (connected.getInputStream()));

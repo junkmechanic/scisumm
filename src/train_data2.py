@@ -109,7 +109,7 @@ def parseTrees(treestring):
     print "All dependency trees parsed successfully."
 
 
-def processTree(root, ranker, idx, count=False):
+def processTree(root, ranker, idx, weight, count=False):
     #trees.append(root)
     if count:
         verb_val = ranker.total_count(root.word)
@@ -121,14 +121,14 @@ def processTree(root, ranker, idx, count=False):
     #-------------------------------------
     # Look for subject
     subj = findNode(root, 'subj')
-    subj_val = getValue(subj, ranker, idx, count)
+    subj_val = getValue(subj, ranker, idx, weight, count)
     #-------------------------------------
     # For display
     if subj is not None:
         subj.value += '         ' + str(subj_val)
     #-------------------------------------
     obj = findNode(root, 'obj')
-    obj_val = getValue(obj, ranker, idx, count)
+    obj_val = getValue(obj, ranker, idx, weight, count)
     #-------------------------------------
     # For display
     if obj is not None:
@@ -142,11 +142,11 @@ def processTree(root, ranker, idx, count=False):
                " 3:" + str(obj_val))
 
 
-def getValue(node, ranker, idx, count):
+def getValue(node, ranker, idx, weight, count):
     if node is None:
         return 0.0
     else:
-        value, num = computeValue(node, ranker, idx, count)
+        value, num = computeValue(node, ranker, idx, weight, 0, count)
         if value == 0.0:
             return 0.0
         else:
@@ -156,7 +156,8 @@ def getValue(node, ranker, idx, count):
                 return value / num
 
 
-def computeValue(node, ranker, idx, count=False):
+def computeValue(node, ranker, idx, weight, level, count=False):
+    factor = weight ** level
     if node.word.lower() in stopwords.words('english'):
         num = 0
         val = 0.0
@@ -164,17 +165,18 @@ def computeValue(node, ranker, idx, count=False):
         # One case has still not been covered where the word might not be a
         # stopword but is still not included in the vectorized vocabulary.
         # The same is true for numbers.
-        num = 1
+        #num = 1
+        num = factor
         if count:
             val = ranker.total_count(node.word)
         else:
-            val = ranker.tfidf_value(idx, node.word)
+            val = ranker.tfidf_value(idx, node.word) * factor
         #-------------------------------------
         # For display
-        node.value += str(val)
+        #node.value += str(val)
         #-------------------------------------
     for child in node.children:
-        value, n = computeValue(child, ranker, idx, count)
+        value, n = computeValue(child, ranker, idx, weight, level + 1, count)
         val += value
         num += n
     return val, num
@@ -284,9 +286,13 @@ def generateTrainFeatures(client_socket, infile, featurefile):
                                            sec_indices):
         feature_string = '+1'
         tree = parseTrees(getDepParse(client_socket, sentence))
-        feature_string += processTree(tree, sec_ranker, sec_idx, False)
-        #feature_string += processTree(tree, count_ranker, sent_idx, True)
-        writeToFile(featurefile, feature_string + '\n', 'a')
+        for val in [z * 0.1 for z in range(2, 9)]:
+            features = processTree(tree, sec_ranker, sec_idx, val,
+                                   False)
+            writeToFile(featurefile + str(val), feature_string + features + '\n',
+                        'a')
+        #feature_string += processTree(tree, sec_ranker, sec_idx, False)
+        #writeToFile(featurefile, feature_string + '\n', 'a')
     #------------------------------------------------
     # Negative sentences
     neg_ranker = TextRank(all_sentences)
@@ -310,9 +316,13 @@ def generateTrainFeatures(client_socket, infile, featurefile):
                                            sec_indices):
         feature_string = '-1'
         tree = parseTrees(getDepParse(client_socket, sentence))
-        feature_string += processTree(tree, sec_ranker, sec_idx, False)
-        #feature_string += processTree(tree, count_ranker, sent_idx, True)
-        writeToFile(featurefile, feature_string + '\n', 'a')
+        for val in [z * 0.1 for z in range(2, 9)]:
+            features = processTree(tree, sec_ranker, sec_idx, val,
+                                   False)
+            writeToFile(featurefile + str(val), feature_string + features + '\n',
+                        'a')
+        #feature_string += processTree(tree, sec_ranker, sec_idx, False)
+        #writeToFile(featurefile, feature_string + '\n', 'a')
     #------------------------------------------------
     print "All input files processed to create feature vectors for training."
 
@@ -417,9 +427,12 @@ def generateTestFeatures(client_socket, infile, featurefile):
         feature_string = test_data[key]['reallbl']
         tree = parseTrees(getDepParse(client_socket, sentence))
         test_data[key]['depparse'] = getTree(tree)
-        feature_string += processTree(tree, sec_ranker, sec_idx, False)
-        test_data[key]['features'] = feature_string
-        writeToFile(featurefile, feature_string + '\n', 'a')
+        for val in [z * 0.1 for z in range(2, 9)]:
+            features = processTree(tree, sec_ranker, sec_idx, val,
+                                   False)
+        #test_data[key]['features'] = feature_string
+            writeToFile(featurefile + str(val), feature_string + features + '\n',
+                        'a')
     #------------------------------------------------
 
 
@@ -446,23 +459,29 @@ def mainline(train=False):
             print (str(type(e)))
             print str(e)
             logging.exception("Something awfull !!")
-    if train is False:
-        outfile = DIR['DATA'] + "sec-tfidf-test-out.txt"
-        predictSvm(featurefile, outfile)
-        outstring = "Default values Test results"
-        analyze(featurefile, outfile, outstring)
-        pickleIt()
-    else:
-        trainSvm(featurefile)
-        outfile = DIR['DATA'] + "sec-tfidf-train-out.txt"
-        predictSvm(featurefile, outfile)
-        outstring = "Default values"
-        analyze(featurefile, outfile, outstring)
-
-
-def trainSvm(featurefile):
-    learn = DIR['BASE'] + "lib/svm-light/svm_learn"
     model = DIR['DATA'] + "sec-tfidf-model.txt"
+    if train is False:
+        # Testing
+        outfile = DIR['DATA'] + "sec-tfidf-test-out.txt"
+        for val in [z * 0.1 for z in range(2, 9)]:
+            predictSvm(featurefile + str(val), model + str(val), outfile)
+            outstring = "Testing. Weight : " + str(val)
+            analyze(featurefile + str(val), outfile, outstring)
+        #pickleIt()
+    else:
+        # Training
+        #for gamma in [0.01, 0.1, 1.0, 10.0]:
+        outfile = DIR['DATA'] + "sec-tfidf-train-out.txt"
+        for val in [z * 0.1 for z in range(2, 9)]:
+            trainSvm(featurefile + str(val), model + str(val))
+            predictSvm(featurefile + str(val), model + str(val), outfile)
+            outstring = "Training. Weight : " + str(val)
+            analyze(featurefile + str(val), outfile, outstring)
+
+
+def trainSvm(featurefile, model):
+    learn = DIR['BASE'] + "lib/svm-light/svm_learn"
+    #model = DIR['DATA'] + "sec-tfidf-model.txt"
     subprocess.call([learn, '-t', '2', '-x', '1',
                      featurefile, model])
 
@@ -474,9 +493,10 @@ def pickleIt():
         pickle.dump(test_data, pfile)
 
 
-def predictSvm(featurefile, outfile):
+def predictSvm(featurefile, model, outfile):
+    deleteFiles([outfile])
     classify = DIR['BASE'] + "lib/svm-light/svm_classify"
-    model = DIR['DATA'] + "sec-tfidf-model.txt"
+    #model = DIR['DATA'] + "sec-tfidf-model.txt"
     subprocess.call([classify, featurefile, model, outfile])
     outlist = []
     with open(outfile, 'r') as ofile:
