@@ -1,26 +1,21 @@
-from process_tree import create_dep_parse
-from process_tree import parseTrees
-from process_tree import sent2Section
-from process_tree import printTree
-from process_tree import trees
 from Document import Document
 from Config import DIR
 from Ranker import Ranker
 from Ranker import TextRank
 from GetTrainingSamples import writeToFile
+from parseClient import getConnection, getDepParse
 import subprocess
-import os
+from train_data import deleteFiles, parseTrees, sent2Section, processTree
+from train_data import validSentence
 
 
 def classifyDoc(document):
-    datadir = DIR['BASE'] + "data/"
-    sentfile = datadir + 'sentences.txt'
-    depfile = datadir + 'dependency-trees.txt'
-    featurefile = datadir + 'features.txt'
+    featurefile = DIR['DATA'] + 'features_svm.txt'
     classify = DIR['BASE'] + "lib/svm-light/svm_classify"
     model = DIR['DATA'] + "sec-tfidf-model.txt"
     outfile = DIR['DATA'] + "svm-out-sent.txt"
     #sumlength = 5
+    client_socket = getConnection()
     doc = Document(document)
     #-----------------------------------------
     # Clubbing sentences in sections and passing to the ranker
@@ -43,24 +38,25 @@ def classifyDoc(document):
     while num > 0:
         idx = ranker.scores[x][0] + offset
         x += 1
+        if not validSentence(doc[idx]):
+            continue
+        elif doc.get_section_name(idx) == 'abstract':
+            continue
         sent_idx[0] = idx
-        writeToFile(sentfile, doc[idx].sentence.encode('utf-8'), 'w')
-        if os.path.isfile(depfile):
-            print "dep file exists. Deleting.."
-            os.remove(depfile)
-        create_dep_parse(sentfile, depfile)
+        #-----------------------------------------
+        # dependency parse
+        tree = parseTrees(getDepParse(client_socket,
+                                      doc[idx].sentence.encode('utf-8')))
         #-----------------------------------------
         # The sent_idx needs to be converted to reflect the corresponding
         # section index
         sec_idx = sent2Section(doc, sent_idx)
         #-----------------------------------------
-        if os.path.isfile(featurefile):
-            print "dep file exists. Deleting.."
-            os.remove(featurefile)
-        parseTrees(depfile, featurefile, sec_ranker, sec_idx, '+1')
-        if os.path.isfile(outfile):
-            print "out file exists. Deleting.."
-            os.remove(outfile)
+        deleteFiles([featurefile])
+        feature_string = "+1"
+        feature_string += processTree(tree, sec_ranker, sec_idx[0], False)
+        writeToFile(featurefile, feature_string + '\n', 'a')
+        deleteFiles([outfile])
         subprocess.call([classify, featurefile, model, outfile])
         with open(outfile, 'r') as ofile:
             sent_val = float(ofile.read().strip())
@@ -74,16 +70,14 @@ def classifyDoc(document):
         if looper == 0:
             print "Looper Done"
             break
-    writeToFile(datadir + "svm_summary.txt", '\n'.join(summary), 'w')
+    writeToFile(DIR['DATA'] + "svm_summary.txt", '\n'.join(summary), 'w')
     print '\n'.join(summary)
 
 
 def runClassifier():
-    xmldir = DIR['BASE'] + "demo/"
+    xmldir = DIR['BASE'] + "demo/test/"
     classifyDoc(xmldir + "W11-2821-parscit-section.xml")
 
 
 if __name__ == '__main__':
     runClassifier()
-    for tree in trees:
-        printTree(tree)

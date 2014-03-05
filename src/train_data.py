@@ -28,6 +28,7 @@ trees = []
 #     contextpos
 test_data = OrderedDict()
 test_labels = {}
+client_socket = None
 
 
 class Node:
@@ -446,25 +447,26 @@ def mainline(train=False):
             print (str(type(e)))
             print str(e)
             logging.exception("Something awfull !!")
+    model = DIR['DATA'] + "sec-tfidf-model.txt"
     if train is False:
         outfile = DIR['DATA'] + "sec-tfidf-test-out.txt"
-        predictSvm(featurefile, outfile)
+        predictSvm(featurefile, model, outfile)
         outstring = "Default values Test results"
         analyze(featurefile, outfile, outstring)
         pickleIt()
     else:
-        trainSvm(featurefile)
+        trainSvm(featurefile, model)
         outfile = DIR['DATA'] + "sec-tfidf-train-out.txt"
-        predictSvm(featurefile, outfile)
+        predictSvm(featurefile, model, outfile)
         outstring = "Default values"
         analyze(featurefile, outfile, outstring)
 
 
-def trainSvm(featurefile):
+def trainSvm(featurefile, modelfile, gamma=1):
     learn = DIR['BASE'] + "lib/svm-light/svm_learn"
-    model = DIR['DATA'] + "sec-tfidf-model.txt"
-    subprocess.call([learn, '-t', '2', '-x', '1',
-                     featurefile, model])
+    #model = DIR['DATA'] + "sec-tfidf-model.txt"
+    subprocess.call([learn, '-t', '2', '-x', '1', '-g', str(gamma),
+                     featurefile, modelfile])
 
 
 def pickleIt():
@@ -474,9 +476,9 @@ def pickleIt():
         pickle.dump(test_data, pfile)
 
 
-def predictSvm(featurefile, outfile):
+def predictSvm(featurefile, model, outfile):
     classify = DIR['BASE'] + "lib/svm-light/svm_classify"
-    model = DIR['DATA'] + "sec-tfidf-model.txt"
+    #model = DIR['DATA'] + "sec-tfidf-model.txt"
     subprocess.call([classify, featurefile, model, outfile])
     outlist = []
     with open(outfile, 'r') as ofile:
