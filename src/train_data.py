@@ -449,12 +449,14 @@ def mainline(train=False):
             logging.exception("Something awfull !!")
     model = DIR['DATA'] + "sec-tfidf-model.txt"
     if train is False:
+        # TESTING
         outfile = DIR['DATA'] + "sec-tfidf-test-out.txt"
         predictSvm(featurefile, model, outfile)
         outstring = "Default values Test results"
         analyze(featurefile, outfile, outstring)
         pickleIt()
     else:
+        # TRAINING
         trainSvm(featurefile, model)
         outfile = DIR['DATA'] + "sec-tfidf-train-out.txt"
         predictSvm(featurefile, model, outfile)

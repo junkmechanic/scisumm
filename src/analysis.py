@@ -5,7 +5,7 @@ pos = {}
 neg = {}
 
 
-def analyze(featurefile, outfile, outstring=None):
+def analyze(featurefile, outfile, resultfile=None, outstring=None):
     if outstring is None:
         outstring = ''
     # To match the line number in files
@@ -48,7 +48,8 @@ def analyze(featurefile, outfile, outstring=None):
             linenum += 1
     precision = float(pos['right']) / float(pos['right'] + neg['wrong'])
     recall = float(pos['right']) / float(pos['right'] + pos['wrong'])
-    resfile = DIR['DATA'] + "sec-tfidf-result.txt"
+    resfile = (DIR['DATA'] + "sec-tfidf-result.txt" if resultfile is None
+               else resultfile)
     with open(resfile, 'a') as resultfile:
         resultfile.write(outstring + '\n')
         resultfile.write("Positive Samples Classified Correctly : " +
@@ -61,6 +62,7 @@ def analyze(featurefile, outfile, outstring=None):
                          str(neg['wrong']) + '\n')
         resultfile.write("Precision :  {0}\tRecall : {1}\n".format(precision,
                                                                    recall))
+    return precision, recall
 
 
 possent = {}
