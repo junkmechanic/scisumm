@@ -1,9 +1,13 @@
+import re
 import pickle
 from Config import DIR
+import matplotlib.pyplot as plt
 #from process_tree import Node
 
-pos = {'right': 0, 'wrong': 0}
-neg = {'right': 0, 'wrong': 0}
+pos = {'right': 0, 'wrong': 0, 'rightkeys': [], 'wrongkeys': []}
+neg = {'right': 0, 'wrong': 0, 'rightkeys': [], 'wrongkeys': []}
+verb, subj, obj = [], [], []
+featurelist = {}
 
 picklefile = DIR['DATA'] + 'test-sentences-pickle'
 with open(picklefile, 'rb') as pfile:
@@ -18,13 +22,17 @@ def confusion_matrix():
         if real == '+1':
             if pred > 0:
                 pos['right'] += 1
+                pos['rightkeys'].append(key)
             else:
                 pos['wrong'] += 1
+                pos['wrongkeys'].append(key)
         elif real == '-1':
             if pred < 0:
                 neg['right'] += 1
+                neg['rightkeys'].append(key)
             else:
                 neg['wrong'] += 1
+                neg['wrongkeys'].append(key)
         else:
             print "Label was not correctly assigned."
 
@@ -35,8 +43,56 @@ def confusion_matrix():
 
 
 def feature_analysis():
-    features = r'([\+-]1)\s(.*)'
+    features = r'([\+-]1)\s(\d:)(?P<f1>([\d\.]+))\s(\d:)(?P<f2>([\d\.]+))' +\
+               r'\s(\d:)(?P<f3>([\d\.]+))'
     for key in data.keys():
+        reg = re.match(features, data[key]['features'])
+        verb.append(float(reg.group('f1')))
+        subj.append(float(reg.group('f2')))
+        obj.append(float(reg.group('f3')))
+    for vso in ['verb', 'subj', 'obj']:
+        for vals in ['pr', 'pw', 'nr', 'nw']:
+            featurelist[vso + vals] = []
+    for key in pos['rightkeys']:
+        reg = re.match(features, data[key]['features'])
+        featurelist['verbpr'].append(reg.group('f1'))
+        featurelist['subjpr'].append(reg.group('f2'))
+        featurelist['objpr'].append(reg.group('f3'))
+    for key in neg['rightkeys']:
+        reg = re.match(features, data[key]['features'])
+        featurelist['verbnr'].append(reg.group('f1'))
+        featurelist['subjnr'].append(reg.group('f2'))
+        featurelist['objnr'].append(reg.group('f3'))
+    for key in pos['wrongkeys']:
+        reg = re.match(features, data[key]['features'])
+        featurelist['verbpw'].append(reg.group('f1'))
+        featurelist['subjpw'].append(reg.group('f2'))
+        featurelist['objpw'].append(reg.group('f3'))
+    for key in neg['wrongkeys']:
+        reg = re.match(features, data[key]['features'])
+        featurelist['verbnw'].append(reg.group('f1'))
+        featurelist['subjnw'].append(reg.group('f2'))
+        featurelist['objnw'].append(reg.group('f3'))
+    plt.figure(1)
+    plt.subplot(311)
+    plt.plot(range(len(featurelist['verbpr'])), featurelist['verbpr'], 'r-',
+             range(len(featurelist['verbpw'])), featurelist['verbpw'], 'r--',
+             range(len(featurelist['verbnr'])), featurelist['verbnr'], 'b-',
+             range(len(featurelist['verbnw'])), featurelist['verbnw'], 'b--',)
+    plt.xlabel('verb')
+    plt.subplot(312)
+    plt.plot(range(len(featurelist['subjpr'])), featurelist['subjpr'], 'r-',
+             range(len(featurelist['subjpw'])), featurelist['subjpw'], 'r--',
+             range(len(featurelist['subjnr'])), featurelist['subjnr'], 'b-',
+             range(len(featurelist['subjnw'])), featurelist['subjnw'], 'b--',)
+    plt.xlabel('subject')
+    plt.subplot(313)
+    plt.plot(range(len(featurelist['objpr'])), featurelist['objpr'], 'r-',
+             range(len(featurelist['objpw'])), featurelist['objpw'], 'r--',
+             range(len(featurelist['objnr'])), featurelist['objnr'], 'b-',
+             range(len(featurelist['objnw'])), featurelist['objnw'], 'b--',)
+    plt.xlabel('object')
+    plt.show()
 
 
 def display(real=1, pred=1):
@@ -59,3 +115,4 @@ def list_sentences(real=1, pred=1):
 
 if __name__ == '__main__':
     confusion_matrix()
+    feature_analysis()
