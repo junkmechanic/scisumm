@@ -27,6 +27,7 @@ trees = []
 #     contextpre
 #     contextpos
 test_data = OrderedDict()
+train_data = OrderedDict()
 test_labels = {}
 client_socket = None
 
@@ -112,10 +113,15 @@ def parseTrees(treestring):
 
 def processTree(root, ranker, idx, count=False):
     #trees.append(root)
-    if count:
-        verb_val = ranker.total_count(root.word)
+    #if count:
+    #    verb_val = ranker.total_count(root.word)
+    #else:
+    #    verb_val = ranker.tfidf_value(idx, root.word)
+    if root.word.lower() in stopwords.words('english'):
+        verb_val = 0.0
     else:
         verb_val = ranker.tfidf_value(idx, root.word)
+    #verb_val = getValue(root, ranker, idx, count)
     #-------------------------------------
     # For display
     root.value += '         ' + str(verb_val)
@@ -230,7 +236,7 @@ def printChildTree(node, ranker=None, idx=None):
 
 
 def getTree(root):
-    treestring = root.html() + '<br />'
+    treestring = str(root) + '\n'
     treestring += getChildTree(root)
     return treestring
 
@@ -238,7 +244,7 @@ def getTree(root):
 def getChildTree(node):
     tstring = ""
     for child in node.children:
-        tstring += child.html() + '<br />'
+        tstring += str(child) + '\n'
         tstring += getChildTree(child)
     return tstring
 
@@ -453,7 +459,7 @@ def mainline(train=False):
         outfile = DIR['DATA'] + "sec-tfidf-test-out.txt"
         predictSvm(featurefile, model, outfile)
         outstring = "Default values Test results"
-        analyze(featurefile, outfile, outstring)
+        analyze(featurefile, outfile, outstring=outstring)
         pickleIt()
     else:
         # TRAINING
@@ -461,7 +467,7 @@ def mainline(train=False):
         outfile = DIR['DATA'] + "sec-tfidf-train-out.txt"
         predictSvm(featurefile, model, outfile)
         outstring = "Default values"
-        analyze(featurefile, outfile, outstring)
+        analyze(featurefile, outfile, outstring=outstring)
 
 
 def trainSvm(featurefile, modelfile, gamma=1):

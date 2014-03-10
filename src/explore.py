@@ -74,11 +74,15 @@ def feature_analysis():
         featurelist['subjnw'].append(reg.group('f2'))
         featurelist['objnw'].append(reg.group('f3'))
     plt.figure(1)
-    plt.subplot(311)
+    ax = plt.subplot(311)
     plt.plot(range(len(featurelist['verbpr'])), featurelist['verbpr'], 'r-',
-             range(len(featurelist['verbpw'])), featurelist['verbpw'], 'r--',
-             range(len(featurelist['verbnr'])), featurelist['verbnr'], 'b-',
-             range(len(featurelist['verbnw'])), featurelist['verbnw'], 'b--',)
+             label='True Positive')
+    plt.plot(range(len(featurelist['verbpw'])), featurelist['verbpw'], 'r--',
+             label='False Negatives')
+    plt.plot(range(len(featurelist['verbnr'])), featurelist['verbnr'], 'b-',
+             label='False Positives')
+    plt.plot(range(len(featurelist['verbnw'])), featurelist['verbnw'], 'b--',
+             label='True Negatives')
     plt.xlabel('verb')
     plt.subplot(312)
     plt.plot(range(len(featurelist['subjpr'])), featurelist['subjpr'], 'r-',
@@ -92,6 +96,7 @@ def feature_analysis():
              range(len(featurelist['objnr'])), featurelist['objnr'], 'b-',
              range(len(featurelist['objnw'])), featurelist['objnw'], 'b--',)
     plt.xlabel('object')
+    ax.legend(loc='upper right')
     plt.show()
 
 
@@ -110,9 +115,13 @@ def list_sentences(real=1, pred=1):
         print sent['sentence']
         print "---Main sentence end-----"
         print sent['contextpos']
-        raw_input()
+        print re.sub(r'\<br /\>', '\\n', sent['depparse'])
+        inp = raw_input()
+        if inp == 'q':
+            break
 
 
 if __name__ == '__main__':
     confusion_matrix()
-    feature_analysis()
+    #feature_analysis()
+    list_sentences(real=-1, pred=-1)

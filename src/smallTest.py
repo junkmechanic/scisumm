@@ -50,6 +50,7 @@ for i in range(07):
     trainSvm(featurefile, model, gamma=1)
     predictSvm(featurefile, model, outfile)
     outstring = "Training Fold : " + str(i)
+    print "************* " + outstring + " *************"
     analyze(featurefile, outfile, resfile, outstring)
 
     deleteFiles([featurefile, outfile])

@@ -27,6 +27,7 @@ trees = []
 #     contextpre
 #     contextpos
 test_data = OrderedDict()
+train_data = OrderedDict()
 test_labels = {}
 
 
@@ -111,10 +112,15 @@ def parseTrees(treestring):
 
 def processTree(root, ranker, idx, weight, count=False):
     #trees.append(root)
-    if count:
-        verb_val = ranker.total_count(root.word)
+    #if count:
+    #    verb_val = ranker.total_count(root.word)
+    #else:
+    #    verb_val = ranker.tfidf_value(idx, root.word)
+    if root.word.lower() in stopwords.words('english'):
+        verb_val = 0.0
     else:
         verb_val = ranker.tfidf_value(idx, root.word)
+    #verb_val = getValue(root, ranker, idx, count)
     #-------------------------------------
     # For display
     root.value += '         ' + str(verb_val)
@@ -265,6 +271,11 @@ def generateTrainFeatures(client_socket, infile, featurefile):
     doc = Document(infile)
     all_sentences, all_offset = doc.all_sentences()
     #------------------------------------------------
+    # For display and analysis
+    dir, filename = os.path.split(infile)
+    fcode = re.match(r'(.+)-parscit-section\.xml', filename).group(1)
+    #------------------------------------------------
+    #------------------------------------------------
     # Positive sentences
     pos_sents, offset = doc.section_sentences('abstract')
     sent_indices = range(offset, offset + len(pos_sents))
@@ -284,9 +295,13 @@ def generateTrainFeatures(client_socket, infile, featurefile):
     #-----------------------------------------
     for sentence, sent_idx, sec_idx in zip(pos_sents, sent_indices,
                                            sec_indices):
+        key = fcode + '-' + str(sent_idx)
         feature_string = '+1'
         tree = parseTrees(getDepParse(client_socket, sentence))
         feature_string += processTree(tree, sec_ranker, sec_idx, 1, False)
+        train_data[key] = {'sentence': doc[sent_idx].sentence.encode('utf-8'),
+                           'reallbl': '+1',
+                           'features': feature_string}
         writeToFile(featurefile, feature_string + '\n', 'a')
     #------------------------------------------------
     # Negative sentences
@@ -309,9 +324,13 @@ def generateTrainFeatures(client_socket, infile, featurefile):
     #------------------------------------------------
     for sentence, sent_idx, sec_idx in zip(neg_sents, sent_indices,
                                            sec_indices):
+        key = fcode + '-' + str(sent_idx)
         feature_string = '-1'
         tree = parseTrees(getDepParse(client_socket, sentence))
         feature_string += processTree(tree, sec_ranker, sec_idx, 1, False)
+        train_data[key] = {'sentence': doc[sent_idx].sentence.encode('utf-8'),
+                           'reallbl': '-1',
+                           'features': feature_string}
         writeToFile(featurefile, feature_string + '\n', 'a')
     #------------------------------------------------
     print "All input files processed to create feature vectors for training."
@@ -448,7 +467,7 @@ def mainline(train=False):
     if train is False:
         # Testing
         outfile = DIR['DATA'] + "sec-tfidf-test-out.txt"
-        for gamma in [0.01, 0.1, 1.0, 10.0, 100.0]:
+        for gamma in [1.0]:
             predictSvm(featurefile, model + str(gamma), outfile)
             outstring = "Testing. Weight : " + str(gamma)
             analyze(featurefile, outfile, outstring)
@@ -456,11 +475,14 @@ def mainline(train=False):
     else:
         # Training
         outfile = DIR['DATA'] + "sec-tfidf-train-out.txt"
-        for gamma in [0.01, 0.1, 1.0, 10.0, 100.0]:
-            trainSvm(featurefile, model + str(gamma), gamma)
-            predictSvm(featurefile, model + str(gamma), outfile)
+        deleteFiles([outfile])
+        for gamma in [1.0]:
+            #trainSvm(featurefile, model + str(gamma), gamma)
+            trainSvm(featurefile, model, gamma)
+            predictSvm(featurefile, model, outfile)
             outstring = "Training. gamma : " + str(gamma)
-            analyze(featurefile, outfile, outstring)
+            analyze(featurefile, outfile, outstring=outstring)
+        pickleIt()
 
 
 def trainSvm(featurefile, model, gamma):
@@ -471,10 +493,10 @@ def trainSvm(featurefile, model, gamma):
 
 
 def pickleIt():
-    picklefile = DIR['DATA'] + 'test-sentences-pickle'
+    picklefile = DIR['DATA'] + 'train-sentences-pickle'
     deleteFiles([picklefile])
     with open(picklefile, 'wb') as pfile:
-        pickle.dump(test_data, pfile)
+        pickle.dump(train_data, pfile)
 
 
 def predictSvm(featurefile, model, outfile):
@@ -486,8 +508,8 @@ def predictSvm(featurefile, model, outfile):
     with open(outfile, 'r') as ofile:
         for line in ofile.readlines():
             outlist.append(float(line.strip()))
-    for key, val in zip(test_data.keys(), outlist):
-        test_data[key]['svmval'] = val
+    for key, val in zip(train_data.keys(), outlist):
+        train_data[key]['svmval'] = val
 
 
 def deleteFiles(flist):
@@ -499,4 +521,4 @@ def deleteFiles(flist):
 
 
 if __name__ == '__main__':
-    mainline(False)
+    mainline(True)
