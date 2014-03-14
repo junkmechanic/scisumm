@@ -1,0 +1,21 @@
+A summary is a text that represents and preserves the important informaiton conveyed by a document in a concise manner.
+Automatic summarization has been an area of research for the last couple of decades and has been tackled with different approaches.
+In this paper we will address the problem of summarization of scientific documents and put forward a solution in the form of a pipeline to process scientific articles and output their summaries.
+
+In order to summarize a document, it is first necessary to identify what pieces of text within the document are important enough to represent the information conveyed by the document.
+Such pieces of text can range from single words (motivated by the problem of keyword extraction) to clauses and sentences within the document to be summarized.
+In this paper, we will focus on complete sentences for the reason that a sentence represents a complete coherent line of thought compared to using clauses.
+So it would be easier to plug the chosen sentences into the summary without worrying about any significant loss of continuity.
+
+Another point to be considered is that summaries are generaly meant to be concise and limited in the number of words.
+It follows that not all information, that has been identified as important, might fit into a summary.
+Hence, there is a need to rank and choose the most important pieces of informaiton (sentneces) to be included into the summary.
+
+Eventually, all the high ranked sentences can be clubbed together and presented as a summary in what is termed as \textit{extractive summarization}.
+A further improvement over creating extracts for summaries is to create an abstract of the assembled text which falls in the domain of language generation.
+
+In this study, we will focus on creating extractive summaries. We started our study by building a baseline to rank sentences based on the relevance of words that occur in each sentence.
+The measure of relevance depends intuitively on how often words appear in different sentences in the document under consideration.
+Based on this overlap of words among different sentences, the ranking algorithm gives a high score to a sentence if it has a large number of overlaps with other sentences in the same document.
+The details of this algorithm , TextRank, proposed by \citep{•}, are discussed in Section 3.
+To improve the information content of the summary, 

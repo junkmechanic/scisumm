@@ -73,30 +73,50 @@ def feature_analysis():
         featurelist['verbnw'].append(reg.group('f1'))
         featurelist['subjnw'].append(reg.group('f2'))
         featurelist['objnw'].append(reg.group('f3'))
+    #----------------------------------------------------------
+    # Desired
     plt.figure(1)
-    ax = plt.subplot(311)
-    plt.plot(range(len(featurelist['verbpr'])), featurelist['verbpr'], 'r-',
-             label='True Positive')
-    plt.plot(range(len(featurelist['verbpw'])), featurelist['verbpw'], 'r--',
-             label='False Negatives')
-    plt.plot(range(len(featurelist['verbnr'])), featurelist['verbnr'], 'b-',
-             label='False Positives')
-    plt.plot(range(len(featurelist['verbnw'])), featurelist['verbnw'], 'b--',
-             label='True Negatives')
-    plt.xlabel('verb')
-    plt.subplot(312)
-    plt.plot(range(len(featurelist['subjpr'])), featurelist['subjpr'], 'r-',
-             range(len(featurelist['subjpw'])), featurelist['subjpw'], 'r--',
-             range(len(featurelist['subjnr'])), featurelist['subjnr'], 'b-',
-             range(len(featurelist['subjnw'])), featurelist['subjnw'], 'b--',)
-    plt.xlabel('subject')
-    plt.subplot(313)
-    plt.plot(range(len(featurelist['objpr'])), featurelist['objpr'], 'r-',
-             range(len(featurelist['objpw'])), featurelist['objpw'], 'r--',
-             range(len(featurelist['objnr'])), featurelist['objnr'], 'b-',
-             range(len(featurelist['objnw'])), featurelist['objnw'], 'b--',)
-    plt.xlabel('object')
-    ax.legend(loc='upper right')
+    plt.plot(featurelist['subjpr'], featurelist['verbpr'], 'ro')
+    plt.plot(featurelist['subjpw'], featurelist['verbpw'], 'r^')
+    plt.plot(featurelist['subjnr'], featurelist['verbnr'], 'bo')
+    plt.plot(featurelist['subjnw'], featurelist['verbnw'], 'b^')
+    plt.figure(2)
+    plt.plot(featurelist['subjpr'], featurelist['objpr'], 'ro')
+    plt.plot(featurelist['subjpw'], featurelist['objpw'], 'r^')
+    plt.plot(featurelist['subjnr'], featurelist['objnr'], 'bo')
+    plt.plot(featurelist['subjnw'], featurelist['objnw'], 'b^')
+    plt.figure(3)
+    plt.plot(featurelist['objpr'], featurelist['verbpr'], 'ro')
+    plt.plot(featurelist['objpw'], featurelist['verbpw'], 'r^')
+    plt.plot(featurelist['objnr'], featurelist['verbnr'], 'bo')
+    plt.plot(featurelist['objnw'], featurelist['verbnw'], 'b^')
+    #----------------------------------------------------------
+    #plt.plot(featurelist['subjnr'].append(featurelist['subjnw']),
+    #         featurelist['verbnr'].append(featurelist['verbnw']),
+    #         'bo')
+    #ax = plt.subplot(311)
+    #plt.plot(range(len(featurelist['verbpr'])), featurelist['verbpr'], 'r-',
+    #         label='True Positive')
+    #plt.plot(range(len(featurelist['verbpw'])), featurelist['verbpw'], 'r--',
+    #         label='False Negatives')
+    #plt.plot(range(len(featurelist['verbnr'])), featurelist['verbnr'], 'b-',
+    #         label='False Positives')
+    #plt.plot(range(len(featurelist['verbnw'])), featurelist['verbnw'], 'b--',
+    #         label='True Negatives')
+    #plt.xlabel('verb')
+    #plt.subplot(312)
+    #plt.plot(range(len(featurelist['subjpr'])), featurelist['subjpr'], 'r-',
+    #         range(len(featurelist['subjpw'])), featurelist['subjpw'], 'r--',
+    #         range(len(featurelist['subjnr'])), featurelist['subjnr'], 'b-',
+    #         range(len(featurelist['subjnw'])), featurelist['subjnw'], 'b--',)
+    #plt.xlabel('subject')
+    #plt.subplot(313)
+    #plt.plot(range(len(featurelist['objpr'])), featurelist['objpr'], 'r-',
+    #         range(len(featurelist['objpw'])), featurelist['objpw'], 'r--',
+    #         range(len(featurelist['objnr'])), featurelist['objnr'], 'b-',
+    #         range(len(featurelist['objnw'])), featurelist['objnw'], 'b--',)
+    #plt.xlabel('object')
+    #ax.legend(loc='upper right')
     plt.show()
 
 
@@ -123,5 +143,5 @@ def list_sentences(real=1, pred=1):
 
 if __name__ == '__main__':
     confusion_matrix()
-    #feature_analysis()
-    list_sentences(real=-1, pred=-1)
+    feature_analysis()
+    #list_sentences(real=-1, pred=-1)

@@ -45,10 +45,10 @@ class Ranker:
         self.sentences = sentences
         if tfidf:
             self.vectorizer = TfidfVectorizer(min_df=1)
-            print 'Using tfisf values'
+            #print 'Using tfisf values'
         else:
             self.vectorizer = CountVectorizer(min_df=1)
-            print 'Using count values'
+            #print 'Using count values'
         self.dtm = self.vectorizer.fit_transform(sentences)
         self.sim_matrix = self.dtm * self.dtm.T
         self.feature_names = self.vectorizer.get_feature_names()

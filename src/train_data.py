@@ -324,25 +324,25 @@ def generateTrainFeatures(client_socket, infile, featurefile):
     print "All input files processed to create feature vectors for training."
 
 
-def getSecRankedSent(doc, fcode):
+def getSecRankedSent(doc):
     sections = ['introduction', 'method', 'conclusions']
-    num = 3
+    test_sents = []
+    sent_indices = []
     for section_name in sections:
         sec_sentences, sec_offset = doc.section_sentences(section_name)
         ranker = TextRank(sec_sentences)
         ranker.rank()
-        test_sents = []
-        sent_indices = []
-        x = 0
-        while num > 0:
-            x += 1
+        num = 5
+        for x in range(len(ranker.scores)):
             idx = ranker.scores[x][0] + sec_offset
             if not validSentence(doc[idx]):
                 continue
-            else:
-                sent_indices.append(idx)
-                test_sents.append(doc[idx].sentence.encode('utf-8'))
-                num -= 1
+            sent_indices.append(idx)
+            test_sents.append(doc[idx].sentence.encode('utf-8'))
+            num -= 1
+            if num == 0:
+                break
+        print len(test_sents)
         #------------------------------------------------
     return test_sents, sent_indices
 
