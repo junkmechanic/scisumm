@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2013.12.4)  14 MAR 2014 19:52
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2013.12.4)  18 MAR 2014 17:08
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -300,30 +300,40 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
 
 LaTeX Warning: Citation `•' on page 1 undefined on input line 20.
 
-) (./200_relatedwork.tex) (./300_methodology.tex) (./600_experiments.tex)
-(./700_discussion.tex) (./800_conclusion.tex)
+) (./200_relatedwork.tex) (./300_methodology.tex [1]
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 6.
+ [2])
+(./600_experiments.tex) (./700_discussion.tex) (./800_conclusion.tex)
 No file 000_main.bbl.
-[1] [2] (./000_main.aux)
+[3] (./000_main.aux)
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 3276 strings out of 495059
- 45912 string characters out of 3182030
+ 3285 strings out of 495059
+ 46047 string characters out of 3182030
  104681 words of memory out of 3000000
- 6361 multiletter control sequences out of 15000+200000
- 18023 words of font info for 48 fonts, out of 3000000 for 9000
+ 6369 multiletter control sequences out of 15000+200000
+ 21003 words of font info for 56 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
- 38i,6n,23p,241b,196s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 38i,6n,23p,263b,196s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
-e/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fo
-nts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/t
-imes/utmri8a.pfb>
-Output written on 000_main.pdf (4 pages, 39707 bytes).
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cms
+y8.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/sh
+are/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on 000_main.pdf (5 pages, 111837 bytes).
 PDF statistics:
- 30 PDF objects out of 1000 (max. 8388607)
- 20 compressed objects within 1 object stream
+ 65 PDF objects out of 1000 (max. 8388607)
+ 46 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

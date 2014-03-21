@@ -1,12 +1,26 @@
-Describe TextRank {Baseline}
+The first step was to build a basic system that could be the basline for further experiments and improvements.
+Another factor for consideration was that the aim of the project was to create an extractive summary consisting of sentences from the same document that needs to be summarized.
+After studying various approaches used by researchers for single document summarization, I decided to use an unsupervised ranking algorithm.
+Following is a brief description of the TextRank algorithm, as introduced by \emph{Mihalcea et. al.[]}, to explain how a graph based raking algorithm can be applied to rank sentences within a document.
 
-TextRank over all sentences in the document
+\subsection*{TextRank}
+The basic idea implemented by a graph-based ranking model is that of 'voting' or 'recommendation'.
+When one vertex links to another one, it is basically casting a vote for the other vertex.
+The importance of a vertex is based on the number of votes casted towards that vertex. 
 
-TextRank over sections
+Formally, let \emph{G = (V, E)} be a directed graph with the set of vertices \emph{V} and set of edges \emph{E} where is a subset of \emph{{V x V}}.
+For a given vertex \(V_i\), let \(In(V_i)\) be the set of vertices that point to it, and let \(Out(V_i)\) be the set of vertices that \(V_i\) points to.
+The score of vertex \(V_i\) is defined as follows (\emph{Brin and Page []}),
+\[S(V_i) = (1 - d) + d * \sum_{j \in In(V_i)} \frac{1}{|Out(V_j)|}S(V_j)\]
+where \emph{d} is the damping factor that can be set between 0 and 1.
+The factor \emph{d} is generally set to \emph{0.85} and this the value that was used for my experiments as well.
+Starting with arbitrary values assigned to each node in the graph, the computation iterates untill convergence below a given threshold is achieved.
+The final score associated with each vertex represents the \textit{importance} of that vertex within the graph.
 
-Need for better judgement {Use of dependency parse}
+Two modifications were introduced by \emph{Mihalcea []} to apply this algorithm to documents for ranking sentences.
+The first was to define the above mentioned algorithm for undirected graphs in which case, the out-degree of the vertex is equal to the in-degree of the vertex.
+The other modification was to incorporate the notion of \textit{strength} of the connection between any two vertices as a weight \(w_ij\) added to the corresponding edge that connects the two vertices.
+Consequently, the new formula that takes into account these two modifications and gives the weighted score is
+\[WS(V_i) = (1 - d) + d * \sum_{V_j \in In(V_i)} \frac{w_ji}{\sum_{V_k \in Out(V_j)}w_jk}WS(V_j)\]
 
-Convolution kernels
-
-Feature extraction from dependency parses
-
+\subsection*{TextRank for Summarization}
