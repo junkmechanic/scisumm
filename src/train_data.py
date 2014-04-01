@@ -31,6 +31,12 @@ train_data = OrderedDict()
 test_labels = {}
 client_socket = None
 
+newstopwords = stopwords.words('english')[:]
+for word in ['we', 'us', 'our', 'ours', 'i', 'my', 'mine', 'they', 'them',
+             'their', 'theirs']:
+    if word in newstopwords:
+        newstopwords.remove(word)
+
 
 class Node:
     def __init__(self, str):
@@ -117,7 +123,7 @@ def processTree(root, ranker, idx, count=False):
     #    verb_val = ranker.total_count(root.word)
     #else:
     #    verb_val = ranker.tfidf_value(idx, root.word)
-    if root.word.lower() in stopwords.words('english'):
+    if root.word.lower() in newstopwords:
         verb_val = 0.0
     else:
         verb_val = ranker.tfidf_value(idx, root.word)
@@ -164,7 +170,7 @@ def getValue(node, ranker, idx, count):
 
 
 def computeValue(node, ranker, idx, count=False):
-    if node.word.lower() in stopwords.words('english'):
+    if node.word.lower() in newstopwords:
         num = 0
         val = 0.0
     else:

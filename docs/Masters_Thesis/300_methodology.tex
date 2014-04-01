@@ -1,7 +1,24 @@
+\section*{Problem Description}
+Since this project is focussed on extractive summarization, the aim is to select sentences from the source article that could be considered worthy of being included in the summary.
+So I decided to approach this as a problem of classification of sentences (in the source document) into one of the two classes: 'belonging' to summary and 'not belonging' to summary.
+
+\section*{Data}
+Collecting a standard dataset for this task was not easy.
+There are no publicly available datasets consisting of scientific articles and their respective summaries.
+Hence, in order to build a dataset, articles were randomly sampled from the ACL Anthology.
+For the initial phase, during which the baseline algorithm was set up, 10 scientific articles were sampled to make up a small dataset to run the baseline on.
+For the second phase, 20 more articles from the same database were sampled.
+Since the second phase involved experimentation with classificaiton algorithms, this set of 20 documents was used for training and the set of 10 documents that was sampled earlier was used as the test set.
+
+\section*{Evaluation Criteria}
+In accordance with the aim of the project, the evaluation of any system built should be based on the quality of summary produced by that system.
+For a quantitative judgment, the performance of both the baseline and further development was measured using ROUGE scores.
+
+\section*{Baseline}
 The first step was to build a basic system that could be the basline for further experiments and improvements.
 Another factor for consideration was that the aim of the project was to create an extractive summary consisting of sentences from the same document that needs to be summarized.
 After studying various approaches used by researchers for single document summarization, I decided to use an unsupervised ranking algorithm.
-Following is a brief description of the TextRank algorithm, as introduced by \emph{Mihalcea et. al.[]}, to explain how a graph based raking algorithm can be applied to rank sentences within a document.
+Following is a brief description of the TextRank algorithm, as introduced by \citep{Mihalcea et. al.[]}, to explain how a graph based raking algorithm can be applied to rank sentences within a document.
 
 \subsection*{TextRank}
 The basic idea implemented by a graph-based ranking model is that of 'voting' or 'recommendation'.
@@ -18,9 +35,46 @@ Starting with arbitrary values assigned to each node in the graph, the computati
 The final score associated with each vertex represents the \textit{importance} of that vertex within the graph.
 
 Two modifications were introduced by \emph{Mihalcea []} to apply this algorithm to documents for ranking sentences.
-The first was to define the above mentioned algorithm for undirected graphs in which case, the out-degree of the vertex is equal to the in-degree of the vertex.
+The first modification was to define the above mentioned algorithm for undirected graphs in which case, the out-degree of the vertex is equal to the in-degree of the vertex.
 The other modification was to incorporate the notion of \textit{strength} of the connection between any two vertices as a weight \(w_ij\) added to the corresponding edge that connects the two vertices.
 Consequently, the new formula that takes into account these two modifications and gives the weighted score is
 \[WS(V_i) = (1 - d) + d * \sum_{V_j \in In(V_i)} \frac{w_ji}{\sum_{V_k \in Out(V_j)}w_jk}WS(V_j)\]
 
 \subsection*{TextRank for Summarization}
+To apply this algorithm for ranking sentences, a graph a built in which the sentences (from the source document) represent the vertices of the graph, and the edges between these vertices is defined by the sentence 'similarity'.
+Here, 'similarity' is a measure of the content overlap between the two sentences that connected by that edge.
+This overlap of content between any two sentences can be defined by the number of common tokens between the lexical representations of the two sentences.
+
+For the purpose of the work described in thesis, this concept of similarity between sentences within a document has been implemented in the following way.
+A matrix of \emph{tf-isf} (term frequency - inverse sentence frequency) is contructed for the entire document.
+This tf-isf matrix is then multiplied by its transpose to obtain the similarity matrix with dimensions equal to the number of sentences in the entire document, and each value representing the similarity between the two sentences used to index that value in the matrix.
+
+After running the ranking algorithm over this graph untill convergence, the sentences are sorted in decreasing order based on the final score.
+The top ranked sentences are selected for inclusion in the summary.
+The performance of this algorithm on scientific articles as baseline is documented in detail in the Experiments and Results section of this report.
+This is chosen as the baseline as it has been shown to perform reasonably well on unstructured text, for example news articles.
+
+\subsection*{Performance Evaluation of Baseline}
+One of the well known summarization systems, MEAD, extracts random sentences from the text that has to be summarized.
+In ..., this basic scheme has been shown to perform well in case of summarizing news articles.
+To evaluate the performance of the baseline, I compared it with MEAD random based algorithm and found the above mentioned baseline to be better than MEAD.
+The results of the comparision have been documented in the Experiments and Results section.
+This can be intuitively justfied as well.
+MEAD random algorithm is used to summarize smaller pieces of text (news articles) where as the aim of this project is to summarize scientific articles that are generally longer.
+Considering that the corpus used for this project consists of scientific articles from the ACL Anthology, these articles are generally about a specific study and elaborate on the methodology of the conducted experiments, the results obtained, conlusion and possible discussion arising from conducting the experiments.
+These also include an "Introduction" section as well as a "Related Work" section to describe the work of others who have addressed the same or similar problem.
+
+Although the performance of the baseline system was better than that of MEAD summarization system, further qualitative analysis of the summaries generated by this baseline showed that these summaries included sentences which varied in degree of suitability to be included in the ideal summary.
+Here ideal summary would be one that is similar in content to the summary created by humans as in the gold standard that is used in this project (more on the gold standard later).
+Each of the extracted sentence from this baseline was objectively judged as to whether its contents were important enough for that sentence to be included in the ideal summary.
+It was found that 30\% of all the extracted sentences were not suitable in this respect.
+
+\todo{Add example from baseline and also stats above if possible, enter MEAD random paper above}
+
+The evaluation of baseline helped in understanding that it is not enough to rely on an algorithm that ranks sentences based on content overlap with other sentences.
+The importance of the words within the sentence should also be considered.
+I decided to explore how the importance of words appearing in a sentence, with respect to the article being summarized, relates to whether that sentence should be included in the summary or not.
+It is also important to limit the examination to words that contribute to the immediate (central) meaning conveyed by the sentence as opposed to considering adjunct clauses or phrases that do not contribute much to the central meaining of the sentnece.
+The following section describes how dependecy parse trees can help with such a study.
+
+\section*{Dependency Parses}

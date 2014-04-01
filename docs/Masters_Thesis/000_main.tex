@@ -14,7 +14,7 @@
 %%e.agirre@ehu.es or Sergi.Balari@uab.es
 %% and that of ACL 08 by Joakim Nivre and Noah Smith
 
-\documentclass[11pt]{report}
+\documentclass[12pt]{report}
 \usepackage{times}
 \usepackage{url}
 \usepackage{latexsym}
@@ -24,15 +24,17 @@
 \usepackage{multirow}
 %% Algorithm
 \usepackage{algorithm}
-\usepackage{algorithmicx}
-\usepackage{algpseudocode}
+\usepackage{todo}
+%\usepackage{algorithmicx}
+%\usepackage{algpseudocode}
 %% For math notations
-\usepackage{amsmath}
-\usepackage{amsfonts}
+%\usepackage{amsmath}
+%\usepackage{amsfonts}
 %% Text coloring
 \usepackage{color}
 %% To control enum spacing for brevity
 \usepackage{enumitem}
+\usepackage[margin=1.2in]{geometry}
 
 %\setlength\titlebox{5cm}
 
@@ -77,31 +79,34 @@
 
 \begin{document}
 \maketitle
+
+\tableofcontents
+
 \begin{abstract}
 \input{020_abstract.tex}
 \end{abstract}
 
-\section{Introduction}
+\chapter*{Introduction}
 \label{section:introduction}
 \input{100_introduction.tex}
 
-\section{Related Work}
+\chapter*{Related Work}
 \label{section:related work}
 \input{200_relatedwork.tex}
 
-\section{Methodology}
+\chapter*{Methodology}
 \label{section: method}
 \input{300_methodology.tex}
 
-\section{Experiments and Results}
+\chapter*{Experiments and Results}
 \label{section:experiments}
 \input{600_experiments.tex}
 
-\section{Discussion}
+\chapter*{Discussion}
 \label{section:discussion}
 \input{700_discussion.tex}
 
-\section{Conclusion}
+\chapter*{Conclusion}
 \label{section:conclusion}
 \input{800_conclusion.tex}
 

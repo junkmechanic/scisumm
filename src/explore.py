@@ -80,16 +80,22 @@ def feature_analysis():
     plt.plot(featurelist['subjpw'], featurelist['verbpw'], 'r^')
     plt.plot(featurelist['subjnr'], featurelist['verbnr'], 'bo')
     plt.plot(featurelist['subjnw'], featurelist['verbnw'], 'b^')
+    plt.xlabel('subject')
+    plt.ylabel('verb')
     plt.figure(2)
     plt.plot(featurelist['subjpr'], featurelist['objpr'], 'ro')
     plt.plot(featurelist['subjpw'], featurelist['objpw'], 'r^')
     plt.plot(featurelist['subjnr'], featurelist['objnr'], 'bo')
     plt.plot(featurelist['subjnw'], featurelist['objnw'], 'b^')
+    plt.xlabel('subject')
+    plt.ylabel('object')
     plt.figure(3)
     plt.plot(featurelist['objpr'], featurelist['verbpr'], 'ro')
     plt.plot(featurelist['objpw'], featurelist['verbpw'], 'r^')
     plt.plot(featurelist['objnr'], featurelist['verbnr'], 'bo')
     plt.plot(featurelist['objnw'], featurelist['verbnw'], 'b^')
+    plt.xlabel('object')
+    plt.ylabel('verb')
     #----------------------------------------------------------
     #plt.plot(featurelist['subjnr'].append(featurelist['subjnw']),
     #         featurelist['verbnr'].append(featurelist['verbnw']),
@@ -144,4 +150,4 @@ def list_sentences(real=1, pred=1):
 if __name__ == '__main__':
     confusion_matrix()
     feature_analysis()
-    #list_sentences(real=-1, pred=-1)
+    #list_sentences(real=1, pred=-1)
