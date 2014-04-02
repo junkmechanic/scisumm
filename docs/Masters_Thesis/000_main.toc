@@ -1,0 +1,21 @@
+\contentsline {chapter}{\numberline {1}Introduction}{4}
+\contentsline {chapter}{\numberline {2}Related Work}{5}
+\contentsline {chapter}{\numberline {3}Methodology}{6}
+\contentsline {section}{\numberline {3.1}Problem Description}{6}
+\contentsline {section}{\numberline {3.2}Data Collection}{6}
+\contentsline {section}{\numberline {3.3}Evaluation Criteria}{6}
+\contentsline {section}{\numberline {3.4}Pre-Processing}{7}
+\contentsline {section}{\numberline {3.5}Baseline}{7}
+\contentsline {subsection}{\numberline {3.5.1}TextRank}{7}
+\contentsline {subsection}{\numberline {3.5.2}TextRank for Summarization}{8}
+\contentsline {section}{\numberline {3.6}Data Preparation}{9}
+\contentsline {section}{\numberline {3.7}Dependency Parses}{10}
+\contentsline {section}{\numberline {3.8}Convolution Kernels}{11}
+\contentsline {subsection}{\numberline {3.8.1}Experiment}{11}
+\contentsline {subsection}{\numberline {3.8.2}Results}{12}
+\contentsline {subsection}{\numberline {3.8.3}Discussion}{12}
+\contentsline {section}{\numberline {3.9}Importance Features}{12}
+\contentsline {subsection}{\numberline {3.9.1}Experiment}{13}
+\contentsline {section}{\numberline {3.10}Final Pipeline}{14}
+\contentsline {chapter}{\numberline {4}Results}{16}
+\contentsline {chapter}{\numberline {5}Discussion}{17}

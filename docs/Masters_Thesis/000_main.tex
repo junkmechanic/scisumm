@@ -14,12 +14,15 @@
 %%e.agirre@ehu.es or Sergi.Balari@uab.es
 %% and that of ACL 08 by Joakim Nivre and Noah Smith
 
-\documentclass[12pt]{report}
+\documentclass[12pt]{scrreprt}
 \usepackage{times}
 \usepackage{url}
 \usepackage{latexsym}
 %% Pictures
 \usepackage{graphicx}
+%\usepackage{subfigure}
+\usepackage{caption}
+\usepackage{subcaption}
 %% For multirow in tables
 \usepackage{multirow}
 %% Algorithm
@@ -39,7 +42,8 @@
 %\setlength\titlebox{5cm}
 
 \definecolor{light-gray}{gray}{0.95}
-
+\graphicspath{ {images/} }
+\DeclareGraphicsExtensions{.png,.jpg}
 
 % Fix differences in cite commands
 \newcommand{\citep}[1]{\cite{#1}}
@@ -86,23 +90,23 @@
 \input{020_abstract.tex}
 \end{abstract}
 
-\chapter*{Introduction}
+\chapter{Introduction}
 \label{section:introduction}
 \input{100_introduction.tex}
 
-\chapter*{Related Work}
+\chapter{Related Work}
 \label{section:related work}
 \input{200_relatedwork.tex}
 
-\chapter*{Methodology}
+\chapter{Methodology}
 \label{section: method}
 \input{300_methodology.tex}
 
-\chapter*{Experiments and Results}
+\chapter{Results}
 \label{section:experiments}
-\input{600_experiments.tex}
+\input{600_results.tex}
 
-\chapter*{Discussion}
+\chapter{Discussion}
 \label{section:discussion}
 \input{700_discussion.tex}
 
