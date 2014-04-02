@@ -42,8 +42,33 @@ The confusion matrix for the evaluation of this model over the test set is given
 \item The model trained using both count and sec-tf-idf values was as poor as the model trained using just the counts.
 \item Varying the \textit{gamma} value for the RBF kernel did not show a drastic change in the overall performance of the classifier.
 Table 4.3 shows the difference in the precision and recall on the test set as the gamma value was changed.
+\begin{table}[h]
+\centering
+\caption{Change in Precision and Recall on the test set on varying gamma}
+\begin{tabular}{|l|l|l|}
+\hline
+gamma & Precision & Recall \\ \hline
+0.01  & 0.692     & 0.272  \\ \hline
+0.1   & 0.692     & 0.272  \\ \hline
+1.0   & 0.692     & 0.272  \\ \hline
+10    & 0.81      & 0.27   \\ \hline
+100   & 0.81      & 0.27   \\ \hline
+\end{tabular}
+\end{table}
 \item Varying the decaying factor for calculation of sec-tf-idf value did not show any drastic change in the performance.
 Table 4.4 shows the values of precision and recall on the test set as the decaying factor is changed.
+\begin{table}[h]
+\centering
+\caption{Change in Precision and Recall on varying the decay factor used for calculating sec-tf-idf}
+\begin{tabular}{|l|l|l|}
+\hline
+Decay & Precision & Recall \\ \hline
+0.2   & 0.777     & 0.212  \\ \hline
+0.5   & 0.8       & 0.24   \\ \hline
+1.0   & 0.692     & 0.272  \\ \hline
+1.5   & 0.769     & 0.303  \\ \hline
+\end{tabular}
+\end{table}
 \end{itemize}
 
 Although the test set was small in size, the sentences in this set were manually labelled unlike the sentences in the training set whose lables were approximated.
