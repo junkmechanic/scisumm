@@ -1,0 +1,7 @@
+From the results in the previous section, it can be seen that the performance of the Classifier module over the test set was better than the performance of the baseline.
+This can be attributed to the fact that in the Classification module, the features extracted for classification of the sentence captured the relevance of the the words (that appear in that sentence) with respect to the entire document.
+Although the test set consisted of sentences that were all selected from the top of the output of the TextRank algorithm, the negative sentences in the training set were picked from the bottom of the output of the TextRank algorithm.
+This could explain the low value of recall for the model.
+
+This means that the sentences that are processed by the Classification module are those for which the information content 
+It shows that considering such features that rely on computation of relevance of the content within a sentence can give much better results than considering just the textual content of the sentence.

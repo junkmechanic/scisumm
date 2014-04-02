@@ -30,7 +30,7 @@ The annotators consisted of all the members of the group that I worked with for 
 
 In the second phase of the project, experiments done involved the classification of individual sentences into one of the two classes mentioned above.
 For this purpose, I extracted a set of sentences from each of the articles in Data Set 1.
-Then, I manually labelled these sentences into one of the two classes: 0, meaning the sentence is not suitable to be included in the ideal summary; or 1, meaning the sentence can be included in the ideal summary.
+Then, I manually labelled these sentences into one of the two classes: -1, meaning the sentence is not suitable to be included in the ideal summary; or +1, meaning the sentence can be included in the ideal summary.
 The performance of using different features for classification of individual sentences was evaluated based on this labelled set of sentences.
 
 \section{Pre-Processing}
@@ -84,7 +84,7 @@ Here ideal summary would be one that is similar in content to the summary create
 Each of the extracted sentence from this baseline was objectively judged as to whether its contents were important enough for that sentence to be included in the ideal summary.
 It was found that 30\% of all the extracted sentences were not suitable in this respect.
 
-\todo{Add example from baseline and also stats above if possible,  ROUGE paper}
+\todo{Add example from baseline,  ROUGE paper}
 
 The evaluation of baseline helped in understanding that it is not enough to rely on an algorithm that ranks sentences based on content overlap with other sentences.
 The importance of the words within the sentence should also be considered.
@@ -101,7 +101,7 @@ Scientific articles in Data Set 1 were used in the first phase (described above)
 In Section 3.3, I have mentioned that articles in Data Set 1 were further processed to get labelled sentences.
 This was done in the following manner.
 For each article in Data Set 1, all the sentences were ranked using TextRank and the top 7 sentences were chosen.
-These 7 sentences were manually labelled as belonging to either class 0 or class 1.
+These 7 sentences were manually labelled as belonging to either class -1 or class +1.
 The rationale behind using TextRank for such sampling is that this ranking algorithm is the baseline.
 Being the baseline, it will be used in the pipeline of the final system after the preprocessing step.
 So the input to the classification algorithm would come from this baseline module.
@@ -156,7 +156,7 @@ It can be seen that this kind of dependency parse helps in identifying the laten
 
 As described in the previous section, the baseline uses the textual content overlap of a sentence with others in the document to decide how important the sentence within that document.
 The baseline algorithm does have the ability to process information beyond the textual content in a sentence.
-Therefore, I decided to use dependency parse of sentences to extract information that could be used as features to classify each sentence into one of the classes defined earlier (0 or 1).
+Therefore, I decided to use dependency parse of sentences to extract information that could be used as features to classify each sentence into one of the classes defined earlier (-1 or +1).
 
 In the folowing sections, I describe my experiments in extracting useful features from dependency parse trees for this purpose.
 
@@ -203,7 +203,20 @@ The classification was done over the training set and the model was tested over 
 
 \subsection{Results}
 Following is the result of using convolution kernels to train SVM over the training sentences.
-The confusion matrix of the model tested over the test set is shown in Table ...
+The confusion matrix of the model tested over the test set is shown in Table 3.1
+\begin{table}[h]
+\centering
+\caption{Confusion matrix for the evaluation of SVM using convolution kernel over test set}
+\begin{tabular}{ll|l|l}
+\cline{3-4}
+                                                   &                                 & \multicolumn{2}{|c|}{Predicted Class}     \\ \cline{3-4} 
+                                                   &                                 & Positive & \multicolumn{1}{|c|}{Negative} \\ \hline
+\multicolumn{1}{|l}{\multirow{2}{*}{Actual Class}} & \multicolumn{1}{|c|}{Positive}  & 12        & \multicolumn{1}{|c|}{21}       \\ \cline{2-4} 
+\multicolumn{1}{|l}{}                              & \multicolumn{1}{|c|}{Negative}  & 20        & \multicolumn{1}{|c|}{24}       \\ \hline
+                                                   & \multicolumn{1}{|c|}{Precision} & 37.5\%  &                                \\ \cline{2-3}
+                                                   & \multicolumn{1}{|c|}{Recall}    & 36.36\%  &                                \\ \cline{2-3}
+\end{tabular}
+\end{table}
 
 It can be seen that the values of both Precision and Recall of the model over the test set are very low.
 
@@ -286,7 +299,7 @@ I tried different combinations of features and tuning parameters which are liste
 \item The count, tf-isf and sec-tf-idf features were considered separately.
 \item The three metrics were considered together.
 \item The \textit{gamma} value for the SVM classifier was varied from 0.001 to 100
-\item For calculation of the metric over the sub-tree, for every descent to a lower level in the tree, the value of the metric at that level is multiplied to a factor.
+\item For calculation of the metric over the sub-tree, for every descent to a lower level in the tree, the value of the metric at that level is multiplied vy a constantly decaying factor.
 This factor was reduced bya constant degree with each level ranging from 0.5 to 2.
 This was done to reduce the effect of lower values of nodes in the sub-tree that couldbe responsible for reducing the value of the entire phrase.
 \end{itemize}
