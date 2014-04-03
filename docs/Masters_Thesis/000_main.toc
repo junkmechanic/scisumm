@@ -16,7 +16,7 @@
 \contentsline {section}{\numberline {3.8}Convolution Kernels}{12}
 \contentsline {subsection}{\numberline {3.8.1}Experiment}{12}
 \contentsline {subsection}{\numberline {3.8.2}Results}{13}
-\contentsline {subsection}{\numberline {3.8.3}Discussion}{13}
+\contentsline {subsection}{\numberline {3.8.3}Discussion}{14}
 \contentsline {section}{\numberline {3.9}Importance Features}{14}
 \contentsline {subsection}{\numberline {3.9.1}Experiment}{14}
 \contentsline {section}{\numberline {3.10}Final Pipeline}{16}

@@ -1,21 +1,9 @@
 This is BibTeX, Version 0.99d (TeX Live 2012/Debian)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: 000_main.aux
-White space in argument---line 36 of file 000_main.aux
+White space in argument---line 37 of file 000_main.aux
  : \citation{Mihalcea
  :                    et. al.[]}
-I'm skipping whatever remains of this command
-White space in argument---line 51 of file 000_main.aux
- : \citation{Collins
- :                   and Duffy []}
-I'm skipping whatever remains of this command
-White space in argument---line 52 of file 000_main.aux
- : \citation{Moschitti
- :                     et. al.[]}
-I'm skipping whatever remains of this command
-White space in argument---line 53 of file 000_main.aux
- : \citation{SVM-light-TK
- :                        []}
 I'm skipping whatever remains of this command
 The style file: plain.bst
 Database file #1: 900_bibliography.bib
@@ -23,53 +11,56 @@ A bad cross reference---entry "DBLP:conf/aaai/Nenkova05"
 refers to entry "DBLP:conf/aaai/2005", which doesn't exist
 A bad cross reference---entry "conf/asru/LinBX09"
 refers to entry "conf/asru/2009", which doesn't exist
+A bad cross reference---entry "DBLP:conf/emnlp/CroceMB11"
+refers to entry "DBLP:conf/emnlp/2011", which doesn't exist
 Warning--I didn't find a database entry for "DBLP:conf/aaai/2005"
 Warning--I didn't find a database entry for "conf/asru/2009"
+Warning--I didn't find a database entry for "DBLP:conf/emnlp/2011"
 Name 1 in "Krysta Svore, Lucy Vanderwende, and Chris Burges" has a comma at the end for entry Svore
 while executing---line 1049 of file plain.bst
 Warning--can't use both author and editor fields in Aone99
 Warning--empty publisher in Aone99
 Name 1 in "Krysta Svore, Lucy Vanderwende, and Chris Burges" has a comma at the end for entry Svore
 while executing---line 1090 of file plain.bst
-You've used 13 entries,
+You've used 15 entries,
             2118 wiz_defined-function locations,
-            596 strings with 6722 characters,
-and the built_in function-call counts, 5064 in all, are:
-= -- 521
-> -- 172
-< -- 8
-+ -- 71
-- -- 54
-* -- 321
-:= -- 768
-add.period$ -- 44
-call.type$ -- 13
-change.case$ -- 64
+            612 strings with 7153 characters,
+and the built_in function-call counts, 6039 in all, are:
+= -- 624
+> -- 203
+< -- 10
++ -- 83
+- -- 64
+* -- 376
+:= -- 901
+add.period$ -- 51
+call.type$ -- 15
+change.case$ -- 75
 chr.to.int$ -- 0
-cite$ -- 15
-duplicate$ -- 232
-empty$ -- 433
-format.name$ -- 54
-if$ -- 1137
+cite$ -- 17
+duplicate$ -- 280
+empty$ -- 518
+format.name$ -- 64
+if$ -- 1369
 int.to.chr$ -- 0
-int.to.str$ -- 13
-missing$ -- 13
-newline$ -- 69
-num.names$ -- 28
-pop$ -- 80
+int.to.str$ -- 15
+missing$ -- 15
+newline$ -- 79
+num.names$ -- 32
+pop$ -- 96
 preamble$ -- 1
-purify$ -- 52
+purify$ -- 61
 quote$ -- 0
-skip$ -- 179
+skip$ -- 222
 stack$ -- 0
-substring$ -- 360
-swap$ -- 83
-text.length$ -- 8
+substring$ -- 438
+swap$ -- 107
+text.length$ -- 10
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 50
+type$ -- 58
 warning$ -- 2
-while$ -- 50
-width$ -- 15
-write$ -- 154
-(There were 8 error messages)
+while$ -- 59
+width$ -- 17
+write$ -- 177
+(There were 6 error messages)

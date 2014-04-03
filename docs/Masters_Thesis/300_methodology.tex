@@ -34,6 +34,10 @@ Then, I manually labelled these sentences into one of the two classes: -1, meani
 The performance of using different features for classification of individual sentences was evaluated based on this labelled set of sentences.
 
 \section{Pre-Processing}
+Each document to be summarized is assumed to be provided in plain text of pdf format.
+To process this document, it is necessary to extract all the text as well as information about the document structure.
+This includes information about different sections in the documet.
+This is done using the software packege ParsCit/SectLabel that parses the document structure and citation sentences into well annotated and structure text.
 
 \section{Baseline}
 The first step was to build a basic system that could be the basline for further experiments and improvements.
@@ -279,7 +283,7 @@ Count represents the count of the word being considered throughout the entire do
 The tf-isf is calculated in the same way as term frequency inverse document frequency is calcualted. The only difference is that for tf-isf, the sentence containing that word is considered the 'document' and the entire article (document containing the sentence) is treated as the corpus.
 The sec-tf-idf is also calculated in a similar way as tf-idf.
 Except that in this case, the section in which that word occurs is treated as the 'document' and the entire article is treated as the corpus.
-The information about the section is obtained from the preprocessing step from the annotations of the output from the software package ParsCit/SectLabel [...].
+The information about the section is obtained from the preprocessing step from the annotations of the output from the software package ParsCit/SectLabel.
 
 The last metric is a novel metric proposed by me in this study.
 

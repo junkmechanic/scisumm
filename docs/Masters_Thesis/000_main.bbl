@@ -20,12 +20,24 @@ Jaime Carbonell and Jade Goldstein.
   Conference on Research and Development in Information Retrieval}, SIGIR '98,
   pages 335--336, New York, NY, USA, 1998. ACM.
 
+\bibitem{Collins01convolutionkernels}
+Michael Collins and Nigel Duffy.
+\newblock Convolution kernels for natural language.
+\newblock In {\em Advances in Neural Information Processing Systems 14}, pages
+  625--632. MIT Press, 2001.
+
 \bibitem{Conroy:2001:TSV:383952.384042}
 John~M. Conroy and Dianne~P. O'leary.
 \newblock Text summarization via hidden markov models.
 \newblock In {\em Proceedings of the 24th Annual International ACM SIGIR
   Conference on Research and Development in Information Retrieval}, SIGIR '01,
   pages 406--407, New York, NY, USA, 2001. ACM.
+
+\bibitem{DBLP:conf/emnlp/CroceMB11}
+Danilo Croce, Alessandro Moschitti, and Roberto Basili.
+\newblock Structured lexical similarity via convolution kernels on dependency
+  trees.
+\newblock In {\em EMNLP}, pages 1034--1046, 2011.
 
 \bibitem{Edmundson:1969:NMA:321510.321519}
 H.~P. Edmundson.

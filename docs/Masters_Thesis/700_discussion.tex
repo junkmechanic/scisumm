@@ -12,25 +12,25 @@ This is because the aim of the task is to highlight sentences that could be impo
 A close analysis of the sentences in the test set, their respective feature values and the real and predicted classes for each helped in understanding the shortcomings of the model.
 Since the importance metric sec-tf-idf is calculated by considering the section (as annotated in the document structure) as a document and the whole document as the corpus, the value of the same word differs with its occurance in different sections.
 
-Figure 7.1 shows the dependency parse of a positive sentence which was classified correctly by the trained model.
+Figure 5.1 shows the dependency parse of a positive sentence which was classified correctly by the trained model.
 The values of the three features have also been mentioned beside the words that represent the subject, the verb and the object phrases.
 Although it is an estimate in accordance with the plots shown in Figure 4.1, it can be seen that these values are high enough to be considered as positive samples.
 
 \begin{figure}[h]
-\centering
-\includegraphics[width=0.7\linewidth, height=7cm]{discuss1} 
-\caption{Dependency Parse for a positive sentence with sec-tf-idf values}
+\begin{subfigure}{0.5\textwidth}
+\includegraphics[width=1.0\linewidth, height=7cm]{discuss1} 
+\caption{A true positive sentence}
 \label{fig:dep-discus1}
-\end{figure}
-
-\begin{figure}[h]
-\centering
-\includegraphics[width=0.7\linewidth, height=7cm]{discuss2} 
-\caption{Dependency Parse for a negative sentence with sec-tf-idf values}
+\end{subfigure}
+\begin{subfigure}{0.5\textwidth}
+\includegraphics[width=1.0\linewidth, height=7cm]{discuss1}
+\caption{A false positive sentence}
 \label{fig:dep-discus2}
+\end{subfigure}
+\label{fig:stanford-dep-parse}
 \end{figure}
 
-Figure 7.2 shows the dependency parse of another positive sample which was classified incorrectly by the trained model as a negative sentence.
+Figure 5.2 shows the dependency parse of another positive sample which was classified incorrectly by the trained model as a negative sentence.
 Here it can be seen that the value of the word 'propose' is 0.007 which is quite low where as the value of the same word in Figure 7.1 is 0.08.
 The values of this word are different because the two sentences appear in different sections.
 
