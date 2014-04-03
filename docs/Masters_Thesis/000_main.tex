@@ -30,8 +30,8 @@
 \DeclareGraphicsExtensions{.png,.jpg}
 
 % Fix differences in cite commands
-\newcommand{\citep}[1]{\cite{#1}}
-\newcommand{\citet}[1]{\newcite{#1}}
+%\newcommand{\citep}[1]{\cite{#1}}
+%\newcommand{\citet}[1]{\newcite{#1}}
 
 % You can expand the titlebox if you need extra space
 % to show all the authors. Please do not make the titlebox
@@ -94,22 +94,11 @@
 \label{section:discussion}
 \input{700_discussion.tex}
 
-\chapter*{Conclusion}
+\chapter{Conclusion}
 \label{section:conclusion}
 \input{800_conclusion.tex}
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Taken out for initial submission
-%%\section*{Acknowledgments}
-%%
-%%The acknowledgments should go immediately before the references.  Do
-%%not number the acknowledgments section. Do not include this section
-%%when submitting your paper for review.
-%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%% Bibliography
-\bibliographystyle{acl}
+\bibliographystyle{plain}
 \bibliography{900_bibliography}
 
 

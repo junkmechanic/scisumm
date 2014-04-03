@@ -1,21 +1,25 @@
 \contentsline {chapter}{\numberline {1}Introduction}{4}
-\contentsline {chapter}{\numberline {2}Related Work}{5}
-\contentsline {chapter}{\numberline {3}Methodology}{6}
-\contentsline {section}{\numberline {3.1}Problem Description}{6}
-\contentsline {section}{\numberline {3.2}Data Collection}{6}
-\contentsline {section}{\numberline {3.3}Evaluation Criteria}{6}
-\contentsline {section}{\numberline {3.4}Pre-Processing}{7}
-\contentsline {section}{\numberline {3.5}Baseline}{7}
-\contentsline {subsection}{\numberline {3.5.1}TextRank}{7}
-\contentsline {subsection}{\numberline {3.5.2}TextRank for Summarization}{8}
-\contentsline {section}{\numberline {3.6}Data Preparation}{9}
-\contentsline {section}{\numberline {3.7}Dependency Parses}{10}
-\contentsline {section}{\numberline {3.8}Convolution Kernels}{11}
-\contentsline {subsection}{\numberline {3.8.1}Experiment}{11}
-\contentsline {subsection}{\numberline {3.8.2}Results}{12}
-\contentsline {subsection}{\numberline {3.8.3}Discussion}{12}
-\contentsline {section}{\numberline {3.9}Importance Features}{13}
-\contentsline {subsection}{\numberline {3.9.1}Experiment}{13}
-\contentsline {section}{\numberline {3.10}Final Pipeline}{15}
-\contentsline {chapter}{\numberline {4}Results}{16}
-\contentsline {chapter}{\numberline {5}Discussion}{18}
+\contentsline {section}{\numberline {1.1}Problem Definition}{4}
+\contentsline {section}{\numberline {1.2}Challenges with Summarization}{4}
+\contentsline {section}{\numberline {1.3}Group Affiliation}{5}
+\contentsline {chapter}{\numberline {2}Related Work}{6}
+\contentsline {chapter}{\numberline {3}Methodology}{7}
+\contentsline {section}{\numberline {3.1}Problem Description}{7}
+\contentsline {section}{\numberline {3.2}Data Collection}{7}
+\contentsline {section}{\numberline {3.3}Evaluation Criteria}{7}
+\contentsline {section}{\numberline {3.4}Pre-Processing}{8}
+\contentsline {section}{\numberline {3.5}Baseline}{8}
+\contentsline {subsection}{\numberline {3.5.1}TextRank}{8}
+\contentsline {subsection}{\numberline {3.5.2}TextRank for Summarization}{9}
+\contentsline {section}{\numberline {3.6}Data Preparation}{10}
+\contentsline {section}{\numberline {3.7}Dependency Parses}{11}
+\contentsline {section}{\numberline {3.8}Convolution Kernels}{12}
+\contentsline {subsection}{\numberline {3.8.1}Experiment}{12}
+\contentsline {subsection}{\numberline {3.8.2}Results}{13}
+\contentsline {subsection}{\numberline {3.8.3}Discussion}{13}
+\contentsline {section}{\numberline {3.9}Importance Features}{14}
+\contentsline {subsection}{\numberline {3.9.1}Experiment}{14}
+\contentsline {section}{\numberline {3.10}Final Pipeline}{16}
+\contentsline {chapter}{\numberline {4}Results}{17}
+\contentsline {chapter}{\numberline {5}Discussion}{20}
+\contentsline {chapter}{\numberline {6}Conclusion}{22}

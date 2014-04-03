@@ -29,16 +29,40 @@ The confusion matrix for the evaluation of this model over the test set is given
 \begin{table}[h]
 \centering
 \caption{Confusion matrix for trained model using sec-tf-idf on test set}
-\begin{tabular}{ll|l|l}
-\cline{3-4}
-                                                   &                                 & \multicolumn{2}{|c|}{Predicted Class}     \\ \cline{3-4} 
-                                                   &                                 & Positive & \multicolumn{1}{|l|}{Negative} \\ \hline
-\multicolumn{1}{|l}{\multirow{2}{*}{Actual Class}} & \multicolumn{1}{|l|}{Positive}  & 8        & \multicolumn{1}{|l|}{25}       \\ \cline{2-4} 
-\multicolumn{1}{|l}{}                              & \multicolumn{1}{|l|}{Negative}  & 3        & \multicolumn{1}{|l|}{41}       \\ \hline
-                                                   & \multicolumn{1}{|l|}{Precision} & 72.73\%  &                                \\ \cline{2-3}
-                                                   & \multicolumn{1}{|l|}{Recall}    & 24.24\%  &                                \\ \cline{2-3}
+\begin{tabular}{ll|c|c|}
+                              &                                & \multicolumn{2}{c}{Predicted Class}                            \\ \cline{3-4} 
+                              &                                & \multicolumn{1}{|l}{Positive} & \multicolumn{1}{|l|}{Negative} \\ \cline{2-4} 
+\multirow{2}{*}{Actual Class} & \multicolumn{1}{|l|}{Positive} & 8                             & 25                             \\ \cline{2-4} 
+                              & \multicolumn{1}{|l|}{Negative} & 3                             & 41                             \\ \cline{2-4} 
+                              & \multicolumn{1}{|l}{Precision} & \multicolumn{2}{|c|}{72.73\%}                                  \\ \cline{2-4} 
+                              & \multicolumn{1}{|l}{Recall}    & \multicolumn{2}{|c|}{24.24\%}                                  \\ \cline{2-4} 
 \end{tabular}
 \end{table}
+
+The plots of the three features have been shown in Figure 4.1.
+Here, 'red' represents positive samples and 'blue' represents negative samples.
+The \textit{circle} represents correctly classified sentences and \textit{traingle} represents incorrectly classified sentences.
+
+\begin{figure}[h]
+\begin{subfigure}{0.5\textwidth}
+\includegraphics[width=0.9\linewidth, height=5cm]{obj-subj} 
+\caption{Object - Subject Plot}
+\label{fig:objsub}
+\end{subfigure}
+\begin{subfigure}{0.5\textwidth}
+\includegraphics[width=0.9\linewidth, height=5cm]{verb-obj}
+\caption{Verb - Object Plot}
+\label{fig:verbobj}
+\end{subfigure}
+\begin{subfigure}{0.5\textwidth}
+\includegraphics[width=0.9\linewidth, height=5cm]{verb-subj}
+\caption{Verb - Subject Plot}
+\label{fig:verbsubj}
+\end{subfigure} 
+\caption{Feature Plots}
+\label{fig:feature-plots}
+\end{figure}
+
 \item The model trained using both count and sec-tf-idf values was as poor as the model trained using just the counts.
 \item Varying the \textit{gamma} value for the RBF kernel did not show a drastic change in the overall performance of the classifier.
 Table 4.3 shows the difference in the precision and recall on the test set as the gamma value was changed.
@@ -59,7 +83,7 @@ gamma & Precision & Recall \\ \hline
 Table 4.4 shows the values of precision and recall on the test set as the decaying factor is changed.
 \begin{table}[h]
 \centering
-\caption{Change in Precision and Recall on varying the decay factor used for calculating sec-tf-idf}
+\caption{Change in Precision and Recall on varying the decay factor}
 \begin{tabular}{|l|l|l|}
 \hline
 Decay & Precision & Recall \\ \hline

@@ -1,0 +1,86 @@
+\begin{thebibliography}{10}
+
+\bibitem{Aone99}
+Chinatsu Aone, Mary~Ellen Okurowski, James Gorlinsky, and Bjornar Larsen.
+\newblock {\em A trainable summarizer with knowledge acquired from robust NLP
+  techniques}, pages 71--80.
+\newblock 1999.
+
+\bibitem{Baxendale}
+P.~B. Baxendale.
+\newblock Machine-made index for technical literature: An experiment.
+\newblock {\em IBM Journal of Research and Development}, 2(4):354--361, October
+  1958.
+
+\bibitem{Carbonell:1998:UMD:290941.291025}
+Jaime Carbonell and Jade Goldstein.
+\newblock The use of mmr, diversity-based reranking for reordering documents
+  and producing summaries.
+\newblock In {\em Proceedings of the 21st Annual International ACM SIGIR
+  Conference on Research and Development in Information Retrieval}, SIGIR '98,
+  pages 335--336, New York, NY, USA, 1998. ACM.
+
+\bibitem{Conroy:2001:TSV:383952.384042}
+John~M. Conroy and Dianne~P. O'leary.
+\newblock Text summarization via hidden markov models.
+\newblock In {\em Proceedings of the 24th Annual International ACM SIGIR
+  Conference on Research and Development in Information Retrieval}, SIGIR '01,
+  pages 406--407, New York, NY, USA, 2001. ACM.
+
+\bibitem{Edmundson:1969:NMA:321510.321519}
+H.~P. Edmundson.
+\newblock New methods in automatic extracting.
+\newblock {\em J. ACM}, 16(2):264--285, April 1969.
+
+\bibitem{Svore}
+Lucy~Vanderwende Krysta~Svore and Chris Burges.
+\newblock Enhancing single-document summarization by combining ranknet and
+  third-party sources.
+\newblock In {\em Proceedings of the 2007 Joint Conference on Empirical Methods
+  in Natural Language Processing and Computational Natural Language Learning
+  (EMNLP-CoNLL)}, 2007.
+
+\bibitem{Lin2004}
+C.~Y. Lin.
+\newblock {ROUGE}: A package for automatic evaluation of summaries.
+\newblock In {\em Proceedings of the Workshop on Text Summarization Branches
+  Out (WAS)}, Barcelona, Spain, July 25-26 2004.
+
+\bibitem{conf/asru/LinBX09}
+Hui Lin, Jeff~A. Bilmes, and Shasha Xie.
+\newblock Graph-based submodular selection for extractive summarization.
+\newblock In {\em ASRU}, pages 381--386. IEEE, 2009.
+
+\bibitem{luhn}
+H.~P. Luhn.
+\newblock The automatic creation of literature abstracts.
+\newblock {\em IBM Journal of Research and Development}, 2(2):159--165, Apr
+  1958.
+
+\bibitem{mihalcea-tarau:2004:EMNLP}
+Rada Mihalcea and Paul Tarau.
+\newblock Textrank: Bringing order into texts.
+\newblock In Dekang Lin and Dekai Wu, editors, {\em Proceedings of EMNLP 2004},
+  pages 404--411, Barcelona, Spain, July 2004. Association for Computational
+  Linguistics.
+
+\bibitem{DBLP:conf/aaai/Nenkova05}
+Ani Nenkova.
+\newblock Automatic text summarization of newswire: Lessons learned from the
+  document understanding conference.
+\newblock In {\em AAAI}, pages 1436--1441, 2005.
+
+\bibitem{ilprints422}
+Lawrence Page, Sergey Brin, Rajeev Motwani, and Terry Winograd.
+\newblock The pagerank citation ranking: Bringing order to the web.
+\newblock Technical Report 1999-66, Stanford InfoLab, November 1999.
+\newblock Previous number = SIDL-WP-1999-0120.
+
+\bibitem{4518777}
+Shasha Xie and Yang Liu.
+\newblock Using corpus and knowledge-based similarity measure in maximum
+  marginal relevance for meeting summarization.
+\newblock In {\em Acoustics, Speech and Signal Processing, 2008. ICASSP 2008.
+  IEEE International Conference on}, pages 4985--4988, March 2008.
+
+\end{thebibliography}

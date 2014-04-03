@@ -1,0 +1,29 @@
+One of the earliest work done in summarization is that of Luhn \cite{luhn} in which he used the frequecy of words after stemming and removing stopwords.
+A significant factor for a sentence was derived from the number of occurances of significant words (words with high frequency) and the distance between significant words in that sentence.
+The top ranked sentences based on this significance factor were selected to form the summary extract.
+Later features like sentence position (Baxendale \cite{Baxendale}) and cue words (Edmundson \cite{Edmundson:1969:NMA:321510.321519}) were experimented with as well.
+
+With the advent of NLP, researchers produced started to produce works with statistical learning.
+For example Aone et. al. \cite{Aone99} used term frequency and inverse document frequency as well as shallow discourse analysis (like reference to same entities in the text) to train a naive-Bayes classifier.
+Conroy and O'Leary \cite{Conroy:2001:TSV:383952.384042} modeled the problem of extracting a sentence from a document using a hidden Markov model (HMM).
+The basic motivation for using a sequential model is to account for local dependencies between sentences.
+Only three features were used: position of the sentence in the document (built into the state structure of the HMM), number of terms in the sentence, and likeliness of the sentence terms given the document terms.
+
+Svore et. al. \cite{Svore} propose an algorithm based on neural nets and the use of third party datasets to tackle the problem of extractive summarization, outperforming the baseline with statistical significance.
+They trained a model from the labels and the features for each sentence of an article, that could infer the proper ranking of sentences in a test document.
+
+The work mentioned above involves training on corpus and hence is supervised.
+Unsupervised algorithms have also been proposed for this task.
+Mihalcea el al. \cite{mihalcea-tarau:2004:EMNLP} have proposed an algorithm, TextRank which is similar to PageRank \cite{ilprints422}.
+TextRank is a graph based ranking algorithm which can be used to rank keyword phrases or sentences based on the content overlap with other sentences in the document.
+This has been further discussed later in the report.
+
+Xie et al. \cite{4518777} have discussed different metrics that could be used to calculate the importance of sentence content.
+They use such metrics to find the best set of sentences that could represent the entire document based on the content.
+The ranking algorithm used in this work calculates the Maximum Marginal Relevance \cite{Carbonell:1998:UMD:290941.291025} of sentences, which can be used as a score to rank sentences.
+
+Lin et al. \cite{conf/asru/LinBX09} have also proposed a graph based algorithm where the document is represented as a set of sentences (V) in a graph with the edges defining the similarity between sentences.
+They define submodular functions using these similarity values to map a set of extracted sentences to a value that can quantify the efficiency of the summary.
+They use the greedy algorithm for this discrete optimization problem to incrementally add elements to the set that maximize the output.
+They report that this method outperforms MMR and TextRank methods.
+The summaries were created for meetings.

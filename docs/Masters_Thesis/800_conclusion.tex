@@ -1,0 +1,12 @@
+In this report, I documented the research conducted by me along with my group to develop a pipeline for summarizing scientific articles.
+The baseline was built using TextRank algorithm which is unsupervised and hence produces a output in the form of ranked sentences based on content overlap between sentences.
+This output can be used for futher processing.
+
+Experiments were conducted to build a classification model that can identify the importance of sentences within a document.
+Different metrics were tried as features for the words and phrases representing the verb, subject and object of a sentence.
+A novel metric was proposed which measure the importance of words with respect to the seciton that the sentence appears in.
+The classification model build using this feature set was seen to perform better than the baseline.
+The final pipeline was used to create summaries which were judged against gold standard and it performed better than the baseline.
+
+An in depth analysis of this approach helped in understanding the strength and weakness of the feature set and the values.
+This has helped in planning for the next phase in terms of deicding the improvements to be done to the features in the next iteration of experiments.
